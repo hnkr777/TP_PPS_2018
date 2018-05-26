@@ -1,0 +1,59 @@
+<div id="custom-overlay" [style.display]="splash ? 'flex': 'none'">
+  <div class="flb">
+    <div class="Aligner-item Aligner-item--top logo" id="animation-logo">
+      <img class="img-logo" src="assets/img/icon.png">
+    </div>
+    <!-- </div> -->
+
+    <!-- <div class="flb info" > -->
+    <div class="Aligner-item Aligner-item--bottom info" id="animation-info">
+      <h2>
+        <p>Práctica profesional 2018</p>
+        <p>Grupo Radix</p>
+        <!-- <p>Federico Adolfo Honeker</p> -->
+        <!-- <p>Juan Ignacio Murcia</p> -->
+        <!-- <p>Mauro Suppan</p> -->
+        <p>Curso: 4B - Noche</p>
+      </h2>
+    </div>
+  </div>
+</div>
+
+<div class="contenidoLogin">
+
+<ion-header class="lgElem">
+  <ion-navbar>
+    <ion-title>{{ 'LOGIN_TITLE' | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+  <ion-content>
+    <form (submit)="doLogin()" id="formularioIngreso">
+      <ion-list>
+
+        <ion-item padding style="background: transparent;">
+          <!-- <ion-label class="titulo" color="light"  stacked>{{ 'EMAIL' | translate }}</ion-label> -->
+          <ion-input class="titulo" autofocus placeholder="Email" type="email" [(ngModel)]="loginFields.email" name="email"></ion-input>
+        </ion-item>
+
+        <ion-item padding style="background: transparent;">
+          <!-- <ion-label class="titulo" color="light" stacked>{{ 'PASSWORD' | translate }}</ion-label> -->
+          <ion-input class="titulo" placeholder="Clave" type="password" [(ngModel)]="loginFields.clave" name="clave"></ion-input>
+        </ion-item>
+
+        <div padding>
+          <button ion-button round icon-left color="secondary" block large>
+            <ion-icon name="checkmark-circle"></ion-icon>{{ 'LOGIN_BUTTON' | translate }}</button>
+        </div>
+
+      </ion-list>
+
+    </form>
+
+  </ion-content>
+  <ion-footer>
+    <ion-list padding margin>
+      <button large (click)="mostrarUsuarios()" ion-button color="primary" block><ion-icon name="people"> {{ 'LOGIN_AS_BUTTON' | translate }}</ion-icon></button>
+    </ion-list>
+  </ion-footer>
+</div>

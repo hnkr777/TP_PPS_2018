@@ -1,0 +1,48 @@
+page-pages-modal-votacion {
+    .voto-content {
+        //background-color: rgba(0, 0, 0, 0.89)!important;
+        background: url('../assets/img/bg/4.jpg')!important;
+        height: 100%!important;
+        width: 100%!important;
+        color: white!important;
+        display: block;
+        //object-fit: fill;
+    }
+    
+    .boton {
+        height: 50%!important;
+        width: 100%!important;
+        //float: top;
+        //background-size: contain;
+        //object-fit: fill;
+    }
+
+    .matafuego {
+        background: url('../assets/img/1.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        //object-fit: cover;
+        background-size: contain;
+    }
+
+    .planta {
+        background: url('../assets/img/2.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        //object-fit: cover;
+        background-size: contain;
+    }
+
+    ion-content {
+        height: 100%;
+        background-color: bisque;
+        background: slategray;
+    }
+
+    .rotulo {
+        text-align: center;
+        margin-bottom: 0px;
+        font-size: xx-large;
+        font-family: cursive;
+    }
+}

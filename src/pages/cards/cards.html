@@ -1,0 +1,65 @@
+<div id="fondo" class="base contenido">
+  <ion-header>
+    <ion-navbar>
+      <ion-title>{{nombreSala[opcion-1]}}</ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="traerArchivoPost()">
+          <ion-icon name="refresh"></ion-icon>
+        </button>
+        <button ion-button icon-only (click)="traerUsuario()">
+          <ion-icon name="person"></ion-icon>
+        </button>
+        <button ion-button icon-only (click)="takePhoto()">
+          <ion-icon name="camera"></ion-icon>
+        </button>
+        <button ion-button icon-only (click)="addLibraryPhoto()">
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+
+  </ion-header>
+
+
+  <ion-content>
+
+    <ion-card padding *ngFor="let item of cardItems">
+
+      <ion-item>
+        <ion-avatar item-start>
+          <img [src]="item.user.avatar">
+        </ion-avatar>
+        <h2 class="titulo" style="color: white;">{{item.user.name}}</h2>
+        <p class="titulo" style="color: yellow;">{{item.date}}</p>
+      </ion-item>
+
+      <img class="imagen" [src]="item.image">
+
+      <ion-card-content>
+        <p>Perfil:
+          <b>{{item.profile}}</b>
+        </p>
+      </ion-card-content>
+
+      <ion-row>
+        <!-- <ion-col>
+        <button ion-button color="primary" clear small icon-start>
+            <ion-icon name='thumbs-up'></ion-icon>
+            12 Likes
+          </button>
+      </ion-col> -->
+        <ion-col>
+          <button ion-button color="primary" (click)='traerUsuario(item.id)' small icon-start>
+            <ion-icon name='user'></ion-icon>
+            Ver posts de {{item.user.name}}
+          </button>
+        </ion-col>
+        <ion-col center text-center>
+          <ion-note>
+            {{item.date}}
+          </ion-note>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ion-content>
+</div>

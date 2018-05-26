@@ -1,0 +1,105 @@
+// Ionic Variables and Theming. For more info, please see:
+// http://ionicframework.com/docs/v2/theming/
+$font-path: "../assets/fonts";
+
+@import "ionic.globals";
+
+
+// Shared Variables
+// --------------------------------------------------
+// To customize the look and feel of this app, you can override
+// the Sass variables found in Ionic's source scss files.
+// To view all the possible Ionic variables, see:
+// http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
+//$bg: #394e5d, #3879ad;
+$text-color:        #000;
+$background-color: rgb(20, 131, 10);
+$background-image: url('assets/img/bg.jpg');
+$background-repeat: no-repeat;
+$background-size: cover;
+$input-bgcolor: rgba(0, 0, 0, 0.4);
+
+// Named Color Variables
+// --------------------------------------------------
+// Named colors makes it easy to reuse colors on various components.
+// It's highly recommended to change the default colors
+// to match your app's branding. Ionic uses a Sass map of
+// colors so you can add, rename and remove colors as needed.
+// The "primary" color is the only required color in the map.
+
+$colors: (
+  primary:    #488aff,
+  secondary:  #32db64,
+  danger:     #f53d3d,
+  light:      #f4f4f4,
+  dark:       #222,
+  input-bgcolor: rgba(0, 0, 0, 0.4),
+  twitter: (
+    base: #2a506d,
+    contrast: #ffffff
+  )
+);
+
+
+.titulo {
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  color: white;
+}
+
+
+.contenido {
+  background-image: url('/assets/img/bg.jpg');
+  background-color: linear-gradient(to top, #394e5d, #3879ad);
+
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+
+
+// App iOS Variables
+// --------------------------------------------------
+// iOS only Sass variables can go here
+
+
+
+
+// App Material Design Variables
+// --------------------------------------------------
+// Material Design only Sass variables can go here
+
+$button-md-border-radius: 10px;
+$input-md-border-radius: 10px;
+$label-md-border-radius: 10px;
+$item-md-border-radius: 10px;
+$list-md-border-radius: 10px;
+
+// App Windows Variables
+// --------------------------------------------------
+// Windows only Sass variables can go here
+
+
+
+
+// App Theme
+// --------------------------------------------------
+// Ionic apps can have different themes applied, which can
+// then be future customized. This import comes last
+// so that the above variables are used and Ionic's
+// default are overridden.
+
+@import "ionic.theme.default";
+
+
+// Ionicons
+// --------------------------------------------------
+// The premium icon font for Ionic. For more info, please see:
+// http://ionicframework.com/docs/v2/ionicons/
+
+@import "ionic.ionicons";
+
+
+// Fonts
+// --------------------------------------------------
+
+@import "roboto";
+@import "noto-sans";

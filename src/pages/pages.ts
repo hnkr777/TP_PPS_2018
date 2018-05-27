@@ -5,6 +5,7 @@ export const FirstRunPage = 'LoginPage'; //'TutorialPage';
 // Change this if not using tabs
 export const MainPage = 'CardsPage'; //'ContentPage'; //export const MainPage = 'TabsPage';
 
+export const AdminControlPanel = 'AdminControlPanelPage'; // pagina de panel de control del administrador o superusuario
 export const ScanPage = 'PagesQrViewerPage';
 
 // The initial root pages for our tabs (remove if not using tabs)

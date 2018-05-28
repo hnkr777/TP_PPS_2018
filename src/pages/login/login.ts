@@ -17,12 +17,12 @@ import { PagesModalVotacionPage } from "../../pages/pages-modal-votacion/pages-m
   templateUrl: 'login.html'
 })
 export class LoginPage {
-  coleccionTipadaFirebase:AngularFirestoreCollection<Usuario>;
+  coleccionTipadaFirebase: AngularFirestoreCollection<Usuario>;
   ListadoUsuariosObservable: Observable<Usuario[]>;
 
   loginFields: { email: string, clave: string } = {
-    email: '',
-    clave: ''
+    email: 'admin@gmail.com',  // hardcodeado para hacer más rápido los test
+    clave: '11'
   };
   
   splash = true;
@@ -98,7 +98,7 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-    setTimeout(() => this.splash = false, 4000);
+    setTimeout(() => this.splash = false, 0); // este es el tiempo del splashscreen, default 4000
   }
   
   doLogin() {

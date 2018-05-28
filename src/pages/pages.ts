@@ -7,6 +7,7 @@ export const MainPage = 'CardsPage'; //'ContentPage'; //export const MainPage = 
 
 export const AdminControlPanel = 'AdminControlPanelPage'; // pagina de panel de control del administrador o superusuario
 export const ScanPage = 'PagesQrViewerPage';
+export const AbmChofer = 'AbmChoferesPage';
 
 // The initial root pages for our tabs (remove if not using tabs)
 export const Tab1Root = 'ListMasterPage';

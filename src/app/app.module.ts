@@ -26,6 +26,7 @@ import { MyApp } from './app.component';
 import { PagesModalPage } from "../pages/pages-modal/pages-modal";
 import { SpinnerPage } from '../pages/pages-spinner/pages-spinner';
 import { PagesModalVotacionPage } from '../pages/pages-modal-votacion/pages-modal-votacion';
+import { ServicioUsuariosProvider } from '../providers/servicio-usuarios/servicio-usuarios';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -86,7 +87,8 @@ export function provideSettings(storage: Storage) {
     StatusBar,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    ServicioUsuariosProvider
   ]
 })
 export class AppModule { }

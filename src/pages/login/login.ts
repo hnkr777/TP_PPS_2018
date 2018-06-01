@@ -11,6 +11,9 @@ import { ContentPage } from "../content/content";
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { PagesModalVotacionPage } from "../../pages/pages-modal-votacion/pages-modal-votacion";
 
+import { AbmVehiculosPage } from '../abm-vehiculos/abm-vehiculos';
+
+
 @IonicPage()
 @Component({
   selector: 'page-login',
@@ -133,5 +136,7 @@ export class LoginPage {
   ModalVotacion() {
     this.modalVotacion.create(PagesModalVotacionPage).present();
   }
-
+  goVehiculo(){
+    this.navCtrl.push(AbmVehiculosPage,{data:"Alta"});
+  }
 }

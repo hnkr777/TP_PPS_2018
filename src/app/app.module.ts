@@ -25,6 +25,7 @@ import { Api } from '../providers/providers';
 import { MyApp } from './app.component';
 import { PagesModalPage } from "../pages/pages-modal/pages-modal";
 import { SpinnerPage } from '../pages/pages-spinner/pages-spinner';
+import { AbmVehiculosPage } from '../pages/abm-vehiculos/abm-vehiculos';
 import { PagesModalVotacionPage } from '../pages/pages-modal-votacion/pages-modal-votacion';
 
 // The translate loader needs to know where to load i18n files
@@ -53,7 +54,8 @@ export function provideSettings(storage: Storage) {
     MyApp,
     PagesModalPage,
     SpinnerPage,
-    PagesModalVotacionPage
+    PagesModalVotacionPage,
+    AbmVehiculosPage
   ],
   imports: [
     BrowserModule,
@@ -75,7 +77,8 @@ export function provideSettings(storage: Storage) {
     MyApp,
     PagesModalPage,
     SpinnerPage,
-    PagesModalVotacionPage
+    PagesModalVotacionPage,
+    AbmVehiculosPage
   ],
   providers: [
     Api,

@@ -1,0 +1,72 @@
+page-abm-vehiculos {
+    .login-content {
+        background: #EAD1B1;
+    }
+     
+        .logo-row {
+          text-align: center;
+          align-items: center;
+          margin-left: 15%;
+          width: 70%;
+        }
+     
+        .login-box {
+          padding: 0px 20px 0px 20px;
+          margin-top: 0px;
+        }
+     
+        ion-row {
+           align-items: center;
+           text-align: center;
+         }
+     
+         ion-item {
+             border-radius: 30px !important;
+             padding-left: 30px !important;
+             font-size: 0.9em;
+             margin-bottom: 10px !important;
+             border: 1px solid #ffffff;
+             border-bottom: 0px !important;
+             box-shadow: none !important;
+         }
+     
+         .signup-col {
+           margin: 0px 16px 0px 16px;
+           padding-bottom: 0px;
+         }
+     
+         .item-inner {
+           border-bottom-color: #ffffff !important;
+           box-shadow: none !important;
+         }
+     
+         .submit-btn {
+           background: #51CFB1;
+           border-radius: 30px !important;
+           border: 1px solid #ffffff;
+         }
+         .center {
+            //padding: 0px 20px 0px 20px;
+            //margin-top: 30%;
+            -webkit-align-content: stretch;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            -webkit-box-direction: normal;
+            -webkit-box-orient: horizontal;
+            -webkit-box-pack: center;
+            -webkit-flex-direction: row;
+            -webkit-flex-wrap: nowrap;
+            -webkit-justify-content: center;
+            align-content: stretch;
+            align-items: center;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: center;
+          }
+        .img{
+            width: 200px;
+        }
+      }

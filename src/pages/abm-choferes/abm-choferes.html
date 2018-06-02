@@ -14,13 +14,14 @@
 
 <ion-content class="abm-choferes-content">
 
-  <ion-card padding *ngFor="let item of listaChoferes">
+  <ion-card (click)="detalle()" padding *ngFor="let item of listaChoferes">
+      <!-- *ngIf="item.activo==0? style='background-color: gray;' : " -->
 
     <ion-item>
       <ion-avatar item-start>
         <img [src]="item.foto">
       </ion-avatar>
-      <h2 class="titulo" style="color: white;">{{item.nombre}} {{item.apellido}}</h2>
+      <h2 class="titulo" style="color: rgb(255, 255, 255);">{{item.nombre}} {{item.apellido}}</h2>
       <p class="titulo" style="color: yellow;">Fecha de nacimiento: {{item.fechaNacimiento}}</p>
     </ion-item>
 
@@ -37,28 +38,28 @@
         <b>{{item.dni}}</b>
       </p>
       <p>Sexo:
-        <b>{{item.sexo}}</b>
+        <b>{{ item.sexo == 'm' ? 'Masculino' : 'Femenino' }}</b>
       </p>
     </ion-card-content>
 
-    <ion-row>
+    <!-- <ion-row> -->
       <!-- <ion-col>
           <button ion-button color="primary" clear small icon-start>
               <ion-icon name='thumbs-up'></ion-icon>
               12 Likes
             </button>
         </ion-col> -->
-      <ion-col>
+      <!-- <ion-col>
         <button ion-button color="primary" small icon-start>
           <ion-icon name='user'></ion-icon>
           Modificar
         </button>
-      </ion-col>
+      </ion-col> -->
       <!-- <ion-col center text-center>
         <ion-note>
           {{item.dni}}
         </ion-note>
       </ion-col> -->
-    </ion-row>
+    <!-- </ion-row> -->
   </ion-card>
 </ion-content>

@@ -33,7 +33,7 @@ export class AbmChoferesPage {
     let ob = this.servicioUsuarios.traerUsuariosPorPerfil('chofer').subscribe(data => {
       //console.log('data: ' + JSON.stringify(data));
       this.listaChoferes = data;
-      ob.unsubscribe();
+      //ob.unsubscribe();
     });
   }
 
@@ -46,6 +46,10 @@ export class AbmChoferesPage {
     console.log('agregar nuevo Chofer');
     this.modalCtrl.create(AltaChoferPage).present();
     
+  }
+
+  detalle() {
+    console.log('Detalle');
   }
   
 }

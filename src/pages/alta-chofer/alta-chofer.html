@@ -48,8 +48,21 @@
     </ion-item>
 
     <ion-item>
-      <!-- <ion-label class="titulo" floating>Clave</ion-label> -->
-      <ion-input placeholder="Foto" [(ngModel)]="chofer.foto" class="titulo" type="file"></ion-input>
+      <ion-row>
+        <ion-col>
+          <button small ion-button color="primary" (click)="tomarFoto()">
+            <ion-icon name="camera"></ion-icon>&nbsp; Sacar foto</button>
+        </ion-col>
+        <ion-col>
+          <div class="marco-imagen">
+            <img [src]="chofer.foto === undefined ? '../../assets/img/img-usuario.svg' : chofer.foto">
+          </div>
+        </ion-col>
+        <ion-col>
+          <button small ion-button color="primary" (click)="cargarFoto()">
+            <ion-icon name="add"></ion-icon>&nbsp; Buscar foto</button>
+        </ion-col>
+      </ion-row>
     </ion-item>
 
     <ion-list [(ngModel)]="chofer.sexo" class="titulo" radio-group>
@@ -79,18 +92,6 @@
       <ion-input placeholder="Fecha de nacimiento" [(ngModel)]="chofer.fechaNacimiento" class="titulo" type="date"></ion-input>
     </ion-item>
 
-    <ion-row>
-      <ion-col text-center>
-
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col text-center>
-
-      </ion-col>
-    </ion-row>
-
   </ion-content>
 
   <ion-footer>
@@ -99,7 +100,7 @@
         <button large ion-button color="danger" (click)="closeModal()">Cancelar</button>
       </ion-buttons>
       <ion-buttons end>
-        <button large ion-button color="secondary" (click)="nuevoChofer()">Aceptar</button>
+        <button *ngIf="validos===true" large ion-button color="secondary" (click)="nuevoChofer()">Aceptar</button>
       </ion-buttons>
     </ion-navbar>
   </ion-footer>

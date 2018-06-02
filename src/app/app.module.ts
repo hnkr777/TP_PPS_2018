@@ -24,6 +24,7 @@ import { User } from '../providers/providers';
 import { Api } from '../providers/providers';
 import { MyApp } from './app.component';
 import { PagesModalPage } from "../pages/pages-modal/pages-modal";
+import { AltaChoferPage } from '../pages/alta-chofer/alta-chofer';
 import { SpinnerPage } from '../pages/pages-spinner/pages-spinner';
 import { PagesModalVotacionPage } from '../pages/pages-modal-votacion/pages-modal-votacion';
 import { ServicioUsuariosProvider } from '../providers/servicio-usuarios/servicio-usuarios';
@@ -54,7 +55,8 @@ export function provideSettings(storage: Storage) {
     MyApp,
     PagesModalPage,
     SpinnerPage,
-    PagesModalVotacionPage
+    PagesModalVotacionPage,
+    AltaChoferPage
   ],
   imports: [
     BrowserModule,
@@ -76,7 +78,8 @@ export function provideSettings(storage: Storage) {
     MyApp,
     PagesModalPage,
     SpinnerPage,
-    PagesModalVotacionPage
+    PagesModalVotacionPage,
+    AltaChoferPage
   ],
   providers: [
     Api,

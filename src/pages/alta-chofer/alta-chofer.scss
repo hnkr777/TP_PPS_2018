@@ -1,0 +1,20 @@
+alta-chofer-page {
+    ion-content {
+        background: rgb(56, 56, 56)!important;
+        
+    }
+
+    ion-item {
+        background: transparent!important;
+    }
+
+    .contenedor-global {
+        background: url('../../assets/img/bg/5.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100%!important;
+        position: relative;
+        top: 0px;
+        left: 0px;
+    }
+}

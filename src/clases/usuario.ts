@@ -13,12 +13,15 @@ export class Usuario {
     clave: string;      // contraseña
     perfil: string;     // puede ser: cliente, supervisor, chofer, admin (superusuario)
     sexo: string;       // puede ser 'f' = femenino | 'm' = masculino
+    activo: number;     // 0 = inactivo, 1 = activo
+    foto: string;       // foto en base64
+    dni: number;        // DNI, es un número
   
     constructor(){
-      
+      this.fechaAlta = new Date(Date.now());
     }
   
-    dameJSON() {
+    /*toJSON() {
       return JSON.parse( JSON.stringify(this));
-    }
+    }*/
 }

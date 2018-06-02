@@ -56,7 +56,7 @@ export class ServicioUsuariosProvider {
 
   // guarda un nuevo usuario en la base de datos, en caso de bien o mal ejecuta los callbacks correspondientes...
   guardarNuevoUsuario(nuevo: Usuario, successCallback, errorCallback) {
-    let objetoJsonGenerico = nuevo.dameJSON();
+    let objetoJsonGenerico = JSON.parse(JSON.stringify(nuevo));
     this.objFirebase.collection<Usuario>(this.tablaUsuarios).add(objetoJsonGenerico)
     .then( successCallback // si el usuario se guardó bien, invoca al callback del usuario
       //ret => { console.log('Usuario '+ nuevo.nombre +' guardado correctamente.');}

@@ -106,7 +106,11 @@ export class AltaChoferPage {
 
   private validar(): boolean {
     let c: Usuario = this.chofer;
+<<<<<<< HEAD
     let res: boolean = c.nombre!=='' && c.apellido!==''&&c.clave!==''&&c.dni!==undefined&&c.email!==''&&c.fechaNacimiento!==undefined&&/*c.foto!==undefined&&*/c.sexo!==undefined;
+=======
+    let res: boolean = c.nombre!=='' && c.apellido!==''&&c.clave!==''&&c.dni!==undefined&&c.email!==''&&c.fechaNacimiento!==undefined&&c.foto!==undefined&&c.sexo!==undefined;
+>>>>>>> ff3c5e09fcd967cada562451b2e6aedc7c7a6387
     
     if (this.clave1 !== this.clave2) {
       alert('Las contraseñas no coinciden.');
@@ -118,10 +122,17 @@ export class AltaChoferPage {
       return false;
     }
     
+<<<<<<< HEAD
     /*if (this.chofer.foto === undefined) {
       alert('El chofer no tiene foto.');
       return false;
     }*/
+=======
+    if (this.chofer.foto === undefined) {
+      alert('El chofer no tiene foto.');
+      return false;
+    }
+>>>>>>> ff3c5e09fcd967cada562451b2e6aedc7c7a6387
 
     if (!res) {
       alert('Todos los campos son obligatorios.');

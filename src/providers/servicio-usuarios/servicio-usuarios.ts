@@ -83,4 +83,23 @@ export class ServicioUsuariosProvider {
     
   }
 
+  // modificamos el usuario en firebase pasado como parámetro, lo identifica por el email, que es único para cada usuario
+  modificarUsuario(usuario: any | Usuario) {
+    console.log('ServicioUsuariosProvider.modificarUsuario()');
+    //this.objFirebase.collection<Usuario>(this.tablaUsuarios).ref.doc().update().then();
+    let coleccionTipadaFirebase = this.objFirebase.collection<Usuario>(this.tablaUsuarios, ref => ref.where('email', '==', usuario.email));
+    coleccionTipadaFirebase.ref.get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        if(doc.data().email == usuario.email) {
+          doc.ref.update(usuario);
+          console.log('Usuario ' + usuario.email + ' modificado correctamente.');
+        }
+      });
+    })
+    .catch(function(error) {
+      console.log('Error al modificar el usuario ' + usuario.email + ' - ' + error);
+    });
+    
+  }
+
 }

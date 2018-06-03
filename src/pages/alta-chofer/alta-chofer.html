@@ -3,7 +3,7 @@
   <ion-header>
 
     <ion-navbar>
-      <ion-title>Alta de nuevo chofer</ion-title>
+      <ion-title>{{ (modoAlta == true? 'NEW_DRIVER_TITLE' : 'MODIF_DRIVER_TITLE') | translate }}</ion-title>
     </ion-navbar>
 
   </ion-header>
@@ -92,6 +92,11 @@
       <ion-input placeholder="Fecha de nacimiento" [(ngModel)]="chofer.fechaNacimiento" class="titulo" type="date"></ion-input>
     </ion-item>
 
+    <ion-item>
+      <ion-label class="titulo">Habilitado</ion-label>
+      <ion-checkbox class="titulo" [(ngModel)]="habilitado"></ion-checkbox>
+    </ion-item>
+
   </ion-content>
 
   <ion-footer>
@@ -100,7 +105,7 @@
         <button large ion-button color="danger" (click)="closeModal()">Cancelar</button>
       </ion-buttons>
       <ion-buttons end>
-        <button *ngIf="validos===true" large ion-button color="secondary" (click)="nuevoChofer()">Aceptar</button>
+        <button *ngIf="validos===true" large ion-button color="secondary" (click)="accionAceptar()">Aceptar</button>
       </ion-buttons>
     </ion-navbar>
   </ion-footer>

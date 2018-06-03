@@ -1,11 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
-import { TranslateService } from '@ngx-translate/core';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { Usuario } from '../../clases/usuario';
 import { Observable } from 'rxjs/Observable';
-
+import { Usuario } from '../../clases/usuario';
 
 /*
   Servicio/Provider de usuarios, para traer a todos, o por tipo, o para guardar uno nuevo, etc
@@ -28,9 +25,9 @@ export class ServicioUsuariosProvider {
 
   // trae TODOS los usuarios, ordenados por id, devuelve con un promise
   // debería hacer unsuscribe al finalizar la carga de datos?
-  traerUsuarios(): Observable<Usuario[]> {
+  traerUsuarios(): Observable<Usuario[] | any[]> {
     console.log('ServicioUsuariosProvider.cargarUsuarios()');
-    let coleccionTipadaFirebase = this.objFirebase.collection<Usuario>(this.tablaUsuarios, ref => ref.orderBy('id','asc'));
+    let coleccionTipadaFirebase = this.objFirebase.collection<Usuario>(this.tablaUsuarios);
     let ListadoUsuariosObservable = coleccionTipadaFirebase.valueChanges();
     return ListadoUsuariosObservable;
     /*let ob = ListadoUsuariosObservable.subscribe(x => {
@@ -55,7 +52,8 @@ export class ServicioUsuariosProvider {
   }
 
   // guarda un nuevo usuario en la base de datos, en caso de bien o mal ejecuta los callbacks correspondientes...
-  guardarNuevoUsuario(nuevo: Usuario, successCallback, errorCallback) {
+  // TODO: implementar chequeo de restricción de email y dni único
+  guardarNuevoUsuario(nuevo: any | Usuario, successCallback, errorCallback) {
     let objetoJsonGenerico = JSON.parse(JSON.stringify(nuevo));
     this.objFirebase.collection<Usuario>(this.tablaUsuarios).add(objetoJsonGenerico)
     .then( successCallback // si el usuario se guardó bien, invoca al callback del usuario
@@ -64,6 +62,25 @@ export class ServicioUsuariosProvider {
     .catch( errorCallback // si hubo error, llama al callback de error...
       //error => {console.error(error);}
     );
+  }
+
+  // modificamos el usuario en firebase pasado como parámetro, lo identifica por el email, que es único para cada usuario
+  modificarUsuario(usuario: any | Usuario) {
+    console.log('ServicioUsuariosProvider.modificarUsuario()');
+    //this.objFirebase.collection<Usuario>(this.tablaUsuarios).ref.doc().update().then();
+    let coleccionTipadaFirebase = this.objFirebase.collection<Usuario>(this.tablaUsuarios, ref => ref.where('email', '==', usuario.email));
+    coleccionTipadaFirebase.ref.get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        if(doc.data().email == usuario.email) {
+          doc.ref.update(usuario);
+          console.log('Usuario ' + usuario.email + ' modificado correctamente.');
+        }
+      });
+    })
+    .catch(function(error) {
+      console.log('Error al modificar el usuario ' + usuario.email + ' - ' + error);
+    });
+    
   }
 
 }

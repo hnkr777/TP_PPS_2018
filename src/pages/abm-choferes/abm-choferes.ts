@@ -19,6 +19,7 @@ import { AltaChoferPage } from '../alta-chofer/alta-chofer';
 })
 export class AbmChoferesPage {
   public listaChoferes: any;
+  private chofer: Usuario;
 
   constructor(
     public navCtrl: NavController, 
@@ -30,11 +31,19 @@ export class AbmChoferesPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad AbmChoferesPage');
     let usuarios: any;
-    let ob = this.servicioUsuarios.traerUsuariosPorPerfil('chofer').subscribe(data => {
+    let ob = this.servicioUsuarios.traerUsuariosPorPerfil('chofer').subscribe(data => { // la lista se va a actualizar cada vez que cambie la tabla usuarios de firebase
       //console.log('data: ' + JSON.stringify(data));
       this.listaChoferes = data;
       //ob.unsubscribe();
     });
+  }
+
+  refresh() {
+    let ob = document.getElementById('choferes-content');
+    ob.childNodes
+    
+    document.getElementById('carta').classList.add('disabled');
+    document.getElementById('carta').classList.remove('disabled');
   }
 
   Modal(titulo: string, data: any) {
@@ -48,8 +57,11 @@ export class AbmChoferesPage {
     
   }
 
-  detalle() {
-    console.log('Detalle');
+  // para modificar los datos del chofer seleccionado, le paso al mismo modal del alta, el chofer a modificar
+  modificar($event) {
+    console.log('Modificar chofer'+ JSON.stringify($event));
+    this.chofer = $event;
+    this.modalCtrl.create(AltaChoferPage, {chofer: this.chofer}).present();
   }
   
 }

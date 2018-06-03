@@ -10,6 +10,7 @@ import { MainPage } from '../pages';
 import { ContentPage } from "../content/content";
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { PagesModalVotacionPage } from "../../pages/pages-modal-votacion/pages-modal-votacion";
+import { ServicioUsuariosProvider } from '../../providers/servicio-usuarios/servicio-usuarios';
 
 @IonicPage()
 @Component({
@@ -37,6 +38,7 @@ export class LoginPage {
     public modalCtrl: ModalController, 
     public toastCtrl: ToastController,
     public translateService: TranslateService,
+    private servicioUsuarios: ServicioUsuariosProvider,
     private objFirebase: AngularFirestore) {
 
     this.translateService.get('LOGIN_ERROR').subscribe((value) => {
@@ -104,30 +106,25 @@ export class LoginPage {
   doLogin() {
     let modal = this.modalCtrl.create(SpinnerPage);
     modal.present();
-    this.coleccionTipadaFirebase = this.objFirebase.collection<Usuario>('usuarios', ref=> ref.orderBy('id','asc'));
-    this.ListadoUsuariosObservable = this.coleccionTipadaFirebase.valueChanges();
-    this.ListadoUsuariosObservable.subscribe(x => {
-      console.info("Conexión correcta con Firebase. Usuarios: ", x);
-    });
-    
-    this.ListadoUsuariosObservable.forEach((el)=>{
-      this.accounts = el;
-      let user: Usuario = this.accounts.find(elem => ( this.loginFields.email == elem.nombre && (this.loginFields.clave == elem.clave)));
+    let ob = this.servicioUsuarios.traerUsuarios().subscribe(arr => {
+      this.accounts = arr;
+      console.log(arr);
+      let user: Usuario = this.accounts.find(elem => ( this.loginFields.email == elem.email && (this.loginFields.clave == elem.clave)));
       modal.dismiss();
-      if( user !== undefined ) {
+      ob.unsubscribe();
+      if (user !== undefined && user.activo == 1) {
         sessionStorage.setItem('usuario', JSON.stringify(user));
         this.ModalVotacion();
         //this.navCtrl.push(MainPage);
       } else {
         let toast = this.toastCtrl.create({
-          message: "Acceso denegado.",
+          message: ( user !== undefined && user.activo == 0 ? 'Usuario dado de baja.' : 'Acceso denegado.'),
           duration: 4000,
           position: 'bottom' //middle || top
         });
         toast.present();
       }
     });
-
   }
   
   ModalVotacion() {

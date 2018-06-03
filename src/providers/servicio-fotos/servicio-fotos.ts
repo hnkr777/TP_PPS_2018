@@ -20,7 +20,7 @@ export class ServicioFotosProvider {
   // y obtener una foto en base64 de la cámara del celu
   takePhoto(): Promise<any> {
     const options: CameraOptions = {
-      quality: 50,
+      quality: 40,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
@@ -35,7 +35,7 @@ export class ServicioFotosProvider {
   // y obtener una foto en base64 de la librería de fotos del celu
   addLibraryPhoto(): Promise<any> {
     const options: CameraOptions = {
-      quality: 50,
+      quality: 40,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,

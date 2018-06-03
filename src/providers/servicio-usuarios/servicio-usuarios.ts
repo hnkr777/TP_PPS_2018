@@ -84,7 +84,7 @@ export class ServicioUsuariosProvider {
   }
 
   // modificamos el usuario en firebase pasado como parámetro, lo identifica por el email, que es único para cada usuario
-  modificarUsuario(usuario: any | Usuario) {
+  _modificarUsuario(usuario: any | Usuario) {
     console.log('ServicioUsuariosProvider.modificarUsuario()');
     //this.objFirebase.collection<Usuario>(this.tablaUsuarios).ref.doc().update().then();
     let coleccionTipadaFirebase = this.objFirebase.collection<Usuario>(this.tablaUsuarios, ref => ref.where('email', '==', usuario.email));

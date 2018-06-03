@@ -54,8 +54,8 @@
             <ion-icon name="camera"></ion-icon>&nbsp; Sacar foto</button>
         </ion-col>
         <ion-col>
-          <div class="marco-imagen">
-            <img [src]="chofer.foto === undefined ? '../../assets/img/img-usuario.svg' : chofer.foto">
+          <div (click)="verImagen()" class="marco-imagen">
+            <img class="marco-imagen" [src]="chofer.foto === undefined ? '../../assets/img/img-usuario.svg' : chofer.foto">
           </div>
         </ion-col>
         <ion-col>

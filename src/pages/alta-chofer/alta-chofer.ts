@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ModalController } from 'ionic-angular';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { environment } from "../../environments/environment";
@@ -8,12 +8,13 @@ import { Usuario } from "../../clases/usuario";
 import { ServicioUsuariosProvider } from '../../providers/servicio-usuarios/servicio-usuarios';
 import { ServicioFotosProvider } from '../../providers/servicio-fotos/servicio-fotos';
 import { TranslateService } from '@ngx-translate/core';
+import { VerImagenPage } from '../ver-imagen/ver-imagen';
 
 /**
  * AltaChoferPage
  *
  * Se muestra como modal, alta de nuevo chofer
- * 
+ * O se puede editar un chofer existente, pasándole el chofer por navParams
  */
 
 @IonicPage()
@@ -32,6 +33,7 @@ export class AltaChoferPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private formBuilder: FormBuilder,
+    private modalCtrl: ModalController,
     private servicioUsuarios: ServicioUsuariosProvider,
     private servicioFotos: ServicioFotosProvider,
     public viewCtrl: ViewController) {
@@ -58,6 +60,14 @@ export class AltaChoferPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad AltaChoferPage');
     
+  }
+
+  verImagen() {
+    if (this.chofer.foto !== undefined) {
+      this.modalCtrl.create(VerImagenPage, { imagen: this.chofer.foto}).present();
+    } else {
+      alert('El usuario no tiene foto.');
+    }
   }
 
   accionAceptar() {
@@ -106,11 +116,7 @@ export class AltaChoferPage {
 
   private validar(): boolean {
     let c: Usuario = this.chofer;
-<<<<<<< HEAD
-    let res: boolean = c.nombre!=='' && c.apellido!==''&&c.clave!==''&&c.dni!==undefined&&c.email!==''&&c.fechaNacimiento!==undefined&&/*c.foto!==undefined&&*/c.sexo!==undefined;
-=======
     let res: boolean = c.nombre!=='' && c.apellido!==''&&c.clave!==''&&c.dni!==undefined&&c.email!==''&&c.fechaNacimiento!==undefined&&c.foto!==undefined&&c.sexo!==undefined;
->>>>>>> ff3c5e09fcd967cada562451b2e6aedc7c7a6387
     
     if (this.clave1 !== this.clave2) {
       alert('Las contraseñas no coinciden.');
@@ -122,17 +128,10 @@ export class AltaChoferPage {
       return false;
     }
     
-<<<<<<< HEAD
-    /*if (this.chofer.foto === undefined) {
-      alert('El chofer no tiene foto.');
-      return false;
-    }*/
-=======
     if (this.chofer.foto === undefined) {
       alert('El chofer no tiene foto.');
       return false;
     }
->>>>>>> ff3c5e09fcd967cada562451b2e6aedc7c7a6387
 
     if (!res) {
       alert('Todos los campos son obligatorios.');

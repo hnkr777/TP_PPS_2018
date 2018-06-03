@@ -11,6 +11,7 @@ import { ContentPage } from "../content/content";
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { PagesModalVotacionPage } from "../../pages/pages-modal-votacion/pages-modal-votacion";
 import { ServicioUsuariosProvider } from '../../providers/servicio-usuarios/servicio-usuarios';
+import { AdminControlPanelPage } from '../admin-control-panel/admin-control-panel';
 
 @IonicPage()
 @Component({
@@ -65,7 +66,7 @@ export class LoginPage {
         break;
 
       case 4:
-      this.loginFields.email = "anonimo@gmail.com";
+      this.loginFields.email = "mschumi@gmail.com";
       this.loginFields.clave = '44';
         break;
 
@@ -85,10 +86,10 @@ export class LoginPage {
       enableBackdropDismiss: true,
       cssClass: 'actSheet',
       buttons: [
-        { text: 'admin', handler: () => {this.setLog(1);}},
+        { text: 'administrador (admin)', handler: () => {this.setLog(1);}},
         { text: 'invitado', handler: () => {this.setLog(2);}},
         { text: 'usuario', handler: () => {this.setLog(3);}},
-        { text: 'anonimo', handler: () => {this.setLog(4);}},
+        { text: 'Schumacher (chofer)', handler: () => {this.setLog(4);}},
         { text: 'tester', handler: () => {this.setLog(5);}},
         {
           text: 'Cancelar', cssClass: 'btnCancel', role: 'cancel', handler: () => {  }
@@ -114,8 +115,7 @@ export class LoginPage {
       ob.unsubscribe();
       if (user !== undefined && user.activo == 1) {
         sessionStorage.setItem('usuario', JSON.stringify(user));
-        this.ModalVotacion();
-        //this.navCtrl.push(MainPage);
+        this.IrRutaPorPerfil(user);
       } else {
         let toast = this.toastCtrl.create({
           message: ( user !== undefined && user.activo == 0 ? 'Usuario dado de baja.' : 'Acceso denegado.'),
@@ -127,8 +127,36 @@ export class LoginPage {
     });
   }
   
-  ModalVotacion() {
-    this.modalVotacion.create(PagesModalVotacionPage).present();
+  // esta es la función principal de ruteo por perfil, 
+  // define de acuerdo al perfil del usuario que loguea, a que ruta lo lleva
+  IrRutaPorPerfil(usuario: Usuario) {
+    // this.modalVotacion.create(PagesModalVotacionPage).present(); // modal para test varios
+    // this.navCtrl.push(MainPage); // así agregamos una página al stack de páginas, para navegarlas y poder volver atrás con el botón back
+    switch (usuario.perfil.toLowerCase()) {
+      case 'admin':
+        console.log('Bienvenido administrador ' + usuario.email);
+        this.navCtrl.setRoot(AdminControlPanelPage); // así seteamos una página directamente, no hay stack
+      break;
+
+      case 'chofer':
+        console.log('Bienvenido chofer ' + usuario.email);
+        
+      break;
+
+      case 'supervisor':
+        console.log('Bienvenido supervisor ' + usuario.email);
+        
+      break;
+
+      case 'cliente':
+        console.log('Bienvenido cliente ' + usuario.email);
+        
+      break;
+    
+      default:
+        break;
+    }
+    
   }
 
 }

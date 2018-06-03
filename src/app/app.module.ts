@@ -29,6 +29,8 @@ import { SpinnerPage } from '../pages/pages-spinner/pages-spinner';
 import { PagesModalVotacionPage } from '../pages/pages-modal-votacion/pages-modal-votacion';
 import { ServicioUsuariosProvider } from '../providers/servicio-usuarios/servicio-usuarios';
 import { ServicioFotosProvider } from '../providers/servicio-fotos/servicio-fotos';
+import { AdminControlPanelPage } from '../pages/admin-control-panel/admin-control-panel';
+import { VerImagenPage } from '../pages/ver-imagen/ver-imagen';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -57,7 +59,9 @@ export function provideSettings(storage: Storage) {
     PagesModalPage,
     SpinnerPage,
     PagesModalVotacionPage,
-    AltaChoferPage
+    AltaChoferPage,
+    AdminControlPanelPage,
+    VerImagenPage
   ],
   imports: [
     BrowserModule,
@@ -80,7 +84,9 @@ export function provideSettings(storage: Storage) {
     PagesModalPage,
     SpinnerPage,
     PagesModalVotacionPage,
-    AltaChoferPage
+    AltaChoferPage,
+    AdminControlPanelPage,
+    VerImagenPage
   ],
   providers: [
     Api,

@@ -41,7 +41,7 @@ export class AbmChoferesPage {
   refresh() {
     let ob = document.getElementById('choferes-content');
     ob.childNodes
-    
+
     document.getElementById('carta').classList.add('disabled');
     document.getElementById('carta').classList.remove('disabled');
   }
@@ -59,7 +59,7 @@ export class AbmChoferesPage {
 
   // para modificar los datos del chofer seleccionado, le paso al mismo modal del alta, el chofer a modificar
   modificar($event) {
-    console.log('Modificar chofer'+ JSON.stringify($event));
+    console.log('Modificar chofer '+ $event.email);
     this.chofer = $event;
     this.modalCtrl.create(AltaChoferPage, {chofer: this.chofer}).present();
   }

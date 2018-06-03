@@ -9,11 +9,12 @@ import { FirebaseApp } from 'angularfire2';
 
 import {AngularFireModule} from 'angularfire2';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
-
+import { TranslateService } from '@ngx-translate/core';
 
 import { PagesModalPage } from "../pages-modal/pages-modal";
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { environment } from "../../environments/environment";
+import { AbmChofer } from '../pages';
 
 @IonicPage()
 @Component({
@@ -27,6 +28,22 @@ export class AdminControlPanelPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Admin Control Panel Page');
+  }
+
+  irAbmChofer() {
+    this.navCtrl.push(AbmChofer);
+  }
+
+  irAbmAdmin() {
+    //this.navCtrl.push(AbmChofer);
+  }
+
+  irAbmCliente() {
+    //this.navCtrl.push(AbmChofer);
+  }
+
+  irAbmSupervisor() {
+    //this.navCtrl.push(AbmChofer);
   }
 
 }

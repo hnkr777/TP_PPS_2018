@@ -4,7 +4,7 @@ import { AltaChoferPage } from './alta-chofer';
 
 @NgModule({
   declarations: [
-    AltaChoferPage,
+    //AltaChoferPage,
   ],
   imports: [
     IonicPageModule.forChild(AltaChoferPage),

@@ -10,6 +10,8 @@ import { MainPage } from '../pages';
 import { ContentPage } from "../content/content";
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { PagesModalVotacionPage } from "../../pages/pages-modal-votacion/pages-modal-votacion";
+import { AltaClientePage } from "../../pages/alta-cliente/alta-cliente";
+import { InicioClientePage } from "../../pages/inicio-cliente/inicio-cliente";
 
 @IonicPage()
 @Component({
@@ -48,13 +50,13 @@ export class LoginPage {
   setLog(i: number) {
     switch (i) {
       case 1:
-        this.loginFields.email = "admin@gmail.com";
+        this.loginFields.email = "administrador";
         this.loginFields.clave = '11';
         break;
 
       case 2:
-      this.loginFields.email = "invitado@gmail.com";
-      this.loginFields.clave = '22';
+      this.loginFields.email = "mauro";
+      this.loginFields.clave = '123';
         break;
 
       case 3:
@@ -84,7 +86,7 @@ export class LoginPage {
       cssClass: 'actSheet',
       buttons: [
         { text: 'admin', handler: () => {this.setLog(1);}},
-        { text: 'invitado', handler: () => {this.setLog(2);}},
+        { text: 'Cliente (Mauro)', handler: () => {this.setLog(2);}},
         { text: 'usuario', handler: () => {this.setLog(3);}},
         { text: 'anonimo', handler: () => {this.setLog(4);}},
         { text: 'tester', handler: () => {this.setLog(5);}},
@@ -102,7 +104,8 @@ export class LoginPage {
   }
   
   doLogin() {
-    let modal = this.modalCtrl.create(SpinnerPage);
+    //COMO LO HIZO FEDE
+    /*let modal = this.modalCtrl.create(SpinnerPage);
     modal.present();
     this.coleccionTipadaFirebase = this.objFirebase.collection<Usuario>('usuarios', ref=> ref.orderBy('id','asc'));
     this.ListadoUsuariosObservable = this.coleccionTipadaFirebase.valueChanges();
@@ -127,6 +130,41 @@ export class LoginPage {
         toast.present();
       }
     });
+*/
+
+
+let modal = this.modalCtrl.create(SpinnerPage);
+modal.present();
+this.coleccionTipadaFirebase = this.objFirebase.collection<any>('usuarios');
+this.ListadoUsuariosObservable = this.coleccionTipadaFirebase.valueChanges();
+this.ListadoUsuariosObservable.subscribe(x => {
+  console.info("Conexión correcta con Firebase. Usuarios: ", x);
+});
+
+this.ListadoUsuariosObservable.forEach((el)=>{
+  this.accounts = el;
+  let user: Usuario = this.accounts.find(elem => ( this.loginFields.email == elem.nombre && (this.loginFields.clave == elem.clave)));
+  modal.dismiss();
+  if( user !== undefined ) {
+    sessionStorage.setItem('usuario', JSON.stringify(user));
+
+    if(user.perfil=="cliente")
+      {
+        this.navCtrl.setRoot(InicioClientePage);
+      }
+      else{
+    this.ModalVotacion();
+      }
+    //this.navCtrl.push(MainPage);
+  } else {
+    let toast = this.toastCtrl.create({
+      message: "Acceso denegado.",
+      duration: 4000,
+      position: 'bottom' //middle || top
+    });
+    toast.present();
+  }
+});
 
   }
   
@@ -134,4 +172,10 @@ export class LoginPage {
     this.modalVotacion.create(PagesModalVotacionPage).present();
   }
 
+  Redireccionar()
+  {
+    this.navCtrl.push(AltaClientePage);
+    
+  }
 }
+

@@ -9,6 +9,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { environment } from '../environments/environment';
+import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { AngularFirestore } from 'angularfire2/firestore';
 import { storage, firestore } from 'firebase';
@@ -26,6 +27,9 @@ import { MyApp } from './app.component';
 import { PagesModalPage } from "../pages/pages-modal/pages-modal";
 import { SpinnerPage } from '../pages/pages-spinner/pages-spinner';
 import { PagesModalVotacionPage } from '../pages/pages-modal-votacion/pages-modal-votacion';
+import { AltaClientePage } from '../pages/alta-cliente/alta-cliente';
+import { AbmClienteProvider } from '../providers/abm-cliente/abm-cliente';
+import { InicioClientePage } from '../pages/inicio-cliente/inicio-cliente';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -53,13 +57,18 @@ export function provideSettings(storage: Storage) {
     MyApp,
     PagesModalPage,
     SpinnerPage,
-    PagesModalVotacionPage
+    PagesModalVotacionPage,
+    AltaClientePage,
+    InicioClientePage
+    
   ],
   imports: [
     BrowserModule,
     HttpClientModule,    
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    FormsModule,
+    ReactiveFormsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -75,7 +84,9 @@ export function provideSettings(storage: Storage) {
     MyApp,
     PagesModalPage,
     SpinnerPage,
-    PagesModalVotacionPage
+    PagesModalVotacionPage,
+    AltaClientePage,
+    InicioClientePage
   ],
   providers: [
     Api,
@@ -86,7 +97,8 @@ export function provideSettings(storage: Storage) {
     StatusBar,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    AbmClienteProvider
   ]
 })
 export class AppModule { }

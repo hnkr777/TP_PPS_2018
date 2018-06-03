@@ -1,0 +1,82 @@
+<!--
+  Generated template for the AltaClientePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Ingrese sus datos</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+
+  <ion-content class="alta-cliente-content" >
+      <div class="contenidoLogin">
+    <form [formGroup]="formAlta" >
+      <ion-list>
+
+          <ion-item padding style="background: transparent;">
+              <ion-label class="titulo" color="light" floating stacked>Nombre</ion-label>
+              <ion-input class="titulo" type="email"  [formControl]="nombre" name="nombre"></ion-input>
+            </ion-item>
+                
+          <ion-item padding style="background: transparent;">
+              <ion-label class="titulo" color="light" floating stacked>Apellido</ion-label>
+              <ion-input class="titulo" type="email"  [formControl]="apellido" name="apellido"></ion-input>
+            </ion-item>
+
+            <ion-item padding style="background: transparent;">
+                <ion-label class="titulo" color="light" floating stacked>DNI</ion-label>
+                <ion-input class="titulo" type="email"  [formControl]="dni" name="dni"></ion-input>
+              </ion-item>
+
+        <ion-item padding style="background: transparent;">
+          <ion-label class="titulo" color="light" floating stacked>Correo</ion-label>
+          <ion-input class="titulo" type="email"  [formControl]="correo" name="correo"></ion-input>
+        </ion-item>
+
+        <ion-item padding style="background: transparent;">
+          <ion-label class="titulo" color="light" floating stacked>Clave</ion-label>
+          <ion-input class="titulo" type="password" [formControl]="clave" name="clave"></ion-input>
+        </ion-item>
+
+        <ion-item padding style="background: transparent;">
+            <ion-label class="titulo" color="light" floating stacked>Repetir clave</ion-label>
+            <ion-input class="titulo" type="password" [formControl]="claveRep" name="claveRep"></ion-input>
+          </ion-item>
+
+          <ion-item padding style="background: transparent;">
+          <button ion-button icon-only (click)="takePhoto()"> Tomar foto
+              <ion-icon name="camera"></ion-icon>
+            </button>
+           </ion-item>
+           <div>
+              <ion-grid>
+                <ion-row>
+                  <ion-col col-5 >
+                    <ion-card class="releative">
+                      <ion-icon  ios="ios-add-circle" md="md-add-circle"class="deleteIcon" (click)="deletePhoto()"></ion-icon>
+                     <img [src]="unCliente.foto" *ngIf="unCliente.foto"  />
+                    </ion-card>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+                </div>
+
+        <div padding>
+          <button ion-button round icon-left color="secondary" block large (click)="guardar()">
+            <ion-icon name="checkmark-circle"></ion-icon>Enviar datos</button>
+        </div>
+
+      </ion-list>
+    </form>
+  </div>
+  </ion-content>
+
+

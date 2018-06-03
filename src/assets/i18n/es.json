@@ -7,7 +7,8 @@
 
   "ADMIN_PANEL_TITLE": "Panel de control (admin)",
   "ABM_CHOFERES_PANEL_TITLE": "ABM de choferes",
-  "TAB3_TITLE": "Ajustes",
+  "NEW_DRIVER_TITLE": "Alta de nuevo chofer",
+  "MODIF_DRIVER_TITLE": "Modificación de chofer",
 
   "MAP_TITLE": "Mapa",
   "DELETE_BUTTON": "Borrar voto",

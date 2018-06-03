@@ -8,4 +8,12 @@ abm-choferes {
         display: block;
         //object-fit: fill;
     }
+
+    .enabled {
+        background-color: white;
+    }
+
+    .disabled {
+        background-color: gray;
+    }
 }

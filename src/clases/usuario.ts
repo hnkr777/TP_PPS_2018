@@ -17,8 +17,15 @@ export class Usuario {
     foto: string;       // foto en base64
     dni: number;        // DNI, es un número
   
-    constructor(){
+    constructor(perfil?: string) {
       this.fechaAlta = new Date(Date.now());
+      if(perfil !== undefined) {
+        if(perfil !== '') {
+          this.perfil = perfil;
+        } else {
+          //console.log('Error: Usuario.constructor(): perfil de usuario incorrecto.');
+        }
+      }
     }
   
     /*toJSON() {

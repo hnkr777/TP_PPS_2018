@@ -16,7 +16,8 @@ export class ServicioFotosProvider {
     console.log('Inicia ServicioFotosProvider Provider');
   }
 
-  
+  // esta función devuelve un promise para hacerle un then() con lo que devuelve, 
+  // y obtener una foto en base64 de la cámara del celu
   takePhoto(): Promise<any> {
     const options: CameraOptions = {
       quality: 50,
@@ -30,6 +31,8 @@ export class ServicioFotosProvider {
     //this.savePhoto(options);
   }
 
+  // esta función devuelve un promise para hacerle un then() con lo que devuelve, 
+  // y obtener una foto en base64 de la librería de fotos del celu
   addLibraryPhoto(): Promise<any> {
     const options: CameraOptions = {
       quality: 50,
@@ -44,6 +47,7 @@ export class ServicioFotosProvider {
     //this.savePhoto(options);
   }
 
+  // fuera de combate
   savePhoto (options): Promise<any> {
       return this.camera.getPicture(options);
       /*.then((imageData) => {
@@ -58,6 +62,7 @@ export class ServicioFotosProvider {
       });*/
   }
 
+  // con esta función convertimos la imagen desde base64 a binaria, imagen_base64 => imagen_binaria
   getBlob (b64Data): any {
     let contentType = '';
     let sliceSize = 512;
@@ -83,13 +88,14 @@ export class ServicioFotosProvider {
     return blob;
   }
 
+  // fuera de servicio...
   uploadImage(image: string, path: string): any {
     // this.spin(true);
     let data = this.getBlob(image);
     // let storageRef =  firebase.storage().ref();
     // let imageRef = storageRef.child(path);
     // imageRef.put(data).then((snapshot) => {
-      console.log('Imagen subida exitosamente: '+path);
+      // console.log('Imagen subida exitosamente: '+path);
       // this.spin(false);
       // console.log('Archivo', 'Imagen subida exitosamente.');
       //this.traerArchivoPost();

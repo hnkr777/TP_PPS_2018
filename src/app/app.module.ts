@@ -9,6 +9,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { environment } from '../environments/environment';
+import { ServicioFotosProvider } from '../providers/servicio-fotos/servicio-fotos';
 
 import { AngularFirestore } from 'angularfire2/firestore';
 import { storage, firestore } from 'firebase';
@@ -17,7 +18,6 @@ import { Injectable } from '@angular/core';
 
 import {AngularFireModule} from 'angularfire2';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
-
 import { Items } from '../mocks/providers/items';
 import { Settings } from '../providers/providers';
 import { User } from '../providers/providers';
@@ -87,6 +87,7 @@ export function provideSettings(storage: Storage) {
     Camera,
     SplashScreen,
     StatusBar,
+    ServicioFotosProvider,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler }

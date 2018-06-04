@@ -11,7 +11,7 @@ page-abm-vehiculos {
         }
      
         .login-box {
-          padding: 0px 20px 0px 20px;
+          padding: 0px 0px 0px 0px;
           margin-top: 0px;
         }
      
@@ -19,19 +19,31 @@ page-abm-vehiculos {
            align-items: center;
            text-align: center;
          }
-     
+         .bajaMod{
+          align-items: center;
+          text-align: center;
+          padding-top: 70% !important;
+         }
          ion-item {
              border-radius: 30px !important;
-             padding-left: 30px !important;
+             padding-left: 10px !important;
              font-size: 0.9em;
              margin-bottom: 10px !important;
              border: 1px solid #ffffff;
-             border-bottom: 0px !important;
+             border-bottom: 1px !important;
              box-shadow: none !important;
          }
+         .ion-item-foto {
+          border-radius: 30px !important;
+          padding-left: 10px !important;
+          font-size: 0.9em;
+          margin-bottom: 10px !important;
+         // border: 1px solid #ffffff;
+          box-shadow: none !important;
+        }
      
          .signup-col {
-           margin: 0px 16px 0px 16px;
+           margin: 0px 0px 0px 0px;
            padding-bottom: 0px;
          }
      
@@ -67,6 +79,13 @@ page-abm-vehiculos {
             justify-content: center;
           }
         .img{
-            width: 200px;
+            width: 80px;
+        }
+        .imgFoto{
+          width: 80px;
+          border: 1px solid #000000; 
+        }
+        .buttons{
+          padding-left: 0px;
         }
       }

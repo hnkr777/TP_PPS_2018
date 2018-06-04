@@ -20,10 +20,10 @@ import { ContentPage } from '../content/content';
 
 @IonicPage()
 @Component({
-  selector: 'admin-control-panel',
-  templateUrl: 'admin-control-panel.html',
+  selector: 'chofer-panel',
+  templateUrl: 'chofer-panel.html',
 })
-export class AdminControlPanelPage {
+export class ChoferPanelPage {
 
   constructor(
     public navCtrl: NavController, 

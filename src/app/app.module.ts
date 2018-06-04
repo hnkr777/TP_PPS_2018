@@ -7,7 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { IonicStorageModule, Storage } from '@ionic/storage';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicApp, IonicErrorHandler, IonicModule, NavController } from 'ionic-angular';
 import { environment } from '../environments/environment';
 
 import { AngularFirestore } from 'angularfire2/firestore';
@@ -22,15 +22,18 @@ import { Items } from '../mocks/providers/items';
 import { Settings } from '../providers/providers';
 import { User } from '../providers/providers';
 import { Api } from '../providers/providers';
+import { ServicioUsuariosProvider } from '../providers/servicio-usuarios/servicio-usuarios';
+import { ServicioFotosProvider } from '../providers/servicio-fotos/servicio-fotos';
 import { MyApp } from './app.component';
 import { PagesModalPage } from "../pages/pages-modal/pages-modal";
 import { AltaChoferPage } from '../pages/alta-chofer/alta-chofer';
 import { SpinnerPage } from '../pages/pages-spinner/pages-spinner';
 import { PagesModalVotacionPage } from '../pages/pages-modal-votacion/pages-modal-votacion';
-import { ServicioUsuariosProvider } from '../providers/servicio-usuarios/servicio-usuarios';
-import { ServicioFotosProvider } from '../providers/servicio-fotos/servicio-fotos';
 import { AdminControlPanelPage } from '../pages/admin-control-panel/admin-control-panel';
+import { ChoferPanelPage } from '../pages/chofer-panel/chofer-panel';
 import { VerImagenPage } from '../pages/ver-imagen/ver-imagen';
+import { ContentPage } from '../pages/content/content';
+import { QRScanner } from '@ionic-native/qr-scanner';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -61,11 +64,13 @@ export function provideSettings(storage: Storage) {
     PagesModalVotacionPage,
     AltaChoferPage,
     AdminControlPanelPage,
-    VerImagenPage
+    VerImagenPage,
+    ContentPage,
+    ChoferPanelPage
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,    
+    HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     TranslateModule.forRoot({
@@ -86,13 +91,16 @@ export function provideSettings(storage: Storage) {
     PagesModalVotacionPage,
     AltaChoferPage,
     AdminControlPanelPage,
-    VerImagenPage
+    VerImagenPage,
+    ContentPage,
+    ChoferPanelPage
   ],
   providers: [
     Api,
     Items,
     User,
     Camera,
+    QRScanner,
     SplashScreen,
     StatusBar,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },

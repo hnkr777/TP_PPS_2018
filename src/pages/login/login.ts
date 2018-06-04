@@ -12,6 +12,7 @@ import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { PagesModalVotacionPage } from "../../pages/pages-modal-votacion/pages-modal-votacion";
 import { ServicioUsuariosProvider } from '../../providers/servicio-usuarios/servicio-usuarios';
 import { AdminControlPanelPage } from '../admin-control-panel/admin-control-panel';
+import { ChoferPanelPage } from '../chofer-panel/chofer-panel';
 
 @IonicPage()
 @Component({
@@ -140,7 +141,7 @@ export class LoginPage {
 
       case 'chofer':
         console.log('Bienvenido chofer ' + usuario.email);
-        
+        this.navCtrl.setRoot(ChoferPanelPage); // así seteamos una página directamente, no hay stack
       break;
 
       case 'supervisor':

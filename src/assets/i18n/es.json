@@ -9,6 +9,7 @@
   "ABM_CHOFERES_PANEL_TITLE": "ABM de choferes",
   "NEW_DRIVER_TITLE": "Alta de nuevo chofer",
   "MODIF_DRIVER_TITLE": "Modificación de chofer",
+  "CHOFER_PANEL_TITLE": "Panel del chofer",
 
   "MAP_TITLE": "Mapa",
   "DELETE_BUTTON": "Borrar voto",
@@ -19,6 +20,9 @@
   "ABM_SUPERVISORES_BUTTON": "ABM supervisores",
   "ABM_ADMINS_BUTTON": "ABM admins",
   "VISOR_VIAJES_BUTTON": "Visor de viajes",
+
+  "CHOFER_ENCUESTA_BUTTON": "Encuesta de control",
+  "CHOFER_INGRESO_BUTTON": "Empezar a trabajar",
 
   "TUTORIAL_SLIDE1_TITLE": "Bienvenido a PPS 2018 Radix",
   "TUTORIAL_SLIDE1_DESCRIPTION": "El <b>Ionic Super Starter</b> es un starter de Ionic completo con muchas páginas preconstruidas y mejores prácticas.",

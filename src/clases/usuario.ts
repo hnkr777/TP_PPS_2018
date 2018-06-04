@@ -16,6 +16,7 @@ export class Usuario {
     activo: number;     // 0 = inactivo, 1 = activo
     foto: string;       // foto en base64
     dni: number;        // DNI, es un número
+    estado: number;     // estado del usuario: usado para múltiples propósitos en la app
   
     constructor(perfil?: string) {
       this.fechaAlta = new Date(Date.now());

@@ -30,7 +30,8 @@ import { PagesModalVotacionPage } from '../pages/pages-modal-votacion/pages-moda
 import { AltaClientePage } from '../pages/alta-cliente/alta-cliente';
 import { AbmClienteProvider } from '../providers/abm-cliente/abm-cliente';
 import { InicioClientePage } from '../pages/inicio-cliente/inicio-cliente';
-
+import { AbmClientesPage } from '../pages/abm-clientes/abm-clientes';
+import { AltaClienteParaAdminPage } from '../pages/alta-cliente-para-admin/alta-cliente-para-admin';
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
 export function createTranslateLoader(http: HttpClient) {
@@ -59,7 +60,9 @@ export function provideSettings(storage: Storage) {
     SpinnerPage,
     PagesModalVotacionPage,
     AltaClientePage,
-    InicioClientePage
+    InicioClientePage,
+    AbmClientesPage,
+    AltaClienteParaAdminPage
     
   ],
   imports: [
@@ -86,7 +89,9 @@ export function provideSettings(storage: Storage) {
     SpinnerPage,
     PagesModalVotacionPage,
     AltaClientePage,
-    InicioClientePage
+    InicioClientePage,
+    AbmClientesPage,
+    AltaClienteParaAdminPage
   ],
   providers: [
     Api,

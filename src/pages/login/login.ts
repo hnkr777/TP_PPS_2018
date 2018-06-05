@@ -12,6 +12,8 @@ import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { PagesModalVotacionPage } from "../../pages/pages-modal-votacion/pages-modal-votacion";
 import { AltaClientePage } from "../../pages/alta-cliente/alta-cliente";
 import { InicioClientePage } from "../../pages/inicio-cliente/inicio-cliente";
+//PARA PRUEBA ESTA PAGINA, LUEGO SACARLAs
+import { AbmClientesPage } from '../../pages/abm-clientes/abm-clientes';
 
 @IonicPage()
 @Component({
@@ -150,12 +152,13 @@ this.ListadoUsuariosObservable.forEach((el)=>{
 
     if(user.perfil=="cliente")
       {
-        this.navCtrl.setRoot(InicioClientePage);
+        this.navCtrl.push(InicioClientePage);
       }
       else{
-    this.ModalVotacion();
+    //this.ModalVotacion();
+      //ESTO ESTA DE PRUEBA, ESTA PAGINA DEBERIA ESTAR DENTRO DEL PERFIL DE ADMINISTRADOR O SUPERVISOR
+    this.navCtrl.push(AbmClientesPage);
       }
-    //this.navCtrl.push(MainPage);
   } else {
     let toast = this.toastCtrl.create({
       message: "Acceso denegado.",

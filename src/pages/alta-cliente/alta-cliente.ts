@@ -27,10 +27,12 @@ export class AltaClientePage {
   private spinner;
   coleccionTipadaFirebase:AngularFirestoreCollection<any>;
   ListadoUsuariosObservable: Observable<any[]>;
+  fechaAlta;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private builder: FormBuilder,private camera: Camera,public alertCtrl: AlertController,private objFirebase: AngularFirestore,public modalCtrl: ModalController) {
     this.unCliente=new Object();
     this.unCliente.foto=null;
+    this.fechaAlta = new Date(Date.now());
   }
 
   ionViewDidLoad() {
@@ -43,6 +45,9 @@ correo : FormControl = new FormControl("",[Validators.required]);
 clave : FormControl = new FormControl("",[Validators.required]);
 claveRep : FormControl = new FormControl("",[Validators.required]);
 dni : FormControl = new FormControl("",[Validators.required,Validators.minLength(8),Validators.maxLength(8)]);
+domicilio: FormControl = new FormControl("",[Validators.required]);
+sexo : FormControl = new FormControl("",[Validators.required]);
+fechaNacimiento : FormControl = new FormControl("",[Validators.required]);
 
 formAlta: FormGroup= this.builder.group({
 nombre:this.nombre,
@@ -50,7 +55,10 @@ apellido:this.apellido,
 dni:this.dni,
 correo:this.correo,
 clave:this.clave,
-claveRep:this.claveRep
+claveRep:this.claveRep,
+domicilio:this.domicilio,
+sexo:this.sexo,
+fechaNacimiento:this.fechaNacimiento
 });
 
 guardar()
@@ -58,7 +66,7 @@ guardar()
   this.unCliente.clave=this.formAlta.get("clave").value;
   let claveRep=this.formAlta.get("claveRep").value; 
 
-  if(this.nombre.invalid || this.apellido.invalid || this.correo.invalid || this.clave.invalid || this.claveRep.invalid || this.dni.invalid)
+  if(this.nombre.invalid || this.apellido.invalid || this.correo.invalid || this.clave.invalid || this.claveRep.invalid || this.dni.invalid || this.domicilio.invalid || this.sexo.invalid || this.fechaNacimiento.invalid)
     {
       const alerta = this.alertCtrl.create({
         title: 'Error!',
@@ -87,7 +95,6 @@ guardar()
     this.spin(true);
     this.coleccionTipadaFirebase = this.objFirebase.collection<any>('usuarios');
     this.ListadoUsuariosObservable = this.coleccionTipadaFirebase.valueChanges();
-
     let ob= this.ListadoUsuariosObservable.subscribe(x => {
     let id= x.length+1;
     this.unCliente.id=id;
@@ -97,7 +104,11 @@ guardar()
     this.unCliente.correo=this.formAlta.get("correo").value;
     this.unCliente.clave=this.formAlta.get("clave").value;
     this.unCliente.perfil="cliente";
-
+    this.unCliente.activo=0;
+    this.unCliente.domicilio=this.formAlta.get("domicilio").value;
+    this.unCliente.sexo=this.formAlta.get("sexo").value;
+    this.unCliente.fechaNacimiento=this.formAlta.get("fechaNacimiento").value;
+    this.unCliente.fechaAlta = (this.fechaAlta.getDate()+ "-" +(this.fechaAlta.getMonth() +1) + "-" +this.fechaAlta.getFullYear());
     console.log(this.unCliente);
     this.Alta(this.unCliente);
     ob.unsubscribe();
@@ -135,12 +146,12 @@ this.unCliente.foto=null;
      this.spin(false);
      let alerta = this.alertCtrl.create({
       title: "Exitosamente!",
-      subTitle: "Se enviaron lon datos correctamente",
+      subTitle: "Se enviaron los datos correctamente. Un administrador deberá activarlo",
       cssClass:"miClaseAlert",
     buttons: ['Aceptar']
   });
    alerta.present();
-     this.navCtrl.push(LoginPage);   
+     this.navCtrl.setRoot(LoginPage);   
    })
    .catch( error => {
      this.spin(false);

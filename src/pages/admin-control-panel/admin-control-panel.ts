@@ -57,7 +57,7 @@ export class AdminControlPanelPage {
   irVisorViajes() {
     window.document.querySelector('ion-content').classList.add('transparentBody');
     window.document.querySelector('ion-app').classList.add('transparentBody');
-    this.modalCtrl.create(ContentPage).present();
+    this.navCtrl.push(ContentPage); // escaner QR
   }
 
 }

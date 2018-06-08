@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ModalController, AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { environment } from "../../environments/environment";
@@ -36,7 +36,8 @@ export class AltaChoferPage {
     private modalCtrl: ModalController,
     private servicioUsuarios: ServicioUsuariosProvider,
     private servicioFotos: ServicioFotosProvider,
-    public viewCtrl: ViewController) {
+    public viewCtrl: ViewController,
+    public alertCtrl: AlertController) {
       let chofer = navParams.get('chofer');
       
       if(chofer !== undefined) { // entramos en modo modificación
@@ -144,6 +145,16 @@ export class AltaChoferPage {
 
   closeModal() {
     this.viewCtrl.dismiss();
+  }
+
+  msg() {
+    const alerta = this.alertCtrl.create({
+      title: 'Error!',
+      subTitle: 'Error en el ingreso de datos. Verifique!',
+      cssClass:"miClaseDanger",
+      buttons: ['Aceptar']
+    });
+    alerta.present();
   }
   
 }

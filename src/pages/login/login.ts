@@ -28,7 +28,6 @@ export class LoginPage {
     clave: '11'
   };
   
-  splash = true;
   accounts: Array<Usuario>;
   
   private loginErrorString: string;
@@ -101,9 +100,9 @@ export class LoginPage {
     actionSheet.present();
   }
 
-  ionViewDidLoad() {
-    setTimeout(() => this.splash = false, 0); // este es el tiempo del splashscreen, default 4000
-  }
+  // ionViewDidLoad() {
+  //   setTimeout(() => this.splash = false, 4000); // este es el tiempo del splashscreen, default 4000
+  // }
   
   doLogin() {
     let modal = this.modalCtrl.create(SpinnerPage);

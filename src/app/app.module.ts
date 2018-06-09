@@ -34,6 +34,8 @@ import { ChoferPanelPage } from '../pages/chofer-panel/chofer-panel';
 import { VerImagenPage } from '../pages/ver-imagen/ver-imagen';
 import { ContentPage } from '../pages/content/content';
 import { QRScanner } from '@ionic-native/qr-scanner';
+import { AnimatedSplashPage } from '../pages/animated-splash/animated-splash';
+
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -66,7 +68,8 @@ export function provideSettings(storage: Storage) {
     AdminControlPanelPage,
     VerImagenPage,
     ContentPage,
-    ChoferPanelPage
+    ChoferPanelPage,
+    //AnimatedSplashPage
   ],
   imports: [
     BrowserModule,
@@ -93,7 +96,8 @@ export function provideSettings(storage: Storage) {
     AdminControlPanelPage,
     VerImagenPage,
     ContentPage,
-    ChoferPanelPage
+    ChoferPanelPage,
+    //AnimatedSplashPage
   ],
   providers: [
     Api,

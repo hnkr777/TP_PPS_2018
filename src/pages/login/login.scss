@@ -268,13 +268,13 @@ page-login {
   
   .contenidoLogin {
     position: relative;
-    background: url('../assets/img/bg/1.jpg') no-repeat transparent; //bg.png
+    background: url('../assets/img/bg/abg_1.gif') no-repeat transparent; // background: url('../assets/img/bg/1.jpg') no-repeat transparent;
     background-size: cover;
     height: 100%;
     width: 100%;
     z-index: 1;
     background-repeat: repeat-x;
-    animation: ani 20s linear infinite alternate-reverse;
+    // animation: ani 20s linear infinite alternate-reverse;
     background-position: center;
     margin-left: 0px;
     overflow: hidden;

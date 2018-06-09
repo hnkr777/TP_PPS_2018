@@ -67,7 +67,7 @@ export class AltaChoferPage {
     if (this.chofer.foto !== undefined) {
       this.modalCtrl.create(VerImagenPage, { imagen: this.chofer.foto}).present();
     } else {
-      alert('El usuario no tiene foto.');
+      this.Msg('Aviso', 'Sin foto');
     }
   }
 
@@ -92,10 +92,10 @@ export class AltaChoferPage {
     this.servicioUsuarios.guardarNuevoUsuario(this.chofer).then(data => {
       this.closeModal();
       console.log('Chofer guardado correctamente.');
-      alert('Chofer guardado correctamente.');
+      this.Msg('Aviso', 'Chofer guardado correctamente.');
     }).catch((error) => {
       console.log('Error: '+ error);
-      alert('Error: '+ error);
+      this.errorMsg('Error', 'Error: '+ error);
     });
   }
 
@@ -120,22 +120,22 @@ export class AltaChoferPage {
     let res: boolean = c.nombre!=='' && c.apellido!==''&&c.clave!==''&&c.dni!==undefined&&c.email!==''&&c.fechaNacimiento!==undefined&&c.foto!==undefined&&c.sexo!==undefined;
     
     if (this.clave1 !== this.clave2) {
-      alert('Las contraseñas no coinciden.');
+      this.errorMsg('Error', 'Las contraseñas no coinciden.');
       return false;
     }
 
     if (this.clave1 === undefined || this.clave2 === undefined || this.clave2.length == 0 || this.clave1.length == 0) {
-      alert('Las contraseñas no pueden estar en blanco.');
+      this.errorMsg('Error', 'Las contraseñas no pueden estar en blanco.');
       return false;
     }
     
     if (this.chofer.foto === undefined) {
-      alert('El chofer no tiene foto.');
+      this.errorMsg('Error', 'El chofer no tiene foto.');
       return false;
     }
 
     if (!res) {
-      alert('Todos los campos son obligatorios.');
+      this.errorMsg('Error', 'Todos los campos son obligatorios.');
       return false;
     }
     this.chofer.clave = this.clave1;
@@ -147,11 +147,21 @@ export class AltaChoferPage {
     this.viewCtrl.dismiss();
   }
 
-  msg() {
+  errorMsg(titulo: string, mensaje: string) {
     const alerta = this.alertCtrl.create({
-      title: 'Error!',
-      subTitle: 'Error en el ingreso de datos. Verifique!',
+      title: titulo,
+      subTitle: mensaje,
       cssClass:"miClaseDanger",
+      buttons: ['Aceptar']
+    });
+    alerta.present();
+  }
+
+  Msg(titulo: string, mensaje: string) {
+    const alerta = this.alertCtrl.create({
+      title: titulo,
+      subTitle: mensaje,
+      cssClass:"miClaseAlert",
       buttons: ['Aceptar']
     });
     alerta.present();

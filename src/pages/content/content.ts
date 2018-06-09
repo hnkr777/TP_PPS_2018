@@ -1,5 +1,5 @@
 import { Component, Input, Output } from '@angular/core';
-import { IonicPage, ModalController, ViewController, NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, ModalController, ViewController, NavController, NavParams, Platform, AlertController } from 'ionic-angular';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 import { Observable } from 'rxjs/Observable';
 
@@ -23,7 +23,8 @@ export class ContentPage {
     public navCtrl: NavController, 
     public qrScanner: QRScanner, 
     public platform: Platform,
-    public viewCtrl : ViewController
+    public viewCtrl : ViewController,
+    public alertCtrl: AlertController
   ) {
     
   }
@@ -61,7 +62,7 @@ export class ContentPage {
         this.scanSub = this.qrScanner.scan().subscribe((text: string) => {
           //console.log('Scanned something', text);
           
-          alert(text);
+          this.Modal('QR code:', text);
           
           this.qrScanner.hide(); // hide camera preview
           this.scanSub.unsubscribe(); // stop scanning
@@ -106,6 +107,26 @@ export class ContentPage {
     this.modalCtrl.create(PagesModalPage, { titulo: titulo, data: data }).present();
   }
 
+  
+  errorMsg(titulo: string, mensaje: string) {
+    const alerta = this.alertCtrl.create({
+      title: titulo,
+      subTitle: mensaje,
+      cssClass:"miClaseDanger",
+      buttons: ['Aceptar']
+    });
+    alerta.present();
+  }
+
+  Msg(titulo: string, mensaje: string) {
+    const alerta = this.alertCtrl.create({
+      title: titulo,
+      subTitle: mensaje,
+      cssClass:"miClaseAlert",
+      buttons: ['Aceptar']
+    });
+    alerta.present();
+  }
 
   closeModal() {
     this.viewCtrl.dismiss();

@@ -18,6 +18,9 @@ import { InicioClientePage } from "../../pages/inicio-cliente/inicio-cliente";
 //PARA PRUEBA ESTA PAGINA, LUEGO SACARLAs
 import { AbmClientesPage } from '../../pages/abm-clientes/abm-clientes';
 
+import { AbmVehiculosPage } from '../abm-vehiculos/abm-vehiculos';
+
+
 @IonicPage()
 @Component({
   selector: 'page-login',
@@ -168,7 +171,10 @@ export class LoginPage {
   Redireccionar()
   {
     this.navCtrl.push(AltaClientePage);
+  }
     
+  goVehiculo(){ 
+    this.navCtrl.push(AbmVehiculosPage,{data:"Alta"});
   }
 }
 

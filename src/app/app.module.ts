@@ -18,7 +18,6 @@ import { Injectable } from '@angular/core';
 
 import {AngularFireModule} from 'angularfire2';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
-
 import { Items } from '../mocks/providers/items';
 import { Settings } from '../providers/providers';
 import { User } from '../providers/providers';
@@ -29,6 +28,7 @@ import { MyApp } from './app.component';
 import { PagesModalPage } from "../pages/pages-modal/pages-modal";
 import { AltaChoferPage } from '../pages/alta-chofer/alta-chofer';
 import { SpinnerPage } from '../pages/pages-spinner/pages-spinner';
+import { AbmVehiculosPage } from '../pages/abm-vehiculos/abm-vehiculos';
 import { PagesModalVotacionPage } from '../pages/pages-modal-votacion/pages-modal-votacion';
 import { AdminControlPanelPage } from '../pages/admin-control-panel/admin-control-panel';
 import { ChoferPanelPage } from '../pages/chofer-panel/chofer-panel';
@@ -79,8 +79,8 @@ export function provideSettings(storage: Storage) {
     AltaClientePage,
     InicioClientePage,
     AbmClientesPage,
-    AltaClienteParaAdminPage
-    
+    AltaClienteParaAdminPage,
+    AbmVehiculosPage
   ],
   imports: [
     BrowserModule,
@@ -114,7 +114,8 @@ export function provideSettings(storage: Storage) {
     AltaClientePage,
     InicioClientePage,
     AbmClientesPage,
-    AltaClienteParaAdminPage
+    AltaClienteParaAdminPage,
+    AbmVehiculosPage
   ],
   providers: [
     Api,
@@ -124,6 +125,7 @@ export function provideSettings(storage: Storage) {
     QRScanner,
     SplashScreen,
     StatusBar,
+    ServicioFotosProvider,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler },

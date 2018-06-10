@@ -13,6 +13,10 @@ import { PagesModalVotacionPage } from "../../pages/pages-modal-votacion/pages-m
 import { ServicioUsuariosProvider } from '../../providers/servicio-usuarios/servicio-usuarios';
 import { AdminControlPanelPage } from '../admin-control-panel/admin-control-panel';
 import { ChoferPanelPage } from '../chofer-panel/chofer-panel';
+import { AltaClientePage } from "../../pages/alta-cliente/alta-cliente";
+import { InicioClientePage } from "../../pages/inicio-cliente/inicio-cliente";
+//PARA PRUEBA ESTA PAGINA, LUEGO SACARLAs
+import { AbmClientesPage } from '../../pages/abm-clientes/abm-clientes';
 
 @IonicPage()
 @Component({
@@ -23,8 +27,8 @@ export class LoginPage {
   coleccionTipadaFirebase: AngularFirestoreCollection<Usuario>;
   ListadoUsuariosObservable: Observable<Usuario[]>;
 
-  loginFields: { email: string, clave: string } = {
-    email: 'admin@gmail.com',  // hardcodeado para hacer más rápido los test
+  loginFields: { correo: string, clave: string } = {
+    correo: 'admin@gmail.com',  // hardcodeado para hacer más rápido los test
     clave: '11'
   };
   
@@ -51,27 +55,27 @@ export class LoginPage {
   setLog(i: number) {
     switch (i) {
       case 1:
-        this.loginFields.email = "admin@gmail.com";
+        this.loginFields.correo = "admin@gmail.com";
         this.loginFields.clave = '11';
         break;
 
       case 2:
-      this.loginFields.email = "invitado@gmail.com";
-      this.loginFields.clave = '22';
+      this.loginFields.correo = "mauro";
+      this.loginFields.clave = '123';
         break;
 
       case 3:
-      this.loginFields.email = "usuario@gmail.com";
+      this.loginFields.correo = "usuario@gmail.com";
       this.loginFields.clave = '33';
         break;
 
       case 4:
-      this.loginFields.email = "mschumi@gmail.com";
+      this.loginFields.correo = "mschumi@gmail.com";
       this.loginFields.clave = '44';
         break;
 
       case 5:
-      this.loginFields.email = "tester@gmail.com";
+      this.loginFields.correo = "tester@gmail.com";
       this.loginFields.clave = '55';
         break;
     
@@ -87,7 +91,9 @@ export class LoginPage {
       cssClass: 'actSheet',
       buttons: [
         { text: 'administrador (admin)', handler: () => {this.setLog(1);}},
-        { text: 'invitado', handler: () => {this.setLog(2);}},
+        //{ text: 'invitado', handler: () => {this.setLog(2);}},
+        //{ text: 'admin', handler: () => {this.setLog(1);}},
+        { text: 'Cliente (Mauro)', handler: () => {this.setLog(2);}},
         { text: 'usuario', handler: () => {this.setLog(3);}},
         { text: 'Schumacher (chofer)', handler: () => {this.setLog(4);}},
         { text: 'tester', handler: () => {this.setLog(5);}},
@@ -110,7 +116,7 @@ export class LoginPage {
     let ob = this.servicioUsuarios.traerUsuarios().subscribe(arr => {
       this.accounts = arr;
       console.log(arr);
-      let user: Usuario = this.accounts.find(elem => ( this.loginFields.email == elem.email && (this.loginFields.clave == elem.clave)));
+      let user: Usuario = this.accounts.find(elem => ( this.loginFields.correo == elem.correo && (this.loginFields.clave == elem.clave)));
       modal.dismiss();
       ob.unsubscribe();
       if (user !== undefined && user.activo == 1) {
@@ -134,23 +140,23 @@ export class LoginPage {
     // this.navCtrl.push(MainPage); // así agregamos una página al stack de páginas, para navegarlas y poder volver atrás con el botón back
     switch (usuario.perfil.toLowerCase()) {
       case 'admin':
-        console.log('Bienvenido administrador ' + usuario.email);
+        console.log('Bienvenido administrador ' + usuario.correo);
         this.navCtrl.setRoot(AdminControlPanelPage); // así seteamos una página directamente, no hay stack
       break;
 
       case 'chofer':
-        console.log('Bienvenido chofer ' + usuario.email);
+        console.log('Bienvenido chofer ' + usuario.correo);
         this.navCtrl.setRoot(ChoferPanelPage); // así seteamos una página directamente, no hay stack
       break;
 
       case 'supervisor':
-        console.log('Bienvenido supervisor ' + usuario.email);
+        console.log('Bienvenido supervisor ' + usuario.correo);
         
       break;
 
       case 'cliente':
-        console.log('Bienvenido cliente ' + usuario.email);
-        
+        console.log('Bienvenido cliente ' + usuario.correo);
+        this.navCtrl.setRoot(AbmClientesPage);
       break;
     
       default:
@@ -159,4 +165,10 @@ export class LoginPage {
     
   }
 
+  Redireccionar()
+  {
+    this.navCtrl.push(AltaClientePage);
+    
+  }
 }
+

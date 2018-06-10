@@ -1,0 +1,29 @@
+page-alta-cliente-para-admin {
+    ion-content {
+        background: rgb(56, 56, 56)!important;
+        
+    }
+
+    ion-item {
+        background: transparent!important;
+    }
+
+    .contenedor-global {
+        //background: url('../../assets/img/bg/5.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100%!important;
+        position: relative;
+        top: 0px;
+        left: 0px;
+    }
+
+    .marco-imagen {
+        text-align: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: 40px;
+        width: 40px;
+        border-radius: 10px;
+    }
+}

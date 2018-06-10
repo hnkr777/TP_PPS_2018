@@ -8,12 +8,12 @@
 </ion-header>
 
   <ion-content>
-    <form (submit)="doLogin()" id="formularioIngreso">
+    <form  id="formularioIngreso">
       <ion-list>
 
         <ion-item padding style="background: transparent;">
           <!-- <ion-label class="titulo" color="light"  stacked>{{ 'EMAIL' | translate }}</ion-label> -->
-          <ion-input class="titulo" autofocus placeholder="Email" type="email" [(ngModel)]="loginFields.email" name="email"></ion-input>
+          <ion-input class="titulo" autofocus placeholder="Email" type="email" [(ngModel)]="loginFields.correo" name="email"></ion-input>
         </ion-item>
 
         <ion-item padding style="background: transparent;">
@@ -22,9 +22,12 @@
         </ion-item>
 
         <div padding>
-          <button ion-button round icon-left color="secondary" block large>
+          <button ion-button round icon-left color="secondary" block large (click)="doLogin()">
             <ion-icon name="checkmark-circle"></ion-icon>{{ 'LOGIN_BUTTON' | translate }}</button>
-        </div>
+           <br>
+            <button ion-button round icon-left color="botonRegistrar" block  (click)="Redireccionar()">
+              <ion-icon name="md-add-circle" ></ion-icon>Registrarse</button>
+          </div>
 
       </ion-list>
 

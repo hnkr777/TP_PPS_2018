@@ -16,6 +16,7 @@ import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { environment } from "../../environments/environment";
 import { AbmChofer } from '../pages';
 import { ContentPage } from '../content/content';
+import { AbmClientesPage } from '../abm-clientes/abm-clientes';
 
 
 @IonicPage()
@@ -46,7 +47,7 @@ export class AdminControlPanelPage {
   }
 
   irAbmCliente() {
-    this.navCtrl.push(PagesModalPage, { titulo: 'ABM cliente', data: 'No implementado...'});
+    this.navCtrl.push(AbmClientesPage);
   }
 
   irAbmSupervisor() {

@@ -9,6 +9,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule, NavController } from 'ionic-angular';
 import { environment } from '../environments/environment';
+import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { AngularFirestore } from 'angularfire2/firestore';
 import { storage, firestore } from 'firebase';
@@ -36,6 +37,11 @@ import { ContentPage } from '../pages/content/content';
 import { QRScanner } from '@ionic-native/qr-scanner';
 import { AnimatedSplashPage } from '../pages/animated-splash/animated-splash';
 
+import { AltaClientePage } from '../pages/alta-cliente/alta-cliente';
+import { AbmClienteProvider } from '../providers/abm-cliente/abm-cliente';
+import { InicioClientePage } from '../pages/inicio-cliente/inicio-cliente';
+import { AbmClientesPage } from '../pages/abm-clientes/abm-clientes';
+import { AltaClienteParaAdminPage } from '../pages/alta-cliente-para-admin/alta-cliente-para-admin';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -70,12 +76,19 @@ export function provideSettings(storage: Storage) {
     ContentPage,
     ChoferPanelPage,
     //AnimatedSplashPage
+    AltaClientePage,
+    InicioClientePage,
+    AbmClientesPage,
+    AltaClienteParaAdminPage
+    
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    FormsModule,
+    ReactiveFormsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -98,6 +111,10 @@ export function provideSettings(storage: Storage) {
     ContentPage,
     ChoferPanelPage,
     //AnimatedSplashPage
+    AltaClientePage,
+    InicioClientePage,
+    AbmClientesPage,
+    AltaClienteParaAdminPage
   ],
   providers: [
     Api,
@@ -111,7 +128,8 @@ export function provideSettings(storage: Storage) {
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ServicioUsuariosProvider,
-    ServicioFotosProvider
+    ServicioFotosProvider,
+    AbmClienteProvider
   ]
 })
 export class AppModule { }

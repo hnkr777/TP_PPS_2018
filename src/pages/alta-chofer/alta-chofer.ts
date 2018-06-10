@@ -46,7 +46,7 @@ export class AltaChoferPage {
         this.habilitado = chofer.activo == 1;
         this.clave1 = chofer.clave;
         this.clave2 = chofer.clave;
-        console.log('AltaChoferPage: modificando chofer ' + this.chofer.email);
+        console.log('AltaChoferPage: modificando chofer ' + this.chofer.correo);
       } else { // sino, en modo alta nuevo chofer
         this.modoAlta = true;
         this.habilitado = true;
@@ -117,7 +117,7 @@ export class AltaChoferPage {
 
   private validar(): boolean {
     let c: Usuario = this.chofer;
-    let res: boolean = c.nombre!=='' && c.apellido!==''&&c.clave!==''&&c.dni!==undefined&&c.email!==''&&c.fechaNacimiento!==undefined&&c.foto!==undefined&&c.sexo!==undefined;
+    let res: boolean = c.nombre!=='' && c.apellido!==''&&c.clave!==''&&c.dni!==undefined&&c.correo!==''&&c.fechaNacimiento!==undefined&&c.foto!==undefined&&c.sexo!==undefined;
     
     if (this.clave1 !== this.clave2) {
       this.errorMsg('Error', 'Las contraseñas no coinciden.');

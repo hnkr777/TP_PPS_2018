@@ -37,6 +37,7 @@ export class AltaChoferPage {
     private servicioUsuarios: ServicioUsuariosProvider,
     private servicioFotos: ServicioFotosProvider,
     public viewCtrl: ViewController,
+    public translateService: TranslateService,
     public alertCtrl: AlertController) {
       let chofer = navParams.get('chofer');
       

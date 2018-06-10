@@ -49,7 +49,7 @@ export class LoginPage {
     private servicioUsuarios: ServicioUsuariosProvider,
     private objFirebase: AngularFirestore) {
 
-    this.translateService.get('LOGIN_ERROR').subscribe((value) => {
+    this.translateService.get('LOGIN_ERROR').subscribe((value) => { // así se traen string de traduccion...
       this.loginErrorString = value;
     });
 

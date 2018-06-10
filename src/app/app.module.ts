@@ -70,17 +70,17 @@ export function provideSettings(storage: Storage) {
     PagesModalPage,
     SpinnerPage,
     PagesModalVotacionPage,
-    AltaChoferPage,
+    //AltaChoferPage,
     AdminControlPanelPage,
     VerImagenPage,
     ContentPage,
     ChoferPanelPage,
     //AnimatedSplashPage
-    AltaClientePage,
-    InicioClientePage,
-    AbmClientesPage,
-    AltaClienteParaAdminPage,
-    AbmVehiculosPage
+    //AltaClientePage,
+    //InicioClientePage,
+    //AbmClientesPage,
+    //AltaClienteParaAdminPage,
+    //AbmVehiculosPage
   ],
   imports: [
     BrowserModule,

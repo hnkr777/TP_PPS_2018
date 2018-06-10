@@ -42,6 +42,8 @@ import { AbmClienteProvider } from '../providers/abm-cliente/abm-cliente';
 import { InicioClientePage } from '../pages/inicio-cliente/inicio-cliente';
 import { AbmClientesPage } from '../pages/abm-clientes/abm-clientes';
 import { AltaClienteParaAdminPage } from '../pages/alta-cliente-para-admin/alta-cliente-para-admin';
+import { NuevoViajePage } from '../pages/nuevo-viaje/nuevo-viaje';
+
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -57,8 +59,8 @@ export function provideSettings(storage: Storage) {
    * these values will not overwrite the saved values (this can be done manually if desired).
    */
   return new Settings(storage, {
-    option1: true,
-    option2: 'Ionitron J. Framework',
+    precioPorKm: 16.5,        // el precio por kilometro, es un coeficiente (multiplica a los km)
+    minutosViajesEnCola: 30,  // tiempo antes de que los viajes aparezcan como validos para realizarse, sino son postdatados
     option3: '3',
     option4: 'Hello'
   });
@@ -70,17 +72,18 @@ export function provideSettings(storage: Storage) {
     PagesModalPage,
     SpinnerPage,
     PagesModalVotacionPage,
-    //AltaChoferPage,
+    AltaChoferPage,
     AdminControlPanelPage,
     VerImagenPage,
     ContentPage,
     ChoferPanelPage,
     //AnimatedSplashPage
-    //AltaClientePage,
-    //InicioClientePage,
-    //AbmClientesPage,
-    //AltaClienteParaAdminPage,
-    //AbmVehiculosPage
+    AltaClientePage,
+    InicioClientePage,
+    AbmClientesPage,
+    AltaClienteParaAdminPage,
+    AbmVehiculosPage,
+    NuevoViajePage
   ],
   imports: [
     BrowserModule,
@@ -115,7 +118,8 @@ export function provideSettings(storage: Storage) {
     InicioClientePage,
     AbmClientesPage,
     AltaClienteParaAdminPage,
-    AbmVehiculosPage
+    AbmVehiculosPage,
+    NuevoViajePage,
   ],
   providers: [
     Api,

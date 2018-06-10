@@ -10,6 +10,7 @@
   "NEW_DRIVER_TITLE": "Alta de nuevo chofer",
   "MODIF_DRIVER_TITLE": "Modificación de chofer",
   "CHOFER_PANEL_TITLE": "Panel del chofer",
+  "NUEVO_VIAJE_TITLE": "Nuevo viaje",
 
   "MAP_TITLE": "Mapa",
   "DELETE_BUTTON": "Borrar voto",
@@ -20,6 +21,8 @@
   "ABM_SUPERVISORES_BUTTON": "ABM supervisores",
   "ABM_ADMINS_BUTTON": "ABM admins",
   "VISOR_VIAJES_BUTTON": "Visor de viajes",
+  "PEDIR_VIAJE_BUTTON": "Nuevo viaje",
+  "ABM_VEHICULOS_BUTTON": "ABM vehículos",
 
   "CHOFER_ENCUESTA_BUTTON": "Encuesta de control",
   "CHOFER_INGRESO_BUTTON": "Empezar a trabajar",

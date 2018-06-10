@@ -17,6 +17,7 @@ import { environment } from "../../environments/environment";
 import { AbmChofer } from '../pages';
 import { ContentPage } from '../content/content';
 import { AbmClientesPage } from '../abm-clientes/abm-clientes';
+import { NuevoViajePage } from '../nuevo-viaje/nuevo-viaje';
 
 
 @IonicPage()
@@ -56,9 +57,16 @@ export class AdminControlPanelPage {
   }
 
   irVisorViajes() {
-    window.document.querySelector('ion-content').classList.add('transparentBody');
-    window.document.querySelector('ion-app').classList.add('transparentBody');
-    this.navCtrl.push(ContentPage); // escaner QR
+    //this.navCtrl.push(ContentPage); // escaner QR para test
+    this.navCtrl.push(PagesModalPage, { titulo: 'Visor de viajes', data: 'No implementado todavía...'});
+  }
+
+  irAbmVehiculos() {
+    this.navCtrl.push(PagesModalPage, { titulo: 'ABM vehículos', data: 'No implementado...'});
+  }
+
+  pedirViaje() {
+    this.navCtrl.push(NuevoViajePage);
   }
 
 }

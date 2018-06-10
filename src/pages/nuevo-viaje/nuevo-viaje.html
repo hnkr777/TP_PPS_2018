@@ -1,0 +1,52 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ 'NUEVO_VIAJE_TITLE' | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div class="contenido-viajes">
+    <!-- <ion-row>
+    <ion-col text-center>
+      <ion-item>
+        <ion-input placeholder="Nombre" class="titulo" [(ngModel)]="chofer.nombre" type="text"></ion-input>
+      </ion-item>
+    </ion-col>
+
+    <ion-col text-center>
+      <ion-item>
+        <ion-input placeholder="Apellido" class="titulo" [(ngModel)]="chofer.apellido" type="text"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row> -->
+
+    <ion-row>
+      <ion-col>
+        <!-- <ion-item> -->
+          <!-- <ion-label class="titulo" floating>Email</ion-label> -->
+          <ion-input max="512" placeholder="Dirección origen" [(ngModel)]="origen" class="input-viaje" type="text"></ion-input>
+        <!-- </ion-item> -->
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <!-- <ion-item> -->
+          <!-- <ion-label class="titulo" floating>Clave</ion-label> -->
+          <ion-input max="512" placeholder="Dirección destino" [(ngModel)]="destino" class="input-viaje" type="text"></ion-input>
+        <!-- </ion-item> -->
+      </ion-col>
+    </ion-row>
+
+    <!-- <ion-row>
+      <ion-col> -->
+          <div #map id="map">
+
+          </div>
+      <!-- </ion-col>
+    </ion-row> -->
+  </div>
+</ion-content>

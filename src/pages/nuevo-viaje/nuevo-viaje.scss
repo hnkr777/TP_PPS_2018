@@ -1,0 +1,26 @@
+nuevo-viaje {
+    ion-content {
+        background: rgb(61, 61, 61)!important;
+        height: 100%;
+        width: 100%;
+    }
+
+    .contenido-viajes {
+        background: rgb(61, 61, 61)!important;
+        height: 100%;
+        width: 100%;
+    }
+
+    .input-viaje {
+        background: white!important;
+        border-radius: 15px!important;
+
+    }
+
+    #map {
+        border-radius: 15px!important;
+        height: 80%;
+        // width: 100%;
+        margin-top: 10px;
+    }
+}

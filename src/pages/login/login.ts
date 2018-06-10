@@ -145,14 +145,25 @@ this.ListadoUsuariosObservable.subscribe(x => {
 
 this.ListadoUsuariosObservable.forEach((el)=>{
   this.accounts = el;
-  let user: Usuario = this.accounts.find(elem => ( this.loginFields.email == elem.nombre && (this.loginFields.clave == elem.clave)));
+  let user: any = this.accounts.find(elem => ( this.loginFields.email == elem.nombre && (this.loginFields.clave == elem.clave)));
   modal.dismiss();
   if( user !== undefined ) {
     sessionStorage.setItem('usuario', JSON.stringify(user));
 
     if(user.perfil=="cliente")
       {
+        if(user.activo==0)
+          {
+            let toastNoActivo = this.toastCtrl.create({
+              message: "Su usuario aun debe ser habilitado por el personal",
+              duration: 4000,
+              position: 'bottom' //middle || top
+            });
+            toastNoActivo.present();
+          }
+          else{
         this.navCtrl.push(InicioClientePage);
+          }
       }
       else{
     //this.ModalVotacion();

@@ -32,6 +32,8 @@ import { AbmClienteProvider } from '../providers/abm-cliente/abm-cliente';
 import { InicioClientePage } from '../pages/inicio-cliente/inicio-cliente';
 import { AbmClientesPage } from '../pages/abm-clientes/abm-clientes';
 import { AltaClienteParaAdminPage } from '../pages/alta-cliente-para-admin/alta-cliente-para-admin';
+import { QrVehiculoClientePage } from '../pages/qr-vehiculo-cliente/qr-vehiculo-cliente';
+import { QRScanner } from '@ionic-native/qr-scanner';
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
 export function createTranslateLoader(http: HttpClient) {
@@ -62,7 +64,8 @@ export function provideSettings(storage: Storage) {
     AltaClientePage,
     InicioClientePage,
     AbmClientesPage,
-    AltaClienteParaAdminPage
+    AltaClienteParaAdminPage,
+    QrVehiculoClientePage
     
   ],
   imports: [
@@ -91,7 +94,8 @@ export function provideSettings(storage: Storage) {
     AltaClientePage,
     InicioClientePage,
     AbmClientesPage,
-    AltaClienteParaAdminPage
+    AltaClienteParaAdminPage,
+    QrVehiculoClientePage
   ],
   providers: [
     Api,
@@ -103,7 +107,8 @@ export function provideSettings(storage: Storage) {
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    AbmClienteProvider
+    AbmClienteProvider,
+    QRScanner
   ]
 })
 export class AppModule { }

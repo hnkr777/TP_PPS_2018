@@ -8,4 +8,9 @@ page-inicio-cliente {
         display: block;
         //object-fit: fill;
 }
+
+.transparent-body {
+    background: none transparent !important;
+    opacity: 0 !important;
+  }
 }

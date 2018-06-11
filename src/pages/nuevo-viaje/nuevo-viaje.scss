@@ -14,13 +14,18 @@ nuevo-viaje {
     .input-viaje {
         background: white!important;
         border-radius: 15px!important;
-
+        width: 100%;
     }
 
     #map {
         border-radius: 15px!important;
-        height: 80%;
+        height: 70%;
         // width: 100%;
         margin-top: 10px;
+    }
+
+    .picker {
+        background: white!important;
+        border-radius: 15px!important;
     }
 }

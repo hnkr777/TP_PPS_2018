@@ -4,7 +4,7 @@ import { AltaClientePage } from './alta-cliente';
 
 @NgModule({
   declarations: [
-    AltaClientePage,
+    //AltaClientePage,
   ],
   imports: [
     IonicPageModule.forChild(AltaClientePage),

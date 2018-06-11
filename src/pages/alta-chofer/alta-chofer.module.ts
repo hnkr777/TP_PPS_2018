@@ -5,14 +5,14 @@ import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
-    AltaChoferPage,
+    //AltaChoferPage,
   ],
   imports: [
     IonicPageModule.forChild(AltaChoferPage),
     TranslateModule.forChild(),
   ],
   exports: [
-    AltaChoferPage
+    //AltaChoferPage
   ]
 })
 export class AltaChoferPageModule {}

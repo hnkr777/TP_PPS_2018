@@ -5,14 +5,14 @@ import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
-    AltaClienteParaAdminPage,
+    //AltaClienteParaAdminPage,
   ],
   imports: [
     IonicPageModule.forChild(AltaClienteParaAdminPage),
     TranslateModule.forChild(),
   ],
   exports: [
-    AltaClienteParaAdminPage
+    //AltaClienteParaAdminPage
   ]
 })
 export class AltaClienteParaAdminPageModule {}

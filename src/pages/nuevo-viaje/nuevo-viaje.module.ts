@@ -5,14 +5,14 @@ import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
-    NuevoViajePage,
+    //NuevoViajePage,
   ],
   imports: [
     IonicPageModule.forChild(NuevoViajePage),
     TranslateModule.forChild(),
   ],
   exports: [
-    NuevoViajePage
+    //NuevoViajePage
   ]
 })
 export class NuevoViajePageModule {}

@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController, ViewController, M
 import { TranslateService } from '@ngx-translate/core';
 import { ServicioFotosProvider, ServicioUsuariosProvider } from '../../providers/providers';
 import { Viaje } from '../../clases/viaje';
-import { Jsonp } from '@angular/http';
+import { Geolocation } from '@ionic-native/geolocation';
 
 declare const google; // para google maps
 
@@ -47,7 +47,8 @@ export class NuevoViajePage {
     private servicioFotos: ServicioFotosProvider,
     public viewCtrl: ViewController,
     public translateService: TranslateService,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    private geolocation: Geolocation
   ) {
     this.puntos = 0;
     this.nuevoViaje = new Viaje();
@@ -55,6 +56,8 @@ export class NuevoViajePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NuevoViajePage');
+    
+
     this.startMap();
     
     /*setTimeout(()=>{
@@ -73,6 +76,22 @@ export class NuevoViajePage {
     }, 1000);*/
   }
 
+  tomarDireccionGPS() {
+    this.geolocation.getCurrentPosition({ 
+      maximumAge: 3000, 
+      timeout: 5000, 
+      enableHighAccuracy: true 
+    })
+    .then((resp) => {
+      //let mylocation = new google.maps.LatLng(resp.coords.latitude,resp.coords.longitude);
+      this.nuevoViaje.latOrigen = resp.coords.latitude;
+      this.nuevoViaje.longOrigen = resp.coords.longitude;
+      this.addMarker(this.nuevoViaje.latOrigen, this.nuevoViaje.longOrigen);
+      this.addPolyLine({ lat: this.nuevoViaje.latOrigen, lng: this.nuevoViaje.longOrigen });
+      this.puntos++;
+      //this.marcarUbicacion(resp.coords.latitude, resp.coords.longitude);
+    });
+  }
   
   startMap() {
     console.log('Mapa iniciado');
@@ -90,30 +109,30 @@ export class NuevoViajePage {
       if(this.puntos > 1) {
         return;
       } else {
-        this.addMarker(event.latLng, this.map);
+        this.addMarker(event.latLng.lat(), event.latLng.lng());
         this.addPolyLine(event.latLng);
         this.puntos++;
       }
     });
   }
   
-  addMarker(location, map) {
+  addMarker(lat: number, long: number) {
     if(this.puntos == 0) { // si es el punto A (origen)
-      this.nuevoViaje.latOrigen = location.lat();
-      this.nuevoViaje.longOrigen = location.lng();
+      this.nuevoViaje.latOrigen = lat;
+      this.nuevoViaje.longOrigen = long;
       console.log('ORIGEN: '+ this.nuevoViaje.latOrigen + ', ' + this.nuevoViaje.longOrigen);
     } else if(this.puntos == 1) { // si es el punto B (destino)
-      this.nuevoViaje.latDestino = location.lat();
-      this.nuevoViaje.longDestino = location.lng();
+      this.nuevoViaje.latDestino = lat;
+      this.nuevoViaje.longDestino = long;
       console.log('DESTINO: ' + this.nuevoViaje.latDestino + ', ' + this.nuevoViaje.longDestino);
       this.calcularDistancia();
     }
     
-    console.log('Latitud[' + location.lat() + ']  -  Longitud[' + location.lng() + ']');
+    console.log('Latitud[' + lat + ']  -  Longitud[' + long + ']');
     let marker = new google.maps.Marker({
-      position: location,
+      position: { lat: lat, lng: long },
       label: this.labels[this.labelIndex++ % this.labels.length],
-      map: map
+      map: this.map
     });
   }
 
@@ -133,6 +152,11 @@ export class NuevoViajePage {
     }
   }
 
+  recargarMapa() {
+    
+    this.calcularDistancia();
+  }
+
   // dadas las coordenadas de latitud y longitud guardadas en nuevoViaje, llena los campos de direccion
   // duración del viaje y distancia del mismo
   calcularDistancia() {
@@ -142,34 +166,72 @@ export class NuevoViajePage {
     var service = new google.maps.DistanceMatrixService();
     service.getDistanceMatrix(
       {
-        origins: [ori, this.origen], // origin1, origin2
-        destinations: [this.destino, des], // destinationA, destinationB
+        origins: [(this.origen !== '' ? this.origen : ori)],
+        destinations: [(this.destino !== '' ? this.destino : des)],
         travelMode: 'DRIVING',
         //transitOptions: TransitOptions,
         //drivingOptions: DrivingOptions,
         unitSystem: google.maps.UnitSystem.METRIC,
         avoidHighways: false,
         avoidTolls: false,
-      }, (data, status) => { // 'OK'
+      }, (data, status) => {
         //console.log(JSON.stringify(data));
-        //{"rows":[{"elements":[{"status":"NOT_FOUND"},{"distance":{"text":"6,1 km","value":6144},"duration":{"text":"18 min","value":1107},"status":"OK"}]},{"elements":[{"status":"NOT_FOUND"},{"status":"NOT_FOUND"}]}],"originAddresses":["",""],"destinationAddresses":["","Tte. Gral. Juan Domingo Perón 4399, C1199ABE CABA, Argentina"]}
-        this.nuevoViaje.duracionViaje = data.rows[0].elements[1].duration.value;
-        this.nuevoViaje.duracionViajeText = data.rows[0].elements[1].duration.text;
-        console.log('Duracion viaje en minutos: ' + this.nuevoViaje.duracionViaje + ' (' + this.nuevoViaje.duracionViajeText + ')');
-        this.nuevoViaje.distancia = data.rows[0].elements[1].distance.value;
-        this.nuevoViaje.distanciaText = data.rows[0].elements[1].distance.text;
-        console.log('Distancia del viaje en metros: ' + this.nuevoViaje.distancia + ' (' + this.nuevoViaje.distanciaText + ')');
-        this.origen = data.originAddresses[1];
-        this.destino = data.destinationAddresses[1];
-        this.nuevoViaje.destino = this.destino;
-        console.log('Dirección de origen: '+data.originAddresses[1]);
-        console.log('Dirección de destino: '+data.destinationAddresses[1]);
-        console.log('Estado: '+ status);
+        //console.log(JSON.stringify(status));
+        if(status === 'OK') {
+        //if(data.rows[0].elements[0].status == 'OK') {
+          this.nuevoViaje.duracionViaje = data.rows[0].elements[0].duration.value;
+          this.nuevoViaje.duracionViajeText = data.rows[0].elements[0].duration.text;
+          console.log('Duracion viaje en minutos: ' + this.nuevoViaje.duracionViaje + ' (' + this.nuevoViaje.duracionViajeText + ')');
+          this.nuevoViaje.distancia = data.rows[0].elements[0].distance.value;
+          this.nuevoViaje.distanciaText = data.rows[0].elements[0].distance.text;
+          console.log('Distancia del viaje en metros: ' + this.nuevoViaje.distancia + ' (' + this.nuevoViaje.distanciaText + ')');
+          this.origen = data.originAddresses;
+          this.destino = data.destinationAddresses;
+          this.nuevoViaje.origen = this.origen;
+          this.nuevoViaje.destino = this.destino;
+          console.log('Dirección de origen: '+data.originAddresses);
+          console.log('Dirección de destino: '+data.destinationAddresses);
+          console.log('Estado: '+ status);
+          this.Msg('Viaje', 'Duración aprox: ' + this.nuevoViaje.duracionViajeText + 'Distancia: ' + this.nuevoViaje.distanciaText);
+        } else {
+          this.errorMsg('Error', 'Error de google maps en la localización');
+        }
       });
+  }
+
+  marcarUbicacion(latitud: number, longitud: number) {
+    let infoWindow = new google.maps.InfoWindow({ map: this.map });
+
+    if (latitud !== undefined && longitud !== undefined) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        
+        let pos = {
+          lat: latitud,
+          lng: longitud
+        };
+
+        infoWindow.setPosition(pos);
+        infoWindow.setContent('Usted está aquí');
+
+        let marker = new google.maps.Marker({
+          position: pos,
+          map: this.map
+        });
+
+        this.map.setCenter(pos);
+      }, () => {
+        this.errorMsg('Error', 'No se pudo obtener la localización');
+        this.handleLocationError(true, infoWindow, this.map.getCenter());
+      });
+    } else {
+      this.errorMsg('Error', 'No se pudo obtener la localización');
+      this.handleLocationError(false, infoWindow, this.map.getCenter());
+    }
   }
 
   handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
+    this.errorMsg('Error', 'No se pudo obtener la localización');
     infoWindow.setContent(browserHasGeolocation ?
       'Error: el servicio de Geolocalización falló.' :
       'Error: tu navegador no soporta geolocalización.');
@@ -198,9 +260,29 @@ export class NuevoViajePage {
         this.handleLocationError(true, infoWindow, this.map.getCenter());
       });
     } else {
-      // Browser doesn't support Geolocation
+      this.errorMsg('Error', 'No se pudo obtener la localización');
       this.handleLocationError(false, infoWindow, this.map.getCenter());
     }
+  }
+  
+  errorMsg(titulo: string, mensaje: string) {
+    const alerta = this.alertCtrl.create({
+      title: titulo,
+      subTitle: mensaje,
+      cssClass:"miClaseDanger",
+      buttons: ['Aceptar']
+    });
+    alerta.present();
+  }
+
+  Msg(titulo: string, mensaje: string) {
+    const alerta = this.alertCtrl.create({
+      title: titulo,
+      subTitle: mensaje,
+      cssClass:"miClaseAlert",
+      buttons: ['Aceptar']
+    });
+    alerta.present();
   }
 
 }

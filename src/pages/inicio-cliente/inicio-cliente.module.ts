@@ -4,7 +4,7 @@ import { InicioClientePage } from './inicio-cliente';
 
 @NgModule({
   declarations: [
-    InicioClientePage,
+    //InicioClientePage,
   ],
   imports: [
     IonicPageModule.forChild(InicioClientePage),

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 
-import { MainPage } from '../pages';
+import { MainPage, AbmChofer } from '../pages';
 import { ContentPage } from "../content/content";
 
 @IonicPage()
@@ -25,6 +25,10 @@ export class PagesModalVotacionPage {
 
   ionViewDidLoad() {
 
+  }
+
+  gotest() {
+    this.navCtrl.push(AbmChofer);
   }
 
   closeModal() {

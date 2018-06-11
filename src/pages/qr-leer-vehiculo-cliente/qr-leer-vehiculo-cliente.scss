@@ -1,0 +1,48 @@
+page-qr-leer-vehiculo-cliente {
+    .transparentBody { background-color: transparent !important; }
+}
+
+    ion-content {
+        background: transparent !important;
+        width: 100%;
+        height: 100%;
+        // display: table;
+        text-align: center;
+      }
+      
+      .transparentBody { 
+        background-color: transparent !important;
+        // width: 100%;
+        // height: 100%;
+        // display: table;
+        // text-align: center;
+      }
+      
+      .box {
+        position: relative;
+        // position: absolute;
+        width: 220px;
+        height: 220px;
+        margin: auto;
+        background: transparent;
+        // display: table-cell;
+        vertical-align: middle;
+        z-index:-1;
+        border: 2px solid red;
+        margin-top: 50%;
+      }
+      
+      .base {
+        background: transparent!important;
+        height: 100%;
+        width: 100%;
+      }
+      
+      .contenido {
+        vertical-align: middle;
+        // position: relative;
+         height: 100%;
+         z-index: 1;
+      }
+      
+

@@ -1,0 +1,253 @@
+<!--
+  Generated template for the AbmVehiculosPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color = "dark">
+      <ion-title *ngIf = "abmMostrar == 'Alta'">Nuevo Vehiculo</ion-title>
+      <ion-title *ngIf = "abmMostrar == 'Baja'">Borrar Vehiculo</ion-title>
+      <ion-title *ngIf = "abmMostrar == 'Mod'">Cambiar Vehiculo</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+<!-- <img src="assets/img/car.png" alt="" class="img"> -->
+<div class="login-box center">
+    <ion-fab top right>
+        <button ion-fab  (click)="test('Alta')">Alta</button>
+    </ion-fab>
+    <ion-fab top>
+        <button ion-fab   (click)="test('Mod')">Modificacion</button>
+    </ion-fab>
+    <ion-fab top left>
+        <button ion-fab  (click)="test('Baja')">Baja</button>
+    </ion-fab>
+    
+    
+  <form (ngSubmit)="alta()" #registerForm="ngForm" *ngIf = "abmMostrar == 'Alta'">
+    <ion-row>
+      <ion-col>
+        <ion-list inset>
+          
+          <ion-item class="ion-item-input">
+            <ion-input type="text" placeholder="Patente(AAAA0000)" name="patente" [(ngModel)]="vehiculo.patente" (ngModelChange)="vehiculo.patente = $event.toLocaleUpperCase()" required></ion-input>
+          </ion-item>
+          <ion-item class="ion-item-input">
+            <ion-input type="text" placeholder="Modelo" name="modelo" [(ngModel)]="vehiculo.modelo" required></ion-input>
+          </ion-item>
+          <ion-item class="ion-item-input">
+            <ion-input type="text" placeholder="Color" name="color" [(ngModel)]="vehiculo.color" required></ion-input>
+          </ion-item>
+          <ion-item class="ion-item-foto">
+            <ion-row>
+              <ion-col>
+                <img src="{{foto1}}" alt="" *ngIf = "foto1 != 'no'" class="imgFoto">
+                <img src="assets/img/car.png" alt="" class="imgFoto" *ngIf = "foto1 == 'no'">
+              </ion-col>
+              <ion-col>
+                <img src="{{foto2}}" alt="" *ngIf = "foto2 != 'no'" class="imgFoto"> 
+                <img src="assets/img/car.png" alt="" class="imgFoto" *ngIf = "foto2 == 'no'">           
+              </ion-col>
+              <ion-col>
+                <img src="{{foto3}}" alt="" *ngIf = "foto3 != 'no'" class="imgFoto">  
+                <img src="assets/img/car.png" alt="" class="imgFoto" *ngIf = "foto3 == 'no'">                              
+              </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <button small ion-button class="submit-btn" (click)="borrarFoto('1')" *ngIf = "foto1 != 'no'">
+                        <ion-icon name="trash"></ion-icon>
+                      </button>
+                </ion-col>
+                <ion-col>
+                    <button small ion-button class="submit-btn" (click)="borrarFoto('2')" *ngIf = "foto2 != 'no'">
+                        <ion-icon name="trash"></ion-icon>
+                      </button>           
+                </ion-col>
+                <ion-col>
+                    <button small ion-button class="submit-btn" (click)="borrarFoto('3')" *ngIf = "foto3 != 'no'">
+                        <ion-icon name="trash"></ion-icon>
+                      </button>                             
+                </ion-col>
+            </ion-row>
+          </ion-item>
+            <!-- <ion-input type="file" placeholder="Fotos" name="fotos" [(ngModel)]="vehiculo.fotos" required></ion-input> -->
+              <ion-row>
+                <ion-col class="buttons"> 
+                  <button small ion-button class="submit-btn" (click)="tomarFoto('1')" *ngIf = "foto1 == 'no'">
+                    <ion-icon name="camera"></ion-icon>
+                  </button>           
+                  <button small ion-button class="submit-btn" (click)="tomarFotoLibreria('1')" *ngIf = "foto1 == 'no'">
+                    <ion-icon name="add"></ion-icon>
+                  </button>
+                </ion-col>
+                <ion-col class="buttons">
+                  <button small ion-button class="submit-btn" (click)="tomarFoto('2')" *ngIf = "foto2 == 'no'">
+                    <ion-icon name="camera"></ion-icon>
+                  </button>         
+                  <button small ion-button class="submit-btn" (click)="tomarFotoLibreria('2')" *ngIf = "foto2 == 'no'">
+                    <ion-icon name="add"></ion-icon>
+                  </button>
+                </ion-col>
+                <ion-col class="buttons"> 
+                  <button small ion-button class="submit-btn" (click)="tomarFoto('3')" *ngIf = "foto3 == 'no'">
+                    <ion-icon name="camera"></ion-icon>
+                  </button>                             
+                  <button small ion-button class="submit-btn" (click)="tomarFotoLibreria('3')" *ngIf = "foto3 == 'no'">
+                    <ion-icon name="add"></ion-icon>
+                  </button>
+                </ion-col>
+              </ion-row>
+            
+              <!-- <ion-input type="file" placeholder="Fotos" name="fotos" [(ngModel)]="vehiculo.fotos" required></ion-input> -->
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row>
+      <ion-col class="signup-col">
+        <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Guardar</button>
+        
+      </ion-col>
+    </ion-row>
+    
+  </form>
+  <form (ngSubmit)="buscarPatente(patenteABuscar)" #registerForm="ngForm" *ngIf = "abmMostrar == 'Mod'&& patenteEncontrada == false">
+      <ion-row class = "bajaMod">
+        <ion-col>
+          <ion-list inset>
+            
+            <ion-item>
+              <ion-input type="text" placeholder="Patente(AAAA0000)" name="patente" [(ngModel)]="patenteABuscar" (ngModelChange)="patenteABuscar = $event.toLocaleUpperCase()" required></ion-input>
+            </ion-item>
+            
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      
+      <ion-row>
+        <ion-col class="signup-col">
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Buscar</button>
+          
+        </ion-col>
+      </ion-row>
+      
+  </form>
+  <form (ngSubmit)="modificacion()" #registerForm="ngForm" *ngIf = "abmMostrar == 'Mod' && patenteEncontrada == true">
+      <ion-row>
+          <ion-col>
+            <ion-list inset>
+              
+              <ion-item class="ion-item-input">
+                <ion-input type="text" placeholder="Patente(AAAA0000)" name="patente" [(ngModel)]="vehiculo.patente" (ngModelChange)="vehiculo.patente = $event.toLocaleUpperCase()" required></ion-input>
+              </ion-item>
+              <ion-item class="ion-item-input">
+                <ion-input type="text" placeholder="Modelo" name="modelo" [(ngModel)]="vehiculo.modelo" required></ion-input>
+              </ion-item>
+              <ion-item class="ion-item-input">
+                <ion-input type="text" placeholder="Color" name="color" [(ngModel)]="vehiculo.color" required></ion-input>
+              </ion-item>
+              <ion-item class="ion-item-foto">
+                <ion-row>
+                  <ion-col>
+                    <img src="{{foto1}}" alt="" *ngIf = "foto1 != 'no'" class="imgFoto">
+                    <img src="assets/img/car.png" alt="" class="imgFoto" *ngIf = "foto1 == 'no'">
+                  </ion-col>
+                  <ion-col>
+                    <img src="{{foto2}}" alt="" *ngIf = "foto2 != 'no'" class="imgFoto"> 
+                    <img src="assets/img/car.png" alt="" class="imgFoto" *ngIf = "foto2 == 'no'">           
+                  </ion-col>
+                  <ion-col>
+                    <img src="{{foto3}}" alt="" *ngIf = "foto3 != 'no'" class="imgFoto">  
+                    <img src="assets/img/car.png" alt="" class="imgFoto" *ngIf = "foto3 == 'no'">                              
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <button small ion-button class="submit-btn" (click)="borrarFoto('1')" *ngIf = "foto1 != 'no'">
+                            <ion-icon name="trash"></ion-icon>
+                          </button>
+                    </ion-col>
+                    <ion-col>
+                        <button small ion-button class="submit-btn" (click)="borrarFoto('2')" *ngIf = "foto2 != 'no'">
+                            <ion-icon name="trash"></ion-icon>
+                          </button>           
+                    </ion-col>
+                    <ion-col>
+                        <button small ion-button class="submit-btn" (click)="borrarFoto('3')" *ngIf = "foto3 != 'no'">
+                            <ion-icon name="trash"></ion-icon>
+                          </button>                             
+                    </ion-col>
+                </ion-row>
+              </ion-item>
+                <!-- <ion-input type="file" placeholder="Fotos" name="fotos" [(ngModel)]="vehiculo.fotos" required></ion-input> -->
+                  <ion-row>
+                    <ion-col class="buttons"> 
+                      <button small ion-button class="submit-btn" (click)="tomarFoto('1')" *ngIf = "foto1 == 'no'">
+                        <ion-icon name="camera"></ion-icon>
+                      </button>           
+                      <button small ion-button class="submit-btn" (click)="tomarFotoLibreria('1')" *ngIf = "foto1 == 'no'">
+                        <ion-icon name="add"></ion-icon>
+                      </button>
+                    </ion-col>
+                    <ion-col class="buttons">
+                      <button small ion-button class="submit-btn" (click)="tomarFoto('2')" *ngIf = "foto2 == 'no'">
+                        <ion-icon name="camera"></ion-icon>
+                      </button>         
+                      <button small ion-button class="submit-btn" (click)="tomarFotoLibreria('2')" *ngIf = "foto2 == 'no'">
+                        <ion-icon name="add"></ion-icon>
+                      </button>
+                    </ion-col>
+                    <ion-col class="buttons"> 
+                      <button small ion-button class="submit-btn" (click)="tomarFoto('3')" *ngIf = "foto3 == 'no'">
+                        <ion-icon name="camera"></ion-icon>
+                      </button>                             
+                      <button small ion-button class="submit-btn" (click)="tomarFotoLibreria('3')" *ngIf = "foto3 == 'no'">
+                        <ion-icon name="add"></ion-icon>
+                      </button>
+                    </ion-col>
+                  </ion-row>
+                
+                  <!-- <ion-input type="file" placeholder="Fotos" name="fotos" [(ngModel)]="vehiculo.fotos" required></ion-input> -->
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        
+        <ion-row>
+          <ion-col class="signup-col">
+            <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Modificar</button>
+            
+          </ion-col>
+        </ion-row>
+        
+    </form>
+    <form (ngSubmit)="baja()" #registerForm="ngForm" *ngIf = "abmMostrar == 'Baja'">
+        <ion-row class = "bajaMod">
+          <ion-col>
+            <ion-list inset>
+              
+              <ion-item>
+                <ion-input type="text" placeholder="Patente(AAAA0000)" name="patente" [(ngModel)]="patenteABuscar" (ngModelChange)="patenteABuscar = $event.toLocaleUpperCase()" required></ion-input>
+              </ion-item>
+              
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        
+        <ion-row>
+          <ion-col class="signup-col">
+            <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Borrar</button>
+            
+          </ion-col>
+        </ion-row>
+        
+      </form>
+</div>
+
+</ion-content>

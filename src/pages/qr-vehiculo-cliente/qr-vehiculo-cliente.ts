@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ViewController } from 'ionic-angular';
-
+import { AbmClienteProvider } from "../../providers/abm-cliente/abm-cliente";
+import { InicioClientePage } from '../../pages/inicio-cliente/inicio-cliente';
 /**
  * Generated class for the QrVehiculoClientePage page.
  *
@@ -14,18 +15,21 @@ import { IonicPage, NavController, NavParams,ViewController } from 'ionic-angula
   templateUrl: 'qr-vehiculo-cliente.html',
 })
 export class QrVehiculoClientePage {
-chofer;
-  constructor(public navCtrl: NavController, public navParams: NavParams,private viewCtrl :ViewController) {
+
+chofer:any;
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,private viewCtrl :ViewController , private servicioCliente: AbmClienteProvider) {
     this.chofer = navParams.get('chofer');
-    console.log(this.chofer);
+  
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad QrVehiculoClientePage');
   }
 
-  closeModal() {
-    this.viewCtrl.dismiss();
+  close() {
+    this.navCtrl.setRoot(InicioClientePage)
   }
 
 }

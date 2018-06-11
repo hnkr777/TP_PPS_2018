@@ -6,14 +6,14 @@ import { ContentPage } from './content';
 
 @NgModule({
   declarations: [
-    ContentPage,
+    //ContentPage
   ],
   imports: [
     IonicPageModule.forChild(ContentPage),
     TranslateModule.forChild()
   ],
   exports: [
-    ContentPage
+    //ContentPage
   ]
 })
 export class ContentPageModule { }

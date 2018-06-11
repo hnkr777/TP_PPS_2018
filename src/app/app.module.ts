@@ -7,7 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { IonicStorageModule, Storage } from '@ionic/storage';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicApp, IonicErrorHandler, IonicModule, NavController } from 'ionic-angular';
 import { environment } from '../environments/environment';
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 
@@ -18,15 +18,24 @@ import { Injectable } from '@angular/core';
 
 import {AngularFireModule} from 'angularfire2';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
-
 import { Items } from '../mocks/providers/items';
 import { Settings } from '../providers/providers';
 import { User } from '../providers/providers';
 import { Api } from '../providers/providers';
+import { ServicioUsuariosProvider } from '../providers/servicio-usuarios/servicio-usuarios';
+import { ServicioFotosProvider } from '../providers/servicio-fotos/servicio-fotos';
 import { MyApp } from './app.component';
 import { PagesModalPage } from "../pages/pages-modal/pages-modal";
+import { AltaChoferPage } from '../pages/alta-chofer/alta-chofer';
 import { SpinnerPage } from '../pages/pages-spinner/pages-spinner';
+import { AbmVehiculosPage } from '../pages/abm-vehiculos/abm-vehiculos';
 import { PagesModalVotacionPage } from '../pages/pages-modal-votacion/pages-modal-votacion';
+import { AdminControlPanelPage } from '../pages/admin-control-panel/admin-control-panel';
+import { ChoferPanelPage } from '../pages/chofer-panel/chofer-panel';
+import { VerImagenPage } from '../pages/ver-imagen/ver-imagen';
+import { ContentPage } from '../pages/content/content';
+import { AnimatedSplashPage } from '../pages/animated-splash/animated-splash';
+
 import { AltaClientePage } from '../pages/alta-cliente/alta-cliente';
 import { AbmClienteProvider } from '../providers/abm-cliente/abm-cliente';
 import { InicioClientePage } from '../pages/inicio-cliente/inicio-cliente';
@@ -34,6 +43,7 @@ import { AbmClientesPage } from '../pages/abm-clientes/abm-clientes';
 import { AltaClienteParaAdminPage } from '../pages/alta-cliente-para-admin/alta-cliente-para-admin';
 import { QrVehiculoClientePage } from '../pages/qr-vehiculo-cliente/qr-vehiculo-cliente';
 import { QRScanner } from '@ionic-native/qr-scanner';
+import { QrLeerVehiculoClientePage } from '../pages/qr-leer-vehiculo-cliente/qr-leer-vehiculo-cliente';
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
 export function createTranslateLoader(http: HttpClient) {
@@ -65,12 +75,23 @@ export function provideSettings(storage: Storage) {
     InicioClientePage,
     AbmClientesPage,
     AltaClienteParaAdminPage,
-    QrVehiculoClientePage
-    
+    QrVehiculoClientePage,
+    AltaChoferPage,
+    AdminControlPanelPage,
+    VerImagenPage,
+    ContentPage,
+    ChoferPanelPage,
+    //AnimatedSplashPage,
+    AltaClientePage,
+    InicioClientePage,
+    AbmClientesPage,
+    AltaClienteParaAdminPage,
+    AbmVehiculosPage,
+    QrLeerVehiculoClientePage
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,    
+    HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     FormsModule,
@@ -91,24 +112,37 @@ export function provideSettings(storage: Storage) {
     PagesModalPage,
     SpinnerPage,
     PagesModalVotacionPage,
+    AltaChoferPage,
+    AdminControlPanelPage,
+    VerImagenPage,
+    ContentPage,
+    ChoferPanelPage,
+//AnimatedSplashPage,
     AltaClientePage,
     InicioClientePage,
     AbmClientesPage,
     AltaClienteParaAdminPage,
-    QrVehiculoClientePage
+    QrVehiculoClientePage,
+    AbmVehiculosPage,
+    QrLeerVehiculoClientePage
   ],
   providers: [
     Api,
     Items,
     User,
     Camera,
+    QRScanner,
     SplashScreen,
     StatusBar,
+    ServicioFotosProvider,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     AbmClienteProvider,
-    QRScanner
+    QRScanner,
+    ServicioUsuariosProvider,
+    ServicioFotosProvider,
+    AbmClienteProvider
   ]
 })
 export class AppModule { }

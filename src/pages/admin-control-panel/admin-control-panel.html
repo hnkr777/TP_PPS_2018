@@ -1,0 +1,26 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ 'ADMIN_PANEL_TITLE' | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <button class="titulo" (click)="irAbmChofer()" ion-button round icon-left color="primary" block large>
+    <ion-icon name="people"></ion-icon>{{ 'ABM_CHOFERES_BUTTON' | translate }}</button>
+
+  <button class="titulo" (click)="irAbmCliente()" ion-button round icon-left color="primary" block large>
+    <ion-icon name="people"></ion-icon>{{ 'ABM_CLIENTES_BUTTON' | translate }}</button>
+
+  <button class="titulo" (click)="irAbmSupervisor()" ion-button round icon-left color="primary" block large>
+    <ion-icon name="people"></ion-icon>{{ 'ABM_SUPERVISORES_BUTTON' | translate }}</button>
+  <br>
+  <button class="titulo" (click)="irAbmAdmin()" ion-button round icon-left color="primary" block large>
+    <ion-icon name="people"></ion-icon>{{ 'ABM_ADMINS_BUTTON' | translate }}</button>
+  <br>
+  <button class="titulo" (click)="irVisorViajes()" ion-button round icon-left color="secondary" block large>
+    <ion-icon name="jet"></ion-icon>{{ 'VISOR_VIAJES_BUTTON' | translate }}</button>
+
+</ion-content>

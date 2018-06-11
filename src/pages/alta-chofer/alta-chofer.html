@@ -1,0 +1,113 @@
+<div class="contenedor-global">
+
+  <ion-header>
+
+    <ion-navbar>
+      <ion-title>{{ (modoAlta == true? 'NEW_DRIVER_TITLE' : 'MODIF_DRIVER_TITLE') | translate }}</ion-title>
+    </ion-navbar>
+
+  </ion-header>
+
+
+  <ion-content>
+
+    <ion-row>
+      <ion-col text-center>
+        <ion-item>
+          <!-- <ion-label class="titulo" floating>Nombre</ion-label> -->
+          <ion-input placeholder="Nombre" class="titulo" [(ngModel)]="chofer.nombre" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col text-center>
+        <ion-item>
+          <!-- <ion-label class="titulo" floating>Apellido</ion-label> -->
+          <ion-input placeholder="Apellido" class="titulo" [(ngModel)]="chofer.apellido" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-item>
+      <!-- <ion-label class="titulo" floating>Email</ion-label> -->
+      <ion-input placeholder="Email" [(ngModel)]="chofer.correo" class="titulo" type="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <!-- <ion-label class="titulo" floating>Clave</ion-label> -->
+      <ion-input placeholder="Contraseña" [(ngModel)]="clave1" class="titulo" type="password"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <!-- <ion-label class="titulo" floating>Clave</ion-label> -->
+      <ion-input placeholder="Repita la contraseña" [(ngModel)]="clave2" class="titulo" type="password"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <!-- <ion-label class="titulo" floating>Clave</ion-label> -->
+      <ion-input placeholder="Número de DNI" [(ngModel)]="chofer.dni" class="titulo" type="number"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          <button small ion-button color="primary" (click)="tomarFoto()">
+            <ion-icon name="camera"></ion-icon>&nbsp; Sacar foto</button>
+        </ion-col>
+        <ion-col>
+          <div (click)="verImagen()" class="marco-imagen">
+            <img class="marco-imagen" [src]="chofer.foto === undefined ? '../../assets/img/img-usuario.svg' : chofer.foto">
+          </div>
+        </ion-col>
+        <ion-col>
+          <button small ion-button color="primary" (click)="cargarFoto()">
+            <ion-icon name="add"></ion-icon>&nbsp; Buscar foto</button>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-list [(ngModel)]="chofer.sexo" class="titulo" radio-group>
+      <!-- <ion-list-header>
+        Sexo
+      </ion-list-header> -->
+
+      <ion-row>
+        <ion-col text-center>
+          <ion-item style="background: transparent!important;">
+            <ion-label style="color: white!important;">Masculino</ion-label>
+            <ion-radio checked="true" value="m"></ion-radio>
+          </ion-item>
+        </ion-col>
+
+        <ion-col text-center>
+          <ion-item style="background: transparent!important;">
+            <ion-label style="color: white!important;">Femenino</ion-label>
+            <ion-radio value="f"></ion-radio>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-list>
+
+    <ion-item>
+      <!-- <ion-label class="titulo" floating>Clave</ion-label> -->
+      <ion-input placeholder="Fecha de nacimiento" [(ngModel)]="chofer.fechaNacimiento" class="titulo" type="date"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="titulo">Habilitado</ion-label>
+      <ion-checkbox class="titulo" [(ngModel)]="habilitado"></ion-checkbox>
+    </ion-item>
+
+  </ion-content>
+
+  <ion-footer>
+    <ion-navbar>
+      <ion-buttons>
+        <button large ion-button color="danger" (click)="closeModal()">Cancelar</button>
+      </ion-buttons>
+      <ion-buttons end>
+        <button *ngIf="validos===true" large ion-button color="secondary" (click)="accionAceptar()">Aceptar</button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-footer>
+
+</div>

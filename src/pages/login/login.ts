@@ -10,10 +10,16 @@ import { MainPage } from '../pages';
 import { ContentPage } from "../content/content";
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { PagesModalVotacionPage } from "../../pages/pages-modal-votacion/pages-modal-votacion";
+import { ServicioUsuariosProvider } from '../../providers/servicio-usuarios/servicio-usuarios';
+import { AdminControlPanelPage } from '../admin-control-panel/admin-control-panel';
+import { ChoferPanelPage } from '../chofer-panel/chofer-panel';
 import { AltaClientePage } from "../../pages/alta-cliente/alta-cliente";
 import { InicioClientePage } from "../../pages/inicio-cliente/inicio-cliente";
 //PARA PRUEBA ESTA PAGINA, LUEGO SACARLAs
 import { AbmClientesPage } from '../../pages/abm-clientes/abm-clientes';
+
+import { AbmVehiculosPage } from '../abm-vehiculos/abm-vehiculos';
+
 
 @IonicPage()
 @Component({
@@ -21,15 +27,14 @@ import { AbmClientesPage } from '../../pages/abm-clientes/abm-clientes';
   templateUrl: 'login.html'
 })
 export class LoginPage {
-  coleccionTipadaFirebase:AngularFirestoreCollection<Usuario>;
+  coleccionTipadaFirebase: AngularFirestoreCollection<Usuario>;
   ListadoUsuariosObservable: Observable<Usuario[]>;
 
-  loginFields: { email: string, clave: string } = {
-    email: '',
-    clave: ''
+  loginFields: { correo: string, clave: string } = {
+    correo: 'admin@gmail.com',  // hardcodeado para hacer más rápido los test
+    clave: '11'
   };
   
-  splash = true;
   accounts: Array<Usuario>;
   
   private loginErrorString: string;
@@ -41,9 +46,10 @@ export class LoginPage {
     public modalCtrl: ModalController, 
     public toastCtrl: ToastController,
     public translateService: TranslateService,
+    private servicioUsuarios: ServicioUsuariosProvider,
     private objFirebase: AngularFirestore) {
 
-    this.translateService.get('LOGIN_ERROR').subscribe((value) => {
+    this.translateService.get('LOGIN_ERROR').subscribe((value) => { // así se traen string de traduccion...
       this.loginErrorString = value;
     });
 
@@ -52,27 +58,27 @@ export class LoginPage {
   setLog(i: number) {
     switch (i) {
       case 1:
-        this.loginFields.email = "administrador";
+        this.loginFields.correo = "admin@gmail.com";
         this.loginFields.clave = '11';
         break;
 
       case 2:
-      this.loginFields.email = "mauro";
+      this.loginFields.correo = "mauro";
       this.loginFields.clave = '123';
         break;
 
       case 3:
-      this.loginFields.email = "usuario@gmail.com";
+      this.loginFields.correo = "usuario@gmail.com";
       this.loginFields.clave = '33';
         break;
 
       case 4:
-      this.loginFields.email = "anonimo@gmail.com";
+      this.loginFields.correo = "mschumi@gmail.com";
       this.loginFields.clave = '44';
         break;
 
       case 5:
-      this.loginFields.email = "tester@gmail.com";
+      this.loginFields.correo = "tester@gmail.com";
       this.loginFields.clave = '55';
         break;
     
@@ -87,10 +93,12 @@ export class LoginPage {
       enableBackdropDismiss: true,
       cssClass: 'actSheet',
       buttons: [
-        { text: 'admin', handler: () => {this.setLog(1);}},
+        { text: 'administrador (admin)', handler: () => {this.setLog(1);}},
+        //{ text: 'invitado', handler: () => {this.setLog(2);}},
+        //{ text: 'admin', handler: () => {this.setLog(1);}},
         { text: 'Cliente (Mauro)', handler: () => {this.setLog(2);}},
         { text: 'usuario', handler: () => {this.setLog(3);}},
-        { text: 'anonimo', handler: () => {this.setLog(4);}},
+        { text: 'Schumacher (chofer)', handler: () => {this.setLog(4);}},
         { text: 'tester', handler: () => {this.setLog(5);}},
         {
           text: 'Cancelar', cssClass: 'btnCancel', role: 'cancel', handler: () => {  }
@@ -101,95 +109,74 @@ export class LoginPage {
     actionSheet.present();
   }
 
-  ionViewDidLoad() {
-    setTimeout(() => this.splash = false, 4000);
-  }
+  // ionViewDidLoad() {
+  //   setTimeout(() => this.splash = false, 4000); // este es el tiempo del splashscreen, default 4000
+  // }
   
   doLogin() {
-    //COMO LO HIZO FEDE
-    /*let modal = this.modalCtrl.create(SpinnerPage);
+    let modal = this.modalCtrl.create(SpinnerPage);
     modal.present();
-    this.coleccionTipadaFirebase = this.objFirebase.collection<Usuario>('usuarios', ref=> ref.orderBy('id','asc'));
-    this.ListadoUsuariosObservable = this.coleccionTipadaFirebase.valueChanges();
-    this.ListadoUsuariosObservable.subscribe(x => {
-      console.info("Conexión correcta con Firebase. Usuarios: ", x);
-    });
-    
-    this.ListadoUsuariosObservable.forEach((el)=>{
-      this.accounts = el;
-      let user: Usuario = this.accounts.find(elem => ( this.loginFields.email == elem.nombre && (this.loginFields.clave == elem.clave)));
+    let ob = this.servicioUsuarios.traerUsuarios().subscribe(arr => {
+      this.accounts = arr;
+      console.log(arr);
+      let user: Usuario = this.accounts.find(elem => ( this.loginFields.correo == elem.correo && (this.loginFields.clave == elem.clave)));
       modal.dismiss();
-      if( user !== undefined ) {
+      ob.unsubscribe();
+      if (user !== undefined && user.activo == 1) {
         sessionStorage.setItem('usuario', JSON.stringify(user));
-        this.ModalVotacion();
-        //this.navCtrl.push(MainPage);
+        this.IrRutaPorPerfil(user);
       } else {
         let toast = this.toastCtrl.create({
-          message: "Acceso denegado.",
+          message: ( user !== undefined && user.activo == 0 ? 'Usuario dado de baja.' : 'Acceso denegado.'),
           duration: 4000,
           position: 'bottom' //middle || top
         });
         toast.present();
       }
     });
-*/
 
-
-let modal = this.modalCtrl.create(SpinnerPage);
-modal.present();
-this.coleccionTipadaFirebase = this.objFirebase.collection<any>('usuarios');
-this.ListadoUsuariosObservable = this.coleccionTipadaFirebase.valueChanges();
-this.ListadoUsuariosObservable.subscribe(x => {
-  console.info("Conexión correcta con Firebase. Usuarios: ", x);
-});
-
-this.ListadoUsuariosObservable.forEach((el)=>{
-  this.accounts = el;
-  let user: any = this.accounts.find(elem => ( this.loginFields.email == elem.nombre && (this.loginFields.clave == elem.clave)));
-  modal.dismiss();
-  if( user !== undefined ) {
-    sessionStorage.setItem('usuario', JSON.stringify(user));
-
-    if(user.perfil=="cliente")
-      {
-        if(user.activo==0)
-          {
-            let toastNoActivo = this.toastCtrl.create({
-              message: "Su usuario aun debe ser habilitado por el personal",
-              duration: 4000,
-              position: 'bottom' //middle || top
-            });
-            toastNoActivo.present();
-          }
-          else{
-        this.navCtrl.push(InicioClientePage);
-          }
-      }
-      else{
-    //this.ModalVotacion();
-      //ESTO ESTA DE PRUEBA, ESTA PAGINA DEBERIA ESTAR DENTRO DEL PERFIL DE ADMINISTRADOR O SUPERVISOR
-    this.navCtrl.push(AbmClientesPage);
-      }
-  } else {
-    let toast = this.toastCtrl.create({
-      message: "Acceso denegado.",
-      duration: 4000,
-      position: 'bottom' //middle || top
-    });
-    toast.present();
-  }
-});
 
   }
   
-  ModalVotacion() {
-    this.modalVotacion.create(PagesModalVotacionPage).present();
+  // esta es la función principal de ruteo por perfil, 
+  // define de acuerdo al perfil del usuario que loguea, a que ruta lo lleva
+  IrRutaPorPerfil(usuario: Usuario) {
+    // this.modalVotacion.create(PagesModalVotacionPage).present(); // modal para test varios
+    // this.navCtrl.push(MainPage); // así agregamos una página al stack de páginas, para navegarlas y poder volver atrás con el botón back
+    switch (usuario.perfil.toLowerCase()) {
+      case 'admin':
+        console.log('Bienvenido administrador ' + usuario.correo);
+        this.navCtrl.setRoot(AdminControlPanelPage); // así seteamos una página directamente, no hay stack
+      break;
+
+      case 'chofer':
+        console.log('Bienvenido chofer ' + usuario.correo);
+        this.navCtrl.setRoot(ChoferPanelPage); // así seteamos una página directamente, no hay stack
+      break;
+
+      case 'supervisor':
+        console.log('Bienvenido supervisor ' + usuario.correo);
+        
+      break;
+
+      case 'cliente':
+        console.log('Bienvenido cliente ' + usuario.correo);
+        this.navCtrl.setRoot(InicioClientePage);
+      break;
+    
+      default:
+        break;
+    }
+    
   }
 
   Redireccionar()
   {
     this.navCtrl.push(AltaClientePage);
+  }
     
+  goVehiculo(){ 
+    this.navCtrl.push(AbmVehiculosPage,{data:"Alta"});
   }
 }
 

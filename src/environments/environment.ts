@@ -14,7 +14,8 @@ export const environment = {
       storageBucket: "remiseria-8fc44.appspot.com",
       messagingSenderId: "723943746605",
       timestampsInSnapshots: true
-    }
+    },
+    googleMapsApiKey: 'AIzaSyALHKrm_dl52CWgLDfF1kis75MPQtlrMyI'
   };
   
   

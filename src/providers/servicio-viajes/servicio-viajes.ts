@@ -4,6 +4,7 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { Observable } from 'rxjs/Observable';
 import { Usuario } from '../../clases/usuario';
 import { Viaje } from '../../clases/viaje';
+import { environment } from '../../environments/environment';
 
 /*
   Servicio/Provider de viajes, para traer todos, o por filtros, o para guardar uno nuevo, etc
@@ -15,8 +16,6 @@ export class ServicioViajesProvider {
   
   coleccionTipadaFirebase: AngularFirestoreCollection<Viaje>;
   ListadoViajesObservable: Observable<Viaje[]>;
-
-
   //private Viajes: Array<Viaje>;
 
   constructor(public http: HttpClient, private objFirebase: AngularFirestore) {
@@ -27,7 +26,7 @@ export class ServicioViajesProvider {
   // trae TODOS los Viajes, devuelve con un promise
   // debería hacer unsuscribe al finalizar la carga de datos?
   traerViajes(): Observable<Viaje[] | any[]> {
-    console.log('ServicioUsuariosProvider.cargarUsuarios()');
+    console.log('ServicioViajesProvider.traerViajes()');
     let coleccionTipadaFirebase = this.objFirebase.collection<Viaje>(this.tablaViajes);
     let ListadoViajesObservable = coleccionTipadaFirebase.valueChanges();
     return ListadoViajesObservable;
@@ -38,11 +37,11 @@ export class ServicioViajesProvider {
     });*/
   }
 
-  // trae todos los viajes de un determinado perfil, devuelve con un Promise
+  // trae todos los viajes de un determinado filtro, devuelve con un Promise
   // debería hacer unsuscribe al finalizar la carga de datos?
-  traerUsuariosPorPerfil(perfil: string): Observable<Viaje[]> {
-    console.log('ServicioUsuariosProvider.cargarUsuarios()');
-    let coleccionTipadaFirebase = this.objFirebase.collection<Viaje>(this.tablaViajes, ref => ref.where('perfil', '==', perfil));
+  traerViajesFiltrados(campo: string, criterio, filtro: string): Observable<Viaje[]> {
+    //console.log('ServicioUsuariosProvider.traerViajesFiltrados()');
+    let coleccionTipadaFirebase = this.objFirebase.collection<Viaje>(this.tablaViajes, ref => ref.where(campo, criterio, filtro));
     let ListadoViajesObservable = coleccionTipadaFirebase.valueChanges();
     return ListadoViajesObservable;
     /*let ob = ListadoViajesObservable.subscribe(x => {
@@ -54,7 +53,7 @@ export class ServicioViajesProvider {
 
   // guarda un nuevo viaje en la base de datos, en caso de bien o mal ejecuta los callbacks correspondientes...
   // TODO: implementar chequeo de restricción de email y dni único
-  guardarNuevoUsuario(nuevo: Viaje | any): Promise<any> {
+  guardarNuevoViaje(nuevo: Viaje | any): Promise<any> {
     let objetoJsonGenerico = JSON.parse(JSON.stringify(nuevo));
     return this.objFirebase.collection<Viaje>(this.tablaViajes).add(objetoJsonGenerico);
     /*.then( successCallback // si el viaje se guardó bien, invoca al callback del viaje
@@ -65,23 +64,28 @@ export class ServicioViajesProvider {
     );*/
   }
 
-  // modificamos el viaje en firebase pasado como parámetro, lo identifica por el email, que es único para cada viaje
-  modificarUsuario(viaje: Viaje | any) {
-    console.log('ServicioUsuariosProvider.modificarUsuario()');
+  // modificamos el viaje en firebase pasado como parámetro, lo identifica por id, que es único para cada viaje
+  modificarViaje(viaje: Viaje | any) {
+    console.log('ServicioViajesProvider.modificarViaje()');
     //this.objFirebase.collection<Viaje>(this.tablaViajes).ref.doc().update().then();
-    let coleccionTipadaFirebase = this.objFirebase.collection<Viaje>(this.tablaViajes, ref => ref.where('correo', '==', viaje.correo));
+    let coleccionTipadaFirebase = this.objFirebase.collection<Viaje>(this.tablaViajes, ref => ref.where('id', '==', viaje.id));
     coleccionTipadaFirebase.ref.get().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        if(doc.data().correo == viaje.correo) {
+        if(doc.data().id == viaje.id) {
           doc.ref.update(viaje);
-          console.log('Viaje ' + viaje.correo + ' modificado correctamente.');
+          console.log('Viaje ' + viaje.id + ' modificado correctamente.');
         }
       });
     })
     .catch(function(error) {
-      console.log('Error al modificar el viaje ' + viaje.correo + ' - ' + error);
+      console.log('Error al modificar el viaje ' + viaje.id + ' - ' + error);
     });
     
+  }
+
+  geoCoding(direccion: string): Promise<any> {
+    let url: string = 'https://maps.googleapis.com/maps/api/geocode/json?address='+ direccion +'&key=' + environment.googleMapsApiKey;
+    return this.http.get(url).toPromise();
   }
 
 }

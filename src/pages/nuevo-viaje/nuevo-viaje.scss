@@ -13,19 +13,26 @@ nuevo-viaje {
 
     .input-viaje {
         background: white!important;
-        border-radius: 15px!important;
+        border-radius: 5px!important;
         width: 100%;
+        height: 40px;
+        padding: 0px!important;
+        color: black!important;
     }
 
     #map {
         border-radius: 15px!important;
-        height: 70%;
+        height: 72%;
         // width: 100%;
         margin-top: 10px;
     }
 
     .picker {
         background: white!important;
-        border-radius: 15px!important;
+        border-radius: 5px!important;
+    }
+
+    .chip {
+        display: flex;
     }
 }

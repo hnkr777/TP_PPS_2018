@@ -1,9 +1,10 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ViewController, ModalController } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
-import { ServicioFotosProvider, ServicioUsuariosProvider } from '../../providers/providers';
+import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider } from '../../providers/providers';
 import { Viaje } from '../../clases/viaje';
 import { Geolocation } from '@ionic-native/geolocation';
+
 
 declare const google; // para google maps
 
@@ -33,10 +34,18 @@ export class NuevoViajePage {
     maximumAge: 0
   };
 
+  public customOptions: any = {
+    buttons: [{
+      text: 'Borrar',
+      handler: () => { this.fechaSalida = undefined; }
+    }]
+  }
+  
+
   public origen: string = "";
   public destino: string = "";
   public nuevoViaje: Viaje;
-
+  private fechaSalida: Date;
   private puntos: number;
 
   constructor(
@@ -45,6 +54,7 @@ export class NuevoViajePage {
     private modalCtrl: ModalController,
     private servicioUsuarios: ServicioUsuariosProvider,
     private servicioFotos: ServicioFotosProvider,
+    private servicioViajes: ServicioViajesProvider,
     public viewCtrl: ViewController,
     public translateService: TranslateService,
     public alertCtrl: AlertController,
@@ -52,31 +62,49 @@ export class NuevoViajePage {
   ) {
     this.puntos = 0;
     this.nuevoViaje = new Viaje();
+    
+  }
+
+  guardarViaje() {
+    if(this.fechaSalida === undefined) {
+      this.errorMsg('Error', 'Falta la fecha de salida del viaje.');
+      return;
+    }
+    if(this.nuevoViaje.latOrigen === undefined || this.nuevoViaje.latDestino === undefined) {
+      this.errorMsg('Error', 'Faltan completar las direcciones de origen o destino.');
+      return;
+    }
+
+    this.servicioViajes.guardarNuevoViaje(this.nuevoViaje).then((data) => {
+      this.Msg('Aviso', 'Viaje guardado correctamente.\n');
+    }).catch((error) => {
+      this.errorMsg('Error:', 'Error inesperado al guardar el viaje:\n'+error);
+    });
+  }
+
+  init() {
+    this.puntos = 0;
+    this.nuevoViaje = new Viaje();
+    this.origen = '';
+    this.destino = '';
+    this.polylines = [];
+    this.labelIndex = 0;
+    this.fechaSalida = undefined;
+    this.ionViewDidLoad();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NuevoViajePage');
-    
-
     this.startMap();
-    
-    /*setTimeout(()=>{
-      this.watchId = navigator.geolocation.watchPosition((position) => {
-        this.addPolyLine({
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        });
-        console.log({
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        })
-      }, (error) => {
+  }
 
-      }, this.options);
-    }, 1000);*/
+  cambiarHoraSalida() {
+    this.nuevoViaje.fechaSalida = this.fechaSalida;
+    console.log(this.fechaSalida);
   }
 
   tomarDireccionGPS() {
+    if(this.puntos > 1) return;
     this.geolocation.getCurrentPosition({ 
       maximumAge: 3000, 
       timeout: 5000, 
@@ -103,17 +131,22 @@ export class NuevoViajePage {
       mapTypeId: 'roadmap'
     });
     
-    //this.encontrarUbicacion(); // no usar esta geolocalización, hay que usar el gps
-
     google.maps.event.addListener(this.map, 'click', (event) => {
-      if(this.puntos > 1) {
-        return;
+      this.marcarMapa(event.latLng.lat(), event.latLng.lng());
+    });
+  }
+
+  marcarMapa(lat: number, long: number) {
+    //if(this.origen !== '' && this.destino !== '') {
+        //this.calcularDistancia();
+      /*} else*/ if(this.puntos > 1) {
+        this.calcularDistancia();
+        //return;
       } else {
-        this.addMarker(event.latLng.lat(), event.latLng.lng());
-        this.addPolyLine(event.latLng);
+        this.addMarker(lat, long);
+        this.addPolyLine({ lat: lat, lng: long });
         this.puntos++;
       }
-    });
   }
   
   addMarker(lat: number, long: number) {
@@ -152,22 +185,34 @@ export class NuevoViajePage {
     }
   }
 
+  infoViaje() {
+    this.Msg('Info Viaje:', JSON.stringify(this.nuevoViaje));
+  }
+
   recargarMapa() {
-    
-    this.calcularDistancia();
+    this.init();
+    //this.calcularDistancia();
+  }
+
+  getCoordsFromAddress() {
+
   }
 
   // dadas las coordenadas de latitud y longitud guardadas en nuevoViaje, llena los campos de direccion
   // duración del viaje y distancia del mismo
   calcularDistancia() {
-    let ori = new google.maps.LatLng(this.nuevoViaje.latOrigen, this.nuevoViaje.longOrigen);
-    let des = new google.maps.LatLng(this.nuevoViaje.latDestino, this.nuevoViaje.longDestino);
+    let ori;
+    let des;
+    this.cambiarHoraSalida();
+
+    ori = new google.maps.LatLng(this.nuevoViaje.latOrigen, this.nuevoViaje.longOrigen);
+    des = new google.maps.LatLng(this.nuevoViaje.latDestino, this.nuevoViaje.longDestino);
 
     var service = new google.maps.DistanceMatrixService();
     service.getDistanceMatrix(
       {
-        origins: [(this.origen !== '' ? this.origen : ori)],
-        destinations: [(this.destino !== '' ? this.destino : des)],
+        origins: [ori],
+        destinations: [des],
         travelMode: 'DRIVING',
         //transitOptions: TransitOptions,
         //drivingOptions: DrivingOptions,
@@ -178,21 +223,24 @@ export class NuevoViajePage {
         //console.log(JSON.stringify(data));
         //console.log(JSON.stringify(status));
         if(status === 'OK') {
-        //if(data.rows[0].elements[0].status == 'OK') {
-          this.nuevoViaje.duracionViaje = data.rows[0].elements[0].duration.value;
-          this.nuevoViaje.duracionViajeText = data.rows[0].elements[0].duration.text;
-          console.log('Duracion viaje en minutos: ' + this.nuevoViaje.duracionViaje + ' (' + this.nuevoViaje.duracionViajeText + ')');
-          this.nuevoViaje.distancia = data.rows[0].elements[0].distance.value;
-          this.nuevoViaje.distanciaText = data.rows[0].elements[0].distance.text;
-          console.log('Distancia del viaje en metros: ' + this.nuevoViaje.distancia + ' (' + this.nuevoViaje.distanciaText + ')');
-          this.origen = data.originAddresses;
-          this.destino = data.destinationAddresses;
-          this.nuevoViaje.origen = this.origen;
-          this.nuevoViaje.destino = this.destino;
-          console.log('Dirección de origen: '+data.originAddresses);
-          console.log('Dirección de destino: '+data.destinationAddresses);
-          console.log('Estado: '+ status);
-          this.Msg('Viaje', 'Duración aprox: ' + this.nuevoViaje.duracionViajeText + 'Distancia: ' + this.nuevoViaje.distanciaText);
+          try {
+            this.nuevoViaje.duracionViaje = data.rows[0].elements[0].duration.value;
+            this.nuevoViaje.duracionViajeText = data.rows[0].elements[0].duration.text;
+            console.log('Duracion viaje en minutos: ' + this.nuevoViaje.duracionViaje + ' (' + this.nuevoViaje.duracionViajeText + ')');
+            this.nuevoViaje.distancia = data.rows[0].elements[0].distance.value;
+            this.nuevoViaje.distanciaText = data.rows[0].elements[0].distance.text;
+            console.log('Distancia del viaje en metros: ' + this.nuevoViaje.distancia + ' (' + this.nuevoViaje.distanciaText + ')');
+            this.origen = data.originAddresses[0];
+            this.destino = data.destinationAddresses[0];
+            this.nuevoViaje.origen = this.origen;
+            this.nuevoViaje.destino = this.destino;
+            console.log('Dirección de origen: '+data.originAddresses);
+            console.log('Dirección de destino: '+data.destinationAddresses);
+            console.log('Estado: '+ status);
+            this.Msg('Viaje', 'Duración aprox: ' + this.nuevoViaje.duracionViajeText + '\n\n Distancia: ' + this.nuevoViaje.distanciaText);
+          } catch(e) {
+            this.errorMsg('Error', 'Error de google maps en la localización: '+ e);
+          }
         } else {
           this.errorMsg('Error', 'Error de google maps en la localización');
         }
@@ -265,6 +313,51 @@ export class NuevoViajePage {
     }
   }
   
+  private oriInput($event) {
+    //console.log($event);
+    if(this.origen !== '') { //  ? this.origen : ori
+      this.servicioViajes.geoCoding(this.origen).then((data) => {
+        if(data.status === 'OK') {
+          console.log('Dirección: '+data.results[0].formatted_address);
+          this.nuevoViaje.latOrigen = data.results[0].geometry.location.lat;
+          this.nuevoViaje.longOrigen = data.results[0].geometry.location.lng;
+        }
+      });
+    }
+  }
+
+  private oriCancel($event) {
+    console.log($event);
+  }
+
+  private desInput($event) {
+    //console.log($event);
+    if(this.destino !== '') { //  ? this.origen : ori
+      this.servicioViajes.geoCoding(this.destino).then((data) => {
+        if(data.status === 'OK') {
+          console.log('Dirección: '+data.results[0].formatted_address);
+          this.nuevoViaje.latDestino = data.results[0].geometry.location.lat;
+          this.nuevoViaje.longDestino = data.results[0].geometry.location.lng;
+        }
+      });
+    }
+  }
+
+  private desCancel($event) {
+    console.log($event);
+  }
+
+  buscarDirecciones() {
+    if(this.puntos == 0 && this.nuevoViaje.latOrigen && this.origen !== '') {
+      this.marcarMapa(this.nuevoViaje.latOrigen, this.nuevoViaje.longOrigen);
+    }
+
+    if(this.puntos == 1 && this.nuevoViaje.latDestino && this.destino !== '') {
+      this.marcarMapa(this.nuevoViaje.latDestino, this.nuevoViaje.longDestino);
+    }
+    
+  }
+
   errorMsg(titulo: string, mensaje: string) {
     const alerta = this.alertCtrl.create({
       title: titulo,

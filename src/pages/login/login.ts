@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { Usuario } from '../../clases/usuario';
 
 import { User, Settings } from '../../providers/providers';
+import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
 import { MainPage } from '../pages';
 import { ContentPage } from "../content/content";
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
@@ -40,7 +41,8 @@ export class LoginPage {
     public modalCtrl: ModalController, 
     public toastCtrl: ToastController,
     public translateService: TranslateService,
-    private objFirebase: AngularFirestore) {
+    private objFirebase: AngularFirestore,
+    private servicioAudio:ServicioAudioProvider) {
 
     this.translateService.get('LOGIN_ERROR').subscribe((value) => {
       this.loginErrorString = value;
@@ -137,6 +139,10 @@ export class LoginPage {
     this.modalVotacion.create(PagesModalVotacionPage).present();
   }
   goVehiculo(){
+    this.servicioAudio.reproducirClick();    
     this.navCtrl.push(AbmVehiculosPage,{data:"Alta"});
+  }
+  click(){
+    this.servicioAudio.reproducirClick();
   }
 }

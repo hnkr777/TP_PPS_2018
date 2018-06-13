@@ -10,7 +10,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { environment } from '../environments/environment';
 import { ServicioFotosProvider } from '../providers/servicio-fotos/servicio-fotos';
-
+import { NativeAudio } from '@ionic-native/native-audio';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { storage, firestore } from 'firebase';
 import { FirebaseApp } from 'angularfire2';
@@ -28,6 +28,7 @@ import { SpinnerPage } from '../pages/pages-spinner/pages-spinner';
 import { AbmVehiculosPage } from '../pages/abm-vehiculos/abm-vehiculos';
 import { PagesModalVotacionPage } from '../pages/pages-modal-votacion/pages-modal-votacion';
 import { ServicioVehiculoProvider } from '../providers/servicio-vehiculo/servicio-vehiculo';
+import { ServicioAudioProvider } from '../providers/servicio-audio/servicio-audio';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -92,7 +93,9 @@ export function provideSettings(storage: Storage) {
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    ServicioVehiculoProvider
+    ServicioVehiculoProvider,
+    ServicioAudioProvider,
+    NativeAudio
   ]
 })
 export class AppModule { }

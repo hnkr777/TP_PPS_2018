@@ -10,6 +10,7 @@
       <ion-title *ngIf = "abmMostrar == 'Alta'">Nuevo Vehiculo</ion-title>
       <ion-title *ngIf = "abmMostrar == 'Baja'">Borrar Vehiculo</ion-title>
       <ion-title *ngIf = "abmMostrar == 'Mod'">Cambiar Vehiculo</ion-title>
+      <ion-title *ngIf = "abmMostrar == 'Lista'">Listado De Vehiculos</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -27,6 +28,9 @@
     </ion-fab>
     <ion-fab top left>
         <button ion-fab  (click)="test('Baja')">Baja</button>
+    </ion-fab>
+    <ion-fab bottom left>
+        <button ion-fab  (click)="test('Lista')">Lista</button>
     </ion-fab>
     
     
@@ -145,7 +149,7 @@
             <ion-list inset>
               
               <ion-item class="ion-item-input">
-                <ion-input type="text" placeholder="Patente(AAAA0000)" name="patente" [(ngModel)]="vehiculo.patente" (ngModelChange)="vehiculo.patente = $event.toLocaleUpperCase()" required></ion-input>
+                <ion-input disabled="true" type="text" placeholder="Patente(AAAA0000)" name="patente" [(ngModel)]="vehiculo.patente" (ngModelChange)="vehiculo.patente = $event.toLocaleUpperCase()" required></ion-input>
               </ion-item>
               <ion-item class="ion-item-input">
                 <ion-input type="text" placeholder="Modelo" name="modelo" [(ngModel)]="vehiculo.modelo" required></ion-input>
@@ -248,6 +252,32 @@
         </ion-row>
         
       </form>
-</div>
+    </div>
+    <div *ngIf = "abmMostrar == 'Lista'">
+      <ion-card (click)="buscarPatente(item.patente)" padding *ngFor="let item of ListaDeVehiculos" [ngClass]="item.activo==0? 'disabled' : 'enabled' ">
+
+        <ion-item>
+          <ion-avatar item-start>
+            <!-- <img [src]="item.foto1 === undefined ? 'assets/img/car.png' : item.foto1"> -->
+            <img src="assets/img/car.png" alt="">
+          </ion-avatar>
+          <h2 class="titulo" style="color: rgb(255, 255, 255);">{{item.patente}}</h2>
+        </ion-item>
+        
+        <!-- <img class="imagen" [src]="item.foto"> -->
+    
+        <ion-card-content>
+          <p>Modelo:
+            <b>{{item.modelo}}</b>
+          </p>
+          <p>Color:
+            <b>{{item.color}}</b>
+          </p>
+            <!-- <img src="assets/img/car.png" alt="" class="img">
+            <img src="assets/img/car.png" alt="" class="img"> -->
+        </ion-card-content>
+      </ion-card>
+    </div>
+
 
 </ion-content>

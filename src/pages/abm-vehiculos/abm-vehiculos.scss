@@ -79,7 +79,8 @@ page-abm-vehiculos {
             justify-content: center;
           }
         .img{
-            width: 80px;
+            width: 50px;
+            //margin-left: 30%         
         }
         .imgFoto{
           width: 80px;
@@ -87,5 +88,11 @@ page-abm-vehiculos {
         }
         .buttons{
           padding-left: 0px;
+        }
+        .enabled {
+          background-color: #14830a;
+        }
+        .disabled {
+          background-color: #0e5808;
         }
       }

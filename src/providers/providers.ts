@@ -4,6 +4,7 @@ import { Settings } from './settings/settings';
 import { User } from './user/user';
 import { ServicioFotosProvider } from './servicio-fotos/servicio-fotos';
 import { ServicioUsuariosProvider } from './servicio-usuarios/servicio-usuarios';
+import { ServicioViajesProvider } from './servicio-viajes/servicio-viajes';
 
 export {
     Api,
@@ -11,5 +12,6 @@ export {
     Settings,
     User,
     ServicioFotosProvider,
-    ServicioUsuariosProvider
+    ServicioUsuariosProvider,
+    ServicioViajesProvider
 };

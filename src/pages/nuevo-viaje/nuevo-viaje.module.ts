@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { AltaClienteParaAdminPage } from './alta-cliente-para-admin';
+import { NuevoViajePage } from './nuevo-viaje';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
-    //AltaClienteParaAdminPage,
+    //NuevoViajePage,
   ],
   imports: [
-    IonicPageModule.forChild(AltaClienteParaAdminPage),
+    IonicPageModule.forChild(NuevoViajePage),
     TranslateModule.forChild(),
   ],
   exports: [
-    //AltaClienteParaAdminPage
+    //NuevoViajePage
   ]
 })
-export class AltaClienteParaAdminPageModule {}
+export class NuevoViajePageModule {}

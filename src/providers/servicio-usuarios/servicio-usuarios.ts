@@ -65,39 +65,20 @@ export class ServicioUsuariosProvider {
   }
 
   // modificamos el usuario en firebase pasado como parámetro, lo identifica por el email, que es único para cada usuario
-  modificarUsuario(usuario: any | Usuario) {
+  modificarUsuario(usuario: Usuario | any) {
     console.log('ServicioUsuariosProvider.modificarUsuario()');
     //this.objFirebase.collection<Usuario>(this.tablaUsuarios).ref.doc().update().then();
-    let coleccionTipadaFirebase = this.objFirebase.collection<Usuario>(this.tablaUsuarios, ref => ref.where('email', '==', usuario.email));
+    let coleccionTipadaFirebase = this.objFirebase.collection<Usuario>(this.tablaUsuarios, ref => ref.where('correo', '==', usuario.correo));
     coleccionTipadaFirebase.ref.get().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        if(doc.data().email == usuario.email) {
+        if(doc.data().correo == usuario.correo) {
           doc.ref.update(usuario);
-          console.log('Usuario ' + usuario.email + ' modificado correctamente.');
+          console.log('Usuario ' + usuario.correo + ' modificado correctamente.');
         }
       });
     })
     .catch(function(error) {
-      console.log('Error al modificar el usuario ' + usuario.email + ' - ' + error);
-    });
-    
-  }
-
-  // modificamos el usuario en firebase pasado como parámetro, lo identifica por el email, que es único para cada usuario
-  _modificarUsuario(usuario: any | Usuario) {
-    console.log('ServicioUsuariosProvider.modificarUsuario()');
-    //this.objFirebase.collection<Usuario>(this.tablaUsuarios).ref.doc().update().then();
-    let coleccionTipadaFirebase = this.objFirebase.collection<Usuario>(this.tablaUsuarios, ref => ref.where('email', '==', usuario.email));
-    coleccionTipadaFirebase.ref.get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        if(doc.data().email == usuario.email) {
-          doc.ref.update(usuario);
-          console.log('Usuario ' + usuario.email + ' modificado correctamente.');
-        }
-      });
-    })
-    .catch(function(error) {
-      console.log('Error al modificar el usuario ' + usuario.email + ' - ' + error);
+      console.log('Error al modificar el usuario ' + usuario.correo + ' - ' + error);
     });
     
   }

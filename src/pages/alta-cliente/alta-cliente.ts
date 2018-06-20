@@ -104,7 +104,7 @@ guardar()
     this.unCliente.correo=this.formAlta.get("correo").value;
     this.unCliente.clave=this.formAlta.get("clave").value;
     this.unCliente.perfil="cliente";
-    this.unCliente.activo=0;
+    this.unCliente.activo=2;
     this.unCliente.domicilio=this.formAlta.get("domicilio").value;
     this.unCliente.sexo=this.formAlta.get("sexo").value;
     this.unCliente.fechaNacimiento=this.formAlta.get("fechaNacimiento").value;

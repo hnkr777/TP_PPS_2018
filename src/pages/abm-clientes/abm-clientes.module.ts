@@ -4,7 +4,7 @@ import { AbmClientesPage } from './abm-clientes';
 
 @NgModule({
   declarations: [
-    AbmClientesPage,
+    //AbmClientesPage,
   ],
   imports: [
     IonicPageModule.forChild(AbmClientesPage),

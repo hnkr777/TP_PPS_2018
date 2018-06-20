@@ -27,6 +27,7 @@
     "@ionic-native/camera": "4.3.3",
     "@ionic-native/core": "4.7.0",
     "@ionic-native/splash-screen": "4.7.0",
+    "@ionic-native/geolocation": "^4.7.0",
     "@ionic-native/qr-scanner": "4.7.0",
     "@ionic-native/status-bar": "4.7.0",
     "@ionic/pro": "1.0.20",
@@ -38,6 +39,7 @@
     "cordova-plugin-camera": "^4.0.3",
     "cordova-plugin-compat": "1.2.0",
     "cordova-plugin-device": "^2.0.2",
+    "cordova-plugin-geolocation": "^4.0.1",
     "cordova-plugin-ionic-keyboard": "2.0.5",
     "cordova-plugin-ionic-webview": "1.2.1",
     "cordova-plugin-nativeaudio": "3.0.9",
@@ -66,7 +68,8 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-qrscanner": {},
       "cordova-plugin-nativeaudio": {},
-      "cordova-plugin-camera": {}
+      "cordova-plugin-camera": {},
+      "cordova-plugin-geolocation": {}
     },
     "platforms": [
       "android"

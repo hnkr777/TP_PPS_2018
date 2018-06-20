@@ -2,7 +2,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { SplashScreen } from '@ionic-native/splash-screen';
+//import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { IonicStorageModule, Storage } from '@ionic/storage';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -15,6 +15,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { storage, firestore } from 'firebase';
 import { FirebaseApp } from 'angularfire2';
 import { Injectable } from '@angular/core';
+import { Geolocation } from '@ionic-native/geolocation';
 
 import {AngularFireModule} from 'angularfire2';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
@@ -44,6 +45,10 @@ import { AltaClienteParaAdminPage } from '../pages/alta-cliente-para-admin/alta-
 import { QrVehiculoClientePage } from '../pages/qr-vehiculo-cliente/qr-vehiculo-cliente';
 import { QRScanner } from '@ionic-native/qr-scanner';
 import { QrLeerVehiculoClientePage } from '../pages/qr-leer-vehiculo-cliente/qr-leer-vehiculo-cliente';
+import { NuevoViajePage } from '../pages/nuevo-viaje/nuevo-viaje';
+import { ServicioViajesProvider } from '../providers/servicio-viajes/servicio-viajes';
+
+
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
 export function createTranslateLoader(http: HttpClient) {
@@ -58,8 +63,8 @@ export function provideSettings(storage: Storage) {
    * these values will not overwrite the saved values (this can be done manually if desired).
    */
   return new Settings(storage, {
-    option1: true,
-    option2: 'Ionitron J. Framework',
+    precioPorKm: 16.5,        // el precio por kilometro, es un coeficiente (multiplica a los km)
+    minutosViajesEnCola: 30,  // tiempo antes de que los viajes aparezcan como validos para realizarse, sino son postdatados
     option3: '3',
     option4: 'Hello'
   });
@@ -82,12 +87,14 @@ export function provideSettings(storage: Storage) {
     ContentPage,
     ChoferPanelPage,
     //AnimatedSplashPage,
+    //AnimatedSplashPage
     AltaClientePage,
     InicioClientePage,
     AbmClientesPage,
     AltaClienteParaAdminPage,
     AbmVehiculosPage,
-    QrLeerVehiculoClientePage
+    QrLeerVehiculoClientePage,
+    NuevoViajePage
   ],
   imports: [
     BrowserModule,
@@ -124,7 +131,9 @@ export function provideSettings(storage: Storage) {
     AltaClienteParaAdminPage,
     QrVehiculoClientePage,
     AbmVehiculosPage,
-    QrLeerVehiculoClientePage
+    QrLeerVehiculoClientePage,
+    AbmVehiculosPage,
+    NuevoViajePage,
   ],
   providers: [
     Api,
@@ -132,7 +141,8 @@ export function provideSettings(storage: Storage) {
     User,
     Camera,
     QRScanner,
-    SplashScreen,
+    Geolocation,
+    //SplashScreen,
     StatusBar,
     ServicioFotosProvider,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
@@ -142,7 +152,8 @@ export function provideSettings(storage: Storage) {
     QRScanner,
     ServicioUsuariosProvider,
     ServicioFotosProvider,
-    AbmClienteProvider
+    AbmClienteProvider,
+    ServicioViajesProvider
   ]
 })
 export class AppModule { }

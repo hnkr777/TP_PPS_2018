@@ -64,8 +64,9 @@ export class VisorViajesPage {
 
   verViaje($event) {
     console.log('Ver viaje');
-    this.viaje = $event;
-    console.log($event);
+    //this.viaje = $event;
+    console.log('Fecha: [' + $event.fechaSalida + ']');
+
   }
   
 }

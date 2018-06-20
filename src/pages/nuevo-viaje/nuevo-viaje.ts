@@ -101,6 +101,7 @@ export class NuevoViajePage {
     this.nuevoViaje = new Viaje();
     this.origen = '';
     this.destino = '';
+    this.nuevoViaje.estado = 0;
     this.polylines = [];
     this.labelIndex = 0;
     this.verBoton = false;

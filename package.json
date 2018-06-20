@@ -27,6 +27,7 @@
     "@ionic-native/camera": "4.3.3",
     "@ionic-native/core": "4.7.0",
     "@ionic-native/geolocation": "^4.7.0",
+    "@ionic-native/native-audio": "^4.7.0",
     "@ionic-native/qr-scanner": "4.7.0",
     "@ionic-native/status-bar": "4.7.0",
     "@ionic/pro": "1.0.20",

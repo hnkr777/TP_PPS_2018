@@ -1,0 +1,91 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ 'NUEVO_VIAJE_TITLE' | translate }}</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="guardarViaje()">
+        <ion-icon name="add"></ion-icon> Ok
+      </button>
+      <button ion-button icon-only (click)="infoViaje()">
+        <ion-icon name="information-circle"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="recargarMapa()">
+        <ion-icon name="refresh"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div class="contenido-viajes">
+    <ion-row>
+      <ion-col>
+
+        <!-- <ion-chip #chip1 class="chip">
+          <ion-input max="512" placeholder="Dirección origen" [(ngModel)]="origen" class="input-viaje" type="text"></ion-input>
+          <button ion-button clear color="light" (click)="tomarDireccionGPS()">
+            <ion-icon name="pin"></ion-icon>
+          </button>
+        </ion-chip> -->
+
+        <ion-chip #chip1 class="chip">
+          <ion-searchbar
+            class="input-viaje" 
+            placeholder="Dirección origen" 
+            autocomplete="on"
+            debounce="1000"
+            animated="true" 
+            [(ngModel)]="origen" 
+            [showCancelButton]="shouldShowCancel" 
+            (ionInput)="oriInput($event)" 
+            (ionCancel)="oriCancel($event)">
+          </ion-searchbar>
+          <button ion-button clear color="light" (click)="tomarDireccionGPS()">
+            <ion-icon name="pin"></ion-icon>
+          </button>
+        </ion-chip>
+
+        
+
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <!-- <ion-input max="512" placeholder="Dirección destino" [(ngModel)]="destino" class="input-viaje" type="text"></ion-input> -->
+        <ion-chip #chip2 class="chip">
+            <ion-searchbar
+              class="input-viaje" 
+              placeholder="Dirección destino" 
+              autocomplete="on"
+              debounce="1000"
+              animated="true" 
+              [(ngModel)]="destino" 
+              [showCancelButton]="shouldShowCancel" 
+              (ionInput)="desInput($event)" 
+              (ionCancel)="desCancel($event)">
+            </ion-searchbar>
+            <button ion-button clear color="light" (click)="buscarDirecciones()">
+              <ion-icon name="checkbox"></ion-icon>
+            </button>
+          </ion-chip>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-datetime id="fechaSalida" [pickerOptions]="customOptions" (ionDone)="test()" class="picker" max="2020-12-31" displayFormat="DD/MM/YYYY HH:mm"
+          pickerFormat="DD MMMM YYYY HH mm" [(ngModel)]="fechaSalida" monthNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre"
+          cancelText="Cancelar" doneText="Aceptar" placeholder="Fecha de salida" monthShortNames="Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic"
+          dayNames="Domingo, Lunes, Martes, Miercoles, Jueves, Viernes, Sábado" dayShortNames="Dom, Lun, Mar, Mie, Jue, Vie, Sáb">
+        </ion-datetime>
+      </ion-col>
+    </ion-row>
+
+    <div #map id="map">
+    </div>
+
+  </div>
+</ion-content>

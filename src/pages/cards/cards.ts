@@ -74,13 +74,15 @@ export class CardsPage {
 
   cargarPosts(post: ArchivoPost) {
     this.getImageURL(post.path).then(data => { // console.log(JSON.stringify(data));
+      let fecha = new Date(post.fecha);
+
       this.cardItems.push(
         {
           user: {
             avatar: data.toString(),
             name: this.usuarios[post.usuario_id-1].nombre
           },
-          date: post.fecha,
+          date: fecha.toLocaleString(),
           image: data.toString(),
           profile: this.usuarios[post.usuario_id-1].perfil,
           id: post.usuario_id

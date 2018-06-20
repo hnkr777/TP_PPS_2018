@@ -1,0 +1,19 @@
+page-abm-clientes {
+    .abm-clientes-content {
+        //background-color: rgba(0, 0, 0, 0.89)!important;
+        background: url('../assets/img/bg/4.jpg')!important;
+        height: 100%!important;
+        width: 100%!important;
+        color: rgb(255, 255, 255)!important;
+        display: block;
+        //object-fit: fill;
+    }
+
+    .enabled {
+        background-color: white;
+    }
+
+    .disabled {
+        background-color: gray;
+    }
+}

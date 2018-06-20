@@ -2,6 +2,9 @@ page-abm-vehiculos {
     .login-content {
         background: #EAD1B1;
     }
+    .content-back{
+      background: #14830a !important;
+    }
      
         .logo-row {
           text-align: center;
@@ -25,6 +28,7 @@ page-abm-vehiculos {
           padding-top: 70% !important;
          }
          ion-item {
+             background: #0e5808 !important;
              border-radius: 30px !important;
              padding-left: 10px !important;
              font-size: 0.9em;
@@ -46,7 +50,7 @@ page-abm-vehiculos {
            margin: 0px 0px 0px 0px;
            padding-bottom: 0px;
          }
-     
+         
          .item-inner {
            border-bottom-color: #ffffff !important;
            box-shadow: none !important;

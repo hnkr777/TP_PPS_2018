@@ -1,0 +1,38 @@
+nuevo-viaje {
+    ion-content {
+        background: rgb(61, 61, 61)!important;
+        height: 100%;
+        width: 100%;
+    }
+
+    .contenido-viajes {
+        background: rgb(61, 61, 61)!important;
+        height: 100%;
+        width: 100%;
+    }
+
+    .input-viaje {
+        background: white!important;
+        border-radius: 5px!important;
+        width: 100%;
+        height: 40px;
+        padding: 0px!important;
+        color: black!important;
+    }
+
+    #map {
+        border-radius: 15px!important;
+        height: 72%;
+        // width: 100%;
+        margin-top: 10px;
+    }
+
+    .picker {
+        background: white!important;
+        border-radius: 5px!important;
+    }
+
+    .chip {
+        display: flex;
+    }
+}

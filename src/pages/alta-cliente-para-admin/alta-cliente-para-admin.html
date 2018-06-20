@@ -1,0 +1,118 @@
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+<div class="contenedor-global">
+    
+      <ion-header>
+    
+        <ion-navbar>
+          <ion-title>{{ (modoAlta == true? 'NEW_DRIVER_TITLE' : 'MODIF_DRIVER_TITLE') | translate }}</ion-title>
+        </ion-navbar>
+    
+      </ion-header>
+    
+    
+      <ion-content>
+          <form [formGroup]="formAlta" >
+        <ion-row>
+          <ion-col text-center>
+            <ion-item>
+              <!-- <ion-label class="titulo" floating>Nombre</ion-label> -->
+              <ion-input [formControl]="nombre" name="nombre" placeholder="Nombre" class="titulo"  type="text" [formControl]="nombre" name="nombre"></ion-input>
+            </ion-item>
+          </ion-col>
+    
+          <ion-col text-center>
+            <ion-item>
+              <!-- <ion-label class="titulo" floating>Apellido</ion-label> -->
+              <ion-input placeholder="Apellido" class="titulo"  type="text" [formControl]="apellido" name="apellido" ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+    
+
+        <ion-item>
+        <ion-input placeholder="Domicilio" class="titulo" type="text"  [formControl]="domicilio" name="domicilio"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <!-- <ion-label class="titulo" floating>Clave</ion-label> -->
+          <ion-input placeholder="Número de DNI"  class="titulo" type="number"  [formControl]="dni" name="dni"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <!-- <ion-label class="titulo" floating>Email</ion-label> -->
+            <ion-input placeholder="Correo"  class="titulo" type="email" [formControl]="correo" name="correo" ></ion-input>
+          </ion-item>
+
+        <ion-item>
+          <!-- <ion-label class="titulo" floating>Clave</ion-label> -->
+          <ion-input placeholder="Contraseña"  class="titulo" type="password"  [formControl]="clave" name="clave" ></ion-input>
+        </ion-item>
+    
+        <ion-item>
+          <!-- <ion-label class="titulo" floating>Clave</ion-label> -->
+          <ion-input placeholder="Repita la contraseña"  class="titulo" type="password"  [formControl]="claveRep" name="claveRep"></ion-input>
+        </ion-item>
+    
+        <ion-list  [formControl]="sexo" name="sexo"  class="titulo" radio-group>
+            <ion-row>
+              <ion-col text-center>
+                <ion-item style="background: transparent!important;">
+                  <ion-label style="color: white!important;">Masculino</ion-label>
+                  <ion-radio checked="true" value="m"></ion-radio>
+                </ion-item>
+              </ion-col>
+      
+              <ion-col text-center>
+                <ion-item style="background: transparent!important;">
+                  <ion-label style="color: white!important;">Femenino</ion-label>
+                  <ion-radio value="f"></ion-radio>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-list>
+    
+        <ion-item>
+          <ion-row>
+            <ion-col>
+              <button small ion-button color="primary" (click)="tomarFoto()">
+                <ion-icon name="camera"></ion-icon>&nbsp; Sacar foto</button>
+            </ion-col>
+            <ion-col>
+              <div (click)="verImagen()" class="marco-imagen">
+                <img class="marco-imagen" [src]="unCliente.foto === null ? '../../assets/img/img-usuario.svg' : unCliente.foto">
+              </div>
+            </ion-col>
+            <ion-col>
+              <button small ion-button color="primary" (click)="cargarFoto()">
+                <ion-icon name="add"></ion-icon>&nbsp; Buscar foto</button>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+    
+    
+        <ion-item>
+          <!-- <ion-label class="titulo" floating>Clave</ion-label> -->
+          <ion-label style="color: white!important;">Fecha de nacimiento</ion-label>
+          <ion-input placeholder="Fecha de nacimiento"  class="titulo" type="date" [formControl]="fechaNacimiento" name="fechaNacimiento"></ion-input>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label class="titulo">Habilitado</ion-label>
+          <ion-checkbox class="titulo" [formControl]="activo" name="activo" ></ion-checkbox>
+        </ion-item>
+          </form>
+      </ion-content>
+    
+      <ion-footer>
+        <ion-navbar>
+          <ion-buttons>
+            <button large ion-button color="danger" (click)="closeModal()">Cancelar</button>
+          </ion-buttons>
+          <ion-buttons end>
+            <button  large ion-button color="secondary" (click)="accionAceptar()">Aceptar</button>
+          </ion-buttons>
+        </ion-navbar>
+      </ion-footer>
+    
+    </div>

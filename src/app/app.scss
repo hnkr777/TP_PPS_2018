@@ -29,73 +29,75 @@ ion-content {
     background-repeat: no-repeat;
     background-size: cover;
 }
-.miClaseDanger{
-    background-color:rgba(252, 29, 0, 0.575);
-    button {
-    
-      margin:auto;text-align:center;display:block; 
-      color: white !important; // button text color
-      background-color: color($colors, danger, base) !important;
-          //button bg color
-  }
-  
-  .alert-title {
-    color:rgb(255, 13, 13);
-    font-family: Georgia, 'Times New Roman', Times, serif;
-  }
-  
-  .alert-head {
-    color:rgb(255, 255, 255);
-    background-color:rgba(46, 7, 1, 0.932);
-  }
-  
-  .alert-message {
-    color:rgb(255, 255, 255);
-    background-color:rgba(46, 7, 1, 0.932);
-  }
-  
-  .alert-wrapper {
-    font-family: Georgia, 'Times New Roman', Times, serif;  
-    border: dotted 7px;
-    background-color: rgba(15, 2, 2, 0.747) // bg color of alert content
-  }
-  .alert-button-group {
-    text-align: center;
-    background-color: rgba(15, 2, 2, 0.747) // bg color of alert content
-  }
-  }
 
-  .miClaseAlert{
-    background-color:rgba(248, 150, 59, 0.699);
-    button {
-      color: white !important; // button text color
-      background-color: color($colors, secondary, base) !important;
-          //button bg color
-  }
+
+.miClaseDanger{
+  background-color:rgba(252, 29, 0, 0.575);
+  button {
   
-  .alert-title {
-    color:rgb(41, 255, 13);
-    font-family: Georgia, 'Times New Roman', Times, serif;
-  }
-  
-  .alert-head {
-    color:rgb(190, 255, 13);
-    background-color:rgba(47, 224, 255, 0.795);
-  }
-  
-  .alert-message {
-    color:rgb(255, 251, 13);
-    background-color:rgba(47, 224, 255, 0.795);
-  }
-  
-  .alert-wrapper {
-    font-family: Georgia, 'Times New Roman', Times, serif;  
-    border: dotted 7px;
-   color: rgb(255, 251, 13);
-    background-color: color($colors, dark, base); // bg color of alert content
-  }
-  .alert-button-group {
-    background-color: color($colors, primary, base); // bg color of alert content
-  }
-  
-  }
+    margin:auto;text-align:center;display:block; 
+    color: white !important; // button text color
+    background-color: color($colors, danger, base) !important;
+        //button bg color
+}
+
+.alert-title {
+  color:rgb(255, 13, 13);
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.alert-head {
+  color:rgb(255, 255, 255);
+  background-color:rgba(46, 7, 1, 0.932);
+}
+
+.alert-message {
+  color:rgb(255, 255, 255);
+  background-color:rgba(46, 7, 1, 0.932);
+}
+
+.alert-wrapper {
+  font-family: Georgia, 'Times New Roman', Times, serif;  
+  border: dotted 7px;
+  background-color: rgba(15, 2, 2, 0.747) // bg color of alert content
+}
+.alert-button-group {
+  text-align: center;
+  background-color: rgba(15, 2, 2, 0.747) // bg color of alert content
+}
+}
+
+.miClaseAlert{
+  background-color:rgba(248, 150, 59, 0.699);
+  button {
+    color: white !important; // button text color
+    background-color: color($colors, secondary, base) !important;
+        //button bg color
+}
+
+.alert-title {
+  color:rgb(41, 255, 13);
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.alert-head {
+  color:rgb(190, 255, 13);
+  background-color:rgba(47, 224, 255, 0.795);
+}
+
+.alert-message {
+  color:rgb(255, 251, 13);
+  background-color:rgba(47, 224, 255, 0.795);
+}
+
+.alert-wrapper {
+  font-family: Georgia, 'Times New Roman', Times, serif;  
+  border: dotted 7px;
+ color: rgb(255, 251, 13);
+  background-color: color($colors, dark, base); // bg color of alert content
+}
+.alert-button-group {
+  background-color: color($colors, primary, base); // bg color of alert content
+}
+
+}

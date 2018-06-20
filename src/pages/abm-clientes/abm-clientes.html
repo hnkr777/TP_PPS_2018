@@ -1,0 +1,45 @@
+<ion-header>
+    
+      <ion-navbar>
+        <ion-title>Administración clientes</ion-title>
+        <ion-buttons end>
+          <button ion-button icon-only (click)="nuevoCliente()">
+            <ion-icon name="person-add"></ion-icon>
+          </button>
+        </ion-buttons>
+      </ion-navbar>
+    
+    </ion-header>
+    
+    
+    <ion-content class="abm-clientes-content" id="clientes-content">
+    
+      <ion-card (click)="modificar(item)" padding *ngFor="let item of listaClientes" [ngClass]="item.activo==0? 'disabled' : 'enabled' ">
+    
+        <ion-item>
+          <ion-avatar item-start>
+            <img [src]="item.foto === undefined ? '../../assets/img/img-usuario.svg' : item.foto">
+          </ion-avatar>
+          <h2 class="titulo" style="color: rgb(255, 255, 255);">{{item.nombre}} {{item.apellido}}</h2>
+          <p class="titulo" style="color: yellow;">Fecha de nacimiento: {{item.fechaNacimiento}}</p>
+        </ion-item>
+    
+        <!-- <img class="imagen" [src]="item.foto"> -->
+    
+        <ion-card-content>
+          <p>Fecha de alta:
+            <b>{{item.fechaAlta}}</b>
+          </p>
+          <p>Email:
+            <b>{{item.email}}</b>
+          </p>
+          <p>DNI:
+            <b>{{item.dni}}</b>
+          </p>
+          <p>Sexo:
+            <b>{{ item.sexo == 'm' ? 'Masculino' : 'Femenino' }}</b>
+          </p>
+        </ion-card-content>
+    
+      </ion-card>
+    </ion-content>

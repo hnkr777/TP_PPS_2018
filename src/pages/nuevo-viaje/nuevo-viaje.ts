@@ -75,6 +75,9 @@ export class NuevoViajePage {
       return;
     }
 
+    //agregado por mauro
+    this.nuevoViaje.fechaSalida=this.fechaSalida;
+    
     this.servicioViajes.guardarNuevoViaje(this.nuevoViaje).then((data) => {
       this.Msg('Aviso', 'Viaje guardado correctamente.\n');
     }).catch((error) => {

@@ -16,7 +16,8 @@ import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { environment } from "../../environments/environment";
 import { AbmChofer } from '../pages';
 import { ContentPage } from '../content/content';
-
+import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider } from '../../providers/providers';
+import { Viaje } from '../../clases/viaje';
 
 @IonicPage()
 @Component({
@@ -24,17 +25,27 @@ import { ContentPage } from '../content/content';
   templateUrl: 'chofer-panel.html',
 })
 export class ChoferPanelPage {
-
+  private listaTodosLosViajes: any[];
+  private spinner;
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    private servicioViajes: ServicioViajesProvider
   ) {
 
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Admin Control Panel Page');
+    this.spin(true);
+    let ob = this.servicioViajes.traerViajes().subscribe(data => { // la lista se va a actualizar cada vez que cambie la tabla usuarios de firebase
+  
+      this.listaTodosLosViajes = data;
+      console.log(this.listaTodosLosViajes);
+      //this.auxListaClientes=data;
+      this.spin(false);
+    });
   }
 
   irAbmChofer() {
@@ -57,5 +68,15 @@ export class ChoferPanelPage {
   irVisorViajes() {
     this.navCtrl.push(ContentPage); // escaner QR
   }
+
+  private spin(status: boolean) {
+    if(this.spinner === undefined && status === true) {
+      this.spinner = this.modalCtrl.create(SpinnerPage);
+      this.spinner.present();
+    } else if(this.spinner !== undefined && status === false) {
+      this.spinner.dismiss();
+      this.spinner = undefined;
+    }
+   }
 
 }

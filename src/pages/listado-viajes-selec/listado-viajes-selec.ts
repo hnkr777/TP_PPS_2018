@@ -47,7 +47,11 @@ export class ListadoViajesSelecPage {
     }
   asignarViaje(viaje:Viaje){
     viaje.correoChofer = this.correoChofer;
+    //viaje.id = viaje.fechaRegistro;
+    //viaje.id = 1529533431;
     this.chofer.estado = 1;
+    console.log("VIAJE!: ");
+    console.info(viaje);
     this.servicioUsuarios.modificarUsuario(this.chofer);
     this.servicioViajes.modificarViaje(viaje);
     this.showSuccess("Viaje Asignado al chofer: "+this.chofer.nombre+" "+this.chofer.apellido);

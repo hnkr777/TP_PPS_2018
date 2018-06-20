@@ -13,8 +13,8 @@
 </ion-header>
 
 
-<ion-content padding>
-  <ion-card (click)="verViaje(item)" padding *ngFor="let item of listadoViajesFiltrado" [ngClass]="item.activo==0? 'disabled' : 'enabled' ">
+<ion-content padding class="content-back">
+  <ion-card (click)="asignarViaje(item)" padding *ngFor="let item of listadoViajesFiltrado" [ngClass]="item.activo==0? 'disabled' : 'enabled' ">
 
     <ion-item style="text-align: center;">
       <!-- <ion-avatar item-start>

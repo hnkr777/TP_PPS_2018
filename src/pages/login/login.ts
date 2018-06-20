@@ -179,8 +179,8 @@ export class LoginPage {
     this.navCtrl.push(AbmVehiculosPage,{data:"Lista"});
   }
   goListadoChoferes(){
-    this.navCtrl.push(ContentPage,{data:"supervisor"});
-    //this.navCtrl.push(ListadoChoferesDisponiblesPage);
+    this.navCtrl.push(ContentPage,{data:"supervisor"}); // PROBAR CEL
+    //this.navCtrl.push(ListadoChoferesDisponiblesPage); // PROBAR PC
   }
 }
 

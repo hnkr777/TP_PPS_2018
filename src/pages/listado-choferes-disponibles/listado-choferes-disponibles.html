@@ -15,7 +15,7 @@
 
 <ion-content padding class="content-back">
   <div *ngFor="let item of listadoChoferes">
-  <ion-card padding (click)="asignarViaje(item)"  *ngIf = "item.activo == 1"><!--  && item.estado == 0 -->
+  <ion-card padding (click)="asignarViaje(item)"  *ngIf = "item.activo == 1 && (item.estado == 0 || item.estado === undefined)"><!--  && item.estado == 0 -->
       <ion-item>
         <ion-avatar item-start>
           <img [src]="item.foto === undefined ? 'assets/img/img-usuario.svg' : item.foto">

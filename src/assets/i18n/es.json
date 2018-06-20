@@ -8,10 +8,16 @@
   "ADMIN_PANEL_TITLE": "Panel de control (admin)",
   "ABM_CHOFERES_PANEL_TITLE": "ABM de choferes",
   "NEW_DRIVER_TITLE": "Alta de nuevo chofer",
-  "MODIF_DRIVER_TITLE": "Modificación de chofer",
+  "MODIF_DRIVER_TITLE": "Modificar chofer",
   "CHOFER_PANEL_TITLE": "Panel del chofer",
   "NUEVO_VIAJE_TITLE": "Nuevo viaje",
-
+  "VISOR_VIAJES_PANEL_TITLE": "Visor de viajes",
+  "ABM_SUPERVISORES_PANEL_TITLE": "ABM supervisores",
+  "NEW_SUPER_TITLE": "Nuevo supervisor",
+  "MODIF_SUPER_TITLE": "Modificar supervisor",
+  
+  "": "",
+  
   "MAP_TITLE": "Mapa",
   "DELETE_BUTTON": "Borrar voto",
   "VERIFY_BUTTON": "yyyyy",

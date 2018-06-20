@@ -1,0 +1,51 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ 'VISOR_VIAJES_PANEL_TITLE' | translate }}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="filtrarViajesTest()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="visor-viajes-content" id="visor-viajes-content">
+
+  <ion-card (click)="verViaje(item)" padding *ngFor="let item of listaViajes" [ngClass]="item.activo==0? 'disabled' : 'enabled' ">
+
+    <ion-item style="text-align: center;">
+      <!-- <ion-avatar item-start>
+        <img [src]="item.foto === undefined ? '../../assets/img/img-usuario.svg' : item.foto">
+      </ion-avatar> -->
+      <h2 class="titulo" style="color: rgb(201, 107, 20);">Duración: {{item.duracionViajeText}}</h2>
+      <p class="titulo" style="color: yellow;">Distancia: {{ item.distanciaText }}</p>
+    </ion-item>
+
+    <!-- <img class="imagen" [src]="item.foto"> -->
+
+    <ion-card-content>
+      <p>Chofer:
+        <b>{{item.correoChofer}}</b>
+      </p>
+      <p>Origen:
+        <b>{{item.origen}}</b>
+      </p>
+      <p>Destino:
+        <b>{{item.destino}}</b>
+      </p>
+      <p>Salida:
+        <b>{{ item.fechaSalida }}</b>
+      </p>
+      <p>Pedido:
+        <b>{{item.fechaRegistro}}</b>
+      </p>
+      <p>Estado:
+        <b>{{item.estado}}</b>
+      </p>
+    </ion-card-content>
+
+  </ion-card>
+</ion-content>

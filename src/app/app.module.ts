@@ -45,6 +45,9 @@ import { AbmClientesPage } from '../pages/abm-clientes/abm-clientes';
 import { AltaClienteParaAdminPage } from '../pages/alta-cliente-para-admin/alta-cliente-para-admin';
 import { NuevoViajePage } from '../pages/nuevo-viaje/nuevo-viaje';
 import { ServicioViajesProvider } from '../providers/servicio-viajes/servicio-viajes';
+import { AbmSupervisoresPage } from '../pages/abm-supervisores/abm-supervisores';
+import { AltaSupervisorPage } from '../pages/alta-supervisor/alta-supervisor';
+import { VisorViajesPage } from '../pages/visor-viajes/visor-viajes';
 
 
 // The translate loader needs to know where to load i18n files
@@ -85,7 +88,10 @@ export function provideSettings(storage: Storage) {
     AbmClientesPage,
     AltaClienteParaAdminPage,
     AbmVehiculosPage,
-    NuevoViajePage
+    NuevoViajePage,
+    AbmSupervisoresPage,
+    AltaSupervisorPage,
+    VisorViajesPage
   ],
   imports: [
     BrowserModule,
@@ -122,6 +128,9 @@ export function provideSettings(storage: Storage) {
     AltaClienteParaAdminPage,
     AbmVehiculosPage,
     NuevoViajePage,
+    AbmSupervisoresPage,
+    AltaSupervisorPage,
+    VisorViajesPage
   ],
   providers: [
     Api,

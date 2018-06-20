@@ -3,12 +3,9 @@
   <ion-navbar>
     <ion-title>{{ 'NUEVO_VIAJE_TITLE' | translate }}</ion-title>
     <ion-buttons end>
-      <button ion-button (click)="guardarViaje()">
-        <ion-icon name="add"></ion-icon> Ok
-      </button>
-      <button ion-button icon-only (click)="infoViaje()">
+      <!-- <button ion-button icon-only (click)="infoViaje()">
         <ion-icon name="information-circle"></ion-icon>
-      </button>
+      </button> -->
       <button ion-button icon-only (click)="recargarMapa()">
         <ion-icon name="refresh"></ion-icon>
       </button>
@@ -18,21 +15,16 @@
 </ion-header>
 
 
-<ion-content padding>
-  <div class="contenido-viajes">
+<ion-content padding (click)="hidePops()">
+  <div (click)="hidePops()" class="contenido-viajes">
     <ion-row>
       <ion-col>
-
-        <!-- <ion-chip #chip1 class="chip">
-          <ion-input max="512" placeholder="Dirección origen" [(ngModel)]="origen" class="input-viaje" type="text"></ion-input>
-          <button ion-button clear color="light" (click)="tomarDireccionGPS()">
-            <ion-icon name="pin"></ion-icon>
-          </button>
-        </ion-chip> -->
 
         <ion-chip #chip1 class="chip">
           <ion-searchbar
             class="input-viaje" 
+            type="text" 
+            id="sbarori"
             placeholder="Dirección origen" 
             autocomplete="on"
             debounce="1000"
@@ -47,7 +39,7 @@
           </button>
         </ion-chip>
 
-        
+        <div id="poporigen" (click)="setOrigen()" class="popover">{{varOri}}</div>
 
       </ion-col>
     </ion-row>
@@ -60,6 +52,7 @@
               class="input-viaje" 
               placeholder="Dirección destino" 
               autocomplete="on"
+              id="sbardes"
               debounce="1000"
               animated="true" 
               [(ngModel)]="destino" 
@@ -67,25 +60,32 @@
               (ionInput)="desInput($event)" 
               (ionCancel)="desCancel($event)">
             </ion-searchbar>
-            <button ion-button clear color="light" (click)="buscarDirecciones()">
-              <ion-icon name="checkbox"></ion-icon>
+            <button ion-button clear color="light" (click)="tomarDireccionGPS()">
+              <ion-icon name="pin"></ion-icon>
             </button>
           </ion-chip>
+          <div id="popdestino" (click)="setDestino()" class="popover">{{varDes}}</div>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col>
-        <ion-datetime id="fechaSalida" [pickerOptions]="customOptions" (ionDone)="test()" class="picker" max="2020-12-31" displayFormat="DD/MM/YYYY HH:mm"
-          pickerFormat="DD MMMM YYYY HH mm" [(ngModel)]="fechaSalida" monthNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre"
+        <ion-datetime (ionCancel)="checkCondiciones()" id="fechaSalida" [pickerOptions]="customOptions" (click)="checkCondiciones()" class="picker" max="2020-12-31" displayFormat="DDDD DD de MMMM de YYYY  HH:mm"
+          (ionChange)="checkCondiciones()" pickerFormat="DD MMMM YYYY HH mm" [(ngModel)]="nuevoViaje.fechaSalida" monthNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre"
           cancelText="Cancelar" doneText="Aceptar" placeholder="Fecha de salida" monthShortNames="Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic"
           dayNames="Domingo, Lunes, Martes, Miercoles, Jueves, Viernes, Sábado" dayShortNames="Dom, Lun, Mar, Mie, Jue, Vie, Sáb">
         </ion-datetime>
+        <!-- <input type="datetime-local"> -->
       </ion-col>
     </ion-row>
 
-    <div #map id="map">
+    <div (click)="hidePops()" #map id="map">
     </div>
+
+    <ion-fab *ngIf="verBoton" large id="aceptar">
+      <button large class="titulo" color="secondary" (click)="guardarViaje()" ion-fab>Viajar</button>
+    </ion-fab>
+     
 
   </div>
 </ion-content>

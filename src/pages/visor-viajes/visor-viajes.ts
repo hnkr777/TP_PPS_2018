@@ -51,12 +51,23 @@ export class VisorViajesPage {
   }
 
   filtrarViajesTest() {
-    console.log(Date());
-    let ob = this.servicioViajes.traerViajesFiltrados('correoChofer', '==', '' ).subscribe(data => {
-      console.log('Cantidad viajes: ' + data.length);
+    let now: number = Date.now();
+    now += 30 * 60 * 1000; // cantidad de minutos * segundos (en 1 minuto) * milesimas de segundo (en 1 segundo)
+    //console.log('now: ' + now.toString());
+    //console.log(new Date(now).toLocaleString());
 
-      this.listaViajes = data;
+    let ob = this.servicioViajes.traerViajes().subscribe(data => {
+      //console.log('Cantidad viajes: ' + data.length);
+      this.listaViajes = undefined;
+      this.listaViajes = new Array<Viaje>();
 
+      for(let i: number = 0; i < data.length; i++) {
+        if(data[i].fechaSalida < now ) {
+          this.listaViajes.push(data[i]);
+        }
+      }
+        
+      
       ob.unsubscribe();
       
     });
@@ -64,8 +75,8 @@ export class VisorViajesPage {
 
   verViaje($event) {
     console.log('Ver viaje');
-    //this.viaje = $event;
-    console.log('Fecha: [' + $event.fechaSalida + ']');
+    let f: Date = new Date($event.fechaSalida + (30 * 60 * 1000)); // minutos * segundos * milesimas de segundo
+    console.log('Fecha: [' + f.toLocaleString() + ']');
 
   }
   

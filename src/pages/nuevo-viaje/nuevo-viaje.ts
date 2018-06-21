@@ -48,6 +48,7 @@ export class NuevoViajePage {
   public origen: string = "";
   public destino: string = "";
   public nuevoViaje: Viaje;
+  private fechaSalidaString: string;
   private puntos: number;
   private verBoton: boolean = false;
   varOri: string = '';
@@ -116,15 +117,12 @@ export class NuevoViajePage {
 
   checkCondiciones() {
     this.hidePops();
-    var now = moment();
-    
-    //moment(this.nuevoViaje.fechaSalida, 'DDDD DD/MM/YYYY HH:mm');
-    this.nuevoViaje.fechaSalida = moment('DD/MM/YYYY', moment.ISO_8601).toDate();
-    
+    if(this.fechaSalidaString !== undefined) {
+      this.nuevoViaje.fechaSalida = Date.parse(this.fechaSalidaString);
+      console.log(this.nuevoViaje.getFechaSalida());
+    }
     //moment().date(); //moment(now.format(), moment.ISO_8601).format();
-
     this.verBoton = (this.nuevoViaje.fechaSalida!==undefined && this.puntos>1);
-    console.log('condiciones: '+this.verBoton);
   }
 
   ionViewDidLoad() {
@@ -228,7 +226,7 @@ export class NuevoViajePage {
     let r: string = '\n';
     let c: Viaje = this.nuevoViaje;
     if(this.nuevoViaje.fechaSalida!==undefined && this.puntos>1) this.verBoton = true;
-    buf = 'Fecha de salida: ' + (c.fechaSalida===undefined ? 'Sin fecha' : c.fechaSalida) + r +
+    buf = 'Fecha de salida: ' + (c.fechaSalida===undefined ? 'Sin fecha' : c.getFechaSalida()) + r +
           'Distancia: ' + c.distanciaText + r +
           'Duración: ' + c.duracionViajeText + r +
           'Origen: ' + c.origen + r +

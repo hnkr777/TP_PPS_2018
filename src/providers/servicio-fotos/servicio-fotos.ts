@@ -1,24 +1,26 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import * as firebase from 'firebase';
 
  /*
   *  Servicio de fotos (cámara)
   *
-  * Saca fotos y las carga de la librería, devolviendo una imagen en base64 o binaria
-  *  
+  * Saca fotos y/o las carga de la librería 
+  * también guarda la imagen en firestorage, devolviendo la ruta pública de la imagen (web)
   */
 
 @Injectable()
 export class ServicioFotosProvider {
 
-  constructor(private camera: Camera) {
+  constructor(private camera: Camera, private objFirebase: AngularFirestore) {
     console.log('Inicia ServicioFotosProvider Provider');
   }
 
   // esta función devuelve un promise para hacerle un then() con lo que devuelve, 
-  // y obtener una foto en base64 de la cámara del celu
-  takePhoto(): Promise<any> {
+  // y obtener la ruta web en firestorage de la foto recien subida
+  takePhoto(ruta: string): Promise<any> {
     const options: CameraOptions = {
       quality: 40,
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -27,13 +29,12 @@ export class ServicioFotosProvider {
       correctOrientation: true,
       saveToPhotoAlbum: true
     }
-    return this.camera.getPicture(options);
-    //this.savePhoto(options);
+    return this.savePhoto(options, ruta);
   }
 
   // esta función devuelve un promise para hacerle un then() con lo que devuelve, 
-  // y obtener una foto en base64 de la librería de fotos del celu
-  addLibraryPhoto(): Promise<any> {
+  // y obtener la ruta web en firestorage de la foto recien subida
+  addLibraryPhoto(ruta: string): Promise<any> {
     const options: CameraOptions = {
       quality: 40,
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -43,23 +44,21 @@ export class ServicioFotosProvider {
       correctOrientation: true,
       saveToPhotoAlbum: true
     }
-    return this.camera.getPicture(options);
-    //this.savePhoto(options);
+    
+    return this.savePhoto(options, ruta);
   }
 
-  // fuera de combate
-  savePhoto (options): Promise<any> {
-      return this.camera.getPicture(options);
-      /*.then((imageData) => {
+  savePhoto (options: CameraOptions, ruta: string): Promise<any> {
+      return this.camera.getPicture(options)
+      .then((imageData) => {
         //let base64Image = 'data:image/jpeg;base64,' + imageData;
-        //return this.uploadImage(imageData, this.guardarArchivoPost());
-
+        return this.uploadImage(imageData, ruta);
       }, (err) => {
         console.log('Error' + err);
         // this.Modal('Error', err);
-      }).catch((erro) => { 
+      }).catch((erro) => {
         console.log('Error' + erro);
-      });*/
+      });
   }
 
   // con esta función convertimos la imagen desde base64 a binaria, imagen_base64 => imagen_binaria
@@ -87,19 +86,25 @@ export class ServicioFotosProvider {
     let blob = new Blob(byteArrays, {type: contentType});
     return blob;
   }
+  
+  getImageURL(path: string): any {
+    let storageRef = firebase.storage().ref();
+    let imageRef = storageRef.child(path);
+    return imageRef.getDownloadURL();
+  }
 
-  // fuera de servicio...
-  uploadImage(image: string, path: string): any {
-    // this.spin(true);
+  uploadImage(image: string, path: string): Promise<any> {
+    //this.spin(true);
     let data = this.getBlob(image);
-    // let storageRef =  firebase.storage().ref();
-    // let imageRef = storageRef.child(path);
-    // imageRef.put(data).then((snapshot) => {
-      // console.log('Imagen subida exitosamente: '+path);
-      // this.spin(false);
-      // console.log('Archivo', 'Imagen subida exitosamente.');
-      //this.traerArchivoPost();
-    // });
+    let storageRef =  firebase.storage().ref();
+    let imageRef = storageRef.child(path);
+    return imageRef.put(data)
+    .then((snapshot) => {
+      console.log('Imagen subida exitosamente: '+path);
+      //this.spin(false);
+      //this.Modal('Archivo', 'Imagen subida exitosamente.');
+      return imageRef.getDownloadURL();
+    });
     // return imageRef.putString(image, 'data_url');
     // return imageRef.putString(image);
     // return imageRef.putString(image, firebase.storage.StringFormat.DATA_URL);

@@ -5,7 +5,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
-    AbmSupervisoresPage
+    //AbmSupervisoresPage
   ],
   imports: [
     IonicPageModule.forChild(AbmSupervisoresPage),

@@ -5,7 +5,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
-    VisorViajesPage
+    //VisorViajesPage
   ],
   imports: [
     IonicPageModule.forChild(VisorViajesPage),

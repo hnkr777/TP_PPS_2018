@@ -102,16 +102,18 @@ export class AltaChoferPage {
   }
 
   tomarFoto() {
-    this.servicioFotos.takePhoto().then((data) => {
-      this.chofer.foto = 'data:image/jpeg;base64,' + data;
+    let ruta: string = "usuarios/" + Date.now().toString();
+    this.servicioFotos.takePhoto(ruta).then((data) => {
+      this.chofer.foto = data;
     }, (error) => {
       console.log('Error: ' + error);
     });
   }
   
   cargarFoto() {
-    this.servicioFotos.addLibraryPhoto().then((data) => {
-      this.chofer.foto = 'data:image/jpeg;base64,' + data;
+    let ruta: string = "usuarios/" + Date.now().toString();
+    this.servicioFotos.addLibraryPhoto(ruta).then((data) => {
+      this.chofer.foto = data;
     }, (error) => {
       console.log('Error: ' + error);
     });

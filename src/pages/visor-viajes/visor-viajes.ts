@@ -57,7 +57,6 @@ export class VisorViajesPage {
     //console.log(new Date(now).toLocaleString());
 
     let ob = this.servicioViajes.traerViajes().subscribe(data => {
-      //console.log('Cantidad viajes: ' + data.length);
       this.listaViajes = undefined;
       this.listaViajes = new Array<Viaje>();
 
@@ -66,10 +65,8 @@ export class VisorViajesPage {
           this.listaViajes.push(data[i]);
         }
       }
-        
-      
+      console.log('Cantidad viajes: ' + this.listaViajes.length);
       ob.unsubscribe();
-      
     });
   }
 

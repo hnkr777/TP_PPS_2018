@@ -5,9 +5,7 @@ import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider
 import { Viaje } from '../../clases/viaje';
 import { Geolocation } from '@ionic-native/geolocation';
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
-import * as moment from 'moment';
-
-
+//import * as moment from 'moment';
 
 declare const google; // para google maps
 

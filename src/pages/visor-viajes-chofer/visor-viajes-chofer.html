@@ -15,15 +15,9 @@
 
 <ion-content class="visor-viajes-content" id="visor-viajes-content">
 
-    <ion-card>
-        <ion-card-content>
-            <div #directionsPanel></div>
-        </ion-card-content>
-    </ion-card>
-     
-    <div #map id="map"></div>  
+ 
 
-      <ion-card (click)="asignarViaje(item)" padding *ngFor="let item of listaViajes" [ngClass]="item.activo==0? 'disabled' : 'enabled' ">
+      <ion-card (click)="mostrarViajeConMapa(item)" padding *ngFor="let item of listaViajes" [ngClass]="item.activo==0? 'disabled' : 'enabled' ">
 
 
         <ion-item style="text-align: center;">
@@ -46,8 +40,9 @@
             <b>{{item.destino}}</b>
           </p>
           <p>Salida:
-            <b>{{ item.fechaSalida }}</b>
+            <b>{{ item.fechaSalidaString }}</b>
           </p>
+
         </ion-card-content>
     
       </ion-card>

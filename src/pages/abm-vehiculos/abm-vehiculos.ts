@@ -199,24 +199,25 @@ export class AbmVehiculosPage {
 
   }
   tomarFoto(opt) {
+    let ruta: string = "usuarios/" + Date.now().toString();
     switch (opt) {
       case '1':
-        this.servicioFotos.takePhoto().then((data) => {
-          this.foto1 = 'data:image/jpeg;base64,' + data;
+        this.servicioFotos.takePhoto(ruta).then((data) => {
+          this.foto1 = data;
         }, (error) => {
           console.log('Error: ' + error);
         });
       break;
       case '2':
-        this.servicioFotos.takePhoto().then((data) => {
-          this.foto2 = 'data:image/jpeg;base64,' + data;
+        this.servicioFotos.takePhoto(ruta).then((data) => {
+          this.foto2 = data;
         }, (error) => {
           console.log('Error: ' + error);
         });
       break;
       case '3':
-        this.servicioFotos.takePhoto().then((data) => {
-          this.foto3 = 'data:image/jpeg;base64,' + data;
+        this.servicioFotos.takePhoto(ruta).then((data) => {
+          this.foto3 = data;
         }, (error) => {
           console.log('Error: ' + error);
         });
@@ -228,24 +229,25 @@ export class AbmVehiculosPage {
 
   }
   tomarFotoLibreria(opt) {
+    let ruta: string = "usuarios/" + Date.now().toString();
     switch (opt) {
       case '1':
-        this.servicioFotos.addLibraryPhoto().then((data) => {
-          this.foto1 = 'data:image/jpeg;base64,' + data;
+        this.servicioFotos.addLibraryPhoto(ruta).then((data) => {
+          this.foto1 = data;
         }, (error) => {
           console.log('Error: ' + error);
         });
       break;
       case '2':
-        this.servicioFotos.addLibraryPhoto().then((data) => {
-          this.foto2 = 'data:image/jpeg;base64,' + data;
+        this.servicioFotos.addLibraryPhoto(ruta).then((data) => {
+          this.foto2 = data;
         }, (error) => {
           console.log('Error: ' + error);
         });
       break;
       case '3':
-        this.servicioFotos.addLibraryPhoto().then((data) => {
-          this.foto3 = 'data:image/jpeg;base64,' + data;
+        this.servicioFotos.addLibraryPhoto(ruta).then((data) => {
+          this.foto3 = data;
         }, (error) => {
           console.log('Error: ' + error);
         });

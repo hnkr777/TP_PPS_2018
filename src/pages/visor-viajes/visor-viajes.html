@@ -4,7 +4,7 @@
     <ion-title>{{ 'VISOR_VIAJES_PANEL_TITLE' | translate }}</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="filtrarViajesTest()">
-        <ion-icon name="add"></ion-icon>
+        <!-- <ion-icon name="add"></ion-icon> -->Filtrar
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -37,13 +37,13 @@
         <b>{{item.destino}}</b>
       </p>
       <p>Salida:
-        <b>{{ item.fechaSalida }}</b>
+        <b>{{ item.fechaSalidaString }}</b>
       </p>
       <p>Pedido:
-        <b>{{item.fechaRegistro}}</b>
+        <b>{{ item.fechaRegistroString }}</b>
       </p>
       <p>Estado:
-        <b>{{item.estado}}</b>
+        <b>{{ item.estado }}</b>
       </p>
     </ion-card-content>
 

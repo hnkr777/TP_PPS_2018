@@ -7,9 +7,9 @@ import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { TranslateService } from '@ngx-translate/core';
 import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider, Settings } from '../../providers/providers';
 import { Geolocation } from '@ionic-native/geolocation';
+import { DetalleViajeChoferPage } from "../../pages/detalle-viaje-chofer/detalle-viaje-chofer";
 
-import * as moment from 'moment';
-declare const google; // para google maps
+
 /**
  * Generated class for the VisorViajesChoferPage page.
  *
@@ -23,17 +23,15 @@ declare const google; // para google maps
   templateUrl: 'visor-viajes-chofer.html',
 })
 export class VisorViajesChoferPage {
-  @ViewChild('map') mapElement: ElementRef;
-  @ViewChild('directionsPanel') directionsPanel: ElementRef;
-  map: any;
-
+ 
   public listaViajes: any[];
   public listaViajesAux: any[];
   private viaje: Viaje;
   private spinner;
   private usuario;
 
-
+  miLatitudChofer;
+  miLongitudChofer;
 
   constructor(
     public navCtrl: NavController, 
@@ -49,108 +47,80 @@ export class VisorViajesChoferPage {
     private geolocation: Geolocation,
     private popover: PopoverController ) {
  this.listaViajes=[];
-
+ this.usuario = JSON.parse(sessionStorage.getItem("usuario"));
   }
 
-
-
-
   ionViewDidLoad() {
-
     console.log('ionViewDidLoad VisorViajesChoferPage');
     this.spin(true);
-    let ob = this.servicioViajes.traerViajes().subscribe(data => { // la lista se va a actualizar cada vez que cambie la tabla usuarios de firebase
+    this.ubicacionActual();
+
+  /*  let ob = this.servicioViajes.traerViajes().subscribe(data => { // la lista se va a actualizar cada vez que cambie la tabla usuarios de firebase
       //console.log('data: ' + JSON.stringify(data));
       this.listaViajesAux = data;
       //ob.unsubscribe();
       console.log(this.listaViajesAux);
-      this.mostrarViajesSinChofer()
-      
-    });
+      this.mostrarViajesSinChofer();  
+    });*/
 
-    this.loadMap();
-    this.startNavigating();
-
-
-    //this.ubicacionActual();
     }
 
-    loadMap(){
-      
-             let latLng = new google.maps.LatLng(-34.9290, 138.6010);
-      
-             let mapOptions = {
-               center: latLng,
-               zoom: 15,
-               mapTypeId: google.maps.MapTypeId.ROADMAP
-             }
-      
-             this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-      
-         }
-      
-         startNavigating(){
-      
-             let directionsService = new google.maps.DirectionsService;
-             let directionsDisplay = new google.maps.DirectionsRenderer;
-      
-             directionsDisplay.setMap(this.map);
-             directionsDisplay.setPanel(this.directionsPanel.nativeElement);
-      
-             directionsService.route({
-              origin: {lat: -34.6601056, lng: -58.3740561},
-              destination: {lat: -34.58212745, lng: -58.44958711}, 
-              waypoints: [
-                {
-                  location: {lat: -34.606998, lng: -58.39877534}, 
-                  stopover: true
-                }],
-
-                travelMode: 'DRIVING',
-             }, (res, status) => {
-      
-                 if(status == google.maps.DirectionsStatus.OK){
-                     directionsDisplay.setDirections(res);
-                 } else {
-                     console.warn(status);
-                 }
-      
-             });
-      
-         }
+    ubicacionActual(){
+      this.geolocation.getCurrentPosition().then((resp) => {
+        console.log("latituddddd");
+        console.log(resp.coords.latitude);
+        this.miLatitudChofer=resp.coords.latitude;
+        this.miLongitudChofer=resp.coords.longitude;
+        this.filtrarViajesTest();
+       }).catch((error) => {
+         console.log('Error getting location', error);
+       });
+      }
 
 
-
-
-
- ubicacionActual(){
-  this.geolocation.getCurrentPosition().then((resp) => {
-    console.log("latituddd");
-    console.log(resp.coords.latitude);
-    console.log("longituddd");
-    console.log(resp.coords.longitude);
-    //this.marcarMapa(resp.coords.latitude,resp.coords.longitude);
-   }).catch((error) => {
-     console.log('Error getting location', error);
-   });
-  }
-
-  ubicacionPrueba()
-  {
-  //  this.marcarMapa(-34.59208861444155,-58.47150966152344);
-  }
-
-
-
+      filtrarViajesTest() {
+        let now: number = Date.now();
+        now += 30 * 60 * 1000; // cantidad de minutos * segundos (en 1 minuto) * milesimas de segundo (en 1 segundo)
+        //console.log('now: ' + now.toString());
+        //console.log(new Date(now).toLocaleString());
     
+        let ob = this.servicioViajes.traerViajes().subscribe(data => {
+          let viajePendiente=0;
+          this.listaViajes = undefined;
+          this.listaViajes = new Array<Viaje>();
+    
+          for(let i: number = 0; i < data.length; i++) {
+            if(data[i].fechaSalida < now ) {
+              //me fijo si tengo algun viaje asignado por el supervisor
+              if(data[i].correoChofer==this.usuario.correo && data[i].estado==0 )
+                {
+                  this.listaViajes.push(data[i]);
+                  viajePendiente=1;
+                }
+              //me fijo si tengo un viaje en curso
+              if(data[i].correoChofer==this.usuario.correo && data[i].estado==1 )
+                  {
+                    this.listaViajes.push(data[i]);
+                    viajePendiente=1;
+                  }
+              if(viajePendiente==0)
+                {
+              if( data[i].correoChofer=="vacio"||data[i].correoChofer==""||data[i].correoChofer==undefined)
+              {
+              this.listaViajes.push(data[i]);
+              }
+            }
+            }
+          }
+          console.log(this.listaViajes);
+          this.spin(false);
+          //console.log('Cantidad viajes: ' + this.listaViajes.length);
+          //ob.unsubscribe();
+        });
+      }
 
 
-
-
-
-
-
-
+  //funcion fuera de juego
   private mostrarViajesSinChofer()
   {
     this.listaViajes=[];
@@ -165,17 +135,15 @@ export class VisorViajesChoferPage {
      this.spin(false);
   }
 
-  asignarViaje(viaje)
+
+  mostrarViajeConMapa(viaje)
   {
+    //asigno ubicacion actual del chofer
+    viaje.miLatitudChofer=this.miLatitudChofer;
+    viaje.miLongitudChofer=this.miLongitudChofer;
     
-    this.usuario = JSON.parse(sessionStorage.getItem("usuario"));
-    //console.log(this.usuario.correo);
-    viaje.correoChofer=this.usuario.correo;
-    console.log(viaje);
-    this.servicioViajes.modificarViaje(viaje);
-
+    this.modalCtrl.create(DetalleViajeChoferPage, {viaje: viaje}).present();
   }
-
 
 
 

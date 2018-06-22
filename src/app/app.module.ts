@@ -51,6 +51,8 @@ import { AbmSupervisoresPage } from '../pages/abm-supervisores/abm-supervisores'
 import { AltaSupervisorPage } from '../pages/alta-supervisor/alta-supervisor';
 import { VisorViajesPage } from '../pages/visor-viajes/visor-viajes';
 import { VisorViajesChoferPage } from '../pages/visor-viajes-chofer/visor-viajes-chofer';
+import { SuperControlPanelPage } from '../pages/supervisor-control-panel/supervisor-control-panel';
+import { DetalleViajeChoferPage } from '../pages/detalle-viaje-chofer/detalle-viaje-chofer';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -101,7 +103,9 @@ export function provideSettings(storage: Storage) {
     AbmSupervisoresPage,
     AltaSupervisorPage,
     VisorViajesPage,
-    VisorViajesChoferPage
+    VisorViajesChoferPage,
+    SuperControlPanelPage,
+    DetalleViajeChoferPage
   ],
   imports: [
     BrowserModule,
@@ -144,7 +148,9 @@ export function provideSettings(storage: Storage) {
     AbmSupervisoresPage,
     AltaSupervisorPage,
     VisorViajesPage,
-    VisorViajesChoferPage
+    VisorViajesChoferPage,
+    SuperControlPanelPage,
+    DetalleViajeChoferPage
   ],
   providers: [
     Api,

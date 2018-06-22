@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { VisorViajesPage } from './visor-viajes';
+import { SuperControlPanelPage } from './supervisor-control-panel';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
-    //VisorViajesPage
+    //SuperControlPanelPage,
   ],
   imports: [
-    IonicPageModule.forChild(VisorViajesPage),
+    IonicPageModule.forChild(SuperControlPanelPage),
     TranslateModule.forChild()
   ],
 })
-export class VisorViajesPageModule {}
+export class SuperControlPanelPageModule {}

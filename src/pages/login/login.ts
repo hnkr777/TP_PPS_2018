@@ -19,9 +19,8 @@ import { InicioClientePage } from "../../pages/inicio-cliente/inicio-cliente";
 import { AbmClientesPage } from '../../pages/abm-clientes/abm-clientes';
 
 import { AbmVehiculosPage } from '../abm-vehiculos/abm-vehiculos';
-import { SupervisorPanelPage } from '../supervisor-panel/supervisor-panel';
 import { ListadoChoferesDisponiblesPage } from '../listado-choferes-disponibles/listado-choferes-disponibles';
-
+import { SuperControlPanelPage } from '../supervisor-control-panel/supervisor-control-panel';
 
 @IonicPage()
 @Component({
@@ -70,8 +69,8 @@ export class LoginPage {
         break;
 
       case 3:
-      this.loginFields.correo = "usuario@gmail.com";
-      this.loginFields.clave = '33';
+      this.loginFields.correo = "super@gmail.com";
+      this.loginFields.clave = '123';
         break;
 
       case 4:
@@ -99,7 +98,7 @@ export class LoginPage {
         //{ text: 'invitado', handler: () => {this.setLog(2);}},
         //{ text: 'admin', handler: () => {this.setLog(1);}},
         { text: 'Cliente (Mauro)', handler: () => {this.setLog(2);}},
-        { text: 'usuario', handler: () => {this.setLog(3);}},
+        { text: 'Super (supervisor)', handler: () => {this.setLog(3);}},
         { text: 'Schumacher (chofer)', handler: () => {this.setLog(4);}},
         { text: 'tester', handler: () => {this.setLog(5);}},
         {
@@ -156,7 +155,7 @@ export class LoginPage {
 
       case 'supervisor':
         console.log('Bienvenido supervisor ' + usuario.correo);
-        this.navCtrl.setRoot(SupervisorPanelPage);
+        this.navCtrl.setRoot(SuperControlPanelPage);
       break;
 
       case 'cliente':

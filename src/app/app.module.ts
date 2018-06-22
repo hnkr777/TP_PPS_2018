@@ -48,10 +48,13 @@ import { ListadoChoferesDisponiblesPage } from '../pages/listado-choferes-dispon
 import { NuevoViajePage } from '../pages/nuevo-viaje/nuevo-viaje';
 import { ListadoViajesSelecPage } from '../pages/listado-viajes-selec/listado-viajes-selec';
 import { ServicioViajesProvider } from '../providers/servicio-viajes/servicio-viajes';
-
-
+import { SuperControlPanelPage } from '../pages/supervisor-control-panel/supervisor-control-panel';
+import { AbmSupervisoresPage } from '../pages/abm-supervisores/abm-supervisores';
+import { AltaSupervisorPage } from '../pages/alta-supervisor/alta-supervisor';
+import { VisorViajesPage } from '../pages/visor-viajes/visor-viajes';
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
+
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -91,7 +94,11 @@ export function provideSettings(storage: Storage) {
     NuevoViajePage,
     ListadoChoferesDisponiblesPage,
     SupervisorPanelPage,
-    ListadoViajesSelecPage
+    ListadoViajesSelecPage,
+    SuperControlPanelPage,
+    AbmSupervisoresPage,
+    AltaSupervisorPage,
+    VisorViajesPage
   ],
   imports: [
     BrowserModule,
@@ -130,7 +137,11 @@ export function provideSettings(storage: Storage) {
     NuevoViajePage,
     ListadoChoferesDisponiblesPage,
     SupervisorPanelPage,
-    ListadoViajesSelecPage
+    ListadoViajesSelecPage,
+    SuperControlPanelPage,
+    AbmSupervisoresPage,
+    AltaSupervisorPage,
+    VisorViajesPage
   ],
   providers: [
     Api,

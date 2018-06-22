@@ -4,7 +4,7 @@ import { VisorViajesChoferPage } from './visor-viajes-chofer';
 
 @NgModule({
   declarations: [
-    VisorViajesChoferPage,
+    //VisorViajesChoferPage,
   ],
   imports: [
     IonicPageModule.forChild(VisorViajesChoferPage),

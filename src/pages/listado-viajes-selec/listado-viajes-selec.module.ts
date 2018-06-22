@@ -4,7 +4,7 @@ import { ListadoViajesSelecPage } from './listado-viajes-selec';
 
 @NgModule({
   declarations: [
-    ListadoViajesSelecPage,
+    //ListadoViajesSelecPage,
   ],
   imports: [
     IonicPageModule.forChild(ListadoViajesSelecPage),

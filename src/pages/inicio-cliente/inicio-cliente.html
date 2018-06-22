@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-      <img [src]="foto" width="40px" style="" height="40px" align="right" />
+    <img [src]="foto" width="40px" style="" height="40px" align="right" />
     <ion-title>Bienvenido {{nombre}} </ion-title>
   </ion-navbar>
 
@@ -15,9 +15,12 @@
 
 
 <ion-content padding class="inicio-cliente-content">
-    <button class="titulo" (click)="datosChofer()" ion-button round icon-left color="secondary" block large>
-        <ion-icon name="car"></ion-icon>Datos chofer</button>
-      <br>
-      <button class="titulo" (click)="accederEncuesta()" ion-button round icon-left color="primary" block large>
-        <ion-icon name="clipboard"></ion-icon>Acceder a encuesta</button>
+  <button class="titulo" (click)="datosChofer()" ion-button round icon-left color="secondary" block large>
+    <ion-icon name="car"></ion-icon>Datos chofer</button>
+  <br>
+  <button class="titulo" (click)="accederEncuesta()" ion-button round icon-left color="primary" block large>
+    <ion-icon name="clipboard"></ion-icon>Acceder a encuesta</button>
+
+  <button class="titulo" (click)="pedirViaje()" ion-button round icon-left color="secondary" block large>
+    <ion-icon name="globe"></ion-icon>{{ 'PEDIR_VIAJE_BUTTON' | translate }}</button>
 </ion-content>

@@ -4,7 +4,7 @@ import { QrLeerVehiculoClientePage } from './qr-leer-vehiculo-cliente';
 
 @NgModule({
   declarations: [
-    QrLeerVehiculoClientePage,
+    //QrLeerVehiculoClientePage,
   ],
   imports: [
     IonicPageModule.forChild(QrLeerVehiculoClientePage),

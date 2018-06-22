@@ -49,7 +49,7 @@ export class ListadoViajesSelecPage {
     viaje.correoChofer = this.correoChofer;
     //viaje.id = viaje.fechaRegistro;
     //viaje.id = 1529533431;
-    this.chofer.estado = 1;
+    this.chofer.estado = 2;
     console.log("VIAJE!: ");
     console.info(viaje);
     this.servicioUsuarios.modificarUsuario(this.chofer);

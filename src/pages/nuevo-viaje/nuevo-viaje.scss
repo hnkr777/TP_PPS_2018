@@ -1,12 +1,12 @@
 nuevo-viaje {
     ion-content {
-        background: rgb(61, 61, 61)!important;
+        background: rgb(104, 104, 104)!important;
         height: 100%;
         width: 100%;
     }
 
     .contenido-viajes {
-        background: rgb(61, 61, 61)!important;
+        background: rgb(104, 104, 104)!important;
         height: 100%;
         width: 100%;
     }
@@ -34,5 +34,27 @@ nuevo-viaje {
 
     .chip {
         display: flex;
+    }
+
+    #aceptar {
+        bottom: 35px;
+        position: absolute;
+        right: 60px;
+        
+    }
+
+    .popover {
+        background: rgb(218, 218, 218)!important;
+        color: rgb(0, 0, 0);
+        position: absolute;
+        height: fit-content;
+        z-index: 100000;
+        padding: 10px;
+        cursor: pointer;
+        display: none;
+        border-radius: 10px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: black;
     }
 }

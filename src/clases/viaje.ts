@@ -1,19 +1,4 @@
 
-/* Clase de viajes:
-  origen(coordenadas gps),
-  destino(coordenadas gps),
-  origen(direccion),
-  destino(direccion),
-  fecha de registro de viaje,
-  fecha de salida,
-  email del chofer,
-  patente vehículo, 
-  monto de pago, 
-  pagado (booleano),
-  fecha y hora de finalización de viaje,
-  tiempo de viaje aprox (api gps google maps)
- */
-
 export class Viaje {
   id: number;                           // debería tener identificador?  
   

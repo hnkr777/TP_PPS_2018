@@ -47,7 +47,10 @@ import { QRScanner } from '@ionic-native/qr-scanner';
 import { QrLeerVehiculoClientePage } from '../pages/qr-leer-vehiculo-cliente/qr-leer-vehiculo-cliente';
 import { NuevoViajePage } from '../pages/nuevo-viaje/nuevo-viaje';
 import { ServicioViajesProvider } from '../providers/servicio-viajes/servicio-viajes';
-
+import { AbmSupervisoresPage } from '../pages/abm-supervisores/abm-supervisores';
+import { AltaSupervisorPage } from '../pages/alta-supervisor/alta-supervisor';
+import { VisorViajesPage } from '../pages/visor-viajes/visor-viajes';
+import { VisorViajesChoferPage } from '../pages/visor-viajes-chofer/visor-viajes-chofer';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -94,7 +97,11 @@ export function provideSettings(storage: Storage) {
     AltaClienteParaAdminPage,
     AbmVehiculosPage,
     QrLeerVehiculoClientePage,
-    NuevoViajePage
+    NuevoViajePage,
+    AbmSupervisoresPage,
+    AltaSupervisorPage,
+    VisorViajesPage,
+    VisorViajesChoferPage
   ],
   imports: [
     BrowserModule,
@@ -134,6 +141,10 @@ export function provideSettings(storage: Storage) {
     QrLeerVehiculoClientePage,
     AbmVehiculosPage,
     NuevoViajePage,
+    AbmSupervisoresPage,
+    AltaSupervisorPage,
+    VisorViajesPage,
+    VisorViajesChoferPage
   ],
   providers: [
     Api,

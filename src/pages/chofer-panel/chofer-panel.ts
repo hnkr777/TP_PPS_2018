@@ -16,6 +16,7 @@ import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { environment } from "../../environments/environment";
 import { AbmChofer } from '../pages';
 import { ContentPage } from '../content/content';
+import { EncuestaChoferPage } from '../encuesta-chofer/encuesta-chofer';
 
 
 @IonicPage()
@@ -37,21 +38,9 @@ export class ChoferPanelPage {
     console.log('ionViewDidLoad Admin Control Panel Page');
   }
 
-  irAbmChofer() {
-    this.navCtrl.push(AbmChofer);
-  }
-
-  irAbmAdmin() {
-    this.navCtrl.push(PagesModalPage, { titulo: 'ABM admin', data: 'No implementado...'});
-  }
-
-  irAbmCliente() {
-    this.navCtrl.push(PagesModalPage, { titulo: 'ABM cliente', data: 'No implementado...'});
-  }
-
-  irAbmSupervisor() {
-    this.navCtrl.push(PagesModalPage, { titulo: 'ABM supervisor', data: 'No implementado...'});
-    
+  irEncuestaChofer() {
+    //this.navCtrl.push(ContentPage); // escaner QR
+    this.navCtrl.push(EncuestaChoferPage);
   }
 
   irVisorViajes() {

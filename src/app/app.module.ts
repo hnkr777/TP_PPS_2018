@@ -49,6 +49,7 @@ import { AbmSupervisoresPage } from '../pages/abm-supervisores/abm-supervisores'
 import { AltaSupervisorPage } from '../pages/alta-supervisor/alta-supervisor';
 import { VisorViajesPage } from '../pages/visor-viajes/visor-viajes';
 import { SuperControlPanelPage } from '../pages/supervisor-control-panel/supervisor-control-panel';
+import { EncuestaChoferPage } from '../pages/encuesta-chofer/encuesta-chofer';
 
 
 // The translate loader needs to know where to load i18n files
@@ -93,7 +94,8 @@ export function provideSettings(storage: Storage) {
     AbmSupervisoresPage,
     AltaSupervisorPage,
     VisorViajesPage,
-    SuperControlPanelPage
+    SuperControlPanelPage,
+    EncuestaChoferPage
   ],
   imports: [
     BrowserModule,
@@ -133,7 +135,8 @@ export function provideSettings(storage: Storage) {
     AbmSupervisoresPage,
     AltaSupervisorPage,
     VisorViajesPage,
-    SuperControlPanelPage
+    SuperControlPanelPage,
+    EncuestaChoferPage
   ],
   providers: [
     Api,
@@ -151,7 +154,8 @@ export function provideSettings(storage: Storage) {
     ServicioUsuariosProvider,
     ServicioFotosProvider,
     AbmClienteProvider,
-    ServicioViajesProvider
+    ServicioViajesProvider,
+    
   ]
 })
 export class AppModule { }

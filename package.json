@@ -1,5 +1,5 @@
 {
-  "name": "PPS_2018_RADIX",
+  "name": "pps_2018_radix",
   "version": "0.0.1",
   "author": "Radix Group",
   "homepage": "https://github.com/hnkr777/TP_PPS_2018.git",
@@ -69,7 +69,9 @@
       "cordova-plugin-qrscanner": {},
       "cordova-plugin-nativeaudio": {},
       "cordova-plugin-camera": {},
-      "cordova-plugin-geolocation": {}
+      "cordova-plugin-geolocation": {
+        "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
+      }
     },
     "platforms": [
       "android"

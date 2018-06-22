@@ -19,8 +19,8 @@ import { InicioClientePage } from "../../pages/inicio-cliente/inicio-cliente";
 import { AbmClientesPage } from '../../pages/abm-clientes/abm-clientes';
 
 import { AbmVehiculosPage } from '../abm-vehiculos/abm-vehiculos';
+import { ListadoChoferesDisponiblesPage } from '../listado-choferes-disponibles/listado-choferes-disponibles';
 import { SuperControlPanelPage } from '../supervisor-control-panel/supervisor-control-panel';
-
 
 @IonicPage()
 @Component({
@@ -175,7 +175,11 @@ export class LoginPage {
   }
     
   goVehiculo(){ 
-    this.navCtrl.push(AbmVehiculosPage,{data:"Alta"});
+    this.navCtrl.push(AbmVehiculosPage,{data:"Lista"});
+  }
+  goListadoChoferes(){
+    this.navCtrl.push(ContentPage,{data:"supervisor"}); // PROBAR CEL
+    //this.navCtrl.push(ListadoChoferesDisponiblesPage); // PROBAR PC
   }
 }
 

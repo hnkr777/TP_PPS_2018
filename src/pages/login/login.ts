@@ -135,6 +135,8 @@ export class LoginPage {
         toast.present();
       }
     });
+
+
   }
   
   // esta es la función principal de ruteo por perfil, 
@@ -160,7 +162,7 @@ export class LoginPage {
 
       case 'cliente':
         console.log('Bienvenido cliente ' + usuario.correo);
-        this.navCtrl.setRoot(AbmClientesPage);
+        this.navCtrl.setRoot(InicioClientePage);
       break;
     
       default:

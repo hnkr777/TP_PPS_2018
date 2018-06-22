@@ -1,0 +1,38 @@
+<!--
+  Generated template for the DetalleViajeChoferPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<div class="contenedor-global">
+
+    
+    
+      <ion-content>
+
+          <div #map id="map"></div> 
+
+          <ion-card>
+              <ion-card-content>
+                  <div #directionsPanel></div>
+              </ion-card-content>
+          </ion-card>
+           
+          
+
+      </ion-content>
+    
+      <ion-footer>
+        <ion-navbar>
+          <ion-buttons>
+            <button large ion-button color="danger" (click)="closeModal()">Cancelar</button>
+          </ion-buttons>
+          <ion-buttons end>
+            <button  large ion-button color="secondary" *ngIf="mostrarBotonRealizarViaje==true" (click)="realizarViaje()">Realizar viaje!</button>
+            <button large ion-button color="secondary" (click)="finalizarViaje()" *ngIf="mostrarBotonFinalizarViaje==true"  >Finalizar viaje!</button>
+          </ion-buttons>
+
+        </ion-navbar>
+      </ion-footer>
+    
+    </div>

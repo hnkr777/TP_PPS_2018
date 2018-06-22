@@ -17,7 +17,9 @@ import { environment } from "../../environments/environment";
 import { AbmChofer } from '../pages';
 import { ContentPage } from '../content/content';
 import { EncuestaChoferPage } from '../encuesta-chofer/encuesta-chofer';
-
+import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider } from '../../providers/providers';
+import { Viaje } from '../../clases/viaje';
+import { VisorViajesChoferPage } from '../../pages/visor-viajes-chofer/visor-viajes-chofer';
 
 @IonicPage()
 @Component({
@@ -29,7 +31,8 @@ export class ChoferPanelPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    private servicioViajes: ServicioViajesProvider
   ) {
 
   }
@@ -46,5 +49,12 @@ export class ChoferPanelPage {
   irVisorViajes() {
     this.navCtrl.push(ContentPage); // escaner QR
   }
+
+  irVisorViajesParaChofer()
+  {
+    this.navCtrl.push(VisorViajesChoferPage);
+  }
+
+
 
 }

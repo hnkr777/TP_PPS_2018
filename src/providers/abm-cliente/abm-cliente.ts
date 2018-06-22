@@ -68,7 +68,14 @@ export class AbmClienteProvider {
       });
       
     }
+
     
+traerVehiculoPorPatente(patente:any): Observable<Usuario[] | any[]> {
+  console.log('ServicioUsuariosProvider.cargarUsuarios()');
+  let coleccionTipadaFirebase = this.objFirebase.collection<any>('vehiculos', ref => ref.where('patente', '==',patente));
+  let ListadoUsuariosObservable = coleccionTipadaFirebase.valueChanges();
+  return ListadoUsuariosObservable;
+}
 
 
 }

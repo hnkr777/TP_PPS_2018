@@ -35,7 +35,6 @@ import { AdminControlPanelPage } from '../pages/admin-control-panel/admin-contro
 import { ChoferPanelPage } from '../pages/chofer-panel/chofer-panel';
 import { VerImagenPage } from '../pages/ver-imagen/ver-imagen';
 import { ContentPage } from '../pages/content/content';
-import { QRScanner } from '@ionic-native/qr-scanner';
 import { AnimatedSplashPage } from '../pages/animated-splash/animated-splash';
 
 import { AltaClientePage } from '../pages/alta-cliente/alta-cliente';
@@ -43,16 +42,21 @@ import { AbmClienteProvider } from '../providers/abm-cliente/abm-cliente';
 import { InicioClientePage } from '../pages/inicio-cliente/inicio-cliente';
 import { AbmClientesPage } from '../pages/abm-clientes/abm-clientes';
 import { AltaClienteParaAdminPage } from '../pages/alta-cliente-para-admin/alta-cliente-para-admin';
+import { QrVehiculoClientePage } from '../pages/qr-vehiculo-cliente/qr-vehiculo-cliente';
+import { QRScanner } from '@ionic-native/qr-scanner';
+import { QrLeerVehiculoClientePage } from '../pages/qr-leer-vehiculo-cliente/qr-leer-vehiculo-cliente';
 import { NuevoViajePage } from '../pages/nuevo-viaje/nuevo-viaje';
 import { ServicioViajesProvider } from '../providers/servicio-viajes/servicio-viajes';
 import { AbmSupervisoresPage } from '../pages/abm-supervisores/abm-supervisores';
 import { AltaSupervisorPage } from '../pages/alta-supervisor/alta-supervisor';
 import { VisorViajesPage } from '../pages/visor-viajes/visor-viajes';
+import { VisorViajesChoferPage } from '../pages/visor-viajes-chofer/visor-viajes-chofer';
 import { SuperControlPanelPage } from '../pages/supervisor-control-panel/supervisor-control-panel';
 import { EncuestaChoferPage } from '../pages/encuesta-chofer/encuesta-chofer';
 import { SupervisorPanelPage } from '../pages/supervisor-panel/supervisor-panel';
 import { ListadoChoferesDisponiblesPage } from '../pages/listado-choferes-disponibles/listado-choferes-disponibles';
 import { ListadoViajesSelecPage } from '../pages/listado-viajes-selec/listado-viajes-selec';
+import { DetalleViajeChoferPage } from '../pages/detalle-viaje-chofer/detalle-viaje-chofer';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -82,30 +86,30 @@ export function provideSettings(storage: Storage) {
     PagesModalPage,
     SpinnerPage,
     PagesModalVotacionPage,
+    AltaClientePage,
+    InicioClientePage,
+    AbmClientesPage,
+    AltaClienteParaAdminPage,
+    QrVehiculoClientePage,
     AltaChoferPage,
     AdminControlPanelPage,
     VerImagenPage,
     ContentPage,
     ChoferPanelPage,
-    //AnimatedSplashPage
-    AltaClientePage,
-    InicioClientePage,
-    AbmClientesPage,
-    AltaClienteParaAdminPage,
+    //AnimatedSplashPage,
     AbmVehiculosPage,
+    QrLeerVehiculoClientePage,
     NuevoViajePage,
     AbmSupervisoresPage,
     AltaSupervisorPage,
     VisorViajesPage,
-    SuperControlPanelPage,
     EncuestaChoferPage,
     ListadoChoferesDisponiblesPage,
     SupervisorPanelPage,
     ListadoViajesSelecPage,
+    VisorViajesChoferPage,
     SuperControlPanelPage,
-    AbmSupervisoresPage,
-    AltaSupervisorPage,
-    VisorViajesPage
+    DetalleViajeChoferPage
   ],
   imports: [
     BrowserModule,
@@ -135,12 +139,14 @@ export function provideSettings(storage: Storage) {
     VerImagenPage,
     ContentPage,
     ChoferPanelPage,
-    //AnimatedSplashPage
+//AnimatedSplashPage,
     AltaClientePage,
     InicioClientePage,
     AbmClientesPage,
     AltaClienteParaAdminPage,
+    QrVehiculoClientePage,
     AbmVehiculosPage,
+    QrLeerVehiculoClientePage,
     NuevoViajePage,
     AbmSupervisoresPage,
     AltaSupervisorPage,
@@ -150,10 +156,8 @@ export function provideSettings(storage: Storage) {
     ListadoChoferesDisponiblesPage,
     SupervisorPanelPage,
     ListadoViajesSelecPage,
-    SuperControlPanelPage,
-    AbmSupervisoresPage,
-    AltaSupervisorPage,
-    VisorViajesPage
+    VisorViajesChoferPage,
+    DetalleViajeChoferPage
   ],
   providers: [
     Api,
@@ -168,6 +172,8 @@ export function provideSettings(storage: Storage) {
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler },
+    AbmClienteProvider,
+    QRScanner,
     ServicioUsuariosProvider,
     ServicioFotosProvider,
     AbmClienteProvider,

@@ -51,7 +51,7 @@ export class NuevoViajePage {
   private verBoton: boolean = false;
   varOri: string = '';
   varDes: string = '';
-
+  private fechaSalida;
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -82,6 +82,9 @@ export class NuevoViajePage {
     }
     this.spin(true);
 
+    //agregado por mauro
+   // this.nuevoViaje.fechaSalida=this.fechaSalida;
+    
     this.servicioViajes.guardarNuevoViaje(this.nuevoViaje).then((data) => {
       this.spin(false);
       this.Msg('Aviso', 'Viaje guardado correctamente.\n');

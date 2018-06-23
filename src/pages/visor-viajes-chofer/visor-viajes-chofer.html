@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>visorViajesChofer</ion-title>
+    <ion-title>{{ 'VISOR_VIAJES_CHOFER_TITLE' | translate }}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -25,6 +25,7 @@
           <!-- <ion-avatar item-start>
             <img [src]="item.foto === undefined ? '../../assets/img/img-usuario.svg' : item.foto">
           </ion-avatar> -->
+          <h2 class="titulo" style="color: rgb(20, 135, 201);">Cliente: {{ item.correoCliente }}</h2>
           <h2 class="titulo" style="color: rgb(201, 107, 20);">Duración: {{item.duracionViajeText}}</h2>
           <p class="titulo" style="color: yellow;">Distancia: {{ item.distanciaText }}</p>
         </ion-item>
@@ -41,6 +42,9 @@
           </p>
           <p>Salida:
             <b>{{ item.fechaSalidaString }}</b>
+          </p>
+          <p>Monto:
+            <b>$ {{ item.monto }}</b>
           </p>
 
         </ion-card-content>

@@ -5,6 +5,7 @@ import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider
 import { Viaje } from '../../clases/viaje';
 import { Geolocation } from '@ionic-native/geolocation';
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
+import { Usuario } from '../../clases/usuario';
 //import * as moment from 'moment';
 
 declare const google; // para google maps
@@ -52,6 +53,8 @@ export class NuevoViajePage {
   varOri: string = '';
   varDes: string = '';
   private fechaSalida;
+  private usuario: Usuario;
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -67,7 +70,8 @@ export class NuevoViajePage {
   ) {
     this.puntos = 0;
     this.nuevoViaje = new Viaje();
-    
+    this.usuario = JSON.parse(sessionStorage.getItem('usuario'));
+    this.nuevoViaje.correoCliente = this.usuario.correo;
   }
 
   guardarViaje() {

@@ -8,7 +8,7 @@ import { Usuario } from "../../clases/usuario";
 //import { ServicioUsuariosProvider } from '../../providers/servicio-usuarios/servicio-usuarios';
 //import { ServicioFotosProvider } from '../../providers/servicio-fotos/servicio-fotos';
 import { TranslateService } from '@ngx-translate/core';
-//import { VerImagenPage } from '../ver-imagen/ver-imagen';
+import { VerImagenPage } from '../ver-imagen/ver-imagen';
 import { AbmClienteProvider } from "../../providers/abm-cliente/abm-cliente";
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 /**
@@ -303,5 +303,23 @@ this.modificarCliente();
 
   closeModal() {
     this.viewCtrl.dismiss();
+  }
+
+  Msg(titulo: string, mensaje: string) {
+    const alerta = this.alertCtrl.create({
+      title: titulo,
+      subTitle: mensaje,
+      cssClass:"miClaseAlert",
+      buttons: ['Aceptar']
+    });
+    alerta.present();
+  }
+  
+  verImagen() {
+    if (this.unCliente.foto !== undefined) {
+      this.modalCtrl.create(VerImagenPage, { imagen: this.unCliente.foto}).present();
+    } else {
+      this.Msg('Aviso', 'Sin foto');
+    }
   }
 }

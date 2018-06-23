@@ -91,13 +91,13 @@ export class NuevoViajePage {
     
     this.servicioViajes.guardarNuevoViaje(this.nuevoViaje).then((data) => {
       this.spin(false);
-      this.Msg('Aviso', 'Viaje guardado correctamente.\n');
+      this.Msg('Aviso', 'Su viaje está en estado pendiente.\n');
       if(this.navCtrl.canGoBack()) {
         this.navCtrl.pop(); // volvemos a la página anterior a pedir viaje
       }
     }).catch((error) => {
       this.spin(false);
-      this.errorMsg('Error:', 'Error inesperado al guardar el viaje:\n'+error);
+      this.errorMsg('Error:', 'Error inesperado al solicitar el viaje:\n'+error);
     });
   }
 

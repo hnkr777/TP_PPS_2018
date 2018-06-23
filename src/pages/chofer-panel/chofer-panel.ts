@@ -20,6 +20,7 @@ import { EncuestaChoferPage } from '../encuesta-chofer/encuesta-chofer';
 import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider } from '../../providers/providers';
 import { Viaje } from '../../clases/viaje';
 import { VisorViajesChoferPage } from '../../pages/visor-viajes-chofer/visor-viajes-chofer';
+import { Usuario } from '../../clases/usuario';
 
 @IonicPage()
 @Component({
@@ -27,6 +28,7 @@ import { VisorViajesChoferPage } from '../../pages/visor-viajes-chofer/visor-via
   templateUrl: 'chofer-panel.html',
 })
 export class ChoferPanelPage {
+  chofer: Usuario;
 
   constructor(
     public navCtrl: NavController, 
@@ -34,7 +36,12 @@ export class ChoferPanelPage {
     public modalCtrl: ModalController,
     private servicioViajes: ServicioViajesProvider
   ) {
+    
+    this.chofer = JSON.parse(sessionStorage.getItem('usuario'));
+    if(this.chofer.estado == 1) {
 
+      //this.chofer.estado = 0;
+    }
   }
 
   ionViewDidLoad() {

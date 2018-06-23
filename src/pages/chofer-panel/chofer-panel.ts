@@ -54,7 +54,7 @@ export class ChoferPanelPage {
   }
 
   irVisorViajes() {
-    this.navCtrl.push(ContentPage); // escaner QR
+    this.navCtrl.push(ContentPage, { data: 'chofer'}); // escaner QR
   }
 
   irVisorViajesParaChofer()

@@ -9,6 +9,8 @@ import { PagesModalPage } from "../pages-modal/pages-modal";
 import { ListadoChoferesDisponiblesPage } from "../listado-choferes-disponibles/listado-choferes-disponibles";
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { TranslateService } from '@ngx-translate/core';
+import { Usuario } from '../../clases/usuario';
+import { ServicioUsuariosProvider } from '../../providers/providers';
 
 
 @IonicPage()
@@ -26,7 +28,8 @@ export class ContentPage {
     public qrScanner: QRScanner, 
     public platform: Platform,
     public viewCtrl : ViewController,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public servUsuarios: ServicioUsuariosProvider
   ) {
     this.quienMeLLama = this.navParams.get('data');
   }
@@ -111,18 +114,30 @@ export class ContentPage {
           /*this.qrScanner.hide(); // hide camera preview
           this.scanSub.unsubscribe(); // stop scanning
           console.log('Escaneo QR finalizado');*/
-          this.navCtrl.setRoot(ListadoChoferesDisponiblesPage);
+          this.navCtrl.push(ListadoChoferesDisponiblesPage);
         }
         else{
           this.Modal("Qr Scan",textoScaneado);
         }
         break;
+      case 'chofer':
+        if(textoScaneado == 'ChoferEmpezarATrabajar') {
+          this.cambiarEstadoChofer();
+          this.navCtrl.pop();
+        }
+      break;
     
       default:
         break;
     }
   }
 
+  cambiarEstadoChofer() {
+    let chofer: Usuario = JSON.parse(sessionStorage.getItem('usuario'));
+    chofer.estado = 1;
+    sessionStorage.setItem('usuario', JSON.stringify(chofer));
+    this.servUsuarios.modificarUsuario(chofer);
+  }
   
   Modal(titulo: string, data: any) {
     this.modalCtrl.create(PagesModalPage, { titulo: titulo, data: data }).present();

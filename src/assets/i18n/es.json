@@ -15,8 +15,10 @@
   "ABM_SUPERVISORES_PANEL_TITLE": "ABM supervisores",
   "NEW_SUPER_TITLE": "Nuevo supervisor",
   "MODIF_SUPER_TITLE": "Modificar supervisor",
+  "SUPER_PANEL_TITLE": "Panel de control Supervisor",
+  "VISOR_VIAJES_CHOFER_TITLE": "Viajes pendientes",
   
-  "": "",
+  "ENCUESTA_TITLE": "Encuesta de vehículo",
   
   "MAP_TITLE": "Mapa",
   "DELETE_BUTTON": "Borrar voto",
@@ -30,6 +32,7 @@
   "PEDIR_VIAJE_BUTTON": "Nuevo viaje",
   "ABM_VEHICULOS_BUTTON": "ABM vehículos",
 
+  "CHOFER_VIAJES_BUTTON": "Viajes pendientes",
   "CHOFER_ENCUESTA_BUTTON": "Encuesta de control",
   "CHOFER_INGRESO_BUTTON": "Empezar a trabajar",
 

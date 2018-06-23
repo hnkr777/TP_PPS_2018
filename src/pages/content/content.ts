@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 // import { MainPage } from '../pages';
 // import { Usuario } from '../../clases/usuario';
 import { PagesModalPage } from "../pages-modal/pages-modal";
+import { ListadoChoferesDisponiblesPage } from "../listado-choferes-disponibles/listado-choferes-disponibles";
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { TranslateService } from '@ngx-translate/core';
 
@@ -17,8 +18,9 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class ContentPage {
   private scanSub;
-
+  public quienMeLLama;
   constructor(
+    public navParams: NavParams,
     public modalCtrl: ModalController, 
     public navCtrl: NavController, 
     public qrScanner: QRScanner, 
@@ -26,7 +28,7 @@ export class ContentPage {
     public viewCtrl : ViewController,
     public alertCtrl: AlertController
   ) {
-    
+    this.quienMeLLama = this.navParams.get('data');
   }
 
   ionViewWillLeave() {
@@ -62,7 +64,8 @@ export class ContentPage {
         this.scanSub = this.qrScanner.scan().subscribe((text: string) => {
           //console.log('Scanned something', text);
           
-          this.Modal('QR code:', text);
+          //this.Modal('QR code:', text);
+          this.queHagoScan(text); // <----- DECIDE QUE HACER
           
           this.qrScanner.hide(); // hide camera preview
           this.scanSub.unsubscribe(); // stop scanning
@@ -100,6 +103,24 @@ export class ContentPage {
       //this.spin(false);
       this.Modal('Error: ', 'Detalles: '+ e);
     });
+  }
+  queHagoScan(textoScaneado:string){
+    switch (this.quienMeLLama) {
+      case "supervisor":
+        if (textoScaneado == "ListaChoferesDisponibles") {
+          /*this.qrScanner.hide(); // hide camera preview
+          this.scanSub.unsubscribe(); // stop scanning
+          console.log('Escaneo QR finalizado');*/
+          this.navCtrl.setRoot(ListadoChoferesDisponiblesPage);
+        }
+        else{
+          this.Modal("Qr Scan",textoScaneado);
+        }
+        break;
+    
+      default:
+        break;
+    }
   }
 
   

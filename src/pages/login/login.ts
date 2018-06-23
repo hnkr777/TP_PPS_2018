@@ -19,8 +19,8 @@ import { InicioClientePage } from "../../pages/inicio-cliente/inicio-cliente";
 import { AbmClientesPage } from '../../pages/abm-clientes/abm-clientes';
 
 import { AbmVehiculosPage } from '../abm-vehiculos/abm-vehiculos';
+import { ListadoChoferesDisponiblesPage } from '../listado-choferes-disponibles/listado-choferes-disponibles';
 import { SuperControlPanelPage } from '../supervisor-control-panel/supervisor-control-panel';
-
 
 @IonicPage()
 @Component({
@@ -64,7 +64,7 @@ export class LoginPage {
         break;
 
       case 2:
-      this.loginFields.correo = "mauro";
+      this.loginFields.correo = "pepeargento@gmail.com";
       this.loginFields.clave = '123';
         break;
 
@@ -97,10 +97,10 @@ export class LoginPage {
         { text: 'administrador (admin)', handler: () => {this.setLog(1);}},
         //{ text: 'invitado', handler: () => {this.setLog(2);}},
         //{ text: 'admin', handler: () => {this.setLog(1);}},
-        { text: 'Cliente (Mauro)', handler: () => {this.setLog(2);}},
+        { text: 'Pepe (cliente)', handler: () => {this.setLog(2);}},
         { text: 'Super (supervisor)', handler: () => {this.setLog(3);}},
         { text: 'Schumacher (chofer)', handler: () => {this.setLog(4);}},
-        { text: 'tester', handler: () => {this.setLog(5);}},
+        { text: 'tester (baneado)', handler: () => {this.setLog(5);}},
         {
           text: 'Cancelar', cssClass: 'btnCancel', role: 'cancel', handler: () => {  }
         }
@@ -177,7 +177,11 @@ export class LoginPage {
   }
     
   goVehiculo(){ 
-    this.navCtrl.push(AbmVehiculosPage,{data:"Alta"});
+    this.navCtrl.push(AbmVehiculosPage,{data:"Lista"});
+  }
+  goListadoChoferes(){
+    //this.navCtrl.push(ContentPage,{data:"supervisor"}); // PROBAR CEL
+    this.navCtrl.push(ListadoChoferesDisponiblesPage); // PROBAR PC
   }
 }
 

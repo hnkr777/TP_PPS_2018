@@ -78,7 +78,7 @@ export class ServicioViajesProvider {
       });
     })
     .catch(function(error) {
-      console.log('Error al modificar el viaje ' + viaje.id + ' - ' + error);
+      console.log('Error al modificar el viaje ' + viaje.fechaRegistro + ' - ' + error);
     });
     
   }

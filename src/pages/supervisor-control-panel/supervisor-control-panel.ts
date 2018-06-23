@@ -19,6 +19,7 @@ import { ContentPage } from '../content/content';
 import { AbmClientesPage } from '../abm-clientes/abm-clientes';
 import { NuevoViajePage } from '../nuevo-viaje/nuevo-viaje';
 import { AbmSupervisoresPage } from '../abm-supervisores/abm-supervisores';
+import { AbmVehiculosPage } from '../abm-vehiculos/abm-vehiculos';
 import { VisorViajesPage } from '../visor-viajes/visor-viajes';
 
 
@@ -57,12 +58,15 @@ export class SuperControlPanelPage {
     this.navCtrl.push(VisorViajesPage);
   }
 
-  irAbmVehiculos() {
-    this.navCtrl.push(PagesModalPage, { titulo: 'ABM vehículos', data: 'No implementado...'});
+  irAbmVehiculos(opt) {
+    this.navCtrl.push(AbmVehiculosPage, { data: opt});
   }
 
   pedirViaje() {
     this.navCtrl.push(NuevoViajePage);
   }
-
+  goListadoChoferes(){
+    this.navCtrl.push(ContentPage,{data:"supervisor"}); // PROBAR CEL
+    //this.navCtrl.push(ListadoChoferesDisponiblesPage); // PROBAR PC
+  }
 }

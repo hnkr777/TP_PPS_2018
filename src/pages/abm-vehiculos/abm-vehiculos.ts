@@ -111,17 +111,19 @@ export class AbmVehiculosPage {
     }).then(msg => {
       this.showSuccess("Vehiculo Modificado Correctamente");
       this.limpiarCampos();
+      this.abmMostrar = "Lista";
     }).catch(error =>{
       console.error(error)
     });
   }
   verificarPatente(patente){
+    let aux = false;
     this.ListaDeVehiculos.forEach(vehiculo => {
       if (vehiculo.patente == patente) {
-        return true;
+        aux = true;
       }
     });
-    return false;
+    return aux;
   }
   buscarPatente(patente){
     console.log("BP "+patente);
@@ -136,6 +138,9 @@ export class AbmVehiculosPage {
         }
         this.desapilarFotos();
         this.patenteEncontrada = true;
+        if (this.abmMostrar == "Lista") {
+          this.abmMostrar = "Mod";
+        }
         aux = true;
       }
     });
@@ -195,6 +200,10 @@ export class AbmVehiculosPage {
       this.abmMostrar = opt;
       this.limpiarCampos();
       
+    }
+    else if (opt == "Lista") {
+      this.abmMostrar = opt;
+      this.limpiarCampos(); 
     }
 
   }

@@ -45,9 +45,9 @@ correo : FormControl = new FormControl("",[Validators.required]);
 clave : FormControl = new FormControl("",[Validators.required]);
 claveRep : FormControl = new FormControl("",[Validators.required]);
 dni : FormControl = new FormControl("",[Validators.required,Validators.minLength(8),Validators.maxLength(8)]);
-domicilio: FormControl = new FormControl("",[Validators.required]);
-sexo : FormControl = new FormControl("",[Validators.required]);
-fechaNacimiento : FormControl = new FormControl("",[Validators.required]);
+//domicilio: FormControl = new FormControl("",[Validators.required]);
+//sexo : FormControl = new FormControl("",[Validators.required]);
+//fechaNacimiento : FormControl = new FormControl("",[Validators.required]);
 
 formAlta: FormGroup= this.builder.group({
 nombre:this.nombre,
@@ -56,9 +56,9 @@ dni:this.dni,
 correo:this.correo,
 clave:this.clave,
 claveRep:this.claveRep,
-domicilio:this.domicilio,
-sexo:this.sexo,
-fechaNacimiento:this.fechaNacimiento
+//domicilio:this.domicilio,
+//sexo:this.sexo,
+//fechaNacimiento:this.fechaNacimiento
 });
 
 guardar()
@@ -66,7 +66,8 @@ guardar()
   this.unCliente.clave=this.formAlta.get("clave").value;
   let claveRep=this.formAlta.get("claveRep").value; 
 
-  if(this.nombre.invalid || this.apellido.invalid || this.correo.invalid || this.clave.invalid || this.claveRep.invalid || this.dni.invalid || this.domicilio.invalid || this.sexo.invalid || this.fechaNacimiento.invalid)
+  //if(this.nombre.invalid || this.apellido.invalid || this.correo.invalid || this.clave.invalid || this.claveRep.invalid || this.dni.invalid || this.domicilio.invalid || this.sexo.invalid || this.fechaNacimiento.invalid)
+    if(this.nombre.invalid || this.apellido.invalid || this.correo.invalid || this.clave.invalid || this.claveRep.invalid || this.dni.invalid)
     {
       const alerta = this.alertCtrl.create({
         title: 'Error!',
@@ -105,9 +106,9 @@ guardar()
     this.unCliente.clave=this.formAlta.get("clave").value;
     this.unCliente.perfil="cliente";
     this.unCliente.activo=2;
-    this.unCliente.domicilio=this.formAlta.get("domicilio").value;
-    this.unCliente.sexo=this.formAlta.get("sexo").value;
-    this.unCliente.fechaNacimiento=this.formAlta.get("fechaNacimiento").value;
+    //this.unCliente.domicilio=this.formAlta.get("domicilio").value;
+    //this.unCliente.sexo=this.formAlta.get("sexo").value;
+    //this.unCliente.fechaNacimiento=this.formAlta.get("fechaNacimiento").value;
     this.unCliente.fechaAlta = (this.fechaAlta.getDate()+ "-" +(this.fechaAlta.getMonth() +1) + "-" +this.fechaAlta.getFullYear());
     console.log(this.unCliente);
     this.Alta(this.unCliente);

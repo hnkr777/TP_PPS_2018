@@ -16,9 +16,11 @@ import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { environment } from "../../environments/environment";
 import { AbmChofer } from '../pages';
 import { ContentPage } from '../content/content';
+import { EncuestaChoferPage } from '../encuesta-chofer/encuesta-chofer';
 import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider } from '../../providers/providers';
 import { Viaje } from '../../clases/viaje';
 import { VisorViajesChoferPage } from '../../pages/visor-viajes-chofer/visor-viajes-chofer';
+import { Usuario } from '../../clases/usuario';
 
 @IonicPage()
 @Component({
@@ -26,6 +28,7 @@ import { VisorViajesChoferPage } from '../../pages/visor-viajes-chofer/visor-via
   templateUrl: 'chofer-panel.html',
 })
 export class ChoferPanelPage {
+  chofer: Usuario;
 
   constructor(
     public navCtrl: NavController, 
@@ -33,28 +36,21 @@ export class ChoferPanelPage {
     public modalCtrl: ModalController,
     private servicioViajes: ServicioViajesProvider
   ) {
+    
+    this.chofer = JSON.parse(sessionStorage.getItem('usuario'));
+    if(this.chofer.estado == 1) {
 
+      //this.chofer.estado = 0;
+    }
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Admin Control Panel Page');
   }
 
-  irAbmChofer() {
-    this.navCtrl.push(AbmChofer);
-  }
-
-  irAbmAdmin() {
-    this.navCtrl.push(PagesModalPage, { titulo: 'ABM admin', data: 'No implementado...'});
-  }
-
-  irAbmCliente() {
-    this.navCtrl.push(PagesModalPage, { titulo: 'ABM cliente', data: 'No implementado...'});
-  }
-
-  irAbmSupervisor() {
-    this.navCtrl.push(PagesModalPage, { titulo: 'ABM supervisor', data: 'No implementado...'});
-    
+  irEncuestaChofer() {
+    //this.navCtrl.push(ContentPage); // escaner QR
+    this.navCtrl.push(EncuestaChoferPage);
   }
 
   irVisorViajes() {

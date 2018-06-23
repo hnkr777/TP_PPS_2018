@@ -1,5 +1,5 @@
 {
-  "name": "PPS_2018_RADIX",
+  "name": "pps_2018_radix",
   "version": "0.0.1",
   "author": "Radix Group",
   "homepage": "https://github.com/hnkr777/TP_PPS_2018.git",
@@ -27,7 +27,7 @@
     "@ionic-native/camera": "4.3.3",
     "@ionic-native/core": "4.7.0",
     "@ionic-native/geolocation": "^4.7.0",
-    "@ionic-native/native-audio": "^4.7.0",
+    "@ionic-native/native-audio": "^4.8.0",
     "@ionic-native/qr-scanner": "4.7.0",
     "@ionic-native/splash-screen": "4.7.0",
     "@ionic-native/status-bar": "4.7.0",
@@ -71,7 +71,9 @@
       "cordova-plugin-qrscanner": {},
       "cordova-plugin-nativeaudio": {},
       "cordova-plugin-camera": {},
-      "cordova-plugin-geolocation": {}
+      "cordova-plugin-geolocation": {
+        "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
+      }
     },
     "platforms": [
       "android"

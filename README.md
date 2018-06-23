@@ -43,7 +43,10 @@ UTN FRA - Práctica profesional - Grupo Radix
 
 1. Apellido: Suppan
 2. Nombre: Mauro
-3. Módulos (objetivos) a desarrollar: Alta de clientes
+3. Módulos (objetivos) a desarrollar: 
+    *Alta de clientes
+    *Qr del vehiculo para clientes
+    *Tomar viaje
 4. Fecha de inicio: 26/05/2018
 5. Fecha de fin: 
 6. Branch (si tiene):

@@ -14,6 +14,8 @@ import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { QrVehiculoClientePage } from '../../pages/qr-vehiculo-cliente/qr-vehiculo-cliente';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 import { QrLeerVehiculoClientePage } from '../../pages/qr-leer-vehiculo-cliente/qr-leer-vehiculo-cliente';
+import { NuevoViajePage } from '../nuevo-viaje/nuevo-viaje';
+import { PagesModalPage } from '../pages-modal/pages-modal';
 /**
  * Generated class for the InicioClientePage page.
  *
@@ -60,7 +62,9 @@ constructor(public navCtrl: NavController,
     this.foto=this.usuarioDatos.foto;
   }
 
- 
+  pedirViaje() {
+    this.navCtrl.push(NuevoViajePage);
+  }
 
   datosChofer()
   {        window.document.querySelector('ion-content').classList.add('transparentBody');
@@ -70,7 +74,12 @@ constructor(public navCtrl: NavController,
 
   accederEncuesta()
   {
+    this.modalCtrl.create(PagesModalPage, { titulo: 'Aviso', data: 'No implementado.'}).present();
+  }
 
+  modificar()
+  {
+    alert("No implementado todavia. Aca se va a poder modificar la foto del cliente y la clave");
   }
 
 }

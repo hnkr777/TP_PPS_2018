@@ -52,10 +52,15 @@ import { AltaSupervisorPage } from '../pages/alta-supervisor/alta-supervisor';
 import { VisorViajesPage } from '../pages/visor-viajes/visor-viajes';
 import { VisorViajesChoferPage } from '../pages/visor-viajes-chofer/visor-viajes-chofer';
 import { SuperControlPanelPage } from '../pages/supervisor-control-panel/supervisor-control-panel';
+import { EncuestaChoferPage } from '../pages/encuesta-chofer/encuesta-chofer';
+import { SupervisorPanelPage } from '../pages/supervisor-panel/supervisor-panel';
+import { ListadoChoferesDisponiblesPage } from '../pages/listado-choferes-disponibles/listado-choferes-disponibles';
+import { ListadoViajesSelecPage } from '../pages/listado-viajes-selec/listado-viajes-selec';
 import { DetalleViajeChoferPage } from '../pages/detalle-viaje-chofer/detalle-viaje-chofer';
-
+import {NativeAudio} from '@ionic-native/native-audio';
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
+
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -92,17 +97,16 @@ export function provideSettings(storage: Storage) {
     ContentPage,
     ChoferPanelPage,
     //AnimatedSplashPage,
-    //AnimatedSplashPage
-    AltaClientePage,
-    InicioClientePage,
-    AbmClientesPage,
-    AltaClienteParaAdminPage,
     AbmVehiculosPage,
     QrLeerVehiculoClientePage,
     NuevoViajePage,
     AbmSupervisoresPage,
     AltaSupervisorPage,
     VisorViajesPage,
+    EncuestaChoferPage,
+    ListadoChoferesDisponiblesPage,
+    SupervisorPanelPage,
+    ListadoViajesSelecPage,
     VisorViajesChoferPage,
     SuperControlPanelPage,
     DetalleViajeChoferPage
@@ -143,13 +147,16 @@ export function provideSettings(storage: Storage) {
     QrVehiculoClientePage,
     AbmVehiculosPage,
     QrLeerVehiculoClientePage,
-    AbmVehiculosPage,
     NuevoViajePage,
     AbmSupervisoresPage,
     AltaSupervisorPage,
     VisorViajesPage,
-    VisorViajesChoferPage,
     SuperControlPanelPage,
+    EncuestaChoferPage,
+    ListadoChoferesDisponiblesPage,
+    SupervisorPanelPage,
+    ListadoViajesSelecPage,
+    VisorViajesChoferPage,
     DetalleViajeChoferPage
   ],
   providers: [
@@ -170,7 +177,8 @@ export function provideSettings(storage: Storage) {
     ServicioUsuariosProvider,
     ServicioFotosProvider,
     AbmClienteProvider,
-    ServicioViajesProvider
+    ServicioViajesProvider,
+    NativeAudio
   ]
 })
 export class AppModule { }

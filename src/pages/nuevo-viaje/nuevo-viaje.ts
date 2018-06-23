@@ -5,6 +5,7 @@ import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider
 import { Viaje } from '../../clases/viaje';
 import { Geolocation } from '@ionic-native/geolocation';
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
+import { Usuario } from '../../clases/usuario';
 //import * as moment from 'moment';
 
 declare const google; // para google maps
@@ -52,6 +53,8 @@ export class NuevoViajePage {
   varOri: string = '';
   varDes: string = '';
   private fechaSalida;
+  private usuario: Usuario;
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -67,7 +70,8 @@ export class NuevoViajePage {
   ) {
     this.puntos = 0;
     this.nuevoViaje = new Viaje();
-    
+    this.usuario = JSON.parse(sessionStorage.getItem('usuario'));
+    this.nuevoViaje.correoCliente = this.usuario.correo;
   }
 
   guardarViaje() {
@@ -87,13 +91,13 @@ export class NuevoViajePage {
     
     this.servicioViajes.guardarNuevoViaje(this.nuevoViaje).then((data) => {
       this.spin(false);
-      this.Msg('Aviso', 'Viaje guardado correctamente.\n');
+      this.Msg('Aviso', 'Su viaje está en estado pendiente.\n');
       if(this.navCtrl.canGoBack()) {
         this.navCtrl.pop(); // volvemos a la página anterior a pedir viaje
       }
     }).catch((error) => {
       this.spin(false);
-      this.errorMsg('Error:', 'Error inesperado al guardar el viaje:\n'+error);
+      this.errorMsg('Error:', 'Error inesperado al solicitar el viaje:\n'+error);
     });
   }
 

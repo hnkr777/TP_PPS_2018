@@ -20,6 +20,7 @@ import { AbmClientesPage } from '../abm-clientes/abm-clientes';
 import { NuevoViajePage } from '../nuevo-viaje/nuevo-viaje';
 import { AbmSupervisoresPage } from '../abm-supervisores/abm-supervisores';
 import { VisorViajesPage } from '../visor-viajes/visor-viajes';
+import { AbmVehiculosPage } from '../abm-vehiculos/abm-vehiculos';
 
 
 @IonicPage()
@@ -37,7 +38,7 @@ export class AdminControlPanelPage {
 
   }
 
-  ionViewDidLoad() { //this.navCtrl.push(ContentPage); // escaner QR para test
+  ionViewDidLoad() {
     console.log('ionViewDidLoad Admin Control Panel Page');
   }
 
@@ -56,9 +57,9 @@ export class AdminControlPanelPage {
   irVisorViajes() {
     this.navCtrl.push(VisorViajesPage);
   }
-
+  
   irAbmVehiculos() {
-    this.navCtrl.push(PagesModalPage, { titulo: 'ABM vehículos', data: 'No implementado...'});
+    this.navCtrl.push(AbmVehiculosPage, {data:"Lista"});
   }
 
   pedirViaje() {

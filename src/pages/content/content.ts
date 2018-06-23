@@ -11,6 +11,8 @@ import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { TranslateService } from '@ngx-translate/core';
 import { Usuario } from '../../clases/usuario';
 import { ServicioUsuariosProvider } from '../../providers/providers';
+import { VisorViajesChoferPage } from '../visor-viajes-chofer/visor-viajes-chofer';
+import { ChoferPanelPage } from '../chofer-panel/chofer-panel';
 
 
 @IonicPage()
@@ -115,15 +117,18 @@ export class ContentPage {
           this.scanSub.unsubscribe(); // stop scanning
           console.log('Escaneo QR finalizado');*/
           this.navCtrl.push(ListadoChoferesDisponiblesPage);
-        }
-        else{
-          this.Modal("Qr Scan",textoScaneado);
+        } else {
+          this.errorMsg('Error', 'QR no reconocido');
         }
         break;
       case 'chofer':
         if(textoScaneado == 'ChoferEmpezarATrabajar') {
           this.cambiarEstadoChofer();
           this.navCtrl.pop();
+          //this.navCtrl.push(VisorViajesChoferPage);
+          this.navCtrl.setRoot(ChoferPanelPage);
+        } else {
+          this.errorMsg('Error', 'QR no reconocido');
         }
       break;
     

@@ -12,13 +12,14 @@
   <!-- <button class="titulo" (click)="irAbmAdmin()" ion-button round icon-left color="primary" block large>
     <ion-icon name="people"></ion-icon>{{ 'ABM_ADMINS_BUTTON' | translate }}</button>
   <br> -->
-  <button *ngIf="chofer.estado==0" class="titulo" (click)="irVisorViajes()" ion-button round icon-left color="secondary" block large>
+  <button *ngIf="chofer.estado==0" class="titulo" (click)="irEmpezarATrabajar()" ion-button round icon-left color="secondary" block large>
     <ion-icon name="car"></ion-icon>{{ 'CHOFER_INGRESO_BUTTON' | translate }}</button>
   <br>
   <button class="titulo" (click)="irEncuestaChofer()" ion-button round icon-left color="primary" block large>
     <ion-icon name="clipboard"></ion-icon>{{ 'CHOFER_ENCUESTA_BUTTON' | translate }}</button>
     <br>
-    <button *ngIf="chofer.estado!=0" class="titulo" (click)="irVisorViajesParaChofer()" ion-button round icon-left color="danger" block large>
+    <!-- <button *ngIf="chofer.estado!=0" class="titulo" (click)="irVisorViajesParaChofer()" ion-button round icon-left color="danger" block large></button> -->
+    <button class="titulo" (click)="irVisorViajesParaChofer()" ion-button round icon-left color="danger" block large>
         <ion-icon name="car"></ion-icon>{{ 'CHOFER_VIAJES_BUTTON' | translate }}</button>
     
 </ion-content>

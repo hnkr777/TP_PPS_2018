@@ -34,18 +34,26 @@ export class ChoferPanelPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     public modalCtrl: ModalController,
-    private servicioViajes: ServicioViajesProvider
+    private servicioViajes: ServicioViajesProvider,
+    private servUsuarios: ServicioUsuariosProvider
   ) {
     
     this.chofer = JSON.parse(sessionStorage.getItem('usuario'));
-    if(this.chofer.estado == 1) {
+    /*if(this.chofer.estado !== 2) {
+      this.chofer.estado = 0;
+      this.cambiarEstadoChofer();
+    }*/
+  }
 
-      //this.chofer.estado = 0;
-    }
+  
+  cambiarEstadoChofer() {
+    sessionStorage.setItem('usuario', JSON.stringify(this.chofer));
+    this.servUsuarios.modificarUsuario(this.chofer);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Admin Control Panel Page');
+    this.chofer = JSON.parse(sessionStorage.getItem('usuario'));
   }
 
   irEncuestaChofer() {
@@ -53,7 +61,7 @@ export class ChoferPanelPage {
     this.navCtrl.push(EncuestaChoferPage);
   }
 
-  irVisorViajes() {
+  irEmpezarATrabajar() {
     this.navCtrl.push(ContentPage, { data: 'chofer'}); // escaner QR
   }
 

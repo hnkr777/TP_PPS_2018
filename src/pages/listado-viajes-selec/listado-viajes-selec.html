@@ -34,13 +34,13 @@
         <b>{{item.destino}}</b>
       </p>
       <p>Salida:
-        <b>{{ item.fechaSalida }}</b>
+        <b>{{ item.fechaSalidaString }}</b>
       </p>
       <p>Pedido:
-        <b>{{item.fechaRegistro}}</b>
+        <b>{{item.fechaRegistroString }}</b>
       </p>
       <p>Estado:
-        <b>{{item.estado}}</b>
+        <b>{{ (item.estado == 0 ? 'Pendiente' : (item.estado == 1 ? 'En viaje' : 'Finalizado' ) ) }}</b>
       </p>
     </ion-card-content>
 

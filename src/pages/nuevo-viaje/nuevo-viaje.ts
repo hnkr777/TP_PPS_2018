@@ -160,7 +160,7 @@ export class NuevoViajePage {
       this.map.setCenter({ lat: resp.coords.latitude, lng: resp.coords.longitude });
       //this.marcarUbicacion(resp.coords.latitude, resp.coords.longitude);
     }).catch((error) => {
-      this.errorMsg('GPS', 'Error al leer el GPS. \n' + error);
+      this.errorMsg('GPS', 'Error al leer el GPS. \n' + JSON.stringify(error));
     });
   }
   
@@ -235,8 +235,8 @@ export class NuevoViajePage {
           'Distancia: ' + c.distanciaText + r +
           'Duración: ' + c.duracionViajeText + r +
           'Origen: ' + c.origen + r +
-          'Destino: ' + c.destino + r +
-          'Monto: $ ' + c.monto + r;
+          'Destino: ' + c.destino + r;
+          //'Monto: $ ' + c.monto + r;
     this.Msg('Info Viaje:', buf);
   }
 

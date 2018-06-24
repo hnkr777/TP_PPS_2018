@@ -67,7 +67,7 @@ export class SuperControlPanelPage {
     this.navCtrl.push(NuevoViajePage);
   }
   goListadoChoferes(){
-    //this.navCtrl.push(ContentPage,{data:"supervisor"}); // PROBAR CEL
-    this.navCtrl.push(ListadoChoferesDisponiblesPage); // PROBAR PC
+    this.navCtrl.push(ContentPage,{data:"supervisor"}); // PROBAR CEL
+    //this.navCtrl.push(ListadoChoferesDisponiblesPage); // PROBAR PC
   }
 }

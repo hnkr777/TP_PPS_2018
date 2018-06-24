@@ -116,7 +116,7 @@ export class ContentPage {
           /*this.qrScanner.hide(); // hide camera preview
           this.scanSub.unsubscribe(); // stop scanning
           console.log('Escaneo QR finalizado');*/
-          this.navCtrl.push(ListadoChoferesDisponiblesPage);
+          this.navCtrl.setRoot(ListadoChoferesDisponiblesPage);
         } else {
           this.errorMsg('Error', 'QR no reconocido');
         }
@@ -124,9 +124,8 @@ export class ContentPage {
       case 'chofer':
         if(textoScaneado == 'ChoferEmpezarATrabajar') {
           this.cambiarEstadoChofer();
-          this.navCtrl.pop();
-          //this.navCtrl.push(VisorViajesChoferPage);
           this.navCtrl.setRoot(ChoferPanelPage);
+          //this.navCtrl.push(VisorViajesChoferPage);
         } else {
           this.errorMsg('Error', 'QR no reconocido');
         }

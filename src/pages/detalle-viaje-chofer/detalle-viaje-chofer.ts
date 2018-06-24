@@ -8,7 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider, Settings } from '../../providers/providers';
 import { Geolocation } from '@ionic-native/geolocation';
 
-import * as moment from 'moment';
+//import * as moment from 'moment';
 declare const google; // para google maps
 /**
  * Generated class for the DetalleViajeChoferPage page.
@@ -27,12 +27,20 @@ export class DetalleViajeChoferPage {
   @ViewChild('directionsPanel') directionsPanel: ElementRef;
   map: any;
 
-viaje;
-usuario;
-mostrarBotonRealizarViaje;
-mostrarBotonFinalizarViaje;
+  viaje;
+  usuario;
+  mostrarBotonRealizarViaje;
+  mostrarBotonFinalizarViaje;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public viewCtrl: ViewController,private geolocation: Geolocation,private servicioViajes: ServicioViajesProvider,private servicioUsuarios:ServicioUsuariosProvider,public alertCtrl: AlertController) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public viewCtrl: ViewController,
+    private geolocation: Geolocation,
+    private servicioViajes: ServicioViajesProvider,
+    private servicioUsuarios:ServicioUsuariosProvider,
+    public alertCtrl: AlertController
+  ) {
 
   }
 
@@ -40,71 +48,55 @@ mostrarBotonFinalizarViaje;
     console.log('ionViewDidLoad DetalleViajeChoferPage');
     this.viaje = this.navParams.get('viaje');
     console.log(this.viaje);
-    if(this.viaje.estado==1)
-      {
-        this.mostrarBotonRealizarViaje=false;
-        this.mostrarBotonFinalizarViaje=true;
-      }
-      else
-        {
-          this.mostrarBotonRealizarViaje=true;
-          this.mostrarBotonFinalizarViaje=false;
-        }
-      
+    if( this.viaje.estado == 1 ) {
+      this.mostrarBotonRealizarViaje=false;
+      this.mostrarBotonFinalizarViaje=true;
+    } else {
+      this.mostrarBotonRealizarViaje=true;
+      this.mostrarBotonFinalizarViaje=false;
+    }
     this.loadMap();
     this.startNavigating();
-    
   }
 
-  loadMap(){
+  loadMap() {
+    let latLng = new google.maps.LatLng(-34.9290, 138.6010);
     
-           let latLng = new google.maps.LatLng(-34.9290, 138.6010);
-    
-           let mapOptions = {
-             center: latLng,
-             zoom: 15,
-             mapTypeId: google.maps.MapTypeId.ROADMAP
-           }
-    
-           this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-    
-       }
-    
-       startNavigating(){
-    
-           let directionsService = new google.maps.DirectionsService;
-           let directionsDisplay = new google.maps.DirectionsRenderer;
-    
-           directionsDisplay.setMap(this.map);
-           directionsDisplay.setPanel(this.directionsPanel.nativeElement);
-    
-      
-            directionsService.route({
-              origin: {lat: this.viaje.miLatitudChofer, lng: this.viaje.miLongitudChofer},
-              destination: {lat: this.viaje.latDestino, lng: this.viaje.longDestino}, 
-              waypoints: [
-                {
-                  location: {lat: this.viaje.latOrigen, lng: this.viaje.longOrigen},
-                  stopover: true
-                }],
-  
-                travelMode: 'DRIVING',
-             }, (res, status) => {
-               if(status == google.maps.DirectionsStatus.OK){
-                   directionsDisplay.setDirections(res);
-               } else {
-                   console.warn(status);
-               }
-    
-           });
-    
-       }
+    let mapOptions = {
+      center: latLng,
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+  }
 
-       
-       
+  startNavigating() {
+    let directionsService = new google.maps.DirectionsService;
+    let directionsDisplay = new google.maps.DirectionsRenderer;
+
+    directionsDisplay.setMap(this.map);
+    directionsDisplay.setPanel(this.directionsPanel.nativeElement);
+
+    directionsService.route({
+      origin: {lat: this.viaje.miLatitudChofer, lng: this.viaje.miLongitudChofer},
+      destination: {lat: this.viaje.latDestino, lng: this.viaje.longDestino}, 
+      waypoints: [{
+        location: {lat: this.viaje.latOrigen, lng: this.viaje.longOrigen},
+        stopover: true
+      }],
+      travelMode: 'DRIVING',
+      },
+      (res, status) => {
+        if(status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(res);
+        } else {
+            console.warn(status);
+        }
+      }
+    );
+  }
       
-       realizarViaje()
-       {
+  realizarViaje() {
         this.usuario = JSON.parse(sessionStorage.getItem("usuario"));
          console.log(this.usuario);
         

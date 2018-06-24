@@ -39,12 +39,18 @@ export class ChoferPanelPage {
   ) {
     
     this.chofer = JSON.parse(sessionStorage.getItem('usuario'));
-    /*if(this.chofer.estado !== 2) {
-      this.chofer.estado = 0;
-      this.cambiarEstadoChofer();
-    }*/
+    if(this.chofer == undefined) {
+      console.error('Error al cargar el usuario');
+    }
+    console.log('Estado: '+this.chofer.estado);
   }
 
+  irCerrarSesion() {
+    if(this.chofer.estado == 1) {
+      this.chofer.estado = 0;
+      this.cambiarEstadoChofer();
+    }
+  }
   
   cambiarEstadoChofer() {
     sessionStorage.setItem('usuario', JSON.stringify(this.chofer));

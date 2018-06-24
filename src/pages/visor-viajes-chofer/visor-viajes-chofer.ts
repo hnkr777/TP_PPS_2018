@@ -65,17 +65,17 @@ export class VisorViajesChoferPage {
 
     }
 
-    ubicacionActual(){
+    ubicacionActual() {
       this.geolocation.getCurrentPosition().then((resp) => {
         console.log("latituddddd");
         console.log(resp.coords.latitude);
         this.miLatitudChofer=resp.coords.latitude;
         this.miLongitudChofer=resp.coords.longitude;
         this.filtrarViajesTest();
-       }).catch((error) => {
-         console.log('Error getting location', error);
-       });
-      }
+      }).catch((error) => {
+        console.log('Error getting location', error);
+      });
+    }
 
 
       filtrarViajesTest() {
@@ -107,7 +107,7 @@ export class VisorViajesChoferPage {
                 {
               if( data[i].correoChofer=="vacio"||data[i].correoChofer==""||data[i].correoChofer==undefined)
               {
-              this.listaViajes.push(data[i]);
+                this.listaViajes.push(data[i]);
               }
             }
             }
@@ -155,6 +155,5 @@ export class VisorViajesChoferPage {
       this.spinner.dismiss();
       this.spinner = undefined;
     }
-   }
-
+  }
 }

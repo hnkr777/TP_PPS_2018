@@ -91,6 +91,10 @@ export class EncuestaChoferPage {
     });
   }
 
+  accionAceptar() {
+    
+  }
+
   ngOnChanges() {
     console.log('Ng All Changes');
   }

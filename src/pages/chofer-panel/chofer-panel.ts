@@ -63,8 +63,8 @@ export class ChoferPanelPage {
   }
 
   irEncuestaChofer() {
-    //this.navCtrl.push(ContentPage); // escaner QR
-    this.navCtrl.push(EncuestaChoferPage);
+    this.navCtrl.push(ContentPage, { data: 'encuesta_chofer'}); // para test en celular
+    //this.navCtrl.push(EncuestaChoferPage); // para test en PC
   }
 
   irEmpezarATrabajar() {

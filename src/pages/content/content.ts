@@ -13,6 +13,7 @@ import { Usuario } from '../../clases/usuario';
 import { ServicioUsuariosProvider } from '../../providers/providers';
 import { VisorViajesChoferPage } from '../visor-viajes-chofer/visor-viajes-chofer';
 import { ChoferPanelPage } from '../chofer-panel/chofer-panel';
+import { EncuestaChoferPage } from '../encuesta-chofer/encuesta-chofer';
 
 
 @IonicPage()
@@ -121,11 +122,21 @@ export class ContentPage {
           this.errorMsg('Error', 'QR no reconocido');
         }
         break;
+
       case 'chofer':
         if(textoScaneado == 'ChoferEmpezarATrabajar') {
           this.cambiarEstadoChofer();
           this.navCtrl.setRoot(ChoferPanelPage);
           //this.navCtrl.push(VisorViajesChoferPage);
+        } else {
+          this.errorMsg('Error', 'QR no reconocido');
+        }
+      break;
+
+      case 'encuesta_chofer':
+        if(textoScaneado == 'ChoferEncuestaControl') {
+          this.closeModal();
+          this.navCtrl.setRoot(EncuestaChoferPage);
         } else {
           this.errorMsg('Error', 'QR no reconocido');
         }

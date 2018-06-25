@@ -154,6 +154,7 @@ export class NuevoViajePage {
       this.destino = data.routes[0].legs[0].end_address;
       this.nuevoViaje.origen = this.origen;
       this.nuevoViaje.destino = this.destino;
+      this.nuevoViaje.nombreCliente = this.usuario.nombre + ' ' + this.usuario.apellido;
 
       this.nuevoViaje.monto = this.calcularMonto(this.nuevoViaje.distancia, this.nuevoViaje.duracionViaje);
       this.infoViaje();

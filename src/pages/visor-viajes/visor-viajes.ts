@@ -20,7 +20,7 @@ import { Viaje } from '../../clases/viaje';
 })
 export class VisorViajesPage {
   public listaViajes: any;
-  private viaje: Viaje;
+  private usuarios: Usuario[];
   public filtro: string;
 
   constructor(
@@ -30,16 +30,27 @@ export class VisorViajesPage {
     private servicioViajes: ServicioViajesProvider,
     public modalCtrl: ModalController) {
       this.filtro = '0';
+      //this.loadClientNames();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad VisorViajesPage');
-    let usuarios: any;
-    let ob = this.servicioViajes.traerViajes().subscribe(data => { // la lista se va a actualizar cada vez que cambie la tabla usuarios de firebase
-      //console.log('data: ' + JSON.stringify(data));
-      this.listaViajes = data;
-      
+    let ob = this.servicioViajes.traerViajes().subscribe(viajes => { // la lista se va a actualizar cada vez que cambie la tabla usuarios de firebase
+      //console.log('viajes: ' + JSON.stringify(viajes));
+      /*for (let i = 0; i < viajes.length; i++) {
+        let usuario: Usuario = this.usuarios.find( e => e.correo == viajes[i].correoCliente );
+        viajes[i].nombreCliente = ( usuario !== undefined ? usuario.nombre + ' ' + usuario.apellido : '');
+      }*/
+      this.listaViajes = viajes;
       //ob.unsubscribe();
+    });
+  }
+
+  // cargamos los clientes para obtener despues los nombres, deprecada
+  loadClientNames() {
+    let ob = this.servicioUsuarios.traerUsuarios().subscribe(data => {
+      this.usuarios = data;
+      ob.unsubscribe();
     });
   }
 
@@ -108,6 +119,8 @@ export class VisorViajesPage {
           default:
             break;
         }
+        //let usuario: Usuario = this.usuarios.find( e => e.correo == data[i].correoCliente );
+        //data[i].nombreCliente = ( usuario !== undefined ? usuario.nombre + ' ' + usuario.apellido : '');
       }
       console.log('Cantidad viajes: ' + this.listaViajes.length);
       ob.unsubscribe();

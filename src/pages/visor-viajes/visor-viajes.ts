@@ -21,6 +21,7 @@ import { Viaje } from '../../clases/viaje';
 export class VisorViajesPage {
   public listaViajes: any;
   private viaje: Viaje;
+  public filtro: string;
 
   constructor(
     public navCtrl: NavController, 
@@ -28,6 +29,7 @@ export class VisorViajesPage {
     private servicioUsuarios: ServicioUsuariosProvider,
     private servicioViajes: ServicioViajesProvider,
     public modalCtrl: ModalController) {
+      this.filtro = '0';
   }
 
   ionViewDidLoad() {
@@ -35,10 +37,9 @@ export class VisorViajesPage {
     let usuarios: any;
     let ob = this.servicioViajes.traerViajes().subscribe(data => { // la lista se va a actualizar cada vez que cambie la tabla usuarios de firebase
       //console.log('data: ' + JSON.stringify(data));
-
       this.listaViajes = data;
-      //ob.unsubscribe();
       
+      //ob.unsubscribe();
     });
   }
 
@@ -50,7 +51,9 @@ export class VisorViajesPage {
     document.getElementById('carta').classList.remove('disabled');
   }
 
-  filtrarViajesTest() {
+  filtrarViajes() {
+    console.log('Filtro: ' +this.filtro);
+    
     let now: number = Date.now();
     now += 30 * 60 * 1000; // cantidad de minutos * segundos (en 1 minuto) * milesimas de segundo (en 1 segundo)
     //console.log('now: ' + now.toString());
@@ -61,8 +64,49 @@ export class VisorViajesPage {
       this.listaViajes = new Array<Viaje>();
 
       for(let i: number = 0; i < data.length; i++) {
-        if(data[i].fechaSalida < now ) {
-          this.listaViajes.push(data[i]);
+        switch (this.filtro) {
+          case '-2': // viajes pendientes y post datados (más allá de 30 minutos)
+            if(data[i].fechaSalida > now && data[i].estado == 0 ) {
+              this.listaViajes.push(data[i]);
+            }
+          break;
+
+          case '-1': // todos los viajes
+            this.listaViajes.push(data[i]);
+          break;
+
+          case '0': // viajes pendientes
+            if(data[i].fechaSalida < now && data[i].estado == 0 ) {
+              this.listaViajes.push(data[i]);
+            }
+          break;
+
+          case '1': // viajes en curso
+            if( data[i].estado == 1 ) {
+              this.listaViajes.push(data[i]);
+            }
+          break;
+
+          case '2': // viajes finalizados
+            if( data[i].estado == 2 ) {
+              this.listaViajes.push(data[i]);
+            }
+          break;
+
+          case '3': // viajes cancelados por el cliente
+            if( data[i].estado == 3 ) {
+              this.listaViajes.push(data[i]);
+            }
+          break;
+
+          case '4': // viajes cancelados por el chofer
+            if( data[i].estado == 4 ) {
+              this.listaViajes.push(data[i]);
+            }
+          break;
+        
+          default:
+            break;
         }
       }
       console.log('Cantidad viajes: ' + this.listaViajes.length);

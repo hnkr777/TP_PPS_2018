@@ -96,6 +96,7 @@ export class VisorViajesChoferPage {
                 {
                   this.listaViajes.push(data[i]);
                   viajePendiente=1;
+                  
                 }
               //me fijo si tengo un viaje en curso
               if(data[i].correoChofer==this.usuario.correo && data[i].estado==1 )

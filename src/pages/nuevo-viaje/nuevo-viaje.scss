@@ -35,4 +35,26 @@ nuevo-viaje {
     .chip {
         display: flex;
     }
+
+    #aceptar {
+        bottom: 35px;
+        position: absolute;
+        right: 60px;
+        
+    }
+
+    .popover {
+        background: rgb(218, 218, 218)!important;
+        color: rgb(0, 0, 0);
+        position: absolute;
+        height: fit-content;
+        z-index: 100000;
+        padding: 10px;
+        cursor: pointer;
+        display: none;
+        border-radius: 10px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: black;
+    }
 }

@@ -20,6 +20,8 @@ import { AbmClientesPage } from '../../pages/abm-clientes/abm-clientes';
 
 import { AbmVehiculosPage } from '../abm-vehiculos/abm-vehiculos';
 import { ListadoChoferesDisponiblesPage } from '../listado-choferes-disponibles/listado-choferes-disponibles';
+import { EncuestaSupervisorPage } from '../encuesta-supervisor/encuesta-supervisor';
+import { EncuestaChoferPage } from '../encuesta-chofer/encuesta-chofer';
 import { SuperControlPanelPage } from '../supervisor-control-panel/supervisor-control-panel';
 
 @IonicPage()
@@ -64,7 +66,7 @@ export class LoginPage {
         break;
 
       case 2:
-      this.loginFields.correo = "mauro";
+      this.loginFields.correo = "pepeargento@gmail.com";
       this.loginFields.clave = '123';
         break;
 
@@ -97,10 +99,10 @@ export class LoginPage {
         { text: 'administrador (admin)', handler: () => {this.setLog(1);}},
         //{ text: 'invitado', handler: () => {this.setLog(2);}},
         //{ text: 'admin', handler: () => {this.setLog(1);}},
-        { text: 'Cliente (Mauro)', handler: () => {this.setLog(2);}},
+        { text: 'Pepe (cliente)', handler: () => {this.setLog(2);}},
         { text: 'Super (supervisor)', handler: () => {this.setLog(3);}},
         { text: 'Schumacher (chofer)', handler: () => {this.setLog(4);}},
-        { text: 'tester', handler: () => {this.setLog(5);}},
+        { text: 'tester (baneado)', handler: () => {this.setLog(5);}},
         {
           text: 'Cancelar', cssClass: 'btnCancel', role: 'cancel', handler: () => {  }
         }
@@ -135,6 +137,8 @@ export class LoginPage {
         toast.present();
       }
     });
+
+
   }
   
   // esta es la función principal de ruteo por perfil, 
@@ -160,7 +164,7 @@ export class LoginPage {
 
       case 'cliente':
         console.log('Bienvenido cliente ' + usuario.correo);
-        this.navCtrl.setRoot(AbmClientesPage);
+        this.navCtrl.setRoot(InicioClientePage);
       break;
     
       default:
@@ -178,8 +182,12 @@ export class LoginPage {
     this.navCtrl.push(AbmVehiculosPage,{data:"Lista"});
   }
   goListadoChoferes(){
-    this.navCtrl.push(ContentPage,{data:"supervisor"}); // PROBAR CEL
+    this.navCtrl.push(ContentPage,{data:"supervisorLC"}); // PROBAR CEL
     //this.navCtrl.push(ListadoChoferesDisponiblesPage); // PROBAR PC
   }
+  goEncuesta(){
+    this.navCtrl.push(ContentPage,{data:"supervisorEC"}); // PROBAR CEL
+    //this.navCtrl.push(EncuestaSupervisorPage); // PROBAR PC
+    //this.navCtrl.push(EncuestaChoferPage); // PROBAR PC
+  }
 }
-

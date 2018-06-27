@@ -4,7 +4,7 @@ import { SupervisorPanelPage } from './supervisor-panel';
 
 @NgModule({
   declarations: [
-    SupervisorPanelPage,
+    //SupervisorPanelPage,
   ],
   imports: [
     IonicPageModule.forChild(SupervisorPanelPage),

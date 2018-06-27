@@ -22,6 +22,7 @@ export class AbmVehiculosPage {
   foto1 = "no";
   foto2 = "no";
   foto3 = "no";
+  is2016 = true;
   public vehiculo = {
     patente: "",
     modelo: "",
@@ -30,6 +31,9 @@ export class AbmVehiculosPage {
     activo: "1"
     //qr: "",
   }
+  patenteCampo1 = "";
+  patenteCampo2 = "";
+  patenteCampo3 = "";
   patenteABuscar = "";
   patenteEncontrada = false;
   coleccionTipadaFirebase:AngularFirestoreCollection<vehiculo>;
@@ -56,10 +60,44 @@ export class AbmVehiculosPage {
     })
     console.log("fin de ionViewDidEnter");
   }
+  //Para que los campos input sean solo letras
+  public onKeyUpLetter(event: any, opt:string) {
+    let newValue = event.target.value;
+    let regExp = new RegExp('^[A-Za-z]+$');
+    if (! regExp.test(newValue)) {
+      event.target.value = newValue.slice(0, -1);
+      switch (opt) {
+        case "campo1":
+          this.patenteCampo1 = "";
+          break;
+        case "campo3":
+          this.patenteCampo3 = "";
+          break;
+        default:
+          break;
+      }
+    }
+  }
+  //Para que los campos input sean solo numeros
+  public onKeyUpNumber(event: any,opt:string) {
+    let newValue = event.target.value;
+    let regExp = new RegExp('^[0-9]+$');
+    if (! regExp.test(newValue)) {
+      event.target.value = newValue.slice(0, -1);
+      switch (opt) {
+        case "campo2":
+          this.patenteCampo2 = "";
+          break;
+        default:
+          break;
+      }
+    }
+  }
   ionViewDidEnter(){
 
   }
   alta(){
+    this.apilarCamposPatente();
     if (!this.verificarPatente(this.vehiculo.patente)) {
       this.apilarFotos();
       let objetoJsonGenerico = JSON.parse(JSON.stringify(this.vehiculo));
@@ -146,6 +184,9 @@ export class AbmVehiculosPage {
     });
     return aux;
   }
+  apilarCamposPatente(){
+    this.vehiculo.patente = this.patenteCampo1 + this.patenteCampo2 + this.patenteCampo3;
+  }
   apilarFotos(){
     if (this.foto1 != 'no') {
       this.vehiculo.fotos.push(this.foto1);
@@ -177,6 +218,9 @@ export class AbmVehiculosPage {
   }
   limpiarCampos(){
     this.vehiculo.patente = "";
+    this.patenteCampo1 = "";
+    this.patenteCampo2 = "";
+    this.patenteCampo3 = "";
     this.vehiculo.color = "";
     this.vehiculo.modelo = "";
     this.vehiculo.fotos = new Array();
@@ -208,24 +252,25 @@ export class AbmVehiculosPage {
 
   }
   tomarFoto(opt) {
+    let ruta: string = "usuarios/" + Date.now().toString();
     switch (opt) {
       case '1':
-        this.servicioFotos.takePhoto().then((data) => {
-          this.foto1 = 'data:image/jpeg;base64,' + data;
+        this.servicioFotos.takePhoto(ruta).then((data) => {
+          this.foto1 = data;
         }, (error) => {
           console.log('Error: ' + error);
         });
       break;
       case '2':
-        this.servicioFotos.takePhoto().then((data) => {
-          this.foto2 = 'data:image/jpeg;base64,' + data;
+        this.servicioFotos.takePhoto(ruta).then((data) => {
+          this.foto2 = data;
         }, (error) => {
           console.log('Error: ' + error);
         });
       break;
       case '3':
-        this.servicioFotos.takePhoto().then((data) => {
-          this.foto3 = 'data:image/jpeg;base64,' + data;
+        this.servicioFotos.takePhoto(ruta).then((data) => {
+          this.foto3 = data;
         }, (error) => {
           console.log('Error: ' + error);
         });
@@ -237,24 +282,25 @@ export class AbmVehiculosPage {
 
   }
   tomarFotoLibreria(opt) {
+    let ruta: string = "usuarios/" + Date.now().toString();
     switch (opt) {
       case '1':
-        this.servicioFotos.addLibraryPhoto().then((data) => {
-          this.foto1 = 'data:image/jpeg;base64,' + data;
+        this.servicioFotos.addLibraryPhoto(ruta).then((data) => {
+          this.foto1 = data;
         }, (error) => {
           console.log('Error: ' + error);
         });
       break;
       case '2':
-        this.servicioFotos.addLibraryPhoto().then((data) => {
-          this.foto2 = 'data:image/jpeg;base64,' + data;
+        this.servicioFotos.addLibraryPhoto(ruta).then((data) => {
+          this.foto2 = data;
         }, (error) => {
           console.log('Error: ' + error);
         });
       break;
       case '3':
-        this.servicioFotos.addLibraryPhoto().then((data) => {
-          this.foto3 = 'data:image/jpeg;base64,' + data;
+        this.servicioFotos.addLibraryPhoto(ruta).then((data) => {
+          this.foto3 = data;
         }, (error) => {
           console.log('Error: ' + error);
         });

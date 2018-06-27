@@ -17,8 +17,10 @@ import { environment } from "../../environments/environment";
 import { AbmChofer } from '../pages';
 import { ContentPage } from '../content/content';
 import { AbmClientesPage } from '../abm-clientes/abm-clientes';
-import { AbmVehiculosPage } from '../abm-vehiculos/abm-vehiculos';
 import { NuevoViajePage } from '../nuevo-viaje/nuevo-viaje';
+import { AbmSupervisoresPage } from '../abm-supervisores/abm-supervisores';
+import { VisorViajesPage } from '../visor-viajes/visor-viajes';
+import { AbmVehiculosPage } from '../abm-vehiculos/abm-vehiculos';
 
 
 @IonicPage()
@@ -44,26 +46,20 @@ export class AdminControlPanelPage {
     this.navCtrl.push(AbmChofer);
   }
 
-  irAbmAdmin() {
-    this.navCtrl.push(PagesModalPage, { titulo: 'ABM admin', data: 'No implementado...'});
-  }
-
   irAbmCliente() {
     this.navCtrl.push(AbmClientesPage);
   }
 
   irAbmSupervisor() {
-    this.navCtrl.push(PagesModalPage, { titulo: 'ABM supervisor', data: 'No implementado...'});
-    
+    this.navCtrl.push(AbmSupervisoresPage);
   }
 
   irVisorViajes() {
-    //this.navCtrl.push(ContentPage); // escaner QR para test
-    this.navCtrl.push(PagesModalPage, { titulo: 'Visor de viajes', data: 'No implementado todavía...'});
+    this.navCtrl.push(VisorViajesPage);
   }
-
+  
   irAbmVehiculos() {
-    this.navCtrl.push(AbmVehiculosPage,{data:"Lista"});
+    this.navCtrl.push(AbmVehiculosPage, {data:"Lista"});
   }
 
   pedirViaje() {

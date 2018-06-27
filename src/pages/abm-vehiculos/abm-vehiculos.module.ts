@@ -4,7 +4,7 @@ import { AbmVehiculosPage } from './abm-vehiculos';
 
 @NgModule({
   declarations: [
-    AbmVehiculosPage,
+    //AbmVehiculosPage,
   ],
   imports: [
     IonicPageModule.forChild(AbmVehiculosPage),

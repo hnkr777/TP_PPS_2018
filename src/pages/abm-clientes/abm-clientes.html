@@ -11,14 +11,21 @@
     
     </ion-header>
     
-    
     <ion-content class="abm-clientes-content" id="clientes-content">
+        <button class="botonMedio" (click)="mostrarSuspendidos()" ion-button round icon-left color="primary" block large>
+            <ion-icon name="people"></ion-icon>Ver suspendidos</button>  
+        <button class="botonMedio" (click)="mostrarPendientes()" ion-button round icon-left color="primary" block large>
+            <ion-icon name="people"></ion-icon>Ver pendientes</button>
+            <button class="botonMedio" (click)="mostrarActivos()" ion-button round icon-left color="primary" block large>
+                <ion-icon name="people"></ion-icon>Ver activos</button>  
+            <button class="botonMedio" (click)="mostrarTodos()" ion-button round icon-left color="primary" block large>
+                <ion-icon name="people"></ion-icon>Ver todos</button>
     
       <ion-card (click)="modificar(item)" padding *ngFor="let item of listaClientes" [ngClass]="item.activo==0? 'disabled' : 'enabled' ">
     
         <ion-item>
           <ion-avatar item-start>
-            <img [src]="item.foto === undefined ? '../../assets/img/img-usuario.svg' : item.foto">
+            <img [src]="item.foto === null ? '../../assets/img/img-usuario.svg' : item.foto">
           </ion-avatar>
           <h2 class="titulo" style="color: rgb(255, 255, 255);">{{item.nombre}} {{item.apellido}}</h2>
           <p class="titulo" style="color: yellow;">Fecha de nacimiento: {{item.fechaNacimiento}}</p>
@@ -31,7 +38,7 @@
             <b>{{item.fechaAlta}}</b>
           </p>
           <p>Email:
-            <b>{{item.email}}</b>
+            <b>{{item.correo}}</b>
           </p>
           <p>DNI:
             <b>{{item.dni}}</b>

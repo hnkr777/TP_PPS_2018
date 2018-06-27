@@ -1,11 +1,10 @@
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+
 <div class="contenedor-global">
     
       <ion-header>
     
         <ion-navbar>
-          <ion-title>{{ (modoAlta == true? 'NEW_DRIVER_TITLE' : 'MODIF_DRIVER_TITLE') | translate }}</ion-title>
+          <ion-title>{{ (modoAlta == true? 'Alta cliente' : 'Modificar cliente') | translate }}</ion-title>
         </ion-navbar>
     
       </ion-header>
@@ -80,7 +79,7 @@
             </ion-col>
             <ion-col>
               <div (click)="verImagen()" class="marco-imagen">
-                <img class="marco-imagen" [src]="unCliente.foto === null ? '../../assets/img/img-usuario.svg' : unCliente.foto">
+                <img class="marco-imagen" [src]="unCliente.foto === null ? 'assets/img/img-usuario.svg' : unCliente.foto">
               </div>
             </ion-col>
             <ion-col>

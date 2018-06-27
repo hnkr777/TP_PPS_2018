@@ -4,7 +4,7 @@ import { ListadoChoferesDisponiblesPage } from './listado-choferes-disponibles';
 
 @NgModule({
   declarations: [
-    ListadoChoferesDisponiblesPage,
+    //ListadoChoferesDisponiblesPage,
   ],
   imports: [
     IonicPageModule.forChild(ListadoChoferesDisponiblesPage),

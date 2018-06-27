@@ -1,0 +1,74 @@
+<ion-header>
+    
+      <ion-navbar >
+        <ion-title>Datos chofer y vehiculo</ion-title>
+      </ion-navbar>
+    
+    </ion-header>
+    
+    
+    <ion-content class="abm-clientes-content" id="clientes-content">
+  
+   
+      <ion-card padding >
+      <ion-item>
+          <img class="imagen" [src]="chofer.foto" style="height:100px;width:100px;">
+        <h2 class="titulo" style="color: yellow;">{{chofer.nombre}} {{chofer.apellido}}</h2>
+          <p style="color: black;">Correo:
+            <b>{{chofer.correo}}</b>
+          </p>
+          <p style="color: black;">DNI:
+            <b>{{chofer.dni}}</b>
+          </p>
+          <p style="color: black;">Sexo:
+            <b>{{ chofer.sexo == 'm' ? 'Masculino' : 'Femenino' }}</b>
+          </p>
+          <p class="" style="color: black;">Fecha de nacimiento: 
+              <b>{{chofer.fechaNacimiento}}</b>
+            </p>
+          <p style="color: black;" >Fecha de alta:
+              <b>{{chofer.fechaAlta}}</b>
+            </p>
+      </ion-item>
+      <ion-card-content  >
+        </ion-card-content>
+
+
+        <ion-item>
+          <ion-grid>
+            <ion-row>
+              <ion-col col-4 *ngFor="let x of chofer.fotosVehiculo; let id = index">
+              <!--descomentar si no se ven bien las imagenes-->
+              <!--  <ion-card class="releative"> -->
+                 <img [src]="x"  />
+               <!-- </ion-card> -->
+
+             
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          
+          <p style="color: black;">Patente:
+            <b>{{chofer.patente}}</b>
+          </p>
+          <p style="color: black;">Modelo:
+            <b>{{chofer.modelo}}</b>
+          </p>
+          <p style="color: black;">Color:
+            <b>{{ chofer.color}}</b>
+          </p>
+          <p style="color: black;" >Estado:
+              <b>{{ chofer.activoVehiculo == '1' ? 'Activo' : 'Inactivo' }}</b>
+            </p>
+      </ion-item>
+      </ion-card>
+      
+    </ion-content>
+
+    <ion-footer>
+        <ion-navbar>
+          <ion-buttons end>
+            <button  large ion-button color="secondary" (click)="close()">Volver</button>
+          </ion-buttons>
+        </ion-navbar>
+      </ion-footer>

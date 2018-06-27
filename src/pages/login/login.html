@@ -1,14 +1,13 @@
-
 <div class="contenidoLogin">
 
-<ion-header class="lgElem">
-  <ion-navbar>
-    <ion-title>{{ 'LOGIN_TITLE' | translate }}</ion-title>
-  </ion-navbar>
-</ion-header>
+  <ion-header class="lgElem">
+    <ion-navbar>
+      <ion-title>{{ 'LOGIN_TITLE' | translate }}</ion-title>
+    </ion-navbar>
+  </ion-header>
 
   <ion-content>
-    <form  id="formularioIngreso">
+    <form id="formularioIngreso">
       <ion-list>
 
         <ion-item padding style="background: transparent;">
@@ -23,23 +22,28 @@
 
         <div padding>
           <button ion-button round icon-left color="secondary" block large (click)="doLogin()">
-            <ion-icon name="checkmark-circle"></ion-icon>{{ 'LOGIN_BUTTON' | translate }}</button>
-           <br>
-            <button ion-button round icon-left color="botonRegistrar" block  (click)="Redireccionar()">
-              <ion-icon name="md-add-circle" ></ion-icon>Registrarse</button>
-          </div>
+            <ion-icon name="log-in"></ion-icon>{{ 'LOGIN_BUTTON' | translate }}</button>
+          <br>
+          <button ion-button round icon-left color="botonRegistrar" block large (click)="Redireccionar()">
+            <ion-icon name="person-add"></ion-icon>Registrarse</button>
+          
+          <!-- <button ion-button round block color="primary" (click)="goListadoChoferes()">TestListadoChoferesDisp</button>
+          <button ion-button round block color="primary" (click)="goVehiculo()">TestABMVehiculos</button>
+          <button ion-button round block color="primary" (click)="goEncuesta()">TestEncuesta</button> -->
+        </div>
 
-          <button ion-button round block color="primary" (click)="goVehiculo()">TestVehiculo</button>
-          <button ion-button round block color="primary" (click)="goListadoChoferes()">TestListadoChoferesDisp</button>
+
 
       </ion-list>
 
     </form>
-    
+
   </ion-content>
   <ion-footer>
     <ion-list padding margin>
-      <button large (click)="mostrarUsuarios()" ion-button color="primary" block><ion-icon name="people"> {{ 'LOGIN_AS_BUTTON' | translate }}</ion-icon></button>
+      <button large (click)="mostrarUsuarios()" ion-button color="primary" block>
+        <ion-icon name="people"> {{ 'LOGIN_AS_BUTTON' | translate }}</ion-icon>
+      </button>
     </ion-list>
   </ion-footer>
 </div>

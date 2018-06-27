@@ -68,7 +68,7 @@ export class ServicioViajesProvider {
   modificarViaje(viaje: Viaje | any) {
     console.log('ServicioViajesProvider.modificarViaje()');
     //this.objFirebase.collection<Viaje>(this.tablaViajes).ref.doc().update().then();
-    let coleccionTipadaFirebase = this.objFirebase.collection<Viaje>(this.tablaViajes, ref => ref.where('id', '==', viaje.fechaRegistro));
+    let coleccionTipadaFirebase = this.objFirebase.collection<Viaje>(this.tablaViajes, ref => ref.where('fechaRegistro', '==', viaje.fechaRegistro));
     coleccionTipadaFirebase.ref.get().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         if(doc.data().fechaRegistro == viaje.fechaRegistro) {

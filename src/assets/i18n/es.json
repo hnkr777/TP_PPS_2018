@@ -8,10 +8,18 @@
   "ADMIN_PANEL_TITLE": "Panel de control (admin)",
   "ABM_CHOFERES_PANEL_TITLE": "ABM de choferes",
   "NEW_DRIVER_TITLE": "Alta de nuevo chofer",
-  "MODIF_DRIVER_TITLE": "Modificación de chofer",
+  "MODIF_DRIVER_TITLE": "Modificar chofer",
   "CHOFER_PANEL_TITLE": "Panel del chofer",
   "NUEVO_VIAJE_TITLE": "Nuevo viaje",
-
+  "VISOR_VIAJES_PANEL_TITLE": "Visor de viajes",
+  "ABM_SUPERVISORES_PANEL_TITLE": "ABM supervisores",
+  "NEW_SUPER_TITLE": "Nuevo supervisor",
+  "MODIF_SUPER_TITLE": "Modificar supervisor",
+  "SUPER_PANEL_TITLE": "Panel de control Supervisor",
+  "VISOR_VIAJES_CHOFER_TITLE": "Viajes pendientes",
+  
+  "ENCUESTA_TITLE": "Encuesta de vehículo",
+  
   "MAP_TITLE": "Mapa",
   "DELETE_BUTTON": "Borrar voto",
   "VERIFY_BUTTON": "yyyyy",
@@ -24,6 +32,8 @@
   "PEDIR_VIAJE_BUTTON": "Nuevo viaje",
   "ABM_VEHICULOS_BUTTON": "ABM vehículos",
 
+  "CHOFER_LOGOUT_BUTTON": "Terminar de trabajar",
+  "CHOFER_VIAJES_BUTTON": "Viajes pendientes",
   "CHOFER_ENCUESTA_BUTTON": "Encuesta de control",
   "CHOFER_INGRESO_BUTTON": "Empezar a trabajar",
 
@@ -36,11 +46,19 @@
   "TUTORIAL_SLIDE3_TITLE": "Empezando",
   "TUTORIAL_SLIDE3_DESCRIPTION": "¿Necesitas ayuda? Échale un vistazo al README del Super Starter para ver el tutorial completo.",
 
-  "SETTINGS_TITLE": "Ajustes",
-  "SETTINGS_OPTION1": "Opción 1",
-  "SETTINGS_OPTION2": "Opción 2",
-  "SETTINGS_OPTION3": "Ingresar como...",
-  "SETTINGS_OPTION4": "Opción 4",
+  "POLL_CHECKBOX": "¿Entró a trabajar hoy?",
+  "POLL_INPUT": "Comentarios",
+  "POLL_SELECT": "¿En qué turno ingresa?",
+  "POLL_SELECT_1": "Mañana",
+  "POLL_SELECT_2": "Tarde",
+  "POLL_SELECT_3": "Noche",
+  "POLL_RANGE": "Cantidad de combustible",
+  "POLL_RADIO": "¿En qué condiciones está el vehículo?",
+  "POLL_RADIO_1": "Muy buenas condiciones",
+  "POLL_RADIO_2": "Buen estado",
+  "POLL_RADIO_3": "Regular",
+  "POLL_RADIO_4": "Malas condiciones",
+  "POLL_RADIO_5": "Inoperable",
 
   "SETTINGS_PAGE_PROFILE": "Editar Perfil",
 

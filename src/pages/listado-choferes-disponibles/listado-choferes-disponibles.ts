@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {ServicioUsuariosProvider} from "../../providers/servicio-usuarios/servicio-usuarios"
-import {ListadoViajesSelecPage} from "../listado-viajes-selec/listado-viajes-selec"
+import {ServicioUsuariosProvider} from "../../providers/servicio-usuarios/servicio-usuarios";
+import {ListadoViajesSelecPage} from "../listado-viajes-selec/listado-viajes-selec";
+import {SuperControlPanelPage} from "../supervisor-control-panel/supervisor-control-panel";
 
 /**
  * Generated class for the ListadoChoferesDisponiblesPage page.
@@ -32,6 +33,9 @@ export class ListadoChoferesDisponiblesPage {
   }
   asignarViaje(chofer:any){
     this.navCtrl.push(ListadoViajesSelecPage,{data: chofer})
+  }
+  back(){
+    this.navCtrl.setRoot(SuperControlPanelPage);
   }
 
 }

@@ -8,7 +8,7 @@ import { Usuario } from "../../clases/usuario";
 //import { ServicioUsuariosProvider } from '../../providers/servicio-usuarios/servicio-usuarios';
 //import { ServicioFotosProvider } from '../../providers/servicio-fotos/servicio-fotos';
 import { TranslateService } from '@ngx-translate/core';
-//import { VerImagenPage } from '../ver-imagen/ver-imagen';
+import { VerImagenPage } from '../ver-imagen/ver-imagen';
 import { AbmClienteProvider } from "../../providers/abm-cliente/abm-cliente";
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 /**
@@ -29,6 +29,7 @@ export class AltaClienteParaAdminPage {
   private spinner;
   base64Image: string;
   modoAlta;
+  private activoPendiente;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -42,6 +43,7 @@ export class AltaClienteParaAdminPage {
     private camera: Camera,
     public alertCtrl: AlertController,
     private servicioCliente: AbmClienteProvider
+    
     //private objFirebase: AngularFirestore
   ) {
     this.unCliente=new Object();
@@ -50,6 +52,7 @@ export class AltaClienteParaAdminPage {
       {
         this.modoAlta = false;
         this.fechaAlta = new Date(Date.now());
+        this.activoPendiente=clienteaModificar.activo;
         this.formAlta.controls['nombre'].setValue(clienteaModificar.nombre);
         this.formAlta.controls['apellido'].setValue(clienteaModificar.apellido);
         this.formAlta.controls['domicilio'].setValue(clienteaModificar.domicilio);
@@ -59,7 +62,18 @@ export class AltaClienteParaAdminPage {
         this.formAlta.controls['claveRep'].setValue(clienteaModificar.clave);
         this.formAlta.controls['sexo'].setValue(clienteaModificar.sexo);
         this.formAlta.controls['fechaNacimiento'].setValue(clienteaModificar.fechaNacimiento);
-        this.formAlta.controls['activo'].setValue(clienteaModificar.activo);
+        if(clienteaModificar.activo==0)
+          {
+            this.formAlta.controls['activo'].setValue(false);
+          }
+          if(clienteaModificar.activo==1)
+            {
+              this.formAlta.controls['activo'].setValue(true);
+            }
+            if(clienteaModificar.activo==2)
+              {
+                this.formAlta.controls['activo'].setValue(false);
+              }
         this.unCliente.foto=clienteaModificar.foto;
         this.unCliente.id=clienteaModificar.id;
       }
@@ -170,14 +184,25 @@ export class AltaClienteParaAdminPage {
 
   if(this.modoAlta==false)
     {
-      if(this.formAlta.get("activo").value ==true || this.formAlta.get("activo").value ==1)
+      if(this.formAlta.get("activo").value ==true)
         {
           this.unCliente.activo=1;
         }
         else
           {
+            if(this.activoPendiente==0){
             this.unCliente.activo=0;
+            }
+            if(this.activoPendiente==1){
+              this.unCliente.activo=0;
+              }
+            if(this.activoPendiente==2){
+              this.unCliente.activo=2;
+              }
+
           }
+
+
 //console.log(this.unCliente);
 this.modificarCliente();
 
@@ -278,5 +303,23 @@ this.modificarCliente();
 
   closeModal() {
     this.viewCtrl.dismiss();
+  }
+
+  Msg(titulo: string, mensaje: string) {
+    const alerta = this.alertCtrl.create({
+      title: titulo,
+      subTitle: mensaje,
+      cssClass:"miClaseAlert",
+      buttons: ['Aceptar']
+    });
+    alerta.present();
+  }
+  
+  verImagen() {
+    if (this.unCliente.foto !== undefined) {
+      this.modalCtrl.create(VerImagenPage, { imagen: this.unCliente.foto}).present();
+    } else {
+      this.Msg('Aviso', 'Sin foto');
+    }
   }
 }

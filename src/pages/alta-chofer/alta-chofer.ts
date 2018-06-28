@@ -10,6 +10,7 @@ import { ServicioFotosProvider } from '../../providers/servicio-fotos/servicio-f
 import { TranslateService } from '@ngx-translate/core';
 import { VerImagenPage } from '../ver-imagen/ver-imagen';
 
+import { ServicioAudioProvider } from "../../providers/servicio-audio/servicio-audio";
 /**
  * AltaChoferPage
  *
@@ -38,7 +39,8 @@ export class AltaChoferPage {
     private servicioFotos: ServicioFotosProvider,
     public viewCtrl: ViewController,
     public translateService: TranslateService,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public audioService:ServicioAudioProvider
   ) {
       let chofer = navParams.get('chofer');
       
@@ -74,6 +76,7 @@ export class AltaChoferPage {
   }
 
   accionAceptar() {
+    this.audioService.reproducirClick();
     if (!this.validar()) {
       return;
     }
@@ -86,11 +89,13 @@ export class AltaChoferPage {
   }
 
   modificarChofer() {
+    this.audioService.reproducirClick();
     this.servicioUsuarios.modificarUsuario(this.chofer);
     this.closeModal();
   }
 
   nuevoChofer() {
+    this.audioService.reproducirClick();
     this.servicioUsuarios.guardarNuevoUsuario(this.chofer).then(data => {
       this.closeModal();
       console.log('Chofer guardado correctamente.');
@@ -102,6 +107,7 @@ export class AltaChoferPage {
   }
 
   tomarFoto() {
+    this.audioService.reproducirClick();
     let ruta: string = "usuarios/" + Date.now().toString();
     this.servicioFotos.takePhoto(ruta).then((data) => {
       this.chofer.foto = data;
@@ -111,6 +117,7 @@ export class AltaChoferPage {
   }
   
   cargarFoto() {
+    this.audioService.reproducirClick();
     let ruta: string = "usuarios/" + Date.now().toString();
     this.servicioFotos.addLibraryPhoto(ruta).then((data) => {
       this.chofer.foto = data;

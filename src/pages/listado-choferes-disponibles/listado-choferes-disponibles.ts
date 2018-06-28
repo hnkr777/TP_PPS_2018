@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ServicioUsuariosProvider} from "../../providers/servicio-usuarios/servicio-usuarios";
 import {ListadoViajesSelecPage} from "../listado-viajes-selec/listado-viajes-selec";
 import {SuperControlPanelPage} from "../supervisor-control-panel/supervisor-control-panel";
+import {ServicioAudioProvider} from "../../providers/servicio-audio/servicio-audio";
 
 /**
  * Generated class for the ListadoChoferesDisponiblesPage page.
@@ -18,7 +19,7 @@ import {SuperControlPanelPage} from "../supervisor-control-panel/supervisor-cont
 })
 export class ListadoChoferesDisponiblesPage {
   public listadoChoferes;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public servicioUsuarios:ServicioUsuariosProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public servicioUsuarios:ServicioUsuariosProvider,public audioService:ServicioAudioProvider) {
   }
 
   ionViewDidLoad() {
@@ -32,9 +33,11 @@ export class ListadoChoferesDisponiblesPage {
     console.info(this.listadoChoferes);
   }
   asignarViaje(chofer:any){
+    this.audioService.reproducirClick();
     this.navCtrl.push(ListadoViajesSelecPage,{data: chofer})
   }
   back(){
+    this.audioService.reproducirClick();
     this.navCtrl.setRoot(SuperControlPanelPage);
   }
 

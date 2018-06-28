@@ -1,6 +1,7 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NativeAudio } from '@ionic-native/native-audio';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 //import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -25,6 +26,7 @@ import { User } from '../providers/providers';
 import { Api } from '../providers/providers';
 import { ServicioUsuariosProvider } from '../providers/servicio-usuarios/servicio-usuarios';
 import { ServicioFotosProvider } from '../providers/servicio-fotos/servicio-fotos';
+import { ServicioAudioProvider } from '../providers/servicio-audio/servicio-audio';
 import { MyApp } from './app.component';
 import { PagesModalPage } from "../pages/pages-modal/pages-modal";
 import { AltaChoferPage } from '../pages/alta-chofer/alta-chofer';
@@ -181,6 +183,8 @@ export function provideSettings(storage: Storage) {
     ServicioFotosProvider,
     AbmClienteProvider,
     ServicioViajesProvider,
+    ServicioAudioProvider,
+    NativeAudio
     
   ]
 })

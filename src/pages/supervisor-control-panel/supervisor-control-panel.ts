@@ -21,7 +21,9 @@ import { NuevoViajePage } from '../nuevo-viaje/nuevo-viaje';
 import { AbmSupervisoresPage } from '../abm-supervisores/abm-supervisores';
 import { AbmVehiculosPage } from '../abm-vehiculos/abm-vehiculos';
 import { VisorViajesPage } from '../visor-viajes/visor-viajes';
+import { LoginPage } from '../login/login';
 import { ListadoChoferesDisponiblesPage } from '../listado-choferes-disponibles/listado-choferes-disponibles';
+import {ServicioAudioProvider} from '../../providers/servicio-audio/servicio-audio'
 
 
 @IonicPage()
@@ -34,7 +36,8 @@ export class SuperControlPanelPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    public audioService: ServicioAudioProvider
   ) {
 
   }
@@ -44,35 +47,46 @@ export class SuperControlPanelPage {
   }
 
   irAbmChofer() {
+    this.audioService.reproducirClick();
     this.navCtrl.push(AbmChofer);
   }
 
   irAbmCliente() {
+    this.audioService.reproducirClick();
     this.navCtrl.push(AbmClientesPage);
   }
 
   irAbmSupervisor() {
+    this.audioService.reproducirClick();
     this.navCtrl.push(AbmSupervisoresPage);
   }
 
   irVisorViajes() {
+    this.audioService.reproducirClick();
     this.navCtrl.push(VisorViajesPage);
   }
 
   irAbmVehiculos(opt) {
+    this.audioService.reproducirClick();
     this.navCtrl.push(AbmVehiculosPage, { data: opt});
   }
 
   pedirViaje() {
+    this.audioService.reproducirClick();
     this.navCtrl.push(NuevoViajePage);
   }
   goListadoChoferes(){
+    this.audioService.reproducirClick();
     this.navCtrl.push(ContentPage,{data:"supervisorLC"}); // PROBAR CEL
     //this.navCtrl.push(ListadoChoferesDisponiblesPage); // PROBAR PC
   }
   goEncuesta(){
-    this.navCtrl.push(ContentPage,{data:"supervisorEC"}); // PROBAR CEL
+    this.audioService.reproducirClick();
+    this.navCtrl.push(ContentPage,{data:"supervisorEC"});
     //this.navCtrl.push(EncuestaSupervisorPage); // PROBAR PC
     //this.navCtrl.push(EncuestaChoferPage); // PROBAR PC
+  }
+  logout(){
+    this.navCtrl.setRoot(LoginPage);
   }
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import { ServicioFotosProvider } from "../../providers/servicio-fotos/servicio-fotos";
+import { ServicioAudioProvider } from "../../providers/servicio-audio/servicio-audio";
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { vehiculo } from "../../clases/vehiculo";
 import { Observable } from 'rxjs/Observable';
@@ -39,7 +40,7 @@ export class AbmVehiculosPage {
   coleccionTipadaFirebase:AngularFirestoreCollection<vehiculo>;
   ListadoDeVehiculosObservable:Observable<vehiculo[]>;
   ListaDeVehiculos:Array<vehiculo>;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public servicioFotos: ServicioFotosProvider,public alertCtrl: AlertController,private objFirebase: AngularFirestore) {
+  constructor(public navCtrl: NavController,public audioService:ServicioAudioProvider, public navParams: NavParams,public servicioFotos: ServicioFotosProvider,public alertCtrl: AlertController,private objFirebase: AngularFirestore) {
     this.abmMostrar = this.navParams.get('data');
     if (this.abmMostrar == "Alta") {
       this.vehiculo.fotos = new Array();
@@ -97,6 +98,7 @@ export class AbmVehiculosPage {
 
   }
   alta(){
+    this.audioService.reproducirClick();
     this.apilarCamposPatente();
     if (!this.verificarPatente(this.vehiculo.patente)) {
       this.apilarFotos();
@@ -117,6 +119,7 @@ export class AbmVehiculosPage {
 
   }
   baja(){
+    this.audioService.reproducirClick();
     console.log("baja "+this.buscarPatente(this.patenteABuscar));
     console.log("patente buscada "+this.patenteABuscar);
     if (this.buscarPatente(this.patenteABuscar)) {
@@ -138,6 +141,7 @@ export class AbmVehiculosPage {
     }
   }
   modificacion(){
+    this.audioService.reproducirClick();
     this.vehiculo.fotos = new Array();
     this.apilarFotos();
     this.coleccionTipadaFirebase.doc(this.vehiculo.patente).update({ 
@@ -252,6 +256,7 @@ export class AbmVehiculosPage {
 
   }
   tomarFoto(opt) {
+    this.audioService.reproducirClick();
     let ruta: string = "usuarios/" + Date.now().toString();
     switch (opt) {
       case '1':
@@ -282,6 +287,7 @@ export class AbmVehiculosPage {
 
   }
   tomarFotoLibreria(opt) {
+    this.audioService.reproducirClick();
     let ruta: string = "usuarios/" + Date.now().toString();
     switch (opt) {
       case '1':
@@ -312,6 +318,7 @@ export class AbmVehiculosPage {
 
   }
   borrarFoto(opt) {
+    this.audioService.reproducirClick();
     switch (opt) {
       case '1':
         this.foto1 = 'no';

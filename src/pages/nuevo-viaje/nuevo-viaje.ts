@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ViewController, ModalController, PopoverController } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider, Settings } from '../../providers/providers';
+import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
 import { Viaje } from '../../clases/viaje';
 import { Geolocation } from '@ionic-native/geolocation';
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
@@ -66,7 +67,8 @@ export class NuevoViajePage {
     public translateService: TranslateService,
     public alertCtrl: AlertController,
     private geolocation: Geolocation,
-    private popover: PopoverController
+    private popover: PopoverController,
+    public audioService:ServicioAudioProvider
   ) {
     this.puntos = 0;
     this.nuevoViaje = new Viaje();
@@ -75,6 +77,7 @@ export class NuevoViajePage {
   }
 
   guardarViaje() {
+    this.audioService.reproducirClick();
     this.hidePops();
     if(this.nuevoViaje.fechaSalida === undefined) {
       this.errorMsg('Error', 'Falta la fecha de salida del viaje.');

@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { TranslateModule } from '@ngx-translate/core';
 import { ServicioUsuariosProvider } from "../../providers/servicio-usuarios/servicio-usuarios";
+import { ServicioAudioProvider } from "../../providers/servicio-audio/servicio-audio";
 import { Usuario } from '../../clases/usuario';
 import { AltaChoferPage } from '../alta-chofer/alta-chofer';
 
@@ -25,7 +26,9 @@ export class AbmChoferesPage {
     public navCtrl: NavController, 
     public navParams: NavParams, 
     private servicioUsuarios: ServicioUsuariosProvider,
-    public modalCtrl: ModalController) {
+    public modalCtrl: ModalController,
+    public audioService:ServicioAudioProvider,
+    ) {
   }
 
   ionViewDidLoad() {
@@ -52,6 +55,7 @@ export class AbmChoferesPage {
 
   // esta función agrega un nuevo chofer, se activa con el botón de + en la barra de título de la interfaz
   nuevoChofer() {
+    this.audioService.reproducirClick();
     console.log('agregar nuevo Chofer');
     this.modalCtrl.create(AltaChoferPage).present();
     
@@ -59,6 +63,7 @@ export class AbmChoferesPage {
 
   // para modificar los datos del chofer seleccionado, le paso al mismo modal del alta, el chofer a modificar
   modificar($event) {
+    this.audioService.reproducirClick();
     console.log('Modificar chofer '+ $event.email);
     this.chofer = $event;
     this.modalCtrl.create(AltaChoferPage, {chofer: this.chofer}).present();

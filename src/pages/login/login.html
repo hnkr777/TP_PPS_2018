@@ -1,12 +1,18 @@
-<div class="contenidoLogin">
+<!-- <div class="contenidoLogin"> -->
 
   <ion-header class="lgElem">
     <ion-navbar>
       <ion-title>{{ 'LOGIN_TITLE' | translate }}</ion-title>
+      <ion-buttons end>
+        <ion-icon name="volume-off" *ngIf = "!muteSound"></ion-icon>
+        <ion-icon name="volume-up" *ngIf = "muteSound"></ion-icon>
+        <ion-toggle (ionChange)="muteAudio()"></ion-toggle>
+      </ion-buttons>
     </ion-navbar>
   </ion-header>
 
   <ion-content>
+    <img src="assets/img/icon.png" alt="" class="img">
     <form id="formularioIngreso">
       <ion-list>
 
@@ -21,15 +27,16 @@
         </ion-item>
 
         <div padding>
-          <button ion-button round icon-left color="secondary" block large (click)="doLogin()">
+          <button ion-button icon-left block large (click)="doLogin()" class ="submit-btn">
             <ion-icon name="log-in"></ion-icon>{{ 'LOGIN_BUTTON' | translate }}</button>
           <br>
-          <button ion-button round icon-left color="botonRegistrar" block large (click)="Redireccionar()">
+          <button ion-button round icon-left color="botonRegistrar" block large (click)="Redireccionar()" class ="submit-btn">
             <ion-icon name="person-add"></ion-icon>Registrarse</button>
           
           <!-- <button ion-button round block color="primary" (click)="goListadoChoferes()">TestListadoChoferesDisp</button>
           <button ion-button round block color="primary" (click)="goVehiculo()">TestABMVehiculos</button>
           <button ion-button round block color="primary" (click)="goEncuesta()">TestEncuesta</button> -->
+          <!-- <button ion-button round block color="primary" (click)="testAudio()">TestAudio</button> -->
         </div>
 
 
@@ -40,10 +47,10 @@
 
   </ion-content>
   <ion-footer>
-    <ion-list padding margin>
-      <button large (click)="mostrarUsuarios()" ion-button color="primary" block>
+    <ion-list padding>
+      <button large (click)="mostrarUsuarios()" ion-button color="primary" block class ="submit-btn">
         <ion-icon name="people"> {{ 'LOGIN_AS_BUTTON' | translate }}</ion-icon>
       </button>
     </ion-list>
   </ion-footer>
-</div>
+<!-- </div> -->

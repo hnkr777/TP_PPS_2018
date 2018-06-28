@@ -9,6 +9,7 @@ import { ServicioUsuariosProvider } from '../../providers/servicio-usuarios/serv
 import { ServicioFotosProvider } from '../../providers/servicio-fotos/servicio-fotos';
 import { TranslateService } from '@ngx-translate/core';
 import { VerImagenPage } from '../ver-imagen/ver-imagen';
+import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
 
 /**
  * AltaSupervisorPage
@@ -38,7 +39,8 @@ export class AltaSupervisorPage {
     private servicioFotos: ServicioFotosProvider,
     public viewCtrl: ViewController,
     public translateService: TranslateService,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public audioService:ServicioAudioProvider
   ) {
       let supervisor = navParams.get('supervisor');
       
@@ -74,6 +76,7 @@ export class AltaSupervisorPage {
   }
 
   accionAceptar() {
+    this.audioService.reproducirClick();
     if (!this.validar()) {
       return;
     }
@@ -86,11 +89,13 @@ export class AltaSupervisorPage {
   }
 
   modificarChofer() {
+    this.audioService.reproducirClick();
     this.servicioUsuarios.modificarUsuario(this.supervisor);
     this.closeModal();
   }
 
   nuevoChofer() {
+    this.audioService.reproducirClick();
     this.servicioUsuarios.guardarNuevoUsuario(this.supervisor).then(data => {
       this.closeModal();
       console.log('Supervisor guardado correctamente.');
@@ -102,6 +107,7 @@ export class AltaSupervisorPage {
   }
 
   tomarFoto() {
+    this.audioService.reproducirClick();
     let ruta: string = "usuarios/" + Date.now().toString();
     this.servicioFotos.takePhoto(ruta).then((data) => {
       this.supervisor.foto = data;
@@ -111,6 +117,7 @@ export class AltaSupervisorPage {
   }
   
   cargarFoto() {
+    this.audioService.reproducirClick();
     let ruta: string = "usuarios/" + Date.now().toString();
     this.servicioFotos.addLibraryPhoto(ruta).then((data) => {
       this.supervisor.foto = data;

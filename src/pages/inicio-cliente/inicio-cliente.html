@@ -31,12 +31,9 @@
   <button class="titulo" (click)="datosChofer()" ion-button round icon-left color="secondary" block large>
     <ion-icon name="car"></ion-icon>Datos chofer</button>
   <br>
-  <button class="titulo" (click)="accederEncuesta()" ion-button round icon-left color="primary" block large>
-    <ion-icon name="clipboard"></ion-icon>Acceder a encuesta</button>
-  <br>
   <button class="titulo" (click)="pedirViaje()" ion-button round icon-left color="secondary" block large>
     <ion-icon name="globe"></ion-icon>{{ 'PEDIR_VIAJE_BUTTON' | translate }}</button>
-
+    <br>
     <ion-card (click)="mostrarViajeConMapa(item)" padding *ngFor="let item of listaViajes" [ngClass]="item.activo==0? 'disabled' : 'enabled' ">
         
         

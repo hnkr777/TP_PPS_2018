@@ -11,7 +11,19 @@
     <ion-title>Bienvenido {{nombre}} </ion-title>
     
   </ion-navbar>
-
+  <ion-list block>
+      
+      <ion-item>
+        <ion-label color="primary" >Filtro:</ion-label>
+        <ion-select (ionInput)="filtrarViajes()" interface="popover" cancelText="Cancelar" okText="Aceptar" [(ngModel)]="mostrar" (click)="filtrarViajes()">
+          <ion-option value="todos">Todos</ion-option>
+          <ion-option value="enCurso" >En curso</ion-option>
+          <ion-option value="finalizados" >Finalizados</ion-option>
+          <ion-option value="cancelados">Cancelados</ion-option>
+        </ion-select>
+      </ion-item>
+      
+    </ion-list>
 </ion-header>
 
 
@@ -24,4 +36,42 @@
   <br>
   <button class="titulo" (click)="pedirViaje()" ion-button round icon-left color="secondary" block large>
     <ion-icon name="globe"></ion-icon>{{ 'PEDIR_VIAJE_BUTTON' | translate }}</button>
+
+    <ion-card (click)="mostrarViajeConMapa(item)" padding *ngFor="let item of listaViajes" [ngClass]="item.activo==0? 'disabled' : 'enabled' ">
+        
+        
+                <ion-item style="text-align: center;">
+         
+                  <h2 class="titulo" style="color: rgb(20, 32, 201);">Cliente: {{ item.nombreCliente }}</h2>
+                  <h2 class="titulo" style="color: rgb(201, 107, 20);">Duración: {{item.duracionViajeText}}</h2>
+                  <p class="titulo" style="color: yellow;">Distancia: {{ item.distanciaText }}</p>
+                </ion-item>
+            
+                <ion-card-content>
+                  <p>Chofer asignado:
+                    <b>{{(item.correoChofer == "" ? 'Sin asignar' : item.correoChofer)}} </b>
+                  </p>
+                  <p>Estado del viaje:
+                    <b> {{ (item.estado == 0 ? 'No comenzado' : (item.estado == 1 ? 'En curso' : (item.estado == 2 ? 'Finalizado' : (item.estado == 3 ? 'Cancelado por cliente' : 'Cancelado por la empresa' ) ) ) ) }}</b>
+                  </p>
+                  <p>Origen:
+                    <b>{{item.origen}}</b>
+                  </p>
+                  <p>Destino:
+                    <b>{{item.destino}}</b>
+                  </p>
+                  <p>Salida:
+                    <b>{{ item.fechaSalidaString }}</b>
+                  </p>
+                  <p>Pedido:
+                    <b>{{ item.fechaRegistroString }}</b>
+                  </p>
+        
+                  <p *ngIf="item.estado == 2">Monto:
+                    <b>$ {{ item.monto }}</b>
+                  </p>
+        
+                </ion-card-content>
+            
+              </ion-card>
 </ion-content>

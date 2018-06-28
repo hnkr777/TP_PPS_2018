@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 
 import { Settings } from '../../providers/providers';
+import { ChoferPanelPage } from '../chofer-panel/chofer-panel';
 
 /**
  * Página de encuesta de chofer
@@ -38,7 +39,10 @@ export class EncuestaChoferPage {
     public settings: Settings,
     public formBuilder: FormBuilder,
     public navParams: NavParams,
-    public translate: TranslateService) {
+    public translate: TranslateService,
+    private viewCtrl: ViewController
+  ) {
+
   }
 
   _buildForm() {
@@ -89,6 +93,14 @@ export class EncuestaChoferPage {
 
       this._buildForm();
     });
+  }
+
+  accionAceptar() {
+    this.navCtrl.setRoot(ChoferPanelPage);
+  }
+
+  closeModal() {
+    this.viewCtrl.dismiss();
   }
 
   ngOnChanges() {

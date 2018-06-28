@@ -75,7 +75,7 @@ export class AltaClienteParaAdminPage {
                 this.formAlta.controls['activo'].setValue(false);
               }
         this.unCliente.foto=clienteaModificar.foto;
-        this.unCliente.id=clienteaModificar.id;
+       // this.unCliente.id=clienteaModificar.id;
       }
       else
         {
@@ -94,7 +94,7 @@ export class AltaClienteParaAdminPage {
 
   nombre : FormControl = new FormControl("",[Validators.required]);
   apellido : FormControl = new FormControl("",[Validators.required]);
-  correo : FormControl = new FormControl("",[Validators.required]);
+  correo : FormControl = new FormControl("",[Validators.required,Validators.email]);
  // clave : FormControl = new FormControl("",[Validators.required]);
  // claveRep : FormControl = new FormControl("",[Validators.required]);
   dni : FormControl = new FormControl("",[Validators.required,Validators.minLength(8),Validators.maxLength(8)]);
@@ -121,8 +121,72 @@ export class AltaClienteParaAdminPage {
     //let claveRep=this.formAlta.get("claveRep").value; 
     
    // if(this.nombre.invalid || this.apellido.invalid || this.correo.invalid || this.clave.invalid || this.claveRep.invalid || this.dni.invalid || this.domicilio.invalid || this.sexo.invalid || this.fechaNacimiento.invalid)
+  
+   if(!this.nombre.value.match(/^[A-Za-z\_\-\.\s\xF1\xD1]+$/))
+    {
+      this.formAlta.controls['nombre'].setValue("");
+      const alerta = this.alertCtrl.create({
+        title: 'Error!',
+        subTitle: 'El nombre debe contener letras',
+        cssClass:"miClaseDanger",
+        buttons: ['Aceptar']
+      });
+      alerta.present();
+      return;
+    }
+
+    if(!this.apellido.value.match(/^[A-Za-z\_\-\.\s\xF1\xD1]+$/))
+      {
+        this.formAlta.controls['apellido'].setValue("");
+        const alerta = this.alertCtrl.create({
+          title: 'Error!',
+          subTitle: 'El apellido debe contener letras',
+          cssClass:"miClaseDanger",
+          buttons: ['Aceptar']
+        });
+        alerta.present();
+        return;
+      }
+
+      if(!this.dni.value.match(/^([0-9])*$/))
+        {
+          this.formAlta.controls['dni'].setValue("");
+          const alerta = this.alertCtrl.create({
+            title: 'Error!',
+            subTitle: 'El DNI debe contener 8 dígitos',
+            cssClass:"miClaseDanger",
+            buttons: ['Aceptar']
+          });
+          alerta.present();
+          return;
+        }
+  
    if(this.nombre.invalid || this.apellido.invalid || this.correo.invalid  || this.dni.invalid)   
-   {
+   {   
+     if(this.dni.invalid)
+    {
+      this.formAlta.controls['dni'].setValue("");
+      const alerta = this.alertCtrl.create({
+        title: 'Error!',
+        subTitle: 'El DNI debe contener 8 dígitos',
+        cssClass:"miClaseDanger",
+        buttons: ['Aceptar']
+      });
+      alerta.present();
+      return;
+    }
+    if(this.correo.invalid)
+      {
+        this.formAlta.controls['correo'].setValue("");
+        const alerta = this.alertCtrl.create({
+          title: 'Error!',
+          subTitle: 'Formato de correo invalido',
+          cssClass:"miClaseDanger",
+          buttons: ['Aceptar']
+        });
+        alerta.present();
+        return;
+      }
         const alerta = this.alertCtrl.create({
           title: 'Error!',
           subTitle: 'Error en el ingreso de datos. Verifique!',
@@ -176,8 +240,8 @@ export class AltaClienteParaAdminPage {
         }
 
     let ob = this.servicioCliente.traerUsuarios().subscribe(data => { // la lista se va a actualizar cada vez que cambie la tabla usuarios de firebase
-    let id=data.length+1;
-    this.unCliente.id=id;
+    //let id=data.length+1;
+    //this.unCliente.id=id;
     console.log(this.unCliente);
     this.nuevoCliente(this.unCliente);  
     ob.unsubscribe();

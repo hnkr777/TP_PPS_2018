@@ -16,6 +16,8 @@ import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 import { QrLeerVehiculoClientePage } from '../../pages/qr-leer-vehiculo-cliente/qr-leer-vehiculo-cliente';
 import { NuevoViajePage } from '../nuevo-viaje/nuevo-viaje';
 import { PagesModalPage } from '../pages-modal/pages-modal';
+import { DetalleViajeClientePage } from "../../pages/detalle-viaje-cliente/detalle-viaje-cliente";
+import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider, Settings } from '../../providers/providers';
 /**
  * Generated class for the InicioClientePage page.
  *
@@ -39,6 +41,11 @@ vehiculo;
 
 private scanSub;
 
+public listaViajes: any[];
+public listaViajesAux: any[];
+private filtro: string;
+mostrar;
+
 constructor(public navCtrl: NavController,
   public navParams: NavParams,
   private formBuilder: FormBuilder,
@@ -50,9 +57,10 @@ constructor(public navCtrl: NavController,
   private camera: Camera,
   public alertCtrl: AlertController,
   private servicioCliente: AbmClienteProvider,
-  private qrScanner: QRScanner)
+  private qrScanner: QRScanner,
+  private servicioViajes: ServicioViajesProvider)
  {
-
+  this.listaViajes=[];
   }
 
   ionViewDidLoad() {
@@ -60,6 +68,8 @@ constructor(public navCtrl: NavController,
     this.usuarioDatos = JSON.parse(sessionStorage.getItem('usuario'));
     this.nombre=this.usuarioDatos.nombre;
     this.foto=this.usuarioDatos.foto;
+    this.mostrar="todos";
+    this.filtrarViajes();
   }
 
   pedirViaje() {
@@ -80,6 +90,133 @@ constructor(public navCtrl: NavController,
   modificar()
   {
     alert("No implementado todavia. Aca se va a poder modificar la foto del cliente y la clave");
+  }
+
+  filtrarViajes()
+  {
+    console.log(this.usuarioDatos.correo);
+    this.spin(true);
+    let ob = this.servicioViajes.traerViajesFiltrados("correoCliente","==",this.usuarioDatos.correo).subscribe(data => {
+      this.listaViajes = data;
+      this.listaViajesAux = data;
+      console.log(this.listaViajes);
+      //this.usuario = JSON.parse(sessionStorage.getItem("usuario"));
+
+      if(this.mostrar=="todos")
+        {
+          this.filtrarViajesTodos();
+        }
+        if(this.mostrar=="enCurso")
+          {
+            this.filtrarViajesEnCurso();
+          }
+
+          if(this.mostrar=="finalizados")
+            {
+              this.filtrarViajesFinalizados();
+            }
+            if(this.mostrar=="cancelados")
+              {
+                this.filtrarViajesCancelados();
+              }
+            
+    /*  
+      if(this.usuario.estado==2)
+        {
+          this.mostrar="enCurso";
+          this.fitrarPorViajesEnCurso();
+        }
+
+          if(this.usuario.estado==1)
+            {
+              if(this.mostrar=="asignados")
+                {
+                  this.fitrarPorViajesAsignados();
+                }
+              if(this.mostrar=="sinAsignacion")
+                {
+                  this.filtrarViajesSinAsignacion();
+                }
+                if(this.mostrar=="enCurso")
+                  {
+                    this.mostrar=="asignados";
+                    this.fitrarPorViajesAsignados();
+                  }
+
+            }*/
+
+          /*  console.log("USUARUIOO: ");
+            console.log(this.usuario);
+
+            console.log("MOSTRAR: ");
+            console.log(this.mostrar);*/
+
+      this.spin(false);
+    });
+  }
+
+  mostrarViajeConMapa(viaje)
+  {
+    this.modalCtrl.create(DetalleViajeClientePage, {viaje: viaje}).present();
+  }
+
+
+  filtrarViajesTodos()
+  {
+    this.mostrar="todos";
+  }
+
+  filtrarViajesEnCurso()
+  {
+    this.mostrar="enCurso";
+    this.listaViajes=[];
+
+    for(let i=0;i<this.listaViajesAux.length;i++)
+      {
+        if(this.listaViajesAux[i].estado == 1)
+          {
+            this.listaViajes.push(this.listaViajesAux[i]);
+          }
+      }
+  }
+
+  filtrarViajesFinalizados()
+  {
+    this.mostrar="finalizados";
+    this.listaViajes=[];
+
+    for(let i=0;i<this.listaViajesAux.length;i++)
+      {
+        if(this.listaViajesAux[i].estado == 2)
+          {
+            this.listaViajes.push(this.listaViajesAux[i]);
+          }
+      }
+  }
+
+  filtrarViajesCancelados()
+  {
+    this.mostrar="cencelados";
+    this.listaViajes=[];
+
+    for(let i=0;i<this.listaViajesAux.length;i++)
+      {
+        if(this.listaViajesAux[i].estado == 3 || this.listaViajesAux[i].estado == 4)
+          {
+            this.listaViajes.push(this.listaViajesAux[i]);
+          }
+      }
+  }
+
+
+  private spin(status: boolean) {
+    if(this.spinner === undefined && status === true) {
+      this.spinner = this.modalCtrl.create(SpinnerPage);
+      this.spinner.present();
+    } else if(this.spinner !== undefined && status === false) {
+      this.spinner.dismiss();
+      this.spinner = undefined;
+    }
   }
 
 }

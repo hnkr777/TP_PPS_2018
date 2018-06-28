@@ -11,21 +11,21 @@
   <form [formGroup]="form" *ngIf="settingsReady">
     <ion-list *ngIf="page == 'main'">
       <ion-item>
-        <ion-label>{{ 'SETTINGS_OPTION1' | translate }}</ion-label>
+        <ion-label>{{ 'POLL_CHECKBOX' | translate }}</ion-label>
         <ion-toggle formControlName="option1"></ion-toggle>
       </ion-item>
 
       <ion-item>
-        <ion-label>{{ 'SETTINGS_OPTION2' | translate }}</ion-label>
+        <ion-label>{{ 'POLL_INPUT' | translate }}</ion-label>
         <ion-input formControlName="option2"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label>{{ 'SETTINGS_OPTION3' | translate }}</ion-label>
+        <ion-label>{{ 'POLL_SELECT' | translate }}</ion-label>
         <ion-select formControlName="option3">
-          <ion-option value="1" checked="true">1</ion-option>
-          <ion-option value="2">2</ion-option>
-          <ion-option value="3">3</ion-option>
+          <ion-option value="1" checked="true">{{ 'POLL_SELECT_1' | translate }}</ion-option>
+          <ion-option value="2">{{ 'POLL_SELECT_2' | translate }}</ion-option>
+          <ion-option value="3">{{ 'POLL_SELECT_3' | translate }}</ion-option>
         </ion-select>
       </ion-item>
 
@@ -42,6 +42,7 @@
     </ion-list> -->
 
     <ion-item>
+      <ion-label>{{ 'POLL_RANGE' | translate }}</ion-label>
       <ion-range formControlName="optRange" min="0" max="100" step="1">
         <ion-icon range-left name="remove"></ion-icon>
         <ion-icon range-right name="add"></ion-icon>
@@ -51,32 +52,32 @@
     <ion-list formControlName="optRadio" radio-group>
 
       <ion-list-header>
-        Auto Manufacturers
+        {{ 'POLL_RADIO' | translate }}
       </ion-list-header>
     
       <ion-item>
-        <ion-label>Cord</ion-label>
-        <ion-radio value="cord"></ion-radio>
+        <ion-label>{{ 'POLL_RADIO_1' | translate }}</ion-label>
+        <ion-radio value="1"></ion-radio>
       </ion-item>
     
       <ion-item>
-        <ion-label>Duesenberg</ion-label>
-        <ion-radio value="duesenberg"></ion-radio>
+        <ion-label>{{ 'POLL_RADIO_2' | translate }}</ion-label>
+        <ion-radio value="2"></ion-radio>
       </ion-item>
     
       <ion-item>
-        <ion-label>Hudson</ion-label>
-        <ion-radio value="hudson"></ion-radio>
+        <ion-label>{{ 'POLL_RADIO_3' | translate }}</ion-label>
+        <ion-radio value="3"></ion-radio>
       </ion-item>
     
       <ion-item>
-        <ion-label>Packard</ion-label>
-        <ion-radio value="packard"></ion-radio>
+        <ion-label>{{ 'POLL_RADIO_4' | translate }}</ion-label>
+        <ion-radio value="4"></ion-radio>
       </ion-item>
     
       <ion-item>
-        <ion-label>Studebaker</ion-label>
-        <ion-radio value="studebaker"></ion-radio>
+        <ion-label>{{ 'POLL_RADIO_5' | translate }}</ion-label>
+        <ion-radio value="5"></ion-radio>
       </ion-item>
     
     </ion-list>
@@ -87,11 +88,11 @@
 
 <ion-footer>
   <ion-navbar>
-    <ion-buttons>
-      <button large ion-button color="danger" (click)="closeModal()">Cancelar</button>
-    </ion-buttons>
+    <!-- <ion-buttons>
+      <button large ion-button color="danger" (click)="closeModal()">Cerrar</button>
+    </ion-buttons> -->
     <ion-buttons end>
-      <button large ion-button color="secondary" (click)="accionAceptar()">Aceptar</button>
+      <button large ion-button color="secondary" (click)="accionAceptar()">Cerrar</button>
     </ion-buttons>
   </ion-navbar>
 </ion-footer>

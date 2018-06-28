@@ -53,10 +53,10 @@ export class AbmClienteProvider {
     modificarUsuario(usuario: any ): Promise<any>  {
       console.log('ServicioUsuariosProvider.modificarUsuario()');
       //this.objFirebase.collection<Usuario>(this.tablaUsuarios).ref.doc().update().then();
-      let coleccionTipadaFirebase = this.objFirebase.collection<any>(this.tablaUsuarios, ref => ref.where('id', '==', usuario.id));
+      let coleccionTipadaFirebase = this.objFirebase.collection<any>(this.tablaUsuarios, ref => ref.where('correo', '==', usuario.correo));
      return coleccionTipadaFirebase.ref.get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          if(doc.data().id == usuario.id) {
+          if(doc.data().correo == usuario.correo) {
             doc.ref.update(usuario);
             
            // console.log('Usuario ' + usuario.email + ' modificado correctamente.');

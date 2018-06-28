@@ -29,9 +29,10 @@ export class VisorViajesChoferPage {
   private viaje: Viaje;
   private spinner;
   private usuario;
-
+  private filtro: string;
   miLatitudChofer;
   miLongitudChofer;
+  mostrar;
 
   constructor(
     public navCtrl: NavController, 
@@ -48,11 +49,13 @@ export class VisorViajesChoferPage {
     private popover: PopoverController ) {
  this.listaViajes=[];
  this.usuario = JSON.parse(sessionStorage.getItem("usuario"));
-  }
+  
+   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad VisorViajesChoferPage');
     this.spin(true);
+    this.mostrar="asignados";
     this.ubicacionActual();
 
   /*  let ob = this.servicioViajes.traerViajes().subscribe(data => { // la lista se va a actualizar cada vez que cambie la tabla usuarios de firebase
@@ -65,20 +68,68 @@ export class VisorViajesChoferPage {
 
     }
 
-    ubicacionActual(){
+    ubicacionActual() {
       this.geolocation.getCurrentPosition().then((resp) => {
         console.log("latituddddd");
         console.log(resp.coords.latitude);
         this.miLatitudChofer=resp.coords.latitude;
         this.miLongitudChofer=resp.coords.longitude;
         this.filtrarViajesTest();
-       }).catch((error) => {
-         console.log('Error getting location', error);
-       });
-      }
+      }).catch((error) => {
+        console.log('Error getting location', error);
+      });
+    }
 
 
       filtrarViajesTest() {
+        this.spin(true);
+        let now: number = Date.now();
+        now += 30 * 60 * 1000; // cantidad de minutos * segundos (en 1 minuto) * milesimas de segundo (en 1 segundo)
+        //console.log('now: ' + now.toString());
+        //console.log(new Date(now).toLocaleString());
+    
+        let ob = this.servicioViajes.traerViajes().subscribe(data => {
+          this.listaViajes = data;
+          this.listaViajesAux = data;
+          this.usuario = JSON.parse(sessionStorage.getItem("usuario"));
+
+          
+          if(this.usuario.estado==2)
+            {
+              this.mostrar="enCurso";
+              this.fitrarPorViajesEnCurso();
+            }
+
+              if(this.usuario.estado==1)
+                {
+                  if(this.mostrar=="asignados")
+                    {
+                      this.fitrarPorViajesAsignados();
+                    }
+                  if(this.mostrar=="sinAsignacion")
+                    {
+                      this.filtrarViajesSinAsignacion();
+                    }
+                    if(this.mostrar=="enCurso")
+                      {
+                        this.mostrar=="asignados";
+                        this.fitrarPorViajesAsignados();
+                      }
+
+                }
+
+                console.log("USUARUIOO: ");
+                console.log(this.usuario);
+
+                console.log("MOSTRAR: ");
+                console.log(this.mostrar);
+
+          this.spin(false);
+        });
+
+
+
+/*
         let now: number = Date.now();
         now += 30 * 60 * 1000; // cantidad de minutos * segundos (en 1 minuto) * milesimas de segundo (en 1 segundo)
         //console.log('now: ' + now.toString());
@@ -91,24 +142,32 @@ export class VisorViajesChoferPage {
     
           for(let i: number = 0; i < data.length; i++) {
             if(data[i].fechaSalida < now ) {
+
+              
               //me fijo si tengo algun viaje asignado por el supervisor
               if(data[i].correoChofer==this.usuario.correo && data[i].estado==0 )
                 {
                   this.listaViajes.push(data[i]);
                   viajePendiente=1;
-                  
+                  console.log("me fijo si tengo algun viaje asignado por el supervisor");
+                  console.log(viajePendiente);
                 }
               //me fijo si tengo un viaje en curso
               if(data[i].correoChofer==this.usuario.correo && data[i].estado==1 )
                   {
                     this.listaViajes.push(data[i]);
                     viajePendiente=1;
+                    console.log("me fijo si tengo un viaje en curso");
+                    console.log(viajePendiente);
                   }
               if(viajePendiente==0)
                 {
-              if( data[i].correoChofer=="vacio"||data[i].correoChofer==""||data[i].correoChofer==undefined)
+                  //trae todos los vijes sin asignacion y sin comenzar
+              if(data[i].correoChofer=="" && data[i].estado==0 )
               {
-              this.listaViajes.push(data[i]);
+                this.listaViajes.push(data[i]);
+                console.log("trae todos los vijes sin asignacion y sin comenzar");
+                console.log(viajePendiente);
               }
             }
             }
@@ -118,6 +177,59 @@ export class VisorViajesChoferPage {
           //console.log('Cantidad viajes: ' + this.listaViajes.length);
           //ob.unsubscribe();
         });
+        */
+      }
+
+
+      fitrarPorViajesEnCurso()
+      {
+        this.mostrar="enCurso";
+        this.listaViajes=[];
+        let now: number = Date.now();
+        now += 30 * 60 * 1000;
+        console.log(this.listaViajesAux);
+
+        for(let i=0;i<this.listaViajesAux.length;i++)
+          {
+            if(this.listaViajesAux[i].estado == 1 && this.listaViajesAux[i].correoChofer==this.usuario.correo )
+              {
+                this.listaViajes.push(this.listaViajesAux[i]);
+              }
+          }
+      }
+
+      fitrarPorViajesAsignados()
+      { 
+      this.mostrar="asignados";
+      this.listaViajes=[];
+      let now: number = Date.now();
+      now += 30 * 60 * 1000;
+      console.log(this.listaViajesAux);
+
+      for(let i=0;i<this.listaViajesAux.length;i++)
+        {
+          if(this.listaViajesAux[i].fechaSalida < now && this.listaViajesAux[i].estado == 0 && this.listaViajesAux[i].correoChofer==this.usuario.correo )
+            {
+              this.listaViajes.push(this.listaViajesAux[i]);
+            }
+        }
+      }
+
+      filtrarViajesSinAsignacion()
+      {
+        this.mostrar="sinAsignacion";
+        this.listaViajes=[];
+        let now: number = Date.now();
+        now += 30 * 60 * 1000;
+        console.log(this.listaViajesAux);
+  
+        for(let i=0;i<this.listaViajesAux.length;i++)
+          {
+            if(this.listaViajesAux[i].fechaSalida < now && this.listaViajesAux[i].estado == 0 && this.listaViajesAux[i].correoChofer=="")
+              {
+                this.listaViajes.push(this.listaViajesAux[i]);
+              }
+          }
       }
 
 
@@ -148,6 +260,8 @@ export class VisorViajesChoferPage {
 
 
 
+
+
   private spin(status: boolean) {
     if(this.spinner === undefined && status === true) {
       this.spinner = this.modalCtrl.create(SpinnerPage);
@@ -156,6 +270,5 @@ export class VisorViajesChoferPage {
       this.spinner.dismiss();
       this.spinner = undefined;
     }
-   }
-
+  }
 }

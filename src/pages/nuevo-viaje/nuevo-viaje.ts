@@ -32,7 +32,7 @@ export class NuevoViajePage {
 
   options = {
     enableHighAccuracy: true,
-    timeout: 3000,
+    timeout: 8000,
     maximumAge: 0
   };
 
@@ -101,6 +101,69 @@ export class NuevoViajePage {
     });
   }
 
+  
+  loadMap() {
+    let latLng = new google.maps.LatLng(-34.9290, 138.6010);
+    
+    let mapOptions = {
+      center: latLng,
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+  }
+
+  startNavigating() {
+    let directionsService = new google.maps.DirectionsService;
+    let directionsDisplay = new google.maps.DirectionsRenderer;
+
+    directionsDisplay.setMap(this.map);
+    //directionsDisplay.setPanel(this.directionsPanel.nativeElement);
+
+    directionsService.route({
+      origin: {lat: this.nuevoViaje.latOrigen, lng: this.nuevoViaje.longOrigen},
+      destination: {lat: this.nuevoViaje.latDestino, lng: this.nuevoViaje.longDestino}, 
+      /*waypoints: [{
+        location: {lat: this.viaje.latOrigen, lng: this.viaje.longOrigen},
+        stopover: true
+      }],*/
+      travelMode: 'DRIVING',
+      },
+      (res, status) => {
+        console.log(JSON.stringify(res));
+        console.log(JSON.stringify(status));
+        if(status == google.maps.DirectionsStatus.OK) {
+          this.getData(res);
+          directionsDisplay.setDirections(res);
+        } else {
+            console.warn(status);
+        }
+      }
+    );
+  }
+
+  getData(data) {
+    try {
+      this.nuevoViaje.duracionViaje = data.routes[0].legs[0].duration.value;
+      this.nuevoViaje.duracionViajeText = data.routes[0].legs[0].duration.text;
+      console.log('Duracion viaje en minutos: ' + this.nuevoViaje.duracionViaje + ' (' + this.nuevoViaje.duracionViajeText + ')');
+      this.nuevoViaje.distancia = data.routes[0].legs[0].distance.value;
+      this.nuevoViaje.distanciaText = data.routes[0].legs[0].distance.text;
+      console.log('Distancia del viaje en metros: ' + this.nuevoViaje.distancia + ' (' + this.nuevoViaje.distanciaText + ')');
+      this.origen = data.routes[0].legs[0].start_address;
+      this.destino = data.routes[0].legs[0].end_address;
+      this.nuevoViaje.origen = this.origen;
+      this.nuevoViaje.destino = this.destino;
+      this.nuevoViaje.nombreCliente = this.usuario.nombre + ' ' + this.usuario.apellido;
+
+      this.nuevoViaje.monto = this.calcularMonto(this.nuevoViaje.distancia, this.nuevoViaje.duracionViaje);
+      this.infoViaje();
+      this.checkCondiciones();
+    } catch(e) {
+      this.errorMsg('Error', 'Error de google maps en la localización: '+ e);
+    }
+  }
+
   init() {
     this.hidePops();
     this.puntos = 0;
@@ -143,7 +206,7 @@ export class NuevoViajePage {
     if(this.puntos > 1) return;
     this.geolocation.getCurrentPosition({
       maximumAge: 3000, 
-      timeout: 5000, 
+      timeout: 8000,
       enableHighAccuracy: true 
     })
     .then((resp) => {
@@ -155,12 +218,12 @@ export class NuevoViajePage {
         this.nuevoViaje.longDestino = resp.coords.longitude;
       }
       this.addMarker(resp.coords.latitude, resp.coords.longitude);
-      this.addPolyLine({ lat: resp.coords.latitude, lng: resp.coords.longitude });
+      //this.addPolyLine({ lat: resp.coords.latitude, lng: resp.coords.longitude });
       this.puntos++;
       this.map.setCenter({ lat: resp.coords.latitude, lng: resp.coords.longitude });
       //this.marcarUbicacion(resp.coords.latitude, resp.coords.longitude);
     }).catch((error) => {
-      this.errorMsg('GPS', 'Error al leer el GPS. \n' + error);
+      this.errorMsg('Error GPS', 'GPS desactivado.\n');
     });
   }
   
@@ -182,10 +245,11 @@ export class NuevoViajePage {
 
   marcarMapa(lat: number, long: number) {
     if(this.puntos > 1) {
-      this.calcularDistancia();
+      //this.calcularDistancia();
+      this.infoViaje();
     } else {
       this.addMarker(lat, long);
-      this.addPolyLine({ lat: lat, lng: long });
+      //this.addPolyLine({ lat: lat, lng: long });
       this.puntos++;
     }
   }
@@ -199,12 +263,14 @@ export class NuevoViajePage {
       this.nuevoViaje.latDestino = lat;
       this.nuevoViaje.longDestino = long;
       console.log('DESTINO: ' + this.nuevoViaje.latDestino + ', ' + this.nuevoViaje.longDestino);
-      this.calcularDistancia();
+      //this.calcularDistancia();
+      this.startNavigating();
     }
     
     console.log('Latitud[' + lat + ']  -  Longitud[' + long + ']');
     let marker = new google.maps.Marker({
       position: { lat: lat, lng: long },
+      color: '#FFFF00',
       label: this.labels[this.labelIndex++ % this.labels.length],
       map: this.map
     });
@@ -235,8 +301,8 @@ export class NuevoViajePage {
           'Distancia: ' + c.distanciaText + r +
           'Duración: ' + c.duracionViajeText + r +
           'Origen: ' + c.origen + r +
-          'Destino: ' + c.destino + r +
-          'Monto: $ ' + c.monto + r;
+          'Destino: ' + c.destino + r;
+          //'Monto: $ ' + c.monto + r;
     this.Msg('Info Viaje:', buf);
   }
 
@@ -276,12 +342,14 @@ export class NuevoViajePage {
             this.nuevoViaje.distancia = data.rows[0].elements[0].distance.value;
             this.nuevoViaje.distanciaText = data.rows[0].elements[0].distance.text;
             console.log('Distancia del viaje en metros: ' + this.nuevoViaje.distancia + ' (' + this.nuevoViaje.distanciaText + ')');
-            this.origen = data.originAddresses[0];
-            this.destino = data.destinationAddresses[0];
+            this.origen = data.start_address;
+            this.destino = data.end_address;
             this.nuevoViaje.origen = this.origen;
             this.nuevoViaje.destino = this.destino;
-            console.log('Dirección de origen: '+data.originAddresses);
-            console.log('Dirección de destino: '+data.destinationAddresses);
+            //console.log('Dirección de origen: '+data.originAddresses);
+            console.log('Dirección de origen: '+data.start_address);
+            //console.log('Dirección de destino: '+data.destinationAddresses);
+            console.log('Dirección de destino: '+data.end_address);
             console.log('Estado: '+ status);
             this.nuevoViaje.monto = this.calcularMonto(this.nuevoViaje.distancia, this.nuevoViaje.duracionViaje);
             this.infoViaje();

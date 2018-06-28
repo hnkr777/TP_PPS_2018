@@ -16,6 +16,7 @@ export class Viaje {
   fechaSalida: number;                    // fecha inmediata (en la próxima media hora) o postdatada, a partir de ese horario el viaje puede ser realizado por algún chofer
   
   correoCliente: string;                // direccion del cliente que pidió el viaje
+  nombreCliente: string;                // nombre y apellido del cliente que pidió el viaje
   correoChofer: string;                 // identificador del chofer que realizó/realiza el viaje, sino tiene, el viaje está disponible para realizarse
   patente: string;                      // que vehículo tendrá asignado el viaje, se setea en cuanto un chofer toma el viaje... información redundante pero puede servir
   monto: number;                        // costo del viaje, se calcula en base a la distancia del viaje

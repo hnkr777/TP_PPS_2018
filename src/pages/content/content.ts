@@ -9,6 +9,11 @@ import { PagesModalPage } from "../pages-modal/pages-modal";
 import { ListadoChoferesDisponiblesPage } from "../listado-choferes-disponibles/listado-choferes-disponibles";
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { TranslateService } from '@ngx-translate/core';
+import { Usuario } from '../../clases/usuario';
+import { ServicioUsuariosProvider } from '../../providers/providers';
+import { VisorViajesChoferPage } from '../visor-viajes-chofer/visor-viajes-chofer';
+import { ChoferPanelPage } from '../chofer-panel/chofer-panel';
+import { EncuestaChoferPage } from '../encuesta-chofer/encuesta-chofer';
 
 
 @IonicPage()
@@ -26,7 +31,8 @@ export class ContentPage {
     public qrScanner: QRScanner, 
     public platform: Platform,
     public viewCtrl : ViewController,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public servUsuarios: ServicioUsuariosProvider
   ) {
     this.quienMeLLama = this.navParams.get('data');
   }
@@ -112,17 +118,41 @@ export class ContentPage {
           this.scanSub.unsubscribe(); // stop scanning
           console.log('Escaneo QR finalizado');*/
           this.navCtrl.setRoot(ListadoChoferesDisponiblesPage);
-        }
-        else{
-          this.Modal("Qr Scan",textoScaneado);
+        } else {
+          this.errorMsg('Error', 'QR no reconocido');
         }
         break;
+
+      case 'chofer':
+        if(textoScaneado == 'ChoferEmpezarATrabajar') {
+          this.cambiarEstadoChofer();
+          this.navCtrl.setRoot(ChoferPanelPage);
+          //this.navCtrl.push(VisorViajesChoferPage);
+        } else {
+          this.errorMsg('Error', 'QR no reconocido');
+        }
+      break;
+
+      case 'encuesta_chofer':
+        if(textoScaneado == 'ChoferEncuestaControl') {
+          this.closeModal();
+          this.navCtrl.setRoot(EncuestaChoferPage);
+        } else {
+          this.errorMsg('Error', 'QR no reconocido');
+        }
+      break;
     
       default:
         break;
     }
   }
 
+  cambiarEstadoChofer() {
+    let chofer: Usuario = JSON.parse(sessionStorage.getItem('usuario'));
+    chofer.estado = 1;
+    sessionStorage.setItem('usuario', JSON.stringify(chofer));
+    this.servUsuarios.modificarUsuario(chofer);
+  }
   
   Modal(titulo: string, data: any) {
     this.modalCtrl.create(PagesModalPage, { titulo: titulo, data: data }).present();

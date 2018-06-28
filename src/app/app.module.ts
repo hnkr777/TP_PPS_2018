@@ -58,6 +58,7 @@ import { ListadoChoferesDisponiblesPage } from '../pages/listado-choferes-dispon
 import { ListadoViajesSelecPage } from '../pages/listado-viajes-selec/listado-viajes-selec';
 import { DetalleViajeChoferPage } from '../pages/detalle-viaje-chofer/detalle-viaje-chofer';
 import {NativeAudio} from '@ionic-native/native-audio';
+import { DetalleViajeClientePage } from '../pages/detalle-viaje-cliente/detalle-viaje-cliente';
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
 
@@ -109,7 +110,8 @@ export function provideSettings(storage: Storage) {
     ListadoViajesSelecPage,
     VisorViajesChoferPage,
     SuperControlPanelPage,
-    DetalleViajeChoferPage
+    DetalleViajeChoferPage,
+    DetalleViajeClientePage
   ],
   imports: [
     BrowserModule,
@@ -157,7 +159,8 @@ export function provideSettings(storage: Storage) {
     SupervisorPanelPage,
     ListadoViajesSelecPage,
     VisorViajesChoferPage,
-    DetalleViajeChoferPage
+    DetalleViajeChoferPage,
+    DetalleViajeClientePage
   ],
   providers: [
     Api,

@@ -34,27 +34,41 @@ export class ChoferPanelPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     public modalCtrl: ModalController,
-    private servicioViajes: ServicioViajesProvider
+    private servicioViajes: ServicioViajesProvider,
+    private servUsuarios: ServicioUsuariosProvider
   ) {
     
     this.chofer = JSON.parse(sessionStorage.getItem('usuario'));
-    if(this.chofer.estado == 1) {
-
-      //this.chofer.estado = 0;
+    if(this.chofer == undefined) {
+      console.error('Error al cargar el usuario');
     }
+    console.log('Estado: '+this.chofer.estado);
+  }
+
+  irCerrarSesion() {
+    if(this.chofer.estado == 1) {
+      this.chofer.estado = 0;
+      this.cambiarEstadoChofer();
+    }
+  }
+  
+  cambiarEstadoChofer() {
+    sessionStorage.setItem('usuario', JSON.stringify(this.chofer));
+    this.servUsuarios.modificarUsuario(this.chofer);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Admin Control Panel Page');
+    this.chofer = JSON.parse(sessionStorage.getItem('usuario'));
   }
 
   irEncuestaChofer() {
-    //this.navCtrl.push(ContentPage); // escaner QR
-    this.navCtrl.push(EncuestaChoferPage);
+    this.navCtrl.push(ContentPage, { data: 'encuesta_chofer'}); // para test en celular
+    //this.navCtrl.push(EncuestaChoferPage); // para test en PC
   }
 
-  irVisorViajes() {
-    this.navCtrl.push(ContentPage); // escaner QR
+  irEmpezarATrabajar() {
+    this.navCtrl.push(ContentPage, { data: 'chofer'}); // escaner QR
   }
 
   irVisorViajesParaChofer()

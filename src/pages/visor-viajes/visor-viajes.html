@@ -3,16 +3,30 @@
   <ion-navbar>
     <ion-title>{{ 'VISOR_VIAJES_PANEL_TITLE' | translate }}</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="filtrarViajesTest()">
-        <!-- <ion-icon name="add"></ion-icon> -->Filtrar
+      <button ion-button icon-only (click)="filtrarViajes()">
+      <ion-icon name="refresh"></ion-icon>
       </button>
     </ion-buttons>
+    
   </ion-navbar>
-
+  <ion-list block>
+      <ion-item>
+        <ion-label color="primary">Filtro:</ion-label>
+        <ion-select (ionInput)="filtrarViajes()" interface="popover" cancelText="Cancelar" okText="Aceptar" [(ngModel)]="filtro" (click)="filtrarViajes()">
+          <ion-option value="0">Pendientes</ion-option>
+          <ion-option value="-2">Post datados</ion-option>
+          <ion-option value="1">En viaje</ion-option>
+          <ion-option value="2">Finalizados</ion-option>
+          <ion-option value="3">Cancelados</ion-option>
+          <ion-option value="4">Cancelados por chofer</ion-option>
+          <ion-option value="-1">Todos</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
 </ion-header>
 
-
 <ion-content class="visor-viajes-content" id="visor-viajes-content">
+  
 
   <ion-card (click)="verViaje(item)" padding *ngFor="let item of listaViajes" [ngClass]="item.activo==0? 'disabled' : 'enabled' ">
 
@@ -20,7 +34,7 @@
       <!-- <ion-avatar item-start>
         <img [src]="item.foto === undefined ? '../../assets/img/img-usuario.svg' : item.foto">
       </ion-avatar> -->
-      <h2 class="titulo" style="color: rgb(20, 32, 201);">Cliente: {{ item.correoCliente }}</h2>
+      <h2 class="titulo" style="color: rgb(20, 32, 201);">Cliente: {{ item.nombreCliente }}</h2>
       <h2 class="titulo" style="color: rgb(202, 127, 14);">Duración: {{item.duracionViajeText}}</h2>
       <p class="titulo" style="color: yellow;">Distancia: {{ item.distanciaText }}</p>
     </ion-item>

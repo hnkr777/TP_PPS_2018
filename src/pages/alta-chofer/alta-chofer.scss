@@ -1,11 +1,17 @@
 alta-chofer-page {
     ion-content {
-        background: rgb(56, 56, 56)!important;
+        //background: rgb(56, 56, 56)!important;
+        background-color: #14830a!important;
         
     }
 
     ion-item {
-        background: transparent!important;
+        border-radius: 30px !important;
+        margin-top: 4px !important;
+        height: 46px !important;
+        background-color: #1b6415!important;
+        //background: transparent!important;
+        
     }
 
     .contenedor-global {
@@ -17,7 +23,11 @@ alta-chofer-page {
         top: 0px;
         left: 0px;
     }
-
+    .submit-btn {
+        background: #51CFB1;
+        //border-radius: 30px !important;
+        //border: 1px solid #ffffff;
+    }
     .marco-imagen {
         text-align: center;
         background-repeat: no-repeat;

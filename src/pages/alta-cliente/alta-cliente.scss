@@ -300,13 +300,22 @@ page-alta-cliente {
       }
 
       .alta-cliente-content {
+        background-color: #14830a!important;
         //background-color: rgba(0, 0, 0, 0.89)!important;
-        background: url('../assets/img/bg/4.jpg')!important;
+        //background: url('../assets/img/bg/4.jpg')!important;
         height: 100%!important;
         width: 100%!important;
         color: white!important;
         display: block;
         //object-fit: fill;
-}
+      }
+      ion-item {
+        border-radius: 30px !important;
+        margin-top: 4px !important;
+        height: 46px !important;
+        background-color: #1b6415!important;
+        //background: transparent!important;
+        
+    }
 
 }

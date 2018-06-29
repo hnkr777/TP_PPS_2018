@@ -21,6 +21,7 @@ import { NuevoViajePage } from '../nuevo-viaje/nuevo-viaje';
 import { AbmSupervisoresPage } from '../abm-supervisores/abm-supervisores';
 import { VisorViajesPage } from '../visor-viajes/visor-viajes';
 import { AbmVehiculosPage } from '../abm-vehiculos/abm-vehiculos';
+import { LoginPage } from '../login/login';
 
 
 @IonicPage()
@@ -65,5 +66,7 @@ export class AdminControlPanelPage {
   pedirViaje() {
     this.navCtrl.push(NuevoViajePage);
   }
-
+  logout(){
+    this.navCtrl.setRoot(LoginPage);
+  }
 }

@@ -1,14 +1,19 @@
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="dark">
     <ion-title>{{ 'ADMIN_PANEL_TITLE' | translate }}</ion-title>
+    <ion-buttons end>
+        <button ion-button (click)="logout()">
+          <ion-icon name="log-out"></ion-icon>
+        </button>
+      </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <img src="assets/img/icon.png" alt="" class="img">
   <button class="titulo" (click)="irAbmChofer()" ion-button round icon-left color="primary" block large>
     <ion-icon name="people"></ion-icon>{{ 'ABM_CHOFERES_BUTTON' | translate }}</button>
 

@@ -1,9 +1,18 @@
 admin-control-panel {
     ion-content {
-        background: rgb(56, 56, 56)!important;
+        background: #14830a!important;
     }
 
     .transparentBody {
         background-color: transparent !important;
     }
+    .titulo{
+        background: #51CFB1;
+           border-radius: 30px !important;
+           border: 1px solid #ffffff;
+    }
+    .img{
+        width: 45%;
+        //margin-left: 30%         
+      }
 }

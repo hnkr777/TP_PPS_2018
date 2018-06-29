@@ -1,6 +1,6 @@
 
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController,AlertController } from 'ionic-angular';
 import { TranslateModule } from '@ngx-translate/core';
 import { ServicioUsuariosProvider } from "../../providers/servicio-usuarios/servicio-usuarios";
 import { Usuario } from '../../clases/usuario';
@@ -29,7 +29,8 @@ export class VisorViajesPage {
     public navParams: NavParams, 
     private servicioUsuarios: ServicioUsuariosProvider,
     private servicioViajes: ServicioViajesProvider,
-    public modalCtrl: ModalController) {
+    public modalCtrl: ModalController,
+    public alertCtrl: AlertController) {
       this.filtro = '0';
       //this.loadClientNames();
   }
@@ -152,5 +153,42 @@ export class VisorViajesPage {
       
     });
   }
-  
+  cancelarViaje(viaje:Viaje){
+    viaje.estado = 4;
+    this.servicioViajes.modificarViaje(viaje);
+    this.showSuccess("Viaje Cancelado Correctamente");
+  }
+  ponerViajeEnPendiente(viaje:Viaje){
+    //viaje.estado = 0;
+    //let emailChofer = viaje.correoChofer;
+    viaje.correoChofer = "";
+    /*let chofer:Usuario;
+    this.servicioUsuarios.traerUsuarioPorEmail(emailChofer).subscribe(x => {
+      chofer = x[0];
+      chofer.estado = 1;
+      this.servicioUsuarios.modificarUsuario(chofer);
+    });*/
+    this.servicioViajes.modificarViaje(viaje);
+    this.showSuccess("Viaje Puesto en pendiente");
+  }
+  showError(msg){
+    const alerta = this.alertCtrl.create({
+      title: 'Error!',
+      subTitle: msg,
+      cssClass:"miClaseDanger",
+      buttons: ['Aceptar']
+    });
+    alerta.present();
+    return;
+  }
+  showSuccess(msg){
+    const alerta = this.alertCtrl.create({
+      title: 'Exito!',
+      subTitle: msg,
+      cssClass:"miClaseAlert",
+      buttons: ['Aceptar']
+    });
+    alerta.present();
+    return;
+  }
 }

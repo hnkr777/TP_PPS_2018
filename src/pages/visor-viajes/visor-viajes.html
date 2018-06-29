@@ -61,10 +61,24 @@
         <b>{{ item.fechaRegistroString }}</b>
       </p>
       <p>Estado:
-        <b>{{ (item.estado == 0 ? 'Pendiente' : (item.estado == 1 ? 'En viaje' : 'Finalizado' ) ) }}</b>
+        <b>{{   ( item.estado == 0 ? 'Pendiente' : (item.estado == 1 ? 'En viaje' : (item.estado == 2 ? 'Finalizado' : (item.estado == 3 ? 'Cancelado Cliente' : 'Cancelado Chofer/Supervisor' ) ) ) ) }}</b>
       </p>
       <p>Monto:
         <b>$ {{ item.monto }}</b>
+      </p>
+      <p *ngIf = "item.estado == 0">
+        <b>
+          <button ion-button icon-only (click)="cancelarViaje(item)" class="submit-btn">
+          <ion-icon name="trash">Cancelar</ion-icon>
+          </button>
+        </b>
+      </p>
+      <p *ngIf = "item.estado == 0 && item.correoChofer != ''">
+        <b>
+          <button ion-button icon-only (click)="ponerViajeEnPendiente(item)" class="submit-btn">
+          <ion-icon name="trash">No Asignar</ion-icon>
+          </button>
+        </b>
       </p>
     </ion-card-content>
 

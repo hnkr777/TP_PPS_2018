@@ -1,11 +1,12 @@
 page-abm-clientes {
     .abm-clientes-content {
+        background: #14830a!important;
         //background-color: rgba(0, 0, 0, 0.89)!important;
-        background: url('../assets/img/bg/4.jpg')!important;
+        /*background: url('../assets/img/bg/4.jpg')!important;
         height: 100%!important;
         width: 100%!important;
         color: rgb(255, 255, 255)!important;
-        display: block;
+        display: block;*/
         //object-fit: fill;
     }
 
@@ -30,4 +31,12 @@ page-abm-clientes {
         border-radius: 30px !important;
         border: 1px solid #ffffff;
       }
+    ion-card{
+        border-radius: 10px !important;
+        background-color: #0ed478 !important;
+    }
+    ion-item{
+        border-radius: 30px !important;
+        background-color: #ffd000 !important;
+    }
 }

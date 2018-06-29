@@ -4,7 +4,7 @@ import { DetalleViajeClientePage } from './detalle-viaje-cliente';
 
 @NgModule({
   declarations: [
-    DetalleViajeClientePage,
+    //DetalleViajeClientePage,
   ],
   imports: [
     IonicPageModule.forChild(DetalleViajeClientePage),

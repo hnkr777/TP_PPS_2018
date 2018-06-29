@@ -106,6 +106,27 @@ export class AltaChoferPage {
     });
   }
 
+  /*nuevoChofer() {
+    this.audioService.reproducirClick();
+    this.servicioUsuarios.traerUsuarios().toPromise().then((usuarios: Array<Usuario>) => {
+      let usuario: Usuario = usuarios.find((user) => {return this.chofer.correo == user.correo;});
+      if(usuario === undefined) { // el usuario.correo NO existe en firebase, entonces lo guardamos...
+        this.servicioUsuarios.guardarNuevoUsuario(this.chofer).then(data => {
+          this.closeModal();
+          console.log('Chofer guardado correctamente.');
+          this.Msg('Aviso', 'Chofer guardado correctamente.');
+        }).catch((error) => {
+          console.log('Error: '+ error);
+          this.errorMsg('Error', 'Error: '+ error);
+        });
+      } else { // el usuario.correo ya existe en firebase...
+        this.closeModal();
+        console.error('Error: Correo del Chofer ya existente.');
+        this.errorMsg('Error', 'El correo del Chofer ya existe.');
+      }
+    });
+  }*/
+
   tomarFoto() {
     this.audioService.reproducirClick();
     let ruta: string = "usuarios/" + Date.now().toString();

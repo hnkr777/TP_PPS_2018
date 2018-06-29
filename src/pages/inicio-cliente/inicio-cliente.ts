@@ -18,6 +18,7 @@ import { NuevoViajePage } from '../nuevo-viaje/nuevo-viaje';
 import { PagesModalPage } from '../pages-modal/pages-modal';
 import { DetalleViajeClientePage } from "../../pages/detalle-viaje-cliente/detalle-viaje-cliente";
 import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider, Settings } from '../../providers/providers';
+import { EditarPerfilClientePage } from '../../pages/editar-perfil-cliente/editar-perfil-cliente';
 /**
  * Generated class for the InicioClientePage page.
  *
@@ -157,7 +158,8 @@ constructor(public navCtrl: NavController,
 
   mostrarViajeConMapa(viaje)
   {
-    this.modalCtrl.create(DetalleViajeClientePage, {viaje: viaje}).present();
+  //  this.modalCtrl.create(DetalleViajeClientePage, {viaje: viaje}).present();
+  this.navCtrl.setRoot(DetalleViajeClientePage, {viaje: viaje}); // escaner QR
   }
 
 
@@ -206,6 +208,11 @@ constructor(public navCtrl: NavController,
             this.listaViajes.push(this.listaViajesAux[i]);
           }
       }
+  }
+
+  modificarDatos()
+  {
+    this.navCtrl.push(EditarPerfilClientePage,{cliente:this.usuarioDatos});
   }
 
 

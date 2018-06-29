@@ -16,6 +16,8 @@ page-detalle-viaje-cliente {
             position: relative;
             top: 0px;
             left: 0px;
+            
+            
         }
     
         .marco-imagen {
@@ -33,6 +35,11 @@ page-detalle-viaje-cliente {
             // width: 100%;
             margin-top: 10px;
         }
+
+        .transparent-body {
+            background: none transparent !important;
+            opacity: 0 !important;
+          }
     }
     
 

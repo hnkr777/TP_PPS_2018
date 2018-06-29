@@ -3,10 +3,15 @@
   <ion-header class="lgElem">
     <ion-navbar>
       <ion-title>{{ 'LOGIN_TITLE' | translate }}</ion-title>
-      <ion-icon name="volume-off" *ngIf = "!muteSound"></ion-icon>
-      <ion-icon name="volume-up" *ngIf = "muteSound"></ion-icon>
-      <ion-buttons end>
-        <ion-toggle (ionChange)="muteAudio()"></ion-toggle>
+<!-- 
+      <img src="assets/img/audioOn.png" alt="" class="imgIcon" *ngIf = "muteSound">
+      <img src="assets/img/audioOff.png" alt="" class="imgIcon" *ngIf = "!muteSound"> -->
+    <ion-buttons end>
+        <button ion-button (click)="muteAudio()">
+          <ion-icon name="volume-off" *ngIf = "!muteSound" class="imgIcon"></ion-icon>
+          <ion-icon name="volume-up" *ngIf = "muteSound" class="imgIcon"></ion-icon>
+        </button>
+        <!-- <ion-toggle (ionChange)="muteAudio()"></ion-toggle> -->
       </ion-buttons>
     </ion-navbar>
   </ion-header>

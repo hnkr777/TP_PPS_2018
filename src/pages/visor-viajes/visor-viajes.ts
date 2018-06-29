@@ -6,6 +6,7 @@ import { ServicioUsuariosProvider } from "../../providers/servicio-usuarios/serv
 import { Usuario } from '../../clases/usuario';
 import { ServicioViajesProvider } from '../../providers/providers';
 import { Viaje } from '../../clases/viaje';
+import { VerImagenPage } from '../ver-imagen/ver-imagen';
 
 /**
  * página de visor de viajes, solo lo tiene que poder usar el administrador o superusuario...
@@ -132,6 +133,24 @@ export class VisorViajesPage {
     let f: Date = new Date($event.fechaSalida + (30 * 60 * 1000)); // minutos * segundos * milesimas de segundo
     console.log('Fecha: [' + f.toLocaleString() + ']');
 
+  }
+
+  verImg(mail:string){
+    console.log("MAIL: "+mail);
+    /*let usuarios = this.servicioUsuarios.traerUsuarios().toPromise().then(x=>{
+      console.log(x);
+    })*/
+    let usuarios = this.servicioUsuarios.traerUsuarioPorEmail(mail)
+    usuarios.subscribe(x=>{
+      //console.log("MOSTRA LA FOTO: "+JSON.stringify(x));
+      if (x[0].foto == "" || x[0].foto === undefined) {
+        this.modalCtrl.create(VerImagenPage,{imagen:'assets/img/perfildefaul.jpg'}).present();
+      }
+      else{
+        this.modalCtrl.create(VerImagenPage,{imagen:x[0].foto}).present();
+      }
+      
+    });
   }
   
 }

@@ -28,20 +28,23 @@
 <ion-content class="visor-viajes-content" id="visor-viajes-content">
   
 
-  <ion-card (click)="verViaje(item)" padding *ngFor="let item of listaViajes" [ngClass]="item.activo==0? 'disabled' : 'enabled' ">
+  <ion-card  padding *ngFor="let item of listaViajes" [ngClass]="item.activo==0? 'disabled' : 'enabled' ">
 
     <ion-item style="text-align: center;">
       <!-- <ion-avatar item-start>
         <img [src]="item.foto === undefined ? '../../assets/img/img-usuario.svg' : item.foto">
       </ion-avatar> -->
-      <h2 class="titulo" style="color: rgb(20, 32, 201);">Cliente: {{ item.nombreCliente }}</h2>
-      <h2 class="titulo" style="color: rgb(202, 127, 14);">Duración: {{item.duracionViajeText}}</h2>
-      <p class="titulo" style="color: yellow;">Distancia: {{ item.distanciaText }}</p>
+      <ion-avatar item-start>
+          <button (click)="verImg(item.correoCliente)" ion-button color="dark"><ion-icon name="image"></ion-icon></button>
+      </ion-avatar>
+      <h2 style="color: #c94714;">Cliente: {{ item.nombreCliente }}</h2>
+      <h2 style="color: rgb(202, 127, 14);">Duración: {{item.duracionViajeText}}</h2>
+      <p style="color: #c2c201;">Distancia: {{ item.distanciaText }}</p>
     </ion-item>
 
     <!-- <img class="imagen" [src]="item.foto"> -->
 
-    <ion-card-content>
+    <ion-card-content (click)="verViaje(item)">
       <p>Chofer:
         <b>{{item.correoChofer}}</b>
       </p>

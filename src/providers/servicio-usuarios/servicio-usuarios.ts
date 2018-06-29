@@ -50,6 +50,17 @@ export class ServicioUsuariosProvider {
       ob.unsubscribe();
     });*/
   }
+  traerUsuarioPorEmail(correo: string): Observable<Usuario[]> {
+    console.log('ServicioUsuariosProvider.traerUsuarioPorEmail()');
+    let coleccionTipadaFirebase = this.objFirebase.collection<Usuario>(this.tablaUsuarios, ref => ref.where('correo', '==', correo));
+    let ListadoUsuariosObservable = coleccionTipadaFirebase.valueChanges();
+    return ListadoUsuariosObservable;
+    /*let ob = ListadoUsuariosObservable.subscribe(x => {
+      console.info("Conexión correcta con Firebase. Trayendo todos los usuarios: ", x);
+      usuarios = x;
+      ob.unsubscribe();
+    });*/
+  }
 
   // guarda un nuevo usuario en la base de datos, en caso de bien o mal ejecuta los callbacks correspondientes...
   // TODO: implementar chequeo de restricción de email y dni único

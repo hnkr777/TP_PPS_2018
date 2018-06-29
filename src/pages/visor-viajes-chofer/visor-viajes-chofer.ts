@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider, Settings } from '../../providers/providers';
 import { Geolocation } from '@ionic-native/geolocation';
 import { DetalleViajeChoferPage } from "../../pages/detalle-viaje-chofer/detalle-viaje-chofer";
+import { VerImagenPage } from '../ver-imagen/ver-imagen';
 
 
 /**
@@ -67,6 +68,7 @@ export class VisorViajesChoferPage {
     });*/
 
     }
+    
 
     ubicacionActual() {
       this.geolocation.getCurrentPosition().then((resp) => {
@@ -270,5 +272,22 @@ export class VisorViajesChoferPage {
       this.spinner.dismiss();
       this.spinner = undefined;
     }
+  }
+  verImg(mail:string){
+    console.log("MAIL: "+mail);
+    /*let usuarios = this.servicioUsuarios.traerUsuarios().toPromise().then(x=>{
+      console.log(x);
+    })*/
+    let usuarios = this.servicioUsuarios.traerUsuarioPorEmail(mail)
+    usuarios.subscribe(x=>{
+      //console.log("MOSTRA LA FOTO: "+JSON.stringify(x));
+      if (x[0].foto == "" || x[0].foto === undefined) {
+        this.modalCtrl.create(VerImagenPage,{imagen:'assets/img/perfildefaul.jpg'}).present();
+      }
+      else{
+        this.modalCtrl.create(VerImagenPage,{imagen:x[0].foto}).present();
+      }
+      
+    });
   }
 }

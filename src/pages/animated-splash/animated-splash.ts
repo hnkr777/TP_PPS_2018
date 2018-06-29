@@ -16,7 +16,6 @@ import { FirstRunPage, MainPage } from "../pages";
 export class AnimatedSplashPage {
 
   splash: boolean = true;
-
   constructor(public navCtrl: NavController, public navParams: NavParams, /*public audioService:ServicioAudioProvider*/) {
   }
 

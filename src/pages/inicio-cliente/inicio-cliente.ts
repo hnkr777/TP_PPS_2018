@@ -157,7 +157,8 @@ constructor(public navCtrl: NavController,
 
   mostrarViajeConMapa(viaje)
   {
-    this.modalCtrl.create(DetalleViajeClientePage, {viaje: viaje}).present();
+  //  this.modalCtrl.create(DetalleViajeClientePage, {viaje: viaje}).present();
+  this.navCtrl.setRoot(DetalleViajeClientePage, {viaje: viaje}); // escaner QR
   }
 
 

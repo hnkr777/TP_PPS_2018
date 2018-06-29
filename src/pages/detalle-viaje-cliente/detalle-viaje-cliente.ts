@@ -7,7 +7,8 @@ import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { TranslateService } from '@ngx-translate/core';
 import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider, Settings } from '../../providers/providers';
 import { Geolocation } from '@ionic-native/geolocation';
-
+import { QrLeerEncuestaClientePage } from '../../pages/qr-leer-encuesta-cliente/qr-leer-encuesta-cliente';
+import { InicioClientePage } from '../../pages/inicio-cliente/inicio-cliente';
 //import * as moment from 'moment';
 declare const google; // para google maps
 
@@ -132,16 +133,21 @@ export class DetalleViajeClientePage {
   });
    alerta.present();
 
-    this.viewCtrl.dismiss();
+    //this.viewCtrl.dismiss();
+    this.navCtrl.setRoot(InicioClientePage);
   }
 
   realizarEncuesta()
   {
-    alert("Aca se va a realizar la encuesta");
+    window.document.querySelector('ion-content').classList.add('transparentBody');
+    window.document.querySelector('ion-app').classList.add('transparentBody');
+   // this.closeModal();
+    this.navCtrl.push(QrLeerEncuestaClientePage,{viaje: this.viaje}); // escaner QR
   }
 
   closeModal() {
-    this.viewCtrl.dismiss();
+   // this.viewCtrl.dismiss();
+   this.navCtrl.setRoot(InicioClientePage);
   }
 
 }

@@ -18,6 +18,7 @@ import { NuevoViajePage } from '../nuevo-viaje/nuevo-viaje';
 import { PagesModalPage } from '../pages-modal/pages-modal';
 import { DetalleViajeClientePage } from "../../pages/detalle-viaje-cliente/detalle-viaje-cliente";
 import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider, Settings } from '../../providers/providers';
+import { EditarPerfilClientePage } from '../../pages/editar-perfil-cliente/editar-perfil-cliente';
 /**
  * Generated class for the InicioClientePage page.
  *
@@ -209,6 +210,11 @@ constructor(public navCtrl: NavController,
       }
   }
 
+  modificarDatos()
+  {
+    this.navCtrl.push(EditarPerfilClientePage,{cliente:this.usuarioDatos});
+  }
+
 
   private spin(status: boolean) {
     if(this.spinner === undefined && status === true) {
@@ -219,5 +225,20 @@ constructor(public navCtrl: NavController,
       this.spinner = undefined;
     }
   }
+
+  /*pedirViaje() {
+    this.navCtrl.push(NuevoViajePage);
+  }
+
+  datosChofer()
+  {        window.document.querySelector('ion-content').classList.add('transparentBody');
+  window.document.querySelector('ion-app').classList.add('transparentBody');
+  this.navCtrl.push(QrLeerVehiculoClientePage); // escaner QR
+  }
+
+  accederEncuesta()
+  {
+    this.modalCtrl.create(PagesModalPage, { titulo: 'Aviso', data: 'No implementado.'}).present();
+  }*/
 
 }

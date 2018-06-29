@@ -1,0 +1,29 @@
+page-editar-perfil-cliente {
+
+
+  .deleteIcon {
+    position: absolute !important;
+    color: #ffffff !important;
+    //modificar el margin si no se ve la cruz para eliminar
+    margin-left: 25% !important;
+    transform: rotate(45deg);
+  }
+  .deleteIcon:before {
+    font-size: 30px !important;
+  }
+  .releative {
+    position: relative
+  }
+
+  .alta-cliente-content {
+    //background-color: rgba(0, 0, 0, 0.89)!important;
+    background: url('../assets/img/bg/4.jpg')!important;
+    height: 100%!important;
+    width: 100%!important;
+    color: white!important;
+    display: block;
+    //object-fit: fill;
+}
+
+
+}

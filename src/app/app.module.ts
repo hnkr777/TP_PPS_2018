@@ -1,6 +1,7 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NativeAudio } from '@ionic-native/native-audio';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 //import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -25,6 +26,7 @@ import { User } from '../providers/providers';
 import { Api } from '../providers/providers';
 import { ServicioUsuariosProvider } from '../providers/servicio-usuarios/servicio-usuarios';
 import { ServicioFotosProvider } from '../providers/servicio-fotos/servicio-fotos';
+import { ServicioAudioProvider } from '../providers/servicio-audio/servicio-audio';
 import { MyApp } from './app.component';
 import { PagesModalPage } from "../pages/pages-modal/pages-modal";
 import { AltaChoferPage } from '../pages/alta-chofer/alta-chofer';
@@ -53,14 +55,17 @@ import { VisorViajesPage } from '../pages/visor-viajes/visor-viajes';
 import { VisorViajesChoferPage } from '../pages/visor-viajes-chofer/visor-viajes-chofer';
 import { SuperControlPanelPage } from '../pages/supervisor-control-panel/supervisor-control-panel';
 import { EncuestaChoferPage } from '../pages/encuesta-chofer/encuesta-chofer';
+import { EncuestaSupervisorPage } from '../pages/encuesta-supervisor/encuesta-supervisor';
 import { SupervisorPanelPage } from '../pages/supervisor-panel/supervisor-panel';
 import { ListadoChoferesDisponiblesPage } from '../pages/listado-choferes-disponibles/listado-choferes-disponibles';
 import { ListadoViajesSelecPage } from '../pages/listado-viajes-selec/listado-viajes-selec';
 import { DetalleViajeChoferPage } from '../pages/detalle-viaje-chofer/detalle-viaje-chofer';
-import {NativeAudio} from '@ionic-native/native-audio';
+
+
 import { DetalleViajeClientePage } from '../pages/detalle-viaje-cliente/detalle-viaje-cliente';
 import { QrLeerEncuestaClientePage } from '../pages/qr-leer-encuesta-cliente/qr-leer-encuesta-cliente';
 import { EncuestaClientePage } from '../pages/encuesta-cliente/encuesta-cliente';
+import { EditarPerfilClientePage } from '../pages/editar-perfil-cliente/editar-perfil-cliente';
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
 
@@ -115,7 +120,10 @@ export function provideSettings(storage: Storage) {
     DetalleViajeChoferPage,
     DetalleViajeClientePage,
     QrLeerEncuestaClientePage,
-    EncuestaClientePage
+    EncuestaClientePage,
+    EncuestaSupervisorPage,
+    DetalleViajeClientePage,
+    EditarPerfilClientePage
   ],
   imports: [
     BrowserModule,
@@ -166,7 +174,10 @@ export function provideSettings(storage: Storage) {
     DetalleViajeChoferPage,
     DetalleViajeClientePage,
     QrLeerEncuestaClientePage,
-    EncuestaClientePage
+    EncuestaClientePage,
+    EncuestaSupervisorPage,
+    DetalleViajeClientePage,
+    EditarPerfilClientePage
   ],
   providers: [
     Api,
@@ -187,6 +198,7 @@ export function provideSettings(storage: Storage) {
     ServicioFotosProvider,
     AbmClienteProvider,
     ServicioViajesProvider,
+    ServicioAudioProvider,
     NativeAudio
   ]
 })

@@ -20,7 +20,7 @@
 
 <!-- <img src="assets/img/car.png" alt="" class="img"> -->
 <div class="login-box center">
-    <ion-fab top right>
+    <!-- <ion-fab top right>
         <button ion-fab  (click)="test('Alta')">Alta</button>
     </ion-fab>
     <ion-fab top>
@@ -31,16 +31,25 @@
     </ion-fab>
     <ion-fab bottom left>
         <button ion-fab  (click)="test('Lista')">Lista</button>
-    </ion-fab>
+    </ion-fab> -->
     
     
   <form (ngSubmit)="alta()" #registerForm="ngForm" *ngIf = "abmMostrar == 'Alta'">
     <ion-row>
       <ion-col>
         <ion-list inset>
-          
           <ion-item class="ion-item-input">
-            <ion-input type="text" placeholder="Patente(AAAA0000)" name="patente" [(ngModel)]="vehiculo.patente" (ngModelChange)="vehiculo.patente = $event.toLocaleUpperCase()" required></ion-input>
+              <ion-label>Patente Pre-2016</ion-label>
+              <ion-toggle (ionChange)="is2016 = !is2016"></ion-toggle>
+          </ion-item>
+          <ion-item class="ion-item-input" *ngIf = "is2016">
+            <ion-input type="text" placeholder="(AA)" name="patenteCampo1" [(ngModel)]="patenteCampo1" (keyup)="onKeyUpLetter($event,'campo1')" (ngModelChange)="patenteCampo1 = $event.toLocaleUpperCase()" maxLength="2" required></ion-input>
+            <ion-input type="tel" placeholder="(000)" name="patenteCampo2" onpaste="return false;" [(ngModel)]="patenteCampo2" (keyup)="onKeyUpNumber($event,'campo2')" maxLength="3" required></ion-input>
+            <ion-input type="text" placeholder="(BB)" name="patenteCampo3" [(ngModel)]="patenteCampo3" (keyup)="onKeyUpLetter($event,'campo3')" (ngModelChange)="patenteCampo3 = $event.toLocaleUpperCase()" maxLength="3" required></ion-input>
+          </ion-item>
+          <ion-item class="ion-item-input" *ngIf = "!is2016">
+            <ion-input type="text" placeholder="(AAA)" name="patenteCampo1" [(ngModel)]="patenteCampo1" (keyup)="onKeyUpLetter($event,'campo1')" (ngModelChange)="patenteCampo1 = $event.toLocaleUpperCase()" maxLength="3" required></ion-input>
+            <ion-input type="tel" placeholder="(000)" name="patenteCampo2" onpaste="return false;" [(ngModel)]="patenteCampo2" (keyup)="onKeyUpNumber($event,'campo2')" maxLength="3" required></ion-input>
           </ion-item>
           <ion-item class="ion-item-input">
             <ion-input type="text" placeholder="Modelo" name="modelo" [(ngModel)]="vehiculo.modelo" required></ion-input>

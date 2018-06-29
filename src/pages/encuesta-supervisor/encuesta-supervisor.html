@@ -1,0 +1,73 @@
+<!--
+  Generated template for the EncuestaSupervisorPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Encuesta de Control</ion-title>
+    <ion-buttons end>
+        <button ion-button (click)="back()">
+          <ion-icon name="arrow-back"></ion-icon>
+        </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="content-back">
+  <form (ngSubmit)="aceptar()" #registerForm="ngForm">
+    <ion-item>
+      <ion-input type="text" placeholder="Nombre" name="nombre" required></ion-input>
+    </ion-item>
+    <ion-list radio-group>
+      <ion-list-header>
+        ¿Cual es su turno de trabajo?
+      </ion-list-header>
+    
+      <ion-item>
+        <ion-label>Mañana</ion-label>
+        <ion-radio value="Mañana"></ion-radio>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label>Tarde</ion-label>
+        <ion-radio value="Tarde"></ion-radio>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label>Noche</ion-label>
+        <ion-radio value="Noche"></ion-radio>
+      </ion-item>
+    </ion-list>
+    <ion-item>
+        <ion-label>¿Llego Tarde?</ion-label>
+        <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-list>
+      <ion-item>
+        <ion-label>Al finalizar su turno ¿Cuantos Vehiculos habia en circulacion?</ion-label>
+        <ion-select>
+          <ion-option value="1">1</ion-option>
+          <ion-option value="2">2</ion-option>
+          <ion-option value="3">3</ion-option>
+          <ion-option value="4">4</ion-option>
+          <ion-option value="5">5</ion-option>
+          <ion-option value="Todos">Todos</ion-option>
+          <ion-option value="Ninguno">Ninguno</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-item>
+      <ion-label>¿Cual era el estado de animo de los choferes?</ion-label>
+      <ion-range>
+        <ion-icon range-left  name="sad"></ion-icon>
+        <ion-icon range-right name="happy"></ion-icon>
+      </ion-range>
+    </ion-item>
+    <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Aceptar</button>
+  </form>
+</ion-content>

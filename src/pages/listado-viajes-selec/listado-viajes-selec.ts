@@ -5,7 +5,9 @@ import {ServicioUsuariosProvider} from '../../providers/servicio-usuarios/servic
 import {Viaje} from '../../clases/viaje';
 import {Usuario} from '../../clases/usuario';
 import { Observable } from 'rxjs/Observable';
-import {VerViajePage} from '../ver-viaje/ver-viaje'
+import {VerViajePage} from '../ver-viaje/ver-viaje';
+import {ServicioAudioProvider} from '../../providers/servicio-audio/servicio-audio';
+
 /**
  * Generated class for the ListadoViajesSelecPage page.
  *
@@ -23,7 +25,7 @@ export class ListadoViajesSelecPage {
   listadoViajesFiltrado:any;
   correoChofer:string;
   chofer:Usuario;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,public servicioViajes:ServicioViajesProvider,public servicioUsuarios:ServicioUsuariosProvider,public modalCtrl:ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,public servicioViajes:ServicioViajesProvider,public audioService:ServicioAudioProvider,public servicioUsuarios:ServicioUsuariosProvider,public modalCtrl:ModalController) {
     this.chofer = this.navParams.get('data');
     this.correoChofer = this.chofer.correo;
     //this.listadoViajes = servicioViajes.traerViajes();
@@ -46,6 +48,7 @@ export class ListadoViajesSelecPage {
       });
     }
   asignarViaje(viaje:Viaje){
+    this.audioService.reproducirClick();
     viaje.correoChofer = this.correoChofer;
     //viaje.id = viaje.fechaRegistro;
     //viaje.id = 1529533431;
@@ -55,6 +58,9 @@ export class ListadoViajesSelecPage {
     this.servicioUsuarios.modificarUsuario(this.chofer);
     this.servicioViajes.modificarViaje(viaje);
     this.showSuccess("Viaje Asignado al chofer: "+this.chofer.nombre+" "+this.chofer.apellido);
+    this.navCtrl.popToRoot();
+  }
+  back(){
     this.navCtrl.popToRoot();
   }
   showError(msg){

@@ -8,6 +8,11 @@
 
   <ion-navbar>
     <ion-title>Choferes Disponibles</ion-title>
+    <ion-buttons end>
+        <button ion-button (click)="back()">
+          <ion-icon name="arrow-back"></ion-icon>
+        </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -44,5 +49,4 @@
 
   </ion-card>
   </div>
-  <button ion-button full color = "primary" (click)= "mostrarListado()">listado</button>
 </ion-content>

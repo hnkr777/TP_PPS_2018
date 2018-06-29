@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { Usuario } from '../../clases/usuario';
 
 import { User, Settings } from '../../providers/providers';
+import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
 import { MainPage } from '../pages';
 import { ContentPage } from "../content/content";
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
@@ -20,6 +21,8 @@ import { AbmClientesPage } from '../../pages/abm-clientes/abm-clientes';
 
 import { AbmVehiculosPage } from '../abm-vehiculos/abm-vehiculos';
 import { ListadoChoferesDisponiblesPage } from '../listado-choferes-disponibles/listado-choferes-disponibles';
+import { EncuestaSupervisorPage } from '../encuesta-supervisor/encuesta-supervisor';
+import { EncuestaChoferPage } from '../encuesta-chofer/encuesta-chofer';
 import { SuperControlPanelPage } from '../supervisor-control-panel/supervisor-control-panel';
 
 @IonicPage()
@@ -30,7 +33,7 @@ import { SuperControlPanelPage } from '../supervisor-control-panel/supervisor-co
 export class LoginPage {
   coleccionTipadaFirebase: AngularFirestoreCollection<Usuario>;
   ListadoUsuariosObservable: Observable<Usuario[]>;
-
+  muteSound:boolean;
   loginFields: { correo: string, clave: string } = {
     correo: 'admin@gmail.com',  // hardcodeado para hacer más rápido los test
     clave: '11'
@@ -48,12 +51,14 @@ export class LoginPage {
     public toastCtrl: ToastController,
     public translateService: TranslateService,
     private servicioUsuarios: ServicioUsuariosProvider,
-    private objFirebase: AngularFirestore) {
+    private objFirebase: AngularFirestore,
+    public audioService:ServicioAudioProvider) {
 
     this.translateService.get('LOGIN_ERROR').subscribe((value) => { // así se traen string de traduccion...
       this.loginErrorString = value;
     });
-
+    this.muteSound = true;
+    this.muteAudio();
   }
   
   setLog(i: number) {
@@ -115,6 +120,7 @@ export class LoginPage {
   // }
   
   doLogin() {
+    this.audioService.reproducirClick();
     let modal = this.modalCtrl.create(SpinnerPage);
     modal.present();
     let ob = this.servicioUsuarios.traerUsuarios().subscribe(arr => {
@@ -180,8 +186,20 @@ export class LoginPage {
     this.navCtrl.push(AbmVehiculosPage,{data:"Lista"});
   }
   goListadoChoferes(){
-    //this.navCtrl.push(ContentPage,{data:"supervisor"}); // PROBAR CEL
-    this.navCtrl.push(ListadoChoferesDisponiblesPage); // PROBAR PC
+    this.navCtrl.push(ContentPage,{data:"supervisorLC"}); // PROBAR CEL
+    //this.navCtrl.push(ListadoChoferesDisponiblesPage); // PROBAR PC
+  }
+  goEncuesta(){
+    this.navCtrl.push(ContentPage,{data:"supervisorEC"}); // PROBAR CEL
+    //this.navCtrl.push(EncuestaSupervisorPage); // PROBAR PC
+    //this.navCtrl.push(EncuestaChoferPage); // PROBAR PC
+  }
+  muteAudio(){
+    this.muteSound = !this.muteSound;
+    this.audioService.mute = this.muteSound;
+    console.log(this.audioService.mute);
+  }
+  testAudio(){
+    this.audioService.reproducirClick();
   }
 }
-

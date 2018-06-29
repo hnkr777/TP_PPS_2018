@@ -14,6 +14,7 @@ import { ServicioUsuariosProvider } from '../../providers/providers';
 import { VisorViajesChoferPage } from '../visor-viajes-chofer/visor-viajes-chofer';
 import { ChoferPanelPage } from '../chofer-panel/chofer-panel';
 import { EncuestaChoferPage } from '../encuesta-chofer/encuesta-chofer';
+import { EncuestaSupervisorPage } from '../encuesta-supervisor/encuesta-supervisor';
 
 
 @IonicPage()
@@ -112,12 +113,22 @@ export class ContentPage {
   }
   queHagoScan(textoScaneado:string){
     switch (this.quienMeLLama) {
-      case "supervisor":
+      case "supervisorLC":
         if (textoScaneado == "ListaChoferesDisponibles") {
           /*this.qrScanner.hide(); // hide camera preview
           this.scanSub.unsubscribe(); // stop scanning
           console.log('Escaneo QR finalizado');*/
           this.navCtrl.setRoot(ListadoChoferesDisponiblesPage);
+        } else {
+          this.errorMsg('Error', 'QR no reconocido');
+        }
+        break;
+      case "supervisorEC":
+        if (textoScaneado == "EncuestaControlSupervisor") {
+          /*this.qrScanner.hide(); // hide camera preview
+          this.scanSub.unsubscribe(); // stop scanning
+          console.log('Escaneo QR finalizado');*/
+          this.navCtrl.setRoot(EncuestaSupervisorPage);
         } else {
           this.errorMsg('Error', 'QR no reconocido');
         }

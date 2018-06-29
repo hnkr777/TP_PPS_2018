@@ -5,12 +5,18 @@
   Ionic pages and navigation.
 -->
 <ion-header>
+  
+      <ion-navbar >
 
-  <ion-navbar >
-      <img [src]="foto" width="40px" style="" height="40px" align="right" />
-    <ion-title>Bienvenido {{nombre}} </ion-title>
-    
-  </ion-navbar>
+          <img  *ngIf="foto!=null" [src]="foto" width="40px" style="" height="40px" align="right" />
+        <ion-title style="text-align: center;">Bienvenido {{nombre}} </ion-title>
+        <ion-buttons >
+            <button ion-button icon-only (click)="modificarDatos()"  >
+            <ion-icon  name="ios-contact"></ion-icon>
+            </button>
+          </ion-buttons>
+      </ion-navbar>
+
   <ion-list block>
       
       <ion-item>

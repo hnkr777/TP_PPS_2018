@@ -65,6 +65,7 @@ claveRep:this.claveRep,
 
 guardar()
 {
+  let bandera=true;
  
   this.unCliente.clave=this.formAlta.get("clave").value;
   let claveRep=this.formAlta.get("claveRep").value; 
@@ -128,7 +129,7 @@ guardar()
             this.formAlta.controls['correo'].setValue("");
             const alerta = this.alertCtrl.create({
               title: 'Error!',
-              subTitle: 'Formato de correo invalido',
+              subTitle: 'Formato de correo inválido',
               cssClass:"miClaseDanger",
               buttons: ['Aceptar']
             });
@@ -178,23 +179,50 @@ guardar()
     this.spin(true);
     this.coleccionTipadaFirebase = this.objFirebase.collection<any>('usuarios');
     this.ListadoUsuariosObservable = this.coleccionTipadaFirebase.valueChanges();
+    console.log("dsadadad");
+    console.log(this.ListadoUsuariosObservable);
     let ob= this.ListadoUsuariosObservable.subscribe(x => {
+      //this.unCliente={};
     //let id= x.length+1;
     //this.unCliente.id=id;
-    this.unCliente.nombre=this.formAlta.get("nombre").value;
-    this.unCliente.apellido=this.formAlta.get("apellido").value;
-    this.unCliente.dni=this.formAlta.get("dni").value;
-    this.unCliente.correo=this.formAlta.get("correo").value;
-    this.unCliente.clave=this.formAlta.get("clave").value;
-    this.unCliente.perfil="cliente";
-    this.unCliente.activo=2;
-    //this.unCliente.domicilio=this.formAlta.get("domicilio").value;
-    //this.unCliente.sexo=this.formAlta.get("sexo").value;
-    //this.unCliente.fechaNacimiento=this.formAlta.get("fechaNacimiento").value;
-    this.unCliente.fechaAlta = (this.fechaAlta.getDate()+ "-" +(this.fechaAlta.getMonth() +1) + "-" +this.fechaAlta.getFullYear());
-    console.log(this.unCliente);
-    this.Alta(this.unCliente);
+    console.log(x);
+    for(let i=0;i<x.length;i++)
+      {
+        if(x[i].correo==this.formAlta.get("correo").value)
+          {
+            let alerta = this.alertCtrl.create({
+              title: "Error!",
+              subTitle: "El correo ya esta registrado",
+              cssClass:"miClaseDanger",
+            buttons: ['Aceptar']
+          });
+           alerta.present();
+           this.formAlta.controls['correo'].setValue("");
+           this.spin(false);
+            //return;
+            bandera=false;
+          }
+          
+      }
+      
+      if(bandera==true){
+      
+          this.unCliente.nombre=this.formAlta.get("nombre").value;
+          this.unCliente.apellido=this.formAlta.get("apellido").value;
+          this.unCliente.dni=this.formAlta.get("dni").value;
+          this.unCliente.correo=this.formAlta.get("correo").value;
+          this.unCliente.clave=this.formAlta.get("clave").value;
+          this.unCliente.perfil="cliente";
+          this.unCliente.activo=2;
+          //this.unCliente.domicilio=this.formAlta.get("domicilio").value;
+          //this.unCliente.sexo=this.formAlta.get("sexo").value;
+          //this.unCliente.fechaNacimiento=this.formAlta.get("fechaNacimiento").value;
+          this.unCliente.fechaAlta = (this.fechaAlta.getDate()+ "-" +(this.fechaAlta.getMonth() +1) + "-" +this.fechaAlta.getFullYear());
+          console.log(this.unCliente);
+          this.Alta(this.unCliente);
+      }
     ob.unsubscribe();
+    
     });   
     
 }
@@ -224,6 +252,8 @@ this.unCliente.foto=null;
 
  Alta(cliente)
  {
+   console.log("CLIENTEEEE");
+   console.log(this.unCliente);
    this.objFirebase.collection<any>("usuarios").add(cliente)
    .then(ret => {
      this.spin(false);

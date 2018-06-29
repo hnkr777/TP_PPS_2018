@@ -163,8 +163,8 @@ export class DetalleViajeChoferPage {
         console.log(this.usuario);
         this.usuario.estado=1;
         //cancelado
-        this.viaje.estado=4;
-       // this.viaje.correoChofer="";
+        this.viaje.estado=0;
+       this.viaje.correoChofer="";
         this.servicioViajes.modificarViaje(this.viaje);
         this.servicioUsuarios.modificarUsuario(this.usuario);
         sessionStorage.setItem("usuario", JSON.stringify(this.usuario));

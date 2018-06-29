@@ -5,11 +5,22 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
     <ion-title>{{ 'VISOR_VIAJES_CHOFER_TITLE' | translate }}</ion-title>
   </ion-navbar>
 
+  <ion-list block>
+    
+    <ion-item>
+      <ion-label color="primary" >Filtro:</ion-label>
+      <ion-select (ionInput)="filtrarViajesTest()" interface="popover" cancelText="Cancelar" okText="Aceptar" [(ngModel)]="mostrar" (click)="filtrarViajesTest()">
+        <ion-option value="asignados"[disabled]="mostrar=='enCurso'">Asignados a mi</ion-option>
+        <ion-option value="enCurso" [disabled]="mostrar!='enCurso'">En curso</ion-option>
+        <ion-option value="sinAsignacion" [disabled]="mostrar=='enCurso'">Sin asignación</ion-option>
+      </ion-select>
+    </ion-item>
+    
+  </ion-list>
 </ion-header>
 
 
@@ -22,18 +33,18 @@
 
         <ion-item style="text-align: center;">
  
-          <!-- <ion-avatar item-start>
-            <img [src]="item.foto === undefined ? '../../assets/img/img-usuario.svg' : item.foto">
-          </ion-avatar> -->
-          <h2 class="titulo" style="color: rgb(20, 135, 201);">Cliente: {{ item.correoCliente }}</h2>
-          <h2 class="titulo" style="color: rgb(201, 107, 20);">Duración: {{item.duracionViajeText}}</h2>
-          <p class="titulo" style="color: yellow;">Distancia: {{ item.distanciaText }}</p>
+          <h2 class="titulo" style="color: rgb(20, 32, 201);">Cliente: {{ item.nombreCliente }}</h2>
+        <!--  <h2 class="titulo" style="color: rgb(201, 107, 20);">Duración: {{item.duracionViajeText}}</h2>
+          <p class="titulo" style="color: yellow;">Distancia: {{ item.distanciaText }}</p>-->
         </ion-item>
     
-        <!-- <img class="imagen" [src]="item.foto"> -->
-    
         <ion-card-content>
-
+          <p>Chofer asignado:
+            <b>{{(item.correoChofer == "" ? 'Sin asignar' : item.correoChofer)}} </b>
+          </p>
+          <p>Estado del viaje:
+            <b>{{ (item.estado == 0? 'No comenzado' : 'En curso')}}</b>
+          </p>
           <p>Origen:
             <b>{{item.origen}}</b>
           </p>
@@ -43,6 +54,10 @@
           <p>Salida:
             <b>{{ item.fechaSalidaString }}</b>
           </p>
+          <p>Pedido:
+            <b>{{ item.fechaRegistroString }}</b>
+          </p>
+
           <p>Monto:
             <b>$ {{ item.monto }}</b>
           </p>

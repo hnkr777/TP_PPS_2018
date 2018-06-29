@@ -55,13 +55,13 @@ export class AltaClienteParaAdminPage {
         this.activoPendiente=clienteaModificar.activo;
         this.formAlta.controls['nombre'].setValue(clienteaModificar.nombre);
         this.formAlta.controls['apellido'].setValue(clienteaModificar.apellido);
-        this.formAlta.controls['domicilio'].setValue(clienteaModificar.domicilio);
+        //this.formAlta.controls['domicilio'].setValue(clienteaModificar.domicilio);
         this.formAlta.controls['dni'].setValue(clienteaModificar.dni);
         this.formAlta.controls['correo'].setValue(clienteaModificar.correo);
-        this.formAlta.controls['clave'].setValue(clienteaModificar.clave);
-        this.formAlta.controls['claveRep'].setValue(clienteaModificar.clave);
-        this.formAlta.controls['sexo'].setValue(clienteaModificar.sexo);
-        this.formAlta.controls['fechaNacimiento'].setValue(clienteaModificar.fechaNacimiento);
+      //  this.formAlta.controls['clave'].setValue(clienteaModificar.clave);
+      //  this.formAlta.controls['claveRep'].setValue(clienteaModificar.clave);
+       // this.formAlta.controls['sexo'].setValue(clienteaModificar.sexo);
+       // this.formAlta.controls['fechaNacimiento'].setValue(clienteaModificar.fechaNacimiento);
         if(clienteaModificar.activo==0)
           {
             this.formAlta.controls['activo'].setValue(false);
@@ -75,7 +75,7 @@ export class AltaClienteParaAdminPage {
                 this.formAlta.controls['activo'].setValue(false);
               }
         this.unCliente.foto=clienteaModificar.foto;
-        this.unCliente.id=clienteaModificar.id;
+       // this.unCliente.id=clienteaModificar.id;
       }
       else
         {
@@ -94,13 +94,13 @@ export class AltaClienteParaAdminPage {
 
   nombre : FormControl = new FormControl("",[Validators.required]);
   apellido : FormControl = new FormControl("",[Validators.required]);
-  correo : FormControl = new FormControl("",[Validators.required]);
-  clave : FormControl = new FormControl("",[Validators.required]);
-  claveRep : FormControl = new FormControl("",[Validators.required]);
+  correo : FormControl = new FormControl("",[Validators.required,Validators.email]);
+ // clave : FormControl = new FormControl("",[Validators.required]);
+ // claveRep : FormControl = new FormControl("",[Validators.required]);
   dni : FormControl = new FormControl("",[Validators.required,Validators.minLength(8),Validators.maxLength(8)]);
-  domicilio: FormControl = new FormControl("",[Validators.required]);
-  sexo : FormControl = new FormControl("",[Validators.required]);
-  fechaNacimiento : FormControl = new FormControl("",[Validators.required]);
+ // domicilio: FormControl = new FormControl("",[Validators.required]);
+ // sexo : FormControl = new FormControl("",[Validators.required]);
+ // fechaNacimiento : FormControl = new FormControl("",[Validators.required]);
   activo : FormControl = new FormControl("",[Validators.required]);
 
   formAlta: FormGroup= this.builder.group({
@@ -108,20 +108,85 @@ export class AltaClienteParaAdminPage {
   apellido:this.apellido,
   dni:this.dni,
   correo:this.correo,
-  clave:this.clave,
-  claveRep:this.claveRep,
-  domicilio:this.domicilio,
-  sexo:this.sexo,
-  fechaNacimiento:this.fechaNacimiento,
+ // clave:this.clave,
+ // claveRep:this.claveRep,
+ // domicilio:this.domicilio,
+  //sexo:this.sexo,
+  //fechaNacimiento:this.fechaNacimiento,
   activo:this.activo
   });
 
   accionAceptar(){
-    this.unCliente.clave=this.formAlta.get("clave").value;
-    let claveRep=this.formAlta.get("claveRep").value; 
+    //this.unCliente.clave=this.formAlta.get("clave").value;
+    //let claveRep=this.formAlta.get("claveRep").value; 
+    
+   // if(this.nombre.invalid || this.apellido.invalid || this.correo.invalid || this.clave.invalid || this.claveRep.invalid || this.dni.invalid || this.domicilio.invalid || this.sexo.invalid || this.fechaNacimiento.invalid)
   
-    if(this.nombre.invalid || this.apellido.invalid || this.correo.invalid || this.clave.invalid || this.claveRep.invalid || this.dni.invalid || this.domicilio.invalid || this.sexo.invalid || this.fechaNacimiento.invalid)
+   if(!this.nombre.value.match(/^[A-Za-z\_\-\.\s\xF1\xD1]+$/))
+    {
+      this.formAlta.controls['nombre'].setValue("");
+      const alerta = this.alertCtrl.create({
+        title: 'Error!',
+        subTitle: 'El nombre debe contener letras',
+        cssClass:"miClaseDanger",
+        buttons: ['Aceptar']
+      });
+      alerta.present();
+      return;
+    }
+
+    if(!this.apellido.value.match(/^[A-Za-z\_\-\.\s\xF1\xD1]+$/))
       {
+        this.formAlta.controls['apellido'].setValue("");
+        const alerta = this.alertCtrl.create({
+          title: 'Error!',
+          subTitle: 'El apellido debe contener letras',
+          cssClass:"miClaseDanger",
+          buttons: ['Aceptar']
+        });
+        alerta.present();
+        return;
+      }
+
+      if(!this.dni.value.match(/^([0-9])*$/))
+        {
+          this.formAlta.controls['dni'].setValue("");
+          const alerta = this.alertCtrl.create({
+            title: 'Error!',
+            subTitle: 'El DNI debe contener 8 dígitos',
+            cssClass:"miClaseDanger",
+            buttons: ['Aceptar']
+          });
+          alerta.present();
+          return;
+        }
+  
+   if(this.nombre.invalid || this.apellido.invalid || this.correo.invalid  || this.dni.invalid)   
+   {   
+     if(this.dni.invalid)
+    {
+      this.formAlta.controls['dni'].setValue("");
+      const alerta = this.alertCtrl.create({
+        title: 'Error!',
+        subTitle: 'El DNI debe contener 8 dígitos',
+        cssClass:"miClaseDanger",
+        buttons: ['Aceptar']
+      });
+      alerta.present();
+      return;
+    }
+    if(this.correo.invalid)
+      {
+        this.formAlta.controls['correo'].setValue("");
+        const alerta = this.alertCtrl.create({
+          title: 'Error!',
+          subTitle: 'Formato de correo invalido',
+          cssClass:"miClaseDanger",
+          buttons: ['Aceptar']
+        });
+        alerta.present();
+        return;
+      }
         const alerta = this.alertCtrl.create({
           title: 'Error!',
           subTitle: 'Error en el ingreso de datos. Verifique!',
@@ -132,7 +197,7 @@ export class AltaClienteParaAdminPage {
         return;
       }
   
-          if(this.unCliente.clave!=claveRep)
+         /* if(this.unCliente.clave!=claveRep)
             {
               const alerta = this.alertCtrl.create({
                 title: 'Error!',
@@ -144,7 +209,7 @@ export class AltaClienteParaAdminPage {
               this.formAlta.controls['clave'].setValue("");
               this.formAlta.controls['claveRep'].setValue("");
               return;
-            }
+            }*/
 
 
 
@@ -152,11 +217,11 @@ export class AltaClienteParaAdminPage {
   this.unCliente.apellido=this.formAlta.get("apellido").value;
   this.unCliente.dni=this.formAlta.get("dni").value;
   this.unCliente.correo=this.formAlta.get("correo").value;
-  this.unCliente.clave=this.formAlta.get("clave").value;
+  //this.unCliente.clave=this.formAlta.get("clave").value;
   this.unCliente.perfil="cliente";
-  this.unCliente.domicilio=this.formAlta.get("domicilio").value;
-  this.unCliente.sexo=this.formAlta.get("sexo").value;
-  this.unCliente.fechaNacimiento=this.formAlta.get("fechaNacimiento").value;
+ // this.unCliente.domicilio=this.formAlta.get("domicilio").value;
+ // this.unCliente.sexo=this.formAlta.get("sexo").value;
+  //this.unCliente.fechaNacimiento=this.formAlta.get("fechaNacimiento").value;
   this.unCliente.fechaAlta = (this.fechaAlta.getDate()+ "-" +(this.fechaAlta.getMonth() +1) + "-" +this.fechaAlta.getFullYear());
  //console.log(this.unCliente);
  this.spin(true);
@@ -164,6 +229,7 @@ export class AltaClienteParaAdminPage {
  if(this.modoAlta==true)
   {      
       console.log(this.unCliente);
+      this.unCliente.clave="123";
     if(this.formAlta.get("activo").value ==true)
       {
         this.unCliente.activo=1;
@@ -174,8 +240,8 @@ export class AltaClienteParaAdminPage {
         }
 
     let ob = this.servicioCliente.traerUsuarios().subscribe(data => { // la lista se va a actualizar cada vez que cambie la tabla usuarios de firebase
-    let id=data.length+1;
-    this.unCliente.id=id;
+    //let id=data.length+1;
+    //this.unCliente.id=id;
     console.log(this.unCliente);
     this.nuevoCliente(this.unCliente);  
     ob.unsubscribe();
@@ -225,6 +291,34 @@ this.modificarCliente();
     }).catch((error) => {
       console.log('Error: '+ error);
       alert('Error: '+ error);
+    });
+  }
+
+  blanquerClave()
+  {
+    this.spin(true);
+    this.unCliente.clave=123;
+    this.modificarclave();
+  }
+
+  modificarclave()
+  {
+    this.servicioCliente.modificarUsuario(this.unCliente).then(data => {
+      this.spin(false);
+     // this.closeModal();
+      console.log('Se blanqueo la clave correctamente.');
+      let alerta = this.alertCtrl.create({
+        title: "Exitosamente!",
+        subTitle: "Se blanqueo la clave correctamente.",
+        cssClass:"miClaseAlert",
+      buttons: ['Aceptar']
+    });
+     alerta.present();
+    }).catch((error) => {
+      this.spin(false);
+      console.log('Error: '+ error);
+      alert('Error: '+ error);
+      //this.closeModal();
     });
   }
 

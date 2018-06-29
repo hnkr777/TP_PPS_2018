@@ -23,7 +23,7 @@
 
           <ion-item padding style="background: transparent;">
               <ion-label class="titulo" color="light" floating stacked>Nombre</ion-label>
-              <ion-input class="titulo" type="text"  [formControl]="nombre" name="nombre"></ion-input>
+              <ion-input class="titulo" type="text"  [formControl]="nombre" name="nombre" ></ion-input>
             </ion-item>
                 
           <ion-item padding style="background: transparent;">
@@ -35,12 +35,13 @@
                 <ion-label class="titulo" color="light" floating stacked>DNI</ion-label>
                 <ion-input class="titulo" type="number"  [formControl]="dni" name="dni"></ion-input>
               </ion-item>
-
+        <!--
               <ion-item padding style="background: transparent;">
                 <ion-label class="titulo" color="light" floating stacked>Domicilio</ion-label>
                 <ion-input class="titulo" type="text"  [formControl]="domicilio" name="domicilio"></ion-input>
               </ion-item>
 
+              
               <ion-list [formControl]="sexo" name="sexo" class="titulo" radio-group>
                 <ion-row>
                   <ion-col text-center>
@@ -58,12 +59,12 @@
                   </ion-col>
                 </ion-row>
               </ion-list>
-
+            
               <ion-item>
                   <ion-label style="color: white!important;">Fecha de nacimiento</ion-label>
                 <ion-input placeholder="Fecha de nacimiento" [formControl]="fechaNacimiento" name="fechaNacimiento" class="titulo" type="date"></ion-input>
               </ion-item>
-
+-->
         <ion-item padding style="background: transparent;">
           <ion-label class="titulo" color="light" floating stacked>Correo</ion-label>
           <ion-input class="titulo" type="email"  [formControl]="correo" name="correo"></ion-input>

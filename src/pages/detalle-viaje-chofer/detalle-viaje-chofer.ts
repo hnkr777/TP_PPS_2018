@@ -157,6 +157,28 @@ export class DetalleViajeChoferPage {
         this.viewCtrl.dismiss();
       }
 
+      cancelarViaje()
+      {
+        this.usuario = JSON.parse(sessionStorage.getItem("usuario"));
+        console.log(this.usuario);
+        this.usuario.estado=1;
+        //cancelado
+        this.viaje.estado=4;
+       // this.viaje.correoChofer="";
+        this.servicioViajes.modificarViaje(this.viaje);
+        this.servicioUsuarios.modificarUsuario(this.usuario);
+        sessionStorage.setItem("usuario", JSON.stringify(this.usuario));
+
+        let alerta = this.alertCtrl.create({
+          title: "Viaje cancelado!",
+          subTitle: "El chofer cancelo viaje",
+          cssClass:"miClaseDanger",
+        buttons: ['Aceptar']
+      });
+       alerta.present();
+
+        this.viewCtrl.dismiss();
+      }
 
 
   closeModal() {

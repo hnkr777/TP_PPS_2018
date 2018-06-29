@@ -29,12 +29,12 @@
         </ion-row>
     
 
-        <ion-item>
+       <!-- <ion-item>
         <ion-input placeholder="Domicilio" class="titulo" type="text"  [formControl]="domicilio" name="domicilio"></ion-input>
-      </ion-item>
+      </ion-item>-->
 
+      
       <ion-item>
-          <!-- <ion-label class="titulo" floating>Clave</ion-label> -->
           <ion-input placeholder="Número de DNI"  class="titulo" type="number"  [formControl]="dni" name="dni"></ion-input>
         </ion-item>
 
@@ -42,17 +42,15 @@
             <!-- <ion-label class="titulo" floating>Email</ion-label> -->
             <ion-input placeholder="Correo"  class="titulo" type="email" [formControl]="correo" name="correo" ></ion-input>
           </ion-item>
-
+<!--
         <ion-item>
-          <!-- <ion-label class="titulo" floating>Clave</ion-label> -->
           <ion-input placeholder="Contraseña"  class="titulo" type="password"  [formControl]="clave" name="clave" ></ion-input>
         </ion-item>
     
         <ion-item>
-          <!-- <ion-label class="titulo" floating>Clave</ion-label> -->
           <ion-input placeholder="Repita la contraseña"  class="titulo" type="password"  [formControl]="claveRep" name="claveRep"></ion-input>
         </ion-item>
-    
+   
         <ion-list  [formControl]="sexo" name="sexo"  class="titulo" radio-group>
             <ion-row>
               <ion-col text-center>
@@ -70,37 +68,42 @@
               </ion-col>
             </ion-row>
           </ion-list>
-    
+        -->
         <ion-item>
           <ion-row>
+            <!--
             <ion-col>
               <button small ion-button color="primary" (click)="tomarFoto()">
                 <ion-icon name="camera"></ion-icon>&nbsp; Sacar foto</button>
             </ion-col>
-            <ion-col>
+          -->
+            <ion-col *ngIf="modoAlta==false">
               <div (click)="verImagen()" class="marco-imagen">
-                <img class="marco-imagen" [src]="unCliente.foto === null ? 'assets/img/img-usuario.svg' : unCliente.foto">
+                <img class="marco-imagen" [src]="unCliente.foto === null ? 'assets/img/perfildefaul.jpg' : unCliente.foto">
               </div>
             </ion-col>
+            <!--
             <ion-col>
               <button small ion-button color="primary" (click)="cargarFoto()">
                 <ion-icon name="add"></ion-icon>&nbsp; Buscar foto</button>
             </ion-col>
+          -->
           </ion-row>
         </ion-item>
     
-    
+    <!--
         <ion-item>
-          <!-- <ion-label class="titulo" floating>Clave</ion-label> -->
           <ion-label style="color: white!important;">Fecha de nacimiento</ion-label>
           <ion-input placeholder="Fecha de nacimiento"  class="titulo" type="date" [formControl]="fechaNacimiento" name="fechaNacimiento"></ion-input>
         </ion-item>
-    
+      -->
         <ion-item>
           <ion-label class="titulo">Habilitado</ion-label>
           <ion-checkbox class="titulo" [formControl]="activo" name="activo" ></ion-checkbox>
         </ion-item>
           </form>
+          <br>
+          <button ion-button color="danger" *ngIf="modoAlta==false" (click)="blanquerClave()">Blanquear clave</button>
       </ion-content>
     
       <ion-footer>

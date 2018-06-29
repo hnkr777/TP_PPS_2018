@@ -3,9 +3,9 @@
   <ion-header class="lgElem">
     <ion-navbar>
       <ion-title>{{ 'LOGIN_TITLE' | translate }}</ion-title>
+      <ion-icon name="volume-off" *ngIf = "!muteSound"></ion-icon>
+      <ion-icon name="volume-up" *ngIf = "muteSound"></ion-icon>
       <ion-buttons end>
-        <ion-icon name="volume-off" *ngIf = "!muteSound"></ion-icon>
-        <ion-icon name="volume-up" *ngIf = "muteSound"></ion-icon>
         <ion-toggle (ionChange)="muteAudio()"></ion-toggle>
       </ion-buttons>
     </ion-navbar>

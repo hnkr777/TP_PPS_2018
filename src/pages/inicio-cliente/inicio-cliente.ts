@@ -19,6 +19,7 @@ import { PagesModalPage } from '../pages-modal/pages-modal';
 import { DetalleViajeClientePage } from "../../pages/detalle-viaje-cliente/detalle-viaje-cliente";
 import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider, Settings } from '../../providers/providers';
 import { EditarPerfilClientePage } from '../../pages/editar-perfil-cliente/editar-perfil-cliente';
+import { LoginPage } from '../login/login';
 /**
  * Generated class for the InicioClientePage page.
  *
@@ -240,5 +241,7 @@ constructor(public navCtrl: NavController,
   {
     this.modalCtrl.create(PagesModalPage, { titulo: 'Aviso', data: 'No implementado.'}).present();
   }*/
-
+  logout(){
+    this.navCtrl.setRoot(LoginPage);
+  }
 }

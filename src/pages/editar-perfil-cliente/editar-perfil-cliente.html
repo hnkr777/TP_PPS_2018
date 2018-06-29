@@ -8,7 +8,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <ion-header>
     
-      <ion-navbar>
+      <ion-navbar color ="dark">
         <ion-title>Editar datos</ion-title>
       </ion-navbar>
     
@@ -53,33 +53,33 @@
                   </ion-item>
     -->
 
-            <ion-item padding style="background: transparent;">
+            <ion-item padding>
               <ion-label class="titulo" color="light" floating stacked>Clave</ion-label>
               <ion-input class="titulo" type="password" [formControl]="clave" name="clave"></ion-input>
             </ion-item>
     
-            <ion-item padding style="background: transparent;">
+            <ion-item padding>
                 <ion-label class="titulo" color="light" floating stacked>Repetir clave</ion-label>
                 <ion-input class="titulo" type="password" [formControl]="claveRep" name="claveRep"></ion-input>
               </ion-item>
     
-              <ion-item padding style="background: transparent;">
-              <button ion-button icon-only (click)="takePhoto()"> Tomar nueva foto
+              <ion-item padding>
+              <button ion-button icon-only (click)="takePhoto()" class="submit-btn"> Tomar nueva foto
                   <ion-icon name="camera"></ion-icon>
                 </button>
                </ion-item>
-               <div>
+               <!-- <div>
                   <ion-grid>
                     <ion-row>
-                      <ion-col col-5 >
+                      <ion-col col-5 > -->
                         <ion-card class="releative">
                           <ion-icon  ios="ios-add-circle" md="md-add-circle"class="deleteIcon" (click)="deletePhoto()"></ion-icon>
                          <img [src]="unCliente.foto" *ngIf="unCliente.foto"  />
                         </ion-card>
-                      </ion-col>
+                      <!-- </ion-col>
                     </ion-row>
                   </ion-grid>
-                    </div>
+                    </div> -->
     
             <div padding>
               <button ion-button round icon-left color="secondary" block large (click)="guardar()">

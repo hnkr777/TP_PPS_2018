@@ -12,18 +12,34 @@ page-editar-perfil-cliente {
     font-size: 30px !important;
   }
   .releative {
-    position: relative
+    position: relative;
+    width: 100px;
+    margin-left: 35%;
+    margin-right: 65%;
   }
 
   .alta-cliente-content {
     //background-color: rgba(0, 0, 0, 0.89)!important;
+    //background-color: #14830a!important;
     background: url('../assets/img/bg/4.jpg')!important;
     height: 100%!important;
     width: 100%!important;
     color: white!important;
     display: block;
     //object-fit: fill;
-}
-
+  }
+  ion-item{
+    //background-color: #12580c!important;
+    background: none transparent !important;
+  }
+  .submit-btn{
+    margin-top: 10px !important;
+    margin-bottom: 0px !important;
+    width: 100%;
+    height: 40px;
+    background: #51CFB1;
+    border-radius: 30px !important;
+    border: 1px solid #ffffff;
+  }
 
 }

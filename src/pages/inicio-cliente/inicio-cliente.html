@@ -6,20 +6,20 @@
 -->
 <ion-header>
   
-      <ion-navbar >
+      <ion-navbar color= "dark" >
 
-          <img  *ngIf="foto!=null" [src]="foto" width="40px" style="" height="40px" align="right" />
-        <ion-title style="text-align: center;">Bienvenido {{nombre}} </ion-title>
-        <ion-buttons >
-            <button ion-button icon-only (click)="modificarDatos()"  >
-            <ion-icon  name="ios-contact"></ion-icon>
-            </button>
-          </ion-buttons>
+          <img  *ngIf="foto!=null" [src]="foto" width="40px" style="" height="40px" align="right" (click)="modificarDatos()" />
+        <ion-title>
+            <button ion-button (click)="logout()" class="logOut">
+                <ion-icon name="log-out"></ion-icon>
+              </button>
+              Bienvenido {{nombre}} 
+        </ion-title>
       </ion-navbar>
 
-  <ion-list block>
+  <ion-list block >
       
-      <ion-item>
+      <ion-item class="filtro">
         <ion-label color="primary" >Filtro:</ion-label>
         <ion-select (ionInput)="filtrarViajes()" interface="popover" cancelText="Cancelar" okText="Aceptar" [(ngModel)]="mostrar" (click)="filtrarViajes()">
           <ion-option value="todos">Todos</ion-option>
@@ -43,15 +43,15 @@
     <ion-card (click)="mostrarViajeConMapa(item)" padding *ngFor="let item of listaViajes" [ngClass]="item.activo==0? 'disabled' : 'enabled' ">
         
         
-                <ion-item style="text-align: center;">
+                <ion-item>
          
-                  <h2 class="titulo" style="color: rgb(20, 32, 201);">Cliente: {{ item.nombreCliente }}</h2>
-                  <h2 class="titulo" style="color: rgb(201, 107, 20);">Duración: {{item.duracionViajeText}}</h2>
-                  <p class="titulo" style="color: yellow;">Distancia: {{ item.distanciaText }}</p>
+                  <h2 style="color: #1420c9;">Cliente: {{ item.nombreCliente }}</h2>
+                  <h2 style="color: #1420c9;">Duración: {{item.duracionViajeText}}</h2>
+                  <p style="color: #1420c9;">Distancia: {{ item.distanciaText }}</p>
                 </ion-item>
             
                 <ion-card-content>
-                  <p>Chofer asignado:
+                  <p style="margin-top: 10px !important">Chofer asignado:
                     <b>{{(item.correoChofer == "" ? 'Sin asignar' : item.correoChofer)}} </b>
                   </p>
                   <p>Estado del viaje:

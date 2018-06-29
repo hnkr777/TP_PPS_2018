@@ -30,7 +30,7 @@ export class AltaClienteParaAdminPage {
   base64Image: string;
   modoAlta;
   private activoPendiente;
-
+correoo;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private formBuilder: FormBuilder,
@@ -46,8 +46,10 @@ export class AltaClienteParaAdminPage {
     
     //private objFirebase: AngularFirestore
   ) {
+
     this.unCliente=new Object();
     let clienteaModificar = navParams.get('cliente');
+    
     if(clienteaModificar !== undefined)
       {
         this.modoAlta = false;
@@ -75,7 +77,7 @@ export class AltaClienteParaAdminPage {
                 this.formAlta.controls['activo'].setValue(false);
               }
         this.unCliente.foto=clienteaModificar.foto;
-       // this.unCliente.id=clienteaModificar.id;
+        this.unCliente.correo=clienteaModificar.correo;
       }
       else
         {
@@ -121,7 +123,7 @@ export class AltaClienteParaAdminPage {
     //let claveRep=this.formAlta.get("claveRep").value; 
     
    // if(this.nombre.invalid || this.apellido.invalid || this.correo.invalid || this.clave.invalid || this.claveRep.invalid || this.dni.invalid || this.domicilio.invalid || this.sexo.invalid || this.fechaNacimiento.invalid)
-  
+  let bandera=true;
    if(!this.nombre.value.match(/^[A-Za-z\_\-\.\s\xF1\xD1]+$/))
     {
       this.formAlta.controls['nombre'].setValue("");
@@ -242,8 +244,29 @@ export class AltaClienteParaAdminPage {
     let ob = this.servicioCliente.traerUsuarios().subscribe(data => { // la lista se va a actualizar cada vez que cambie la tabla usuarios de firebase
     //let id=data.length+1;
     //this.unCliente.id=id;
+    for(let i=0;i<data.length;i++)
+      {
+        if(data[i].correo==this.formAlta.get("correo").value)
+          {
+            let alerta = this.alertCtrl.create({
+              title: "Error!",
+              subTitle: "El correo ya esta registrado",
+              cssClass:"miClaseDanger",
+            buttons: ['Aceptar']
+          });
+           alerta.present();
+           this.formAlta.controls['correo'].setValue("");
+           this.spin(false);
+            //return;
+            bandera=false;
+          }
+          
+      }
+      
+      if(bandera==true){
     console.log(this.unCliente);
-    this.nuevoCliente(this.unCliente);  
+    this.nuevoCliente(this.unCliente); 
+      } 
     ob.unsubscribe();
   });
         }
@@ -297,12 +320,15 @@ this.modificarCliente();
   blanquerClave()
   {
     this.spin(true);
+    
     this.unCliente.clave=123;
     this.modificarclave();
   }
 
   modificarclave()
   {
+    console.log("clienteee");
+    console.log(this.unCliente);
     this.servicioCliente.modificarUsuario(this.unCliente).then(data => {
       this.spin(false);
      // this.closeModal();

@@ -17,6 +17,7 @@ export class Usuario {
     foto: string;       // foto en base64
     dni: number;        // DNI, es un número
     estado: number;     // estado del usuario: usado para múltiples propósitos en la app
+    patente: string;    // patente del vehículo asignado, si es chofer
   
     constructor(perfil?: string) {
       this.fechaAlta = new Date(Date.now());

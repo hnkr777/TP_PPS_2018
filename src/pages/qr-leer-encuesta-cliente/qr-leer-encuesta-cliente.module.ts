@@ -4,7 +4,7 @@ import { QrLeerEncuestaClientePage } from './qr-leer-encuesta-cliente';
 
 @NgModule({
   declarations: [
-    QrLeerEncuestaClientePage,
+    //QrLeerEncuestaClientePage,
   ],
   imports: [
     IonicPageModule.forChild(QrLeerEncuestaClientePage),

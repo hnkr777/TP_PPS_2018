@@ -4,7 +4,7 @@ import { EditarPerfilClientePage } from './editar-perfil-cliente';
 
 @NgModule({
   declarations: [
-    EditarPerfilClientePage,
+    //EditarPerfilClientePage,
   ],
   imports: [
     IonicPageModule.forChild(EditarPerfilClientePage),

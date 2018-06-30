@@ -4,7 +4,7 @@ import { EncuestaSupervisorPage } from './encuesta-supervisor';
 
 @NgModule({
   declarations: [
-    EncuestaSupervisorPage,
+    //EncuestaSupervisorPage,
   ],
   imports: [
     IonicPageModule.forChild(EncuestaSupervisorPage),

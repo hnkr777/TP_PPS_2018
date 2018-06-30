@@ -26,7 +26,7 @@ export class ServicioUsuariosProvider {
   // trae TODOS los usuarios, devuelve con un promise
   // debería hacer unsuscribe al finalizar la carga de datos?
   traerUsuarios(): Observable<Usuario[] | any[]> {
-    console.log('ServicioUsuariosProvider.cargarUsuarios()');
+    console.log('ServicioUsuariosProvider.traerUsuarios()');
     let coleccionTipadaFirebase = this.objFirebase.collection<Usuario>(this.tablaUsuarios);
     let ListadoUsuariosObservable = coleccionTipadaFirebase.valueChanges();
     return ListadoUsuariosObservable;
@@ -40,7 +40,7 @@ export class ServicioUsuariosProvider {
   // trae todos los usuarios de un determinado perfil, devuelve con un Promise
   // debería hacer unsuscribe al finalizar la carga de datos?
   traerUsuariosPorPerfil(perfil: string): Observable<Usuario[]> {
-    console.log('ServicioUsuariosProvider.cargarUsuarios()');
+    console.log('ServicioUsuariosProvider.traerUsuariosPorPerfil()');
     let coleccionTipadaFirebase = this.objFirebase.collection<Usuario>(this.tablaUsuarios, ref => ref.where('perfil', '==', perfil));
     let ListadoUsuariosObservable = coleccionTipadaFirebase.valueChanges();
     return ListadoUsuariosObservable;
@@ -65,6 +65,7 @@ export class ServicioUsuariosProvider {
   // guarda un nuevo usuario en la base de datos, en caso de bien o mal ejecuta los callbacks correspondientes...
   // TODO: implementar chequeo de restricción de email y dni único
   guardarNuevoUsuario(nuevo: Usuario | any): Promise<any> {
+    console.log('ServicioUsuariosProvider.guardarNuevoUsuario()');
     let objetoJsonGenerico = JSON.parse(JSON.stringify(nuevo));
     return this.objFirebase.collection<Usuario>(this.tablaUsuarios).add(objetoJsonGenerico);
     /*.then( successCallback // si el usuario se guardó bien, invoca al callback del usuario

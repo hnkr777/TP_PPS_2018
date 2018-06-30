@@ -102,9 +102,35 @@ export class AltaSupervisorPage {
       this.Msg('Aviso', 'Supervisor guardado correctamente.');
     }).catch((error) => {
       console.log('Error: '+ error);
-      this.errorMsg('Error', 'Error: '+ error);
+      this.errorMsg('Error', 'Error: '+ JSON.stringify(error));
     });
   }
+
+  /*nuevoChofer() {
+    this.audioService.reproducirClick();
+    //console.warn('Correo: '+ corr);
+    let ob = this.servicioUsuarios.traerUsuarioPorEmail(this.supervisor.correo) //this.supervisor.correo
+    let res = ob.subscribe((usuarios: Array<Usuario>) => {
+      console.warn('usuarios: '+ JSON.stringify(usuarios));
+      let usuario: Usuario = usuarios.find((user) => {return this.supervisor.correo == user.correo;});
+      console.warn('usuario: '+ JSON.stringify(usuario));
+      if(usuario === undefined) { // el usuario.correo NO existe en firebase, entonces lo guardamos...
+        res.unsubscribe();
+        this.servicioUsuarios.guardarNuevoUsuario(this.supervisor).then(data => {
+          this.closeModal();
+          console.log('Supervisor guardado correctamente.');
+          this.Msg('Aviso', 'Supervisor guardado correctamente.');
+        }).catch((error) => {
+          console.log('Error: '+ error);
+          this.errorMsg('Error', 'Error: '+ error);
+        });
+      } else { // el usuario.correo ya existe en firebase...
+        this.closeModal();
+        console.error('Error: Correo del Supervisor ya existente.');
+        this.errorMsg('Error', 'El correo del Supervisor ya existe.');
+      }
+    });
+  }*/
 
   tomarFoto() {
     this.audioService.reproducirClick();

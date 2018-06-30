@@ -1,6 +1,6 @@
 <ion-header>
     
-      <ion-navbar >
+      <ion-navbar color = "dark" >
         <ion-title>Datos chofer y vehiculo</ion-title>
       </ion-navbar>
     
@@ -9,35 +9,32 @@
     
     <ion-content class="abm-clientes-content" id="clientes-content">
   
-   
+      <img src="assets/img/chofer.png" alt="" class="img-foto">
       <ion-card padding >
       <ion-item>
-          <img class="imagen" [src]="chofer.foto" style="height:100px;width:100px;">
-        <h2 class="titulo" style="color: yellow;">{{chofer.nombre}} {{chofer.apellido}}</h2>
-          <p style="color: black;">Correo:
-            <b>{{chofer.correo}}</b>
-          </p>
-          <p style="color: black;">DNI:
-            <b>{{chofer.dni}}</b>
-          </p>
-          <p style="color: black;">Sexo:
-            <b>{{ chofer.sexo == 'm' ? 'Masculino' : 'Femenino' }}</b>
-          </p>
-          <p class="" style="color: black;">Fecha de nacimiento: 
-              <b>{{chofer.fechaNacimiento}}</b>
-            </p>
-<<<<<<< HEAD
-          <p style="color: black;" >Fecha de alta:
-              <b>{{chofer.fechaAlta}}</b>
-            </p>
-=======
-         <!-- <p style="color: black;" >Fecha de alta:
-              <b>{{chofer.fechaAlta}}</b>
-            </p>-->
->>>>>>> 8e5ffad80beffd0e753864252da78d7c5b84da98
+          <ion-avatar item-start>
+              <img class="imagen" [src]="chofer.foto" class="img">
+          </ion-avatar>
+        <h2 style="color: yellow;">{{chofer.nombre}} {{chofer.apellido}}</h2>
+         
       </ion-item>
-      <ion-card-content  >
-        </ion-card-content>
+      <ion-card-content>
+          <p style="color: black;">Correo:
+              <b>{{chofer.correo}}</b>
+            </p>
+            <p style="color: black;">DNI:
+              <b>{{chofer.dni}}</b>
+            </p>
+            <p style="color: black;">Sexo:
+              <b>{{ chofer.sexo == 'm' ? 'Masculino' : 'Femenino' }}</b>
+            </p>
+            <p class="" style="color: black;">Fecha de nacimiento: 
+                <b>{{chofer.fechaNacimiento}}</b>
+              </p>
+            <p style="color: black;" >Fecha de alta:
+                <b>{{chofer.fechaAlta}}</b>
+              </p>
+        
 
 
         <ion-item>
@@ -66,13 +63,14 @@
           <p style="color: black;" >Estado:
               <b>{{ chofer.activoVehiculo == '1' ? 'Activo' : 'Inactivo' }}</b>
             </p>
-      </ion-item>
+        </ion-item>
+      </ion-card-content>
       </ion-card>
       
     </ion-content>
 
     <ion-footer>
-        <ion-navbar>
+        <ion-navbar color="dark">
           <ion-buttons end>
             <button  large ion-button color="secondary" (click)="close()">Volver</button>
           </ion-buttons>

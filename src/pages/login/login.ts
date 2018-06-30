@@ -25,6 +25,7 @@ import { EncuestaSupervisorPage } from '../encuesta-supervisor/encuesta-supervis
 import { EncuestaChoferPage } from '../encuesta-chofer/encuesta-chofer';
 import { SuperControlPanelPage } from '../supervisor-control-panel/supervisor-control-panel';
 import { EncuestaClientePage } from '../encuesta-cliente/encuesta-cliente';
+import { QrVehiculoClientePage } from '../qr-vehiculo-cliente/qr-vehiculo-cliente';
 
 @IonicPage()
 @Component({
@@ -203,5 +204,10 @@ export class LoginPage {
   }
   testAudio(){
     this.audioService.reproducirClick();
+  }
+  goTest(){
+    this.servicioUsuarios.traerUsuarioPorEmail("mschumi@gmail.com").subscribe(x=>{
+      this.navCtrl.push(QrVehiculoClientePage,{chofer:x[0]}); // PROBAR PC   
+    })
   }
 }

@@ -1,7 +1,9 @@
 page-qr-vehiculo-cliente {
         .abm-clientes-content {
             //background-color: rgba(0, 0, 0, 0.89)!important;
-            background: url('../assets/img/bg/4.jpg')!important;
+            //background: url('../assets/img/bg/4.jpg')!important;
+            background-color: #14830a !important;
+
             height: 100%!important;
             width: 100%!important;
             color: rgb(255, 255, 255)!important;
@@ -19,6 +21,22 @@ page-qr-vehiculo-cliente {
     
         .disabled {
             background-color: gray;
+        }
+        img{
+            width: 100px;
+            height: 100px;
+        }
+        .img-foto{
+            width: 100px;
+            height: 100px;
+        }
+        ion-card{
+            border-radius: 10px !important;
+            background-color: #0ed478 !important;
+        }
+        ion-item{
+            border-radius: 30px !important;
+            background-color: #ffd000 !important;
         }
     
 }

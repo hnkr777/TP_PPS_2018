@@ -11,6 +11,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { VerImagenPage } from '../ver-imagen/ver-imagen';
 
 import { ServicioAudioProvider } from "../../providers/servicio-audio/servicio-audio";
+import { vehiculo } from '../../clases/vehiculo';
+import { ServicioVehiculoProvider } from '../../providers/servicio-vehiculo/servicio-vehiculo';
 /**
  * AltaChoferPage
  *
@@ -30,6 +32,9 @@ export class AltaChoferPage {
   private validos: boolean;
   private modoAlta: boolean;
   private habilitado: boolean;
+  private usuarios: any;
+  public vehiculos: vehiculo[];
+  public patenteAnterior: string;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -40,7 +45,8 @@ export class AltaChoferPage {
     public viewCtrl: ViewController,
     public translateService: TranslateService,
     public alertCtrl: AlertController,
-    public audioService:ServicioAudioProvider
+    public audioService:ServicioAudioProvider,
+    private servicioVehiculos: ServicioVehiculoProvider
   ) {
       let chofer = navParams.get('chofer');
       
@@ -50,15 +56,19 @@ export class AltaChoferPage {
         this.habilitado = chofer.activo == 1;
         this.clave1 = chofer.clave;
         this.clave2 = chofer.clave;
+        this.patenteAnterior = this.chofer.patente !== undefined ? this.chofer.patente : '';
         console.log('AltaChoferPage: modificando chofer ' + this.chofer.correo);
       } else { // sino, en modo alta nuevo chofer
         this.modoAlta = true;
         this.habilitado = true;
         this.chofer = new Usuario('chofer');
         this.chofer.foto = undefined;
+        //this.patente = '';
+        this.chofer.patente = '';
         console.log('AltaChoferPage: nuevo chofer');
       }
-
+      this.loadUsers();
+      this.loadVehicles();
       this.validos = true;
   }
 
@@ -90,20 +100,69 @@ export class AltaChoferPage {
 
   modificarChofer() {
     this.audioService.reproducirClick();
+    this.servicioVehiculos.cambiarEstadoVehiculoPorPatente(this.patenteAnterior, 0);
+    console.warn('Patente anterior: ' + this.patenteAnterior);
+    this.servicioVehiculos.cambiarEstadoVehiculoPorPatente(this.chofer.patente, 1);
+    console.warn('Patente nueva: ' + this.chofer.patente);
     this.servicioUsuarios.modificarUsuario(this.chofer);
     this.closeModal();
   }
 
+  test() {
+    console.warn('TEST...'+this.chofer.patente);
+    //console.log('patente: '+ this.patente);
+    //this.servicioVehiculos.cambiarEstadoVehiculoPorPatente(this.chofer.patente, 2);
+    //this.nuevoChofer();
+  }
+
   nuevoChofer() {
     this.audioService.reproducirClick();
-    this.servicioUsuarios.guardarNuevoUsuario(this.chofer).then(data => {
+    let usuario: Usuario = this.usuarios.find((user) => {return this.chofer.correo == user.correo;});
+    if(usuario === undefined) { // el usuario.correo NO existe en firebase, entonces lo guardamos...
+      this.servicioUsuarios.guardarNuevoUsuario(this.chofer).then(data => {
+        this.servicioVehiculos.cambiarEstadoVehiculoPorPatente(this.patenteAnterior, 0);
+        console.warn('Patente anterior: ' + this.patenteAnterior);
+        this.servicioVehiculos.cambiarEstadoVehiculoPorPatente(this.chofer.patente, 1);
+        console.warn('Patente nueva: ' + this.chofer.patente);
+        this.closeModal();
+        console.log('Chofer guardado correctamente.');
+        this.Msg('Aviso', 'Chofer guardado correctamente.');
+      }).catch((error) => {
+        console.log('Error: '+ error);
+        this.errorMsg('Error', 'Error: '+ error);
+      });
+    } else { // el usuario.correo ya existe en firebase...
       this.closeModal();
-      console.log('Chofer guardado correctamente.');
-      this.Msg('Aviso', 'Chofer guardado correctamente.');
-    }).catch((error) => {
-      console.log('Error: '+ error);
-      this.errorMsg('Error', 'Error: '+ error);
+      console.error('Error: Correo del Chofer ya existente.');
+      this.errorMsg('Error', 'El correo del Chofer ya existe.');
+    }
+  }
+
+  loadUsers() {
+    let ob = this.servicioUsuarios.traerUsuarios();
+    let res = ob.subscribe((arrayUsuarios) => {
+      this.usuarios = arrayUsuarios;
+      res.unsubscribe();
+      //console.warn('Todos los usuarios: ' + JSON.stringify(this.usuarios));
     });
+  }
+
+  loadVehicles() { // cargamos vehiculos que no esten en estado 1...
+    this.vehiculos = new Array<vehiculo>();
+    let ob = this.servicioVehiculos.traerVehiculos();
+    let res = ob.subscribe((vehiculos) => {
+      vehiculos.forEach(el => {
+        if( el.estado === undefined || el.estado == 0 ) {
+          this.vehiculos.push(el);
+        }
+      });
+      res.unsubscribe();
+      //console.warn(JSON.stringify(this.vehiculos));
+    });
+  }
+
+  compareFn(e1: any, e2: any): boolean {
+    return e1 && e2 ? e1.id === e2.id : e1 === e2;
   }
 
   tomarFoto() {

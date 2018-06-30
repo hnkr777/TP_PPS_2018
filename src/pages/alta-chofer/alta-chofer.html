@@ -15,21 +15,21 @@
       <ion-col text-center>
         <ion-item>
           <!-- <ion-label class="titulo" floating>Nombre</ion-label> -->
-          <ion-input [pattern]="06([0-9]{8})" placeholder="Nombre" class="titulo" [(ngModel)]="chofer.nombre" type="text"></ion-input>
+          <ion-input placeholder="Nombre" class="titulo" [(ngModel)]="chofer.nombre" type="text" (keyup)="onKeyUpLetter($event,'nombre')"></ion-input>
         </ion-item>
       </ion-col>
 
       <ion-col text-center>
         <ion-item>
           <!-- <ion-label class="titulo" floating>Apellido</ion-label> -->
-          <ion-input placeholder="Apellido" class="titulo" [(ngModel)]="chofer.apellido" type="text"></ion-input>
+          <ion-input placeholder="Apellido" class="titulo" [(ngModel)]="chofer.apellido" type="text" (keyup)="onKeyUpLetter($event,'apellido')"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
 
     <ion-item>
       <!-- <ion-label class="titulo" floating>Email</ion-label> -->
-      <ion-input placeholder="Email" [(ngModel)]="chofer.correo" class="titulo" type="email"></ion-input>
+      <ion-input placeholder="Email" [(ngModel)]="chofer.correo" class="titulo" type="email" ></ion-input>
     </ion-item>
 
     <ion-item>
@@ -44,14 +44,14 @@
 
     <ion-item>
       <!-- <ion-label class="titulo" floating>Clave</ion-label> -->
-      <ion-input placeholder="Número de DNI" [(ngModel)]="chofer.dni" class="titulo" type="number"></ion-input>
+      <ion-input placeholder="Número de DNI" [(ngModel)]="chofer.dni" class="titulo" type="number" (keyup)="onKeyUpNumber($event)"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-row>
         <ion-col>
           <button small ion-button color="primary" (click)="tomarFoto()" class="submit-btn">
-            <ion-icon name="camera"></ion-icon>&nbsp; Sacar foto</button>
+            <ion-icon name="camera"></ion-icon>&nbsp;Cámara</button>
         </ion-col>
         <ion-col>
           <div (click)="verImagen()" class="marco-imagen">
@@ -60,7 +60,7 @@
         </ion-col>
         <ion-col>
           <button small ion-button color="primary" (click)="cargarFoto()" class="submit-btn">
-            <ion-icon name="add"></ion-icon>&nbsp; Buscar foto</button>
+            <ion-icon name="add"></ion-icon>&nbsp;Librería</button>
         </ion-col>
       </ion-row>
     </ion-item>

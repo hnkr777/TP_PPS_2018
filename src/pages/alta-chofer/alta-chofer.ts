@@ -192,7 +192,25 @@ export class AltaChoferPage {
     let regExp = new RegExp('^[A-Za-z]+$');
     if (! regExp.test(newValue)) {
       event.target.value = newValue.slice(0, -1);
+      switch (opt) {
+        case "nombre":
+          this.chofer.nombre = "";
+          break;
+        case "apellido":
+          this.chofer.nombre = "";
+          break;
       
+        default:
+          break;
+      }
+    }
+  }
+  public onKeyUpEmail(event: any) {
+    let newValue = event.target.value;
+    let regExp = new RegExp('/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/');
+    if (!regExp.test(newValue)) {
+      event.target.value = newValue.slice(0, -1);
+      this.chofer.correo = "";
     }
   }
   //Para que los campos input sean solo numeros
@@ -201,7 +219,7 @@ export class AltaChoferPage {
     let regExp = new RegExp('^[0-9]+$');
     if (! regExp.test(newValue)) {
       event.target.value = newValue.slice(0, -1);
-      
+      this.chofer.dni = undefined;
     }
   }
 
@@ -229,11 +247,49 @@ export class AltaChoferPage {
       this.errorMsg('Error', 'Todos los campos son obligatorios.');
       return false;
     }
+    if (!this.validarEmail(this.chofer.correo)) {
+      this.errorMsg('Error', 'Formato de correo inválido');
+      return false;
+    }
+    if (!this.validarFecha(this.chofer.fechaNacimiento)) {
+      this.errorMsg('Error', 'Se necesita ser mayor de edad (18 años)');
+      return false;
+    }
+    /*if(!this.chofer.nombre.value.match(/^[A-Za-z\_\-\.\s\xF1\xD1]+$/))
+    {
+      this.formAlta.controls['nombre'].setValue("");
+      const alerta = this.alertCtrl.create({
+        title: 'Error!',
+        subTitle: 'El nombre debe contener letras',
+        cssClass:"miClaseDanger",
+        buttons: ['Aceptar']
+      });
+      alerta.present();
+      return;
+    }*/
     this.chofer.clave = this.clave1;
     this.chofer.activo = (this.habilitado ? 1 : 0);
     return true;
   }
-
+  validarFecha(fecha:Date){
+    let mayor: number = Date.now();
+    mayor += 60 * 60 * 1000 * 24 * 365 * 18; // cantidad de minutos * segundos (en 1 minuto) * milesimas de segundo (en 1 segundo)
+    let fechaChofer = fecha.getTime();
+    let aux:boolean = false;
+    if (fechaChofer <= mayor) {
+      aux = true;
+    }
+    return aux;
+  }
+  validarEmail(email:string){
+    let aux:boolean = false;
+    for (let i = 0; i < email.length; i++) {
+      if (email[i] == '@') {
+        aux=true;
+      }
+    }
+    return aux;
+  }
   closeModal() {
     this.viewCtrl.dismiss();
   }

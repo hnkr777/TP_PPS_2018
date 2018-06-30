@@ -188,8 +188,8 @@ export class LoginPage {
     this.navCtrl.push(AbmVehiculosPage,{data:"Lista"});
   }
   goListadoChoferes(){
-    this.navCtrl.push(ContentPage,{data:"supervisorLC"}); // PROBAR CEL
-    //this.navCtrl.push(ListadoChoferesDisponiblesPage); // PROBAR PC
+    //this.navCtrl.push(ContentPage,{data:"supervisorLC"}); // PROBAR CEL
+    this.navCtrl.push(ListadoChoferesDisponiblesPage); // PROBAR PC
   }
   goEncuesta(){
     //this.navCtrl.push(ContentPage,{data:"supervisorEC"}); // PROBAR CEL

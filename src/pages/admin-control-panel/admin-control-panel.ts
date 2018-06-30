@@ -67,6 +67,7 @@ export class AdminControlPanelPage {
     this.navCtrl.push(NuevoViajePage);
   }
   logout(){
+    sessionStorage.clear();
     this.navCtrl.setRoot(LoginPage);
   }
 }

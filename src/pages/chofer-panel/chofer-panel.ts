@@ -78,6 +78,7 @@ export class ChoferPanelPage {
   }
 
   logOut(){
+    sessionStorage.clear();
     this.navCtrl.setRoot(LoginPage);
   }
 

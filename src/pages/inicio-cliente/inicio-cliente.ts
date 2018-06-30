@@ -242,6 +242,7 @@ constructor(public navCtrl: NavController,
     this.modalCtrl.create(PagesModalPage, { titulo: 'Aviso', data: 'No implementado.'}).present();
   }*/
   logout(){
+    sessionStorage.clear();
     this.navCtrl.setRoot(LoginPage);
   }
 }

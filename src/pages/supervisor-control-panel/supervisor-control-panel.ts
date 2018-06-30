@@ -86,7 +86,12 @@ export class SuperControlPanelPage {
     //this.navCtrl.push(EncuestaSupervisorPage); // PROBAR PC
     //this.navCtrl.push(EncuestaChoferPage); // PROBAR PC
   }
+  goEstadisticas(){
+    this.audioService.reproducirClick();
+    this.modalCtrl.create(PagesModalPage,{titulo:"Estadísticas",data:""}).present()
+  }
   logout(){
+    sessionStorage.clear();
     this.navCtrl.setRoot(LoginPage);
   }
 }

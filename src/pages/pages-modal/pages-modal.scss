@@ -2,7 +2,8 @@
 page-pages-modal {
     .modal-content {
         //background-color: rgba(0, 0, 0, 1)!important;
-        background: url('../assets/img/bg/5.jpg')!important;
+        //background: url('../assets/img/bg/5.jpg')!important;
+        background-color: #14830a !important;
         height: 100%!important;
         color: white!important;
         background-size: cover;
@@ -11,10 +12,60 @@ page-pages-modal {
         font-size: xx-large;
     }
     
-    ion-content {
+    /*ion-content {
         height: 100%;
         background-color: bisque;
         background: slategray;
+    }*/
+    table {
+        font:13px/120% Verdana, Arial, Helvetica, sans-serif;
+        color:#ffffff;
+        width: 100%;
+        
+    }
+    .mesa{
+        margin-top: 40%;
+        width: 100%;
+        //height: 40%;
+        background-color: #23c515 !important;
+        padding: 20px;
+        border-radius: 30px;
+    }
+    .barrasv {
+        width:2.5em;
+        text-shadow:#CCCCCC 0.1em 0.1em 0.1em;
+        border-radius:5px;
+        -moz-border-radius:5px;
+        -webkit-border-radius:5px;
+        box-shadow:1px 1px 1px black;
+        -webkit-box-shadow:1px 1px 1px black;
+        -moz-box-shadow:1px 1px 1px black;
+        margin-bottom:1px;
+    }
+    .verticalmente {
+        position:relative; 
+        transform:rotate(-90deg);
+        //-o-transform:rotate(-90deg);
+        -webkit-transform:rotate(-90deg);
+        //-moz-transform:rotate(-90deg);
+        //-ms-filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+        //filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+        //writing-mode:tb-rl;
+        filter:flipv fliph;
+        margin:0 -1em;
+    }
+    #etiq td {
+        height:7em;
+        width:3em;
+        font-weight:bold;
+    }
+    .bordetd {
+        border-top: 1px solid #777777;
+        border-bottom: 1px solid #777777;
+        margin-left: 10px !important;
+        margin-right: 10px !important;
+        padding-top:1px;
+        padding-bottom:1px;
     }
     
 }

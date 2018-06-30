@@ -22,14 +22,14 @@ import {ServicioAudioProvider} from '../../providers/servicio-audio/servicio-aud
 })
 export class ListadoViajesSelecPage {
   //listadoViajes:any;
-  listadoViajesFiltrado:any;
+  listadoViajesFiltrado:Array<Viaje>;
   correoChofer:string;
   chofer:Usuario;
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,public servicioViajes:ServicioViajesProvider,public audioService:ServicioAudioProvider,public servicioUsuarios:ServicioUsuariosProvider,public modalCtrl:ModalController) {
     this.chofer = this.navParams.get('data');
     this.correoChofer = this.chofer.correo;
     //this.listadoViajes = servicioViajes.traerViajes();
-    this.listadoViajesFiltrado = new Array<Viaje[]>();
+    this.listadoViajesFiltrado = new Array<Viaje>();
     this.filtrar();
   }
 
@@ -40,9 +40,11 @@ export class ListadoViajesSelecPage {
       console.log(Date());
       let ob = this.servicioViajes.traerViajesFiltrados('correoChofer', '==', '' ).subscribe(data => {
         console.log('Cantidad viajes: ' + data.length);
-  
-        this.listadoViajesFiltrado = data;
-  
+        data.forEach(element => {
+          if (element.estado == 0) {
+            this.listadoViajesFiltrado.push(element);            
+          }
+        });
         ob.unsubscribe();
         
       });

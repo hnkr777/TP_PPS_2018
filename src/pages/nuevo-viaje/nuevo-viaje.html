@@ -70,7 +70,7 @@
 
     <ion-row>
       <ion-col>
-        <ion-datetime type="datetime-local" (ionCancel)="checkCondiciones()" id="fechaSalida" [pickerOptions]="customOptions" (click)="checkCondiciones()" class="picker" max="2020-12-31" displayFormat="DDDD DD de MMMM de YYYY  HH:mm"
+        <ion-datetime type="datetime-local" (ionCancel)="checkCondiciones()" id="fechaSalida" [pickerOptions]="customOptions" (click)="checkCondiciones()" class="picker" max="2020-12-31" min="2018-06-30" displayFormat="DDDD DD de MMMM de YYYY  HH:mm"
           (ionChange)="checkCondiciones()" pickerFormat="DD MMMM YYYY HH mm" [(ngModel)]="fechaSalidaString" monthNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre"
           cancelText="Cancelar" doneText="Aceptar" placeholder="Fecha de salida" monthShortNames="Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic"
           dayNames="Domingo, Lunes, Martes, Miercoles, Jueves, Viernes, Sábado" dayShortNames="Dom, Lun, Mar, Mie, Jue, Vie, Sáb">

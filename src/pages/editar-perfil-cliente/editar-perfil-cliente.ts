@@ -123,7 +123,7 @@ export class EditarPerfilClientePage {
       this.servicioCliente.modificarUsuario(this.unCliente).then(data => {
         sessionStorage.setItem("usuario", JSON.stringify(this.unCliente));
         this.spin(false);
-        this.navCtrl.pop();  
+        this.navCtrl.setRoot(InicioClientePage);  
         let alerta = this.alertCtrl.create({
           title: "Exitosamente!",
           subTitle: "'Se modificaron los datos correctamente",

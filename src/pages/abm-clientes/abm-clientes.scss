@@ -11,11 +11,11 @@ page-abm-clientes {
     }
 
     .enabled {
-        background-color: white;
+        background-color: #0ed478 !important;
     }
 
     .disabled {
-        background-color: gray;
+        background-color: #0b9052 !important;
     }
 
     .botonMedio
@@ -33,7 +33,7 @@ page-abm-clientes {
       }
     ion-card{
         border-radius: 10px !important;
-        background-color: #0ed478 !important;
+        background-color: #0ed478;
     }
     ion-item{
         border-radius: 30px !important;

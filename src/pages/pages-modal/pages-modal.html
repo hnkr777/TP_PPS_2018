@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="dark">
     <ion-title>{{titulo}}</ion-title>
     <ion-buttons end>
       <button ion-button (click)="closeModal()">
@@ -9,11 +9,37 @@
 </ion-header>
 
 <ion-content padding class="modal-content titulo">
-  {{cuerpo}}
+  <div class="mesa">
+    <table align="center" cellpadding="0" cellspacing="0" border="0" >
+        <tbody align="center">
+          <tr>
+          <td valign="bottom"><div style="vertical-align:text-top">25</div><div class="barrasv" style="height:31.6px; background-color:#BDDA4C">&nbsp;</div></td>
+          <td valign="bottom"><div style="vertical-align:text-top">40</div><div class="barrasv" style="height:43.5px; background-color:#FF9A68">&nbsp;</div></td>
+          <td valign="bottom"><div style="vertical-align:text-top">15</div><div class="barrasv" style="height:15.8px; background-color:#69ABBF">&nbsp;</div></td>
+          <td valign="bottom"><div style="vertical-align:text-top">2</div><div class="barrasv" style="height:1.9px; background-color:#FFDE68">&nbsp;</div></td>
+          <td valign="bottom"><div style="vertical-align:text-top">7</div><div class="barrasv" style="height:6.9px; background-color:#AB6487">&nbsp;</div></td>
+          </tr>
+          <tr>
+          <td class="bordetd">31.6%</td>
+          <td class="bordetd">43.5%</td>
+          <td class="bordetd">15.8%</td>
+          <td class="bordetd">1.9%</td>
+          <td class="bordetd">6.9%</td>
+          </tr>
+          <tr id="etiq">
+          <td><div class="verticalmente">Viajes Finalizados</div></td>
+          <td><div class="verticalmente">Viajes Pendientes</div></td>
+          <td><div class="verticalmente">Viajes Cancelados</div></td>
+          <td><div class="verticalmente">Clientes Insatisfechos</div></td>
+          <td><div class="verticalmente">Clientes Suspendidos</div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 </ion-content>
 
 <ion-footer>
-  <ion-navbar>
+  <ion-navbar color = "dark">
     <ion-buttons end>
       <button large ion-button color="danger" (click)="closeModal()">Cerrar</button>
     </ion-buttons>

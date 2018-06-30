@@ -89,8 +89,13 @@
 
     <!-- <ion-item> -->
       <!-- <ion-label class="titulo" floating>Clave</ion-label> -->
-      <ion-input placeholder="Fecha de nacimiento" [(ngModel)]="chofer.fechaNacimiento" class="titulo" type="date"></ion-input>
+      <!-- <ion-input placeholder="Fecha de nacimiento" [(ngModel)]="chofer.fechaNacimiento" class="titulo" type="date"></ion-input> -->
     <!-- </ion-item> -->
+    <ion-datetime type="datetime-local"  id="fechaSalida" [pickerOptions]="customOptions" class="picker" max="2000-06-29" displayFormat="DDDD DD de MMMM de YYYY"
+           pickerFormat="DD MMMM YYYY" [(ngModel)]="chofer.fechaNacimiento" monthNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre"
+          cancelText="Cancelar" doneText="Aceptar" placeholder="Fecha de salida" monthShortNames="Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic"
+          dayNames="Domingo, Lunes, Martes, Miercoles, Jueves, Viernes, Sábado" dayShortNames="Dom, Lun, Mar, Mie, Jue, Vie, Sáb">
+        </ion-datetime>
 
     <ion-item>
         <!-- [compareWith]="compareFn" -->

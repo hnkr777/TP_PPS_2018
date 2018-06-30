@@ -251,10 +251,10 @@ export class AltaChoferPage {
       this.errorMsg('Error', 'Formato de correo inválido');
       return false;
     }
-    if (!this.validarFecha(this.chofer.fechaNacimiento)) {
+    /*if (!this.validarFecha(this.chofer.fechaNacimiento)) {
       this.errorMsg('Error', 'Se necesita ser mayor de edad (18 años)');
       return false;
-    }
+    }*/
     /*if(!this.chofer.nombre.value.match(/^[A-Za-z\_\-\.\s\xF1\xD1]+$/))
     {
       this.formAlta.controls['nombre'].setValue("");

@@ -24,9 +24,9 @@ UTN FRA - Práctica profesional - Grupo Radix
 1. Apellido: Honeker
 2. Nombre: Federico Adolfo
 3. Módulos (objetivos) a desarrollar: 
-        *Alta de choferes (Responsabilidad A)
-        *QR del vehículo para choferes (Responsabilidad D)
-        *Pedir vehículo (Responsabilidad J)
+        <br>*Alta de choferes (Responsabilidad A)
+        <br>*QR del vehículo para choferes (Responsabilidad D)
+        <br>*Pedir vehículo (Responsabilidad J)
 4. Fecha de inicio: 26/05/2018
 5. Fecha de fin: 30/06/2018
 6. Branch (si tiene):
@@ -37,9 +37,9 @@ UTN FRA - Práctica profesional - Grupo Radix
 1. Apellido: Murcia
 2. Nombre: Juan Ignacio
 3. Módulos (objetivos) a desarrollar: 
-        *Alta de vehículos (Responsabilidad B)
-        *QR del vehículo para supervisor (Responsabilidad F)
-        *Hacer reservas agendadas (Responsabilidad L)
+        <br>*Alta de vehículos (Responsabilidad B)
+        <br>*QR del vehículo para supervisor (Responsabilidad F)
+        <br>*Hacer reservas agendadas (Responsabilidad L)
 4. Fecha de inicio: 26/05/2018
 5. Fecha de fin: 30/06/2018
 6. Branch (si tiene): 
@@ -50,9 +50,9 @@ UTN FRA - Práctica profesional - Grupo Radix
 1. Apellido: Suppan
 2. Nombre: Mauro
 3. Módulos (objetivos) a desarrollar: 
-        *Alta de clientes (Responsabilidad C)
-        *QR del vehiculo para clientes (Responsabilidad E)
-        *Tomar viaje (Responsabilidad K)
+        <br>*Alta de clientes (Responsabilidad C)
+        <br>*QR del vehiculo para clientes (Responsabilidad E)
+        <br>*Tomar viaje (Responsabilidad K)
 4. Fecha de inicio: 26/05/2018
 5. Fecha de fin: 30/06/2018
 6. Branch (si tiene):

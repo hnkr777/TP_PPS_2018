@@ -310,12 +310,18 @@ page-alta-cliente {
         //object-fit: fill;
       }
       ion-item {
-        //border-radius: 30px !important;
-        margin-top: 4px !important;
+        border-radius: 30px !important;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
         //height: 46px !important;
-        //background-color: #1b6415!important;
-        background: transparent!important;
+        background-color: #1b6415!important;
+        //background: transparent!important;
         
+    }
+    .submit-btn{
+        background: #51CFB1;
+        border-radius: 30px !important;
+        border: 1px solid #ffffff;
     }
 
 }

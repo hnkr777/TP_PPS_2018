@@ -3,7 +3,7 @@
     
       <ion-header>
     
-        <ion-navbar>
+        <ion-navbar color="dark">
           <ion-title>{{ (modoAlta == true? 'Alta cliente' : 'Modificar cliente') | translate }}</ion-title>
         </ion-navbar>
     
@@ -12,6 +12,7 @@
     
       <ion-content>
           <form [formGroup]="formAlta" >
+            <img src="assets/img/user.png" alt="" class="img">
         <ion-row>
           <ion-col text-center>
             <ion-item>
@@ -107,7 +108,7 @@
       </ion-content>
     
       <ion-footer>
-        <ion-navbar>
+        <ion-navbar color="dark">
           <ion-buttons>
             <button large ion-button color="danger" (click)="closeModal()">Cancelar</button>
           </ion-buttons>

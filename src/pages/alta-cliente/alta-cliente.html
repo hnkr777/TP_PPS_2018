@@ -21,22 +21,22 @@
     <form [formGroup]="formAlta" >
       <ion-list>
 
-          <ion-item padding style="background: transparent;">
+          <ion-item  style="background: transparent;">
               <ion-label class="titulo" color="light" floating stacked>Nombre</ion-label>
               <ion-input class="titulo" type="text"  [formControl]="nombre" name="nombre" ></ion-input>
             </ion-item>
                 
-          <ion-item padding style="background: transparent;">
+          <ion-item  style="background: transparent;">
               <ion-label class="titulo" color="light" floating stacked>Apellido</ion-label>
               <ion-input class="titulo" type="text"  [formControl]="apellido" name="apellido"></ion-input>
             </ion-item>
 
-            <ion-item padding style="background: transparent;">
+            <ion-item  style="background: transparent;">
                 <ion-label class="titulo" color="light" floating stacked>DNI</ion-label>
                 <ion-input class="titulo" type="number"  [formControl]="dni" name="dni"></ion-input>
               </ion-item>
         <!--
-              <ion-item padding style="background: transparent;">
+              <ion-item  style="background: transparent;">
                 <ion-label class="titulo" color="light" floating stacked>Domicilio</ion-label>
                 <ion-input class="titulo" type="text"  [formControl]="domicilio" name="domicilio"></ion-input>
               </ion-item>
@@ -65,23 +65,23 @@
                 <ion-input placeholder="Fecha de nacimiento" [formControl]="fechaNacimiento" name="fechaNacimiento" class="titulo" type="date"></ion-input>
               </ion-item>
 -->
-        <ion-item padding style="background: transparent;">
+        <ion-item  style="background: transparent;">
           <ion-label class="titulo" color="light" floating stacked>Correo</ion-label>
           <ion-input class="titulo" type="email"  [formControl]="correo" name="correo"></ion-input>
         </ion-item>
 
-        <ion-item padding style="background: transparent;">
+        <ion-item  style="background: transparent;">
           <ion-label class="titulo" color="light" floating stacked>Clave</ion-label>
           <ion-input class="titulo" type="password" [formControl]="clave" name="clave"></ion-input>
         </ion-item>
 
-        <ion-item padding style="background: transparent;">
+        <ion-item  style="background: transparent;">
             <ion-label class="titulo" color="light" floating stacked>Repetir clave</ion-label>
             <ion-input class="titulo" type="password" [formControl]="claveRep" name="claveRep"></ion-input>
           </ion-item>
 
-          <ion-item padding style="background: transparent;">
-          <button ion-button icon-only (click)="takePhoto()"> Tomar foto
+          <ion-item  style="background: transparent;">
+          <button ion-button icon-only (click)="takePhoto()" class="submit-btn"> Tomar foto
               <ion-icon name="camera"></ion-icon>
             </button>
            </ion-item>
@@ -98,8 +98,8 @@
               </ion-grid>
                 </div>
 
-        <div padding>
-          <button ion-button round icon-left color="secondary" block large (click)="guardar()">
+        <div>
+          <button ion-button round icon-left color="secondary" block large (click)="guardar()" class="submit-btn">
             <ion-icon name="checkmark-circle"></ion-icon>Enviar datos</button>
         </div>
 

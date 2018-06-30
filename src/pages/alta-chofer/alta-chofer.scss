@@ -13,7 +13,11 @@ alta-chofer-page {
         //background: transparent!important;
         
     }
-
+    .submit-btn {
+        background: #51CFB1;
+        //border-radius: 30px !important;
+        //border: 1px solid #ffffff;
+    }
     .contenedor-global {
         //background: url('../../assets/img/bg/5.jpg');
         background-size: cover;
@@ -23,11 +27,7 @@ alta-chofer-page {
         top: 0px;
         left: 0px;
     }
-    .submit-btn {
-        background: #51CFB1;
-        //border-radius: 30px !important;
-        //border: 1px solid #ffffff;
-    }
+
     .marco-imagen {
         text-align: center;
         background-repeat: no-repeat;

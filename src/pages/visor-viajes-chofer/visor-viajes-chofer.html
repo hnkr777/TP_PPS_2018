@@ -13,7 +13,7 @@
     
     <ion-item class="filtro">
       <ion-label color="primary" >Filtro:</ion-label>
-      <ion-select (ionInput)="filtrarViajesTest()" interface="popover" cancelText="Cancelar" okText="Aceptar" [(ngModel)]="mostrar" (click)="filtrarViajesTest()">
+      <ion-select interface="alert" cancelText="Cancelar" okText="Aceptar" [(ngModel)]="mostrar" (ionChange)="filtrarViajesTest()">
         <ion-option value="asignados"[disabled]="mostrar=='enCurso'">Asignados a mi</ion-option>
         <ion-option value="enCurso" [disabled]="mostrar!='enCurso'">En curso</ion-option>
         <ion-option value="sinAsignacion" [disabled]="mostrar=='enCurso'">Sin asignación</ion-option>

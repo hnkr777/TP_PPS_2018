@@ -30,6 +30,7 @@
               <ion-buttons end>
                 <button large ion-button color="danger" (click)="cancelarViaje()" *ngIf="mostrarBotonCancelarViaje==true">Cancelar viaje!</button>
                 <button  large ion-button color="secondary" *ngIf="mostrarBotonRealizarEncuesta==true" (click)="realizarEncuesta()">Realizar encuesta!</button>
+                <button  large ion-button color="secondary" *ngIf="mostrarBotonRealizarEncuesta==false" >Ya realizó la encuesta!</button>
               </ion-buttons>
     
             </ion-navbar>

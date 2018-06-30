@@ -67,6 +67,7 @@ import { QrLeerEncuestaClientePage } from '../pages/qr-leer-encuesta-cliente/qr-
 import { EncuestaClientePage } from '../pages/encuesta-cliente/encuesta-cliente';
 import { EditarPerfilClientePage } from '../pages/editar-perfil-cliente/editar-perfil-cliente';
 import { ServicioVehiculoProvider } from '../providers/servicio-vehiculo/servicio-vehiculo';
+import { EmailComposer } from '@ionic-native/email-composer';
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
 
@@ -201,7 +202,8 @@ export function provideSettings(storage: Storage) {
     ServicioViajesProvider,
     ServicioAudioProvider,
     NativeAudio,
-    ServicioVehiculoProvider
+    ServicioVehiculoProvider,
+    EmailComposer
   ]
 })
 export class AppModule { }

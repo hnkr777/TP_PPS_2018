@@ -12,7 +12,7 @@
   <ion-list block>
       <ion-item class="filtro">
         <ion-label color="primary">Filtro:</ion-label>
-        <ion-select (ionInput)="filtrarViajes()" interface="popover" cancelText="Cancelar" okText="Aceptar" [(ngModel)]="filtro" (click)="filtrarViajes()">
+        <ion-select  interface="alert" cancelText="Cancelar" okText="Aceptar" [(ngModel)]="filtro" (ionChange)="filtrarViajes()">
           <ion-option value="0">Pendientes</ion-option>
           <ion-option value="-2">Post datados</ion-option>
           <ion-option value="1">En viaje</ion-option>

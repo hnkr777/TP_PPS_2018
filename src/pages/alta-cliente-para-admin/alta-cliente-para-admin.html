@@ -36,12 +36,12 @@
 
       
       <ion-item>
-          <ion-input placeholder="Número de DNI"  class="titulo" type="number"  [formControl]="dni" name="dni"></ion-input>
+          <ion-input [disabled]="modoAlta==false" placeholder="Número de DNI"  class="titulo" type="number"  [formControl]="dni" name="dni"></ion-input>
         </ion-item>
 
         <ion-item>
             <!-- <ion-label class="titulo" floating>Email</ion-label> -->
-            <ion-input placeholder="Correo"  class="titulo" type="email" [formControl]="correo" name="correo" ></ion-input>
+            <ion-input [disabled]="modoAlta==false" placeholder="Correo"  class="titulo" type="email" [formControl]="correo" name="correo" ></ion-input>
           </ion-item>
 <!--
         <ion-item>
@@ -105,7 +105,10 @@
           </form>
           <br>
           <button ion-button color="danger" *ngIf="modoAlta==false" (click)="blanquerClave()">Blanquear clave</button>
-      </ion-content>
+        <!--  <br>
+          <button ion-button color="danger" *ngIf="modoAlta==false" (click)="enviarCorreo()">Enviar mail</button>-->
+          
+        </ion-content>
     
       <ion-footer>
         <ion-navbar color="dark">

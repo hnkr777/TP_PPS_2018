@@ -21,13 +21,14 @@
       
       <ion-item class="filtro">
         <ion-label color="primary" >Filtro:</ion-label>
-        <ion-select (ionInput)="filtrarViajes()" interface="popover" cancelText="Cancelar" okText="Aceptar" [(ngModel)]="mostrar" (click)="filtrarViajes()">
+        <ion-select  interface="alert" cancelText="Cancelar" okText="Aceptar" [(ngModel)]="mostrar" (ionChange)="filtrarViajes()" >
           <ion-option value="todos">Todos</ion-option>
           <ion-option value="enCurso" >En curso</ion-option>
           <ion-option value="finalizados" >Finalizados</ion-option>
           <ion-option value="cancelados">Cancelados</ion-option>
         </ion-select>
       </ion-item>
+ 
       
     </ion-list>
 </ion-header>
@@ -55,7 +56,7 @@
                     <b>{{(item.correoChofer == "" ? 'Sin asignar' : item.correoChofer)}} </b>
                   </p>
                   <p>Estado del viaje:
-                    <b> {{ (item.estado == 0 ? 'No comenzado' : (item.estado == 1 ? 'En curso' : (item.estado == 2 ? 'Finalizado' : (item.estado == 3 ? 'Cancelado por cliente' : 'Cancelado por la empresa' ) ) ) ) }}</b>
+                    <b> {{ (item.estado == 0 ? 'Pendiente' : (item.estado == 1 ? 'En curso' : (item.estado == 2 ? 'Finalizado' : (item.estado == 3 ? 'Cancelado por cliente' : 'Cancelado por la empresa' ) ) ) ) }}</b>
                   </p>
                   <p>Origen:
                     <b>{{item.origen}}</b>

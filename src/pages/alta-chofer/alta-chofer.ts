@@ -197,7 +197,7 @@ export class AltaChoferPage {
           this.chofer.nombre = "";
           break;
         case "apellido":
-          this.chofer.nombre = "";
+          this.chofer.apellido = "";
           break;
       
         default:

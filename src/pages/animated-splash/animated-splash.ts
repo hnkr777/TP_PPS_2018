@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FirstRunPage, MainPage } from "../pages";
-//import {ServicioAudioProvider } from "../../providers/servicio-audio/servicio-audio"
+import {ServicioAudioProvider } from "../../providers/servicio-audio/servicio-audio"
 /**
  * Splash animado
  *
@@ -16,11 +16,11 @@ import { FirstRunPage, MainPage } from "../pages";
 export class AnimatedSplashPage {
 
   splash: boolean = true;
-  constructor(public navCtrl: NavController, public navParams: NavParams, /*public audioService:ServicioAudioProvider*/) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public audioService:ServicioAudioProvider) {
   }
 
   ionViewDidLoad() {
-    //this.audioService.reproducirInicio();
+    this.audioService.reproducirInicio();
     setTimeout(() => {
       this.splash = false;
       this.navCtrl.setRoot(FirstRunPage);

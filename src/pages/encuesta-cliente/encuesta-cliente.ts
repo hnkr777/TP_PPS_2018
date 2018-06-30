@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController,AlertController } from 'ionic-angular';
 
 import { Settings } from '../../providers/providers';
 import { ChoferPanelPage } from '../chofer-panel/chofer-panel';
 import { InicioClientePage } from '../inicio-cliente/inicio-cliente';
+import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider } from '../../providers/providers';
 /**
  * Generated class for the EncuestaClientePage page.
  *
@@ -41,7 +42,9 @@ export class EncuestaClientePage {
       public formBuilder: FormBuilder,
       public navParams: NavParams,
       public translate: TranslateService,
-      private viewCtrl: ViewController
+      private viewCtrl: ViewController,
+      private servicioViajes: ServicioViajesProvider,
+      public alertCtrl: AlertController
     ) {
       this.viaje = this.navParams.get('viaje');
       console.log(this.viaje);
@@ -98,8 +101,24 @@ export class EncuestaClientePage {
     }
   
     accionAceptar() {
-     // this.navCtrl.setRoot(ChoferPanelPage);
-     this.navCtrl.setRoot(InicioClientePage);
+ 
+  
+        //cambio estado a cancelado por cliente
+        console.log("VIAJEEE");
+      this.viaje.encuestaRealizada=true;
+      console.log(this.viaje);
+      this.servicioViajes.modificarViaje(this.viaje);
+     
+      let alerta = this.alertCtrl.create({
+        title: "Encuesta enviada!",
+        subTitle: "Usted realizó la encuesta con exito",
+        cssClass:"miClaseAlert",
+      buttons: ['Aceptar']
+    });
+     alerta.present();
+  
+     
+      this.navCtrl.setRoot(InicioClientePage);
     }
   
     closeModal() {

@@ -21,13 +21,14 @@
       
       <ion-item>
         <ion-label color="primary" >Filtro:</ion-label>
-        <ion-select (ionInput)="filtrarViajes()" interface="popover" cancelText="Cancelar" okText="Aceptar" [(ngModel)]="mostrar" (click)="filtrarViajes()">
+        <ion-select  interface="alert" cancelText="Cancelar" okText="Aceptar" [(ngModel)]="mostrar" (ionChange)="filtrarViajes()" >
           <ion-option value="todos">Todos</ion-option>
           <ion-option value="enCurso" >En curso</ion-option>
           <ion-option value="finalizados" >Finalizados</ion-option>
           <ion-option value="cancelados">Cancelados</ion-option>
         </ion-select>
       </ion-item>
+ 
       
     </ion-list>
 </ion-header>

@@ -198,7 +198,7 @@ constructor(public navCtrl: NavController,
 
   filtrarViajesCancelados()
   {
-    this.mostrar="cencelados";
+    this.mostrar="cancelados";
     this.listaViajes=[];
 
     for(let i=0;i<this.listaViajesAux.length;i++)

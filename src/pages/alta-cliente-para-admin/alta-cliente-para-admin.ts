@@ -279,6 +279,17 @@ correoo;
       if(this.formAlta.get("activo").value ==true)
         {
           this.unCliente.activo=1;
+
+          //mando mail
+          let email = {
+            to: this.formAlta.get("correo").value,
+            subject: 'Habilitación de usuario',
+            body: ' Estimado/a, puede acceder con su correo y clave al sistema de remisería RADIX. Saludos',
+            isHtml: true
+          };
+          
+          // Send a text message using default options
+          this.emailComposer.open(email);
         }
         else
           {
@@ -363,8 +374,8 @@ this.modificarCliente();
         'base64:icon.png//iVBORw0KGgoAAAANSUhEUg...',
         'file://README.pdf'
       ],*/
-      subject: 'Cordova Icons',
-      body: 'How are you? Nice greetings from Leipzig',
+      subject: 'Habilitación de usuario',
+      body: ' Estimado/a, puede acceder con su correo y clave al sistema de remisería RADIX. Saludos',
       isHtml: true
     };
     

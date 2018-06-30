@@ -80,7 +80,7 @@ export class LoginPage {
 
       case 4:
       this.loginFields.correo = "mschumi@gmail.com";
-      this.loginFields.clave = '44';
+      this.loginFields.clave = '123';
         break;
 
       case 5:

@@ -43,7 +43,7 @@ public auxListaClientes: any[];
       this.listaClientes = data;
       this.auxListaClientes=data;
 
-      if(this.mostrar=="pendientes")
+     /* if(this.mostrar=="pendientes")
         {
         this.mostrarPendientes();
         }
@@ -51,7 +51,8 @@ public auxListaClientes: any[];
         if(this.mostrar=="suspendidos")
           {
           this.mostrarSuspendidos();
-          }
+          }*/
+          this.filtrarViajes()
 
         
       this.spin(false);
@@ -80,6 +81,28 @@ public auxListaClientes: any[];
     }
    }
 
+
+   filtrarViajes()
+   {
+     if(this.mostrar=="todos")
+      {
+        this.mostrarTodos();
+      }
+
+      if(this.mostrar=="pendientes")
+        {
+          this.mostrarPendientes();
+        }
+        if(this.mostrar=="suspendidos")
+          {
+            this.mostrarSuspendidos();
+          }
+
+          if(this.mostrar=="activos")
+            {
+              this.mostrarActivos();
+            }
+   }
    private mostrarPendientes()
    {
     this.mostrar="pendientes";

@@ -56,7 +56,7 @@
                     <b>{{(item.correoChofer == "" ? 'Sin asignar' : item.correoChofer)}} </b>
                   </p>
                   <p>Estado del viaje:
-                    <b> {{ (item.estado == 0 ? 'No comenzado' : (item.estado == 1 ? 'En curso' : (item.estado == 2 ? 'Finalizado' : (item.estado == 3 ? 'Cancelado por cliente' : 'Cancelado por la empresa' ) ) ) ) }}</b>
+                    <b> {{ (item.estado == 0 ? 'Pendiente' : (item.estado == 1 ? 'En curso' : (item.estado == 2 ? 'Finalizado' : (item.estado == 3 ? 'Cancelado por cliente' : 'Cancelado por la empresa' ) ) ) ) }}</b>
                   </p>
                   <p>Origen:
                     <b>{{item.origen}}</b>

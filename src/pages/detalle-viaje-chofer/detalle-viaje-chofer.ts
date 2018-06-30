@@ -7,7 +7,7 @@ import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { TranslateService } from '@ngx-translate/core';
 import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider, Settings } from '../../providers/providers';
 import { Geolocation } from '@ionic-native/geolocation';
-
+import { EmailComposer } from '@ionic-native/email-composer';
 //import * as moment from 'moment';
 declare const google; // para google maps
 /**
@@ -39,7 +39,8 @@ export class DetalleViajeChoferPage {
     private geolocation: Geolocation,
     private servicioViajes: ServicioViajesProvider,
     private servicioUsuarios:ServicioUsuariosProvider,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    private emailComposer: EmailComposer
   ) {
 
   }
@@ -165,13 +166,25 @@ export class DetalleViajeChoferPage {
         //cancelado
         this.viaje.estado=0;
        this.viaje.correoChofer="";
+       
+                 //mando mail
+                 let email = {
+                  to: this.viaje.correoCliente,
+                  subject: 'Cambio de estado de viaje',
+                  body: ' Estimado/a, su viaje pedido el '+this.viaje.fechaRegistroString+' ha cambiado su estado a "Pendiente. En breve será reasignado y comenzado. Disculpe las molestias. RADIX. Saludos',
+                  isHtml: true
+                };
+                
+                // Send a text message using default options
+                this.emailComposer.open(email);
+
         this.servicioViajes.modificarViaje(this.viaje);
         this.servicioUsuarios.modificarUsuario(this.usuario);
         sessionStorage.setItem("usuario", JSON.stringify(this.usuario));
 
         let alerta = this.alertCtrl.create({
           title: "Viaje cancelado!",
-          subTitle: "El chofer cancelo viaje",
+          subTitle: "El chofer canceló viaje",
           cssClass:"miClaseDanger",
         buttons: ['Aceptar']
       });

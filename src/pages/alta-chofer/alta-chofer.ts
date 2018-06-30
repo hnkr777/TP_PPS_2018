@@ -110,6 +110,7 @@ export class AltaChoferPage {
 
   test() {
     console.warn('TEST...'+this.chofer.patente);
+
     //console.log('patente: '+ this.patente);
     //this.servicioVehiculos.cambiarEstadoVehiculoPorPatente(this.chofer.patente, 2);
     //this.nuevoChofer();
@@ -185,9 +186,29 @@ export class AltaChoferPage {
     });
   }
 
+  //Para que los campos input sean solo letras
+  public onKeyUpLetter(event: any, opt:string) {
+    let newValue = event.target.value;
+    let regExp = new RegExp('^[A-Za-z]+$');
+    if (! regExp.test(newValue)) {
+      event.target.value = newValue.slice(0, -1);
+      
+    }
+  }
+  //Para que los campos input sean solo numeros
+  public onKeyUpNumber(event: any,opt:string) {
+    let newValue = event.target.value;
+    let regExp = new RegExp('^[0-9]+$');
+    if (! regExp.test(newValue)) {
+      event.target.value = newValue.slice(0, -1);
+      
+    }
+  }
+
   private validar(): boolean {
     let c: Usuario = this.chofer;
     let res: boolean = c.nombre!=='' && c.apellido!==''&&c.clave!==''&&c.dni!==undefined&&c.correo!==''&&c.fechaNacimiento!==undefined&&c.foto!==undefined&&c.sexo!==undefined;
+    
     
     if (this.clave1 !== this.clave2) {
       this.errorMsg('Error', 'Las contraseñas no coinciden.');

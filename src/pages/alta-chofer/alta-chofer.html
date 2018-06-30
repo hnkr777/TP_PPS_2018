@@ -15,7 +15,7 @@
       <ion-col text-center>
         <ion-item>
           <!-- <ion-label class="titulo" floating>Nombre</ion-label> -->
-          <ion-input placeholder="Nombre" class="titulo" [(ngModel)]="chofer.nombre" type="text"></ion-input>
+          <ion-input [pattern]="06([0-9]{8})" placeholder="Nombre" class="titulo" [(ngModel)]="chofer.nombre" type="text"></ion-input>
         </ion-item>
       </ion-col>
 
@@ -94,7 +94,7 @@
 
     <ion-item>
         <!-- [compareWith]="compareFn" -->
-      <ion-label>Vehículo asignado</ion-label>
+      <ion-label>Patente: {{chofer.patente}}</ion-label>
       <ion-select [(ngModel)]="chofer.patente" cancelText="Cancelar" okText="Aceptar">
         <ion-option *ngFor="let item of vehiculos" [value]="item.patente">{{item.patente}} ({{item.modelo}})</ion-option>
       </ion-select>

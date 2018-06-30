@@ -24,6 +24,7 @@ import { ListadoChoferesDisponiblesPage } from '../listado-choferes-disponibles/
 import { EncuestaSupervisorPage } from '../encuesta-supervisor/encuesta-supervisor';
 import { EncuestaChoferPage } from '../encuesta-chofer/encuesta-chofer';
 import { SuperControlPanelPage } from '../supervisor-control-panel/supervisor-control-panel';
+import { EncuestaClientePage } from '../encuesta-cliente/encuesta-cliente';
 
 @IonicPage()
 @Component({
@@ -57,7 +58,7 @@ export class LoginPage {
     this.translateService.get('LOGIN_ERROR').subscribe((value) => { // así se traen string de traduccion...
       this.loginErrorString = value;
     });
-    this.muteSound = true;
+    this.muteSound = false;
     this.muteAudio();
   }
   
@@ -80,7 +81,7 @@ export class LoginPage {
 
       case 4:
       this.loginFields.correo = "mschumi@gmail.com";
-      this.loginFields.clave = '44';
+      this.loginFields.clave = '123';
         break;
 
       case 5:
@@ -190,9 +191,10 @@ export class LoginPage {
     //this.navCtrl.push(ListadoChoferesDisponiblesPage); // PROBAR PC
   }
   goEncuesta(){
-    this.navCtrl.push(ContentPage,{data:"supervisorEC"}); // PROBAR CEL
+    //this.navCtrl.push(ContentPage,{data:"supervisorEC"}); // PROBAR CEL
     //this.navCtrl.push(EncuestaSupervisorPage); // PROBAR PC
-    //this.navCtrl.push(EncuestaChoferPage); // PROBAR PC
+    this.navCtrl.push(EncuestaChoferPage); // PROBAR PC
+    //this.navCtrl.push(EncuestaClientePage); // PROBAR PC
   }
   muteAudio(){
     this.muteSound = !this.muteSound;

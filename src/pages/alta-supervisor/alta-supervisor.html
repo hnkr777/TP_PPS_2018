@@ -2,7 +2,7 @@
 
   <ion-header>
 
-    <ion-navbar>
+    <ion-navbar color="dark">
       <ion-title>{{ (modoAlta == true? 'NEW_SUPER_TITLE' : 'MODIF_SUPER_TITLE') | translate }}</ion-title>
     </ion-navbar>
 
@@ -50,7 +50,7 @@
     <ion-item>
       <ion-row>
         <ion-col>
-          <button small ion-button color="primary" (click)="tomarFoto()">
+          <button small ion-button color="primary" (click)="tomarFoto()" class="submit-btn">
             <ion-icon name="camera"></ion-icon>&nbsp; Sacar foto</button>
         </ion-col>
         <ion-col>
@@ -59,7 +59,7 @@
           </div>
         </ion-col>
         <ion-col>
-          <button small ion-button color="primary" (click)="cargarFoto()">
+          <button small ion-button color="primary" (click)="cargarFoto()" class="submit-btn">
             <ion-icon name="add"></ion-icon>&nbsp; Buscar foto</button>
         </ion-col>
       </ion-row>
@@ -100,7 +100,7 @@
   </ion-content>
 
   <ion-footer>
-    <ion-navbar>
+    <ion-navbar color="dark">
       <ion-buttons>
         <button large ion-button color="danger" (click)="closeModal()">Cancelar</button>
       </ion-buttons>

@@ -21,6 +21,7 @@ import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider
 import { Viaje } from '../../clases/viaje';
 import { VisorViajesChoferPage } from '../../pages/visor-viajes-chofer/visor-viajes-chofer';
 import { Usuario } from '../../clases/usuario';
+import { LoginPage } from '../login/login';
 
 @IonicPage()
 @Component({
@@ -76,6 +77,8 @@ export class ChoferPanelPage {
     this.navCtrl.push(VisorViajesChoferPage);
   }
 
-
+  logOut(){
+    this.navCtrl.setRoot(LoginPage);
+  }
 
 }

@@ -1,6 +1,6 @@
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color ="dark">
     <ion-title>{{ pageTitle }}</ion-title>
   </ion-navbar>
 
@@ -9,15 +9,10 @@
 <ion-content>
 
   <form [formGroup]="form" *ngIf="settingsReady">
-    <ion-list *ngIf="page == 'main'">
+    <ion-list *ngIf="page == 'main'" class="list">
       <ion-item>
         <ion-label>{{ 'POLL_CHECKBOX' | translate }}</ion-label>
         <ion-toggle formControlName="option1"></ion-toggle>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>{{ 'POLL_INPUT' | translate }}</ion-label>
-        <ion-input formControlName="option2"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -87,12 +82,12 @@
 </ion-content>
 
 <ion-footer>
-  <ion-navbar>
+  <ion-navbar color ="dark">
     <!-- <ion-buttons>
       <button large ion-button color="danger" (click)="closeModal()">Cerrar</button>
     </ion-buttons> -->
     <ion-buttons end>
-      <button large ion-button color="secondary" (click)="accionAceptar()">Cerrar</button>
+      <button large ion-button color="secondary" (click)="accionAceptar()">Aceptar</button>
     </ion-buttons>
   </ion-navbar>
 </ion-footer>

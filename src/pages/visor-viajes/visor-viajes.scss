@@ -1,14 +1,15 @@
 visor-viajes {
     .visor-viajes-content {
+        background-color: #14830a !important;
         //background-color: rgba(0, 0, 0, 0.89)!important;
-        background: url('../assets/img/bg/4.jpg')!important;
+        //background: url('../assets/img/bg/4.jpg')!important;
         height: 100%!important;
         width: 100%!important;
         color: rgb(255, 255, 255)!important;
         display: block;
         //object-fit: fill;
     }
-
+    
     .enabled {
         background-color: white;
     }
@@ -22,5 +23,19 @@ visor-viajes {
         background: #51CFB1;
         border-radius: 30px !important;
         border: 1px solid #ffffff;
+    }
+    ion-card{
+        border-radius: 10px !important;
+        background-color: #0ed478 !important;
+    }
+    ion-item{
+        text-align: center !important;
+        border-radius: 30px ;
+        background-color: #ffd000 !important;
+        margin-bottom: 0px !important;
+    }
+    .filtro{
+        text-align: start !important;
+        border-radius: 0px !important;
     }
 }

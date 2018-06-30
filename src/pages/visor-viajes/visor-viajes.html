@@ -1,6 +1,6 @@
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="dark">
     <ion-title>{{ 'VISOR_VIAJES_PANEL_TITLE' | translate }}</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="filtrarViajes()">
@@ -10,7 +10,7 @@
     
   </ion-navbar>
   <ion-list block>
-      <ion-item>
+      <ion-item class="filtro">
         <ion-label color="primary">Filtro:</ion-label>
         <ion-select (ionInput)="filtrarViajes()" interface="popover" cancelText="Cancelar" okText="Aceptar" [(ngModel)]="filtro" (click)="filtrarViajes()">
           <ion-option value="0">Pendientes</ion-option>
@@ -37,15 +37,15 @@
       <ion-avatar item-start>
           <button (click)="verImg(item.correoCliente)" ion-button color="dark"><ion-icon name="image"></ion-icon></button>
       </ion-avatar>
-      <h2 style="color: #c94714;">Cliente: {{ item.nombreCliente }}</h2>
-      <h2 style="color: rgb(202, 127, 14);">Duración: {{item.duracionViajeText}}</h2>
-      <p style="color: #c2c201;">Distancia: {{ item.distanciaText }}</p>
+      <h2 style="color: #1420c9;">Cliente: {{ item.nombreCliente }}</h2>
+      <h2 style="color: #1420c9;">Duración: {{item.duracionViajeText}}</h2>
+      <p style="color: #1420c9;">Distancia: {{ item.distanciaText }}</p>
     </ion-item>
 
     <!-- <img class="imagen" [src]="item.foto"> -->
 
     <ion-card-content (click)="verViaje(item)">
-      <p>Chofer:
+      <p style="margin-top: 10px !important">Chofer:
         <b>{{item.correoChofer}}</b>
       </p>
       <p>Origen:

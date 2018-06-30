@@ -1,6 +1,6 @@
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="dark">
     <ion-title>{{ 'NUEVO_VIAJE_TITLE' | translate }}</ion-title>
     <ion-buttons end>
       <!-- <button ion-button icon-only (click)="infoViaje()">
@@ -17,7 +17,7 @@
 
 <ion-content padding (click)="hidePops()">
   <div (click)="hidePops()" class="contenido-viajes">
-    <ion-row>
+    <ion-row class="rowInput">
       <ion-col>
 
         <ion-chip #chip1 class="chip">
@@ -34,7 +34,7 @@
             (ionInput)="oriInput($event)" 
             (ionCancel)="oriCancel($event)">
           </ion-searchbar>
-          <button ion-button clear color="light" (click)="tomarDireccionGPS()">
+          <button ion-button clear color="light" (click)="tomarDireccionGPS()" class="submit-btn">
             <ion-icon name="pin"></ion-icon>
           </button>
         </ion-chip>
@@ -60,7 +60,7 @@
               (ionInput)="desInput($event)" 
               (ionCancel)="desCancel($event)">
             </ion-searchbar>
-            <button ion-button clear color="light" (click)="tomarDireccionGPS()">
+            <button ion-button clear color="light" (click)="tomarDireccionGPS()" class="submit-btn">
               <ion-icon name="pin"></ion-icon>
             </button>
           </ion-chip>

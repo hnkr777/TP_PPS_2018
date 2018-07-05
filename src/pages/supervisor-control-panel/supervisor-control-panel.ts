@@ -91,6 +91,7 @@ export class SuperControlPanelPage {
     this.modalCtrl.create(PagesModalPage,{titulo:"Estadísticas",data:""}).present()
   }
   logout(){
+    this.audioService.reproducirClick();
     sessionStorage.clear();
     this.navCtrl.setRoot(LoginPage);
   }

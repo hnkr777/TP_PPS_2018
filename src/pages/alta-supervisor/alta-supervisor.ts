@@ -185,6 +185,7 @@ export class AltaSupervisorPage {
   }
 
   errorMsg(titulo: string, mensaje: string) {
+    this.audioService.reproducirError();
     const alerta = this.alertCtrl.create({
       title: titulo,
       subTitle: mensaje,
@@ -193,9 +194,9 @@ export class AltaSupervisorPage {
     });
     alerta.present();
   }
-
   Msg(titulo: string, mensaje: string) {
-    const alerta = this.alertCtrl.create({
+        this.audioService.reproducirExito();
+        const alerta = this.alertCtrl.create({
       title: titulo,
       subTitle: mensaje,
       cssClass:"miClaseAlert",

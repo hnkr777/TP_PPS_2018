@@ -7,6 +7,7 @@ import { Settings } from '../../providers/providers';
 import { ChoferPanelPage } from '../chofer-panel/chofer-panel';
 import { InicioClientePage } from '../inicio-cliente/inicio-cliente';
 import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider } from '../../providers/providers';
+import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
 /**
  * Generated class for the EncuestaClientePage page.
  *
@@ -44,7 +45,8 @@ export class EncuestaClientePage {
       public translate: TranslateService,
       private viewCtrl: ViewController,
       private servicioViajes: ServicioViajesProvider,
-      public alertCtrl: AlertController
+      public alertCtrl: AlertController,
+      public audioService:ServicioAudioProvider
     ) {
       this.viaje = this.navParams.get('viaje');
       console.log(this.viaje);
@@ -109,7 +111,8 @@ export class EncuestaClientePage {
       console.log(this.viaje);
       this.servicioViajes.modificarViaje(this.viaje);
      
-      let alerta = this.alertCtrl.create({
+        this.audioService.reproducirExito();
+        let alerta = this.alertCtrl.create({
         title: "Encuesta enviada!",
         subTitle: "Usted realizó la encuesta con exito",
         cssClass:"miClaseAlert",

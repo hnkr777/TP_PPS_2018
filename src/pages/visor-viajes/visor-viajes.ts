@@ -7,6 +7,7 @@ import { Usuario } from '../../clases/usuario';
 import { ServicioViajesProvider } from '../../providers/providers';
 import { Viaje } from '../../clases/viaje';
 import { VerImagenPage } from '../ver-imagen/ver-imagen';
+import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
 
 /**
  * página de visor de viajes, solo lo tiene que poder usar el administrador o superusuario...
@@ -30,7 +31,8 @@ export class VisorViajesPage {
     private servicioUsuarios: ServicioUsuariosProvider,
     private servicioViajes: ServicioViajesProvider,
     public modalCtrl: ModalController,
-    public alertCtrl: AlertController) {
+    public alertCtrl: AlertController,
+  public audioService:ServicioAudioProvider) {
       this.filtro = '0';
       //this.loadClientNames();
   }
@@ -172,6 +174,7 @@ export class VisorViajesPage {
     this.showSuccess("Viaje Puesto en pendiente");
   }
   showError(msg){
+    this.audioService.reproducirError();
     const alerta = this.alertCtrl.create({
       title: 'Error!',
       subTitle: msg,
@@ -182,6 +185,7 @@ export class VisorViajesPage {
     return;
   }
   showSuccess(msg){
+    this.audioService.reproducirExito();
     const alerta = this.alertCtrl.create({
       title: 'Exito!',
       subTitle: msg,

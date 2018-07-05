@@ -335,6 +335,7 @@ export class AbmVehiculosPage {
 
   }
   showError(msg){
+    this.audioService.reproducirError();
     const alerta = this.alertCtrl.create({
       title: 'Error!',
       subTitle: msg,
@@ -345,6 +346,7 @@ export class AbmVehiculosPage {
     return;
   }
   showSuccess(msg){
+    this.audioService.reproducirExito();
     const alerta = this.alertCtrl.create({
       title: 'Exito!',
       subTitle: msg,

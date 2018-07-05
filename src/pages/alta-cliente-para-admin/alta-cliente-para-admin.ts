@@ -12,6 +12,7 @@ import { VerImagenPage } from '../ver-imagen/ver-imagen';
 import { AbmClienteProvider } from "../../providers/abm-cliente/abm-cliente";
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { EmailComposer } from '@ionic-native/email-composer';
+import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
 /**
  * Generated class for the AltaClienteParaAdminPage page.
  *
@@ -44,8 +45,8 @@ correoo;
     private camera: Camera,
     public alertCtrl: AlertController,
     private servicioCliente: AbmClienteProvider,
-    private emailComposer: EmailComposer
-    
+    private emailComposer: EmailComposer,
+    public audioService:ServicioAudioProvider
     
     //private objFirebase: AngularFirestore
   ) {
@@ -130,7 +131,8 @@ correoo;
    if(!this.nombre.value.match(/^[A-Za-z\_\-\.\s\xF1\xD1]+$/))
     {
       this.formAlta.controls['nombre'].setValue("");
-      const alerta = this.alertCtrl.create({
+        this.audioService.reproducirError();
+        const alerta = this.alertCtrl.create({
         title: 'Error!',
         subTitle: 'El nombre debe contener letras',
         cssClass:"miClaseDanger",
@@ -143,6 +145,7 @@ correoo;
     if(!this.apellido.value.match(/^[A-Za-z\_\-\.\s\xF1\xD1]+$/))
       {
         this.formAlta.controls['apellido'].setValue("");
+        this.audioService.reproducirError();
         const alerta = this.alertCtrl.create({
           title: 'Error!',
           subTitle: 'El apellido debe contener letras',
@@ -156,7 +159,8 @@ correoo;
       if(!this.dni.value.match(/^([0-9])*$/))
         {
           this.formAlta.controls['dni'].setValue("");
-          const alerta = this.alertCtrl.create({
+        this.audioService.reproducirError();
+        const alerta = this.alertCtrl.create({
             title: 'Error!',
             subTitle: 'El DNI debe contener 8 dígitos',
             cssClass:"miClaseDanger",
@@ -171,7 +175,8 @@ correoo;
      if(this.dni.invalid)
     {
       this.formAlta.controls['dni'].setValue("");
-      const alerta = this.alertCtrl.create({
+        this.audioService.reproducirError();
+        const alerta = this.alertCtrl.create({
         title: 'Error!',
         subTitle: 'El DNI debe contener 8 dígitos',
         cssClass:"miClaseDanger",
@@ -183,6 +188,7 @@ correoo;
     if(this.correo.invalid)
       {
         this.formAlta.controls['correo'].setValue("");
+        this.audioService.reproducirError();
         const alerta = this.alertCtrl.create({
           title: 'Error!',
           subTitle: 'Formato de correo invalido',
@@ -192,6 +198,7 @@ correoo;
         alerta.present();
         return;
       }
+        this.audioService.reproducirError();
         const alerta = this.alertCtrl.create({
           title: 'Error!',
           subTitle: 'Error en el ingreso de datos. Verifique!',
@@ -251,7 +258,8 @@ correoo;
       {
         if(data[i].correo==this.formAlta.get("correo").value)
           {
-            let alerta = this.alertCtrl.create({
+        this.audioService.reproducirError();
+        let alerta = this.alertCtrl.create({
               title: "Error!",
               subTitle: "El correo ya esta registrado",
               cssClass:"miClaseDanger",
@@ -318,7 +326,8 @@ this.modificarCliente();
     this.servicioCliente.guardarNuevoCliente(cliente).then(data => {
       this.spin(false);
       this.closeModal();
-      let alerta = this.alertCtrl.create({
+        this.audioService.reproducirExito();
+        let alerta = this.alertCtrl.create({
         title: "Exitosamente!",
         subTitle: "Se enviaron los datos correctamente.",
         cssClass:"miClaseAlert",
@@ -347,7 +356,8 @@ this.modificarCliente();
       this.spin(false);
      // this.closeModal();
       console.log('Se blanqueo la clave correctamente.');
-      let alerta = this.alertCtrl.create({
+        this.audioService.reproducirExito();
+        let alerta = this.alertCtrl.create({
         title: "Exitosamente!",
         subTitle: "Se blanqueo la clave correctamente.",
         cssClass:"miClaseAlert",
@@ -388,7 +398,8 @@ this.modificarCliente();
       this.spin(false);
       this.closeModal();
       console.log('Cliente guardado correctamente.');
-      let alerta = this.alertCtrl.create({
+        this.audioService.reproducirExito();
+        let alerta = this.alertCtrl.create({
         title: "Exitosamente!",
         subTitle: "Se modificaron los datos correctamente.",
         cssClass:"miClaseAlert",

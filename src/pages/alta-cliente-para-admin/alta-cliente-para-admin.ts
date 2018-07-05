@@ -12,6 +12,7 @@ import { VerImagenPage } from '../ver-imagen/ver-imagen';
 import { AbmClienteProvider } from "../../providers/abm-cliente/abm-cliente";
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { EmailComposer } from '@ionic-native/email-composer';
+import { AngularFireDatabase } from 'angularfire2/database';
 /**
  * Generated class for the AltaClienteParaAdminPage page.
  *
@@ -44,7 +45,8 @@ correoo;
     private camera: Camera,
     public alertCtrl: AlertController,
     private servicioCliente: AbmClienteProvider,
-    private emailComposer: EmailComposer
+    private emailComposer: EmailComposer,
+    public database : AngularFireDatabase
     
     
     //private objFirebase: AngularFirestore
@@ -364,24 +366,17 @@ this.modificarCliente();
 
   enviarCorreo()
   {
-    let email = {
-      to: 'mauro.s@outlook.com',
-     /* cc: 'erika@mustermann.de',
-      bcc: ['john@doe.com', 'jane@doe.com'],
-      attachments: [
-        'file://img/logo.png',
-        'res://icon.png',
-        'base64:icon.png//iVBORw0KGgoAAAANSUhEUg...',
-        'file://README.pdf'
-      ],*/
-      subject: 'Habilitación de usuario',
-      body: ' Estimado/a, puede acceder con su correo y clave al sistema de remisería RADIX. Saludos',
-      isHtml: true
-    };
-    
-    // Send a text message using default options
-    this.emailComposer.open(email);
+    //pruebas, no sirve
+    /*
+    this.database.list('messages').push({
+      to : "maurosuppan@gmail.com",
+      subject : "Envio de mail",
+      content : "ESto es una prueba que se envia desde ionic"
+    })
+    */
   }
+
+
 
   modificarCliente() {
     this.servicioCliente.modificarUsuario(this.unCliente).then(data => {

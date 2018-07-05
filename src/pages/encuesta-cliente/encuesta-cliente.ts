@@ -1,12 +1,22 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, NavParams, ViewController,AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController,AlertController,ModalController } from 'ionic-angular';
 
 import { Settings } from '../../providers/providers';
 import { ChoferPanelPage } from '../chofer-panel/chofer-panel';
 import { InicioClientePage } from '../inicio-cliente/inicio-cliente';
 import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider } from '../../providers/providers';
+import { ServicioEncuestasProvider } from '../../providers/servicio-encuestas/servicio-encuestas';
+
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { Observable } from 'rxjs/Observable';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { storage, firestore } from 'firebase';
+import * as firebase from 'firebase';
+import { LoginPage } from "../../pages/login/login";
+import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
+import { Encuesta } from '../../clases/encuesta';
 /**
  * Generated class for the EncuestaClientePage page.
  *
@@ -22,6 +32,10 @@ import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider
 export class EncuestaClientePage {
   options: any;
   viaje;
+  private spinner;
+  encuesta:Encuesta;
+
+  
     settingsReady = false;
   
     form: FormGroup;
@@ -44,10 +58,15 @@ export class EncuestaClientePage {
       public translate: TranslateService,
       private viewCtrl: ViewController,
       private servicioViajes: ServicioViajesProvider,
-      public alertCtrl: AlertController
+      public alertCtrl: AlertController,
+      private servicioEncuesta: ServicioEncuestasProvider,
+      private objFirebase: AngularFirestore,
+      public modalCtrl: ModalController
     ) {
       this.viaje = this.navParams.get('viaje');
       console.log(this.viaje);
+     //this.encuesta= new Object();
+     this.encuesta = new Encuesta();
     }
   
     _buildForm() {
@@ -101,13 +120,60 @@ export class EncuestaClientePage {
     }
   
     accionAceptar() {
- 
+      if(this.options.optRadio==null || this.options.optRadio==undefined )
+        {
+           let alerta = this.alertCtrl.create({
+          title: "Error!",
+          subTitle: "Seleccione una opción",
+          cssClass:"miClaseDanger",
+        buttons: ['Aceptar']
+      });
+       alerta.present();
+      return;
+        }
+      this.spin(true);
+      this.encuesta.fechaRegistroString=this.viaje.fechaRegistroString;
+      this.encuesta.respuesta=this.options.optRadio;
+      this.encuesta.correoCliente=this.viaje.correoCliente;
+      this.encuesta.perfil="cliente";
+      console.log("VIAJEEE");
+      this.viaje.encuestaRealizada=true;
+      console.log(this.viaje);
+      console.log("Encuesta");
+      console.log(this.encuesta);
+      //descomentar esto
+     this.servicioViajes.modificarViaje(this.viaje);
+
+    this.servicioEncuesta.guardarNuevoEncuesta(this.encuesta).then((data) => {
+      this.spin(false);
+      this.navCtrl.setRoot(InicioClientePage);  
+      //this.navCtrl.popToRoot();
+       let alerta = this.alertCtrl.create({
+         title: "Encuesta enviada!",
+         subTitle: "Usted realizó la encuesta con exito",
+         cssClass:"miClaseAlert",
+       buttons: ['Aceptar']
+     });
+      alerta.present();
+    })
+      .catch( error => {
+        this.spin(false);
+        alert("ocurrio un error");
+        console.error(error);
+       // this.Modal('Error', 'Detalle: '+error);
+      });
+     
+     
+     
+     
+     /*
+      console.log(this.options.optRadio);
   
         //cambio estado a cancelado por cliente
         console.log("VIAJEEE");
       this.viaje.encuestaRealizada=true;
       console.log(this.viaje);
-      this.servicioViajes.modificarViaje(this.viaje);
+     // this.servicioViajes.modificarViaje(this.viaje);
      
       let alerta = this.alertCtrl.create({
         title: "Encuesta enviada!",
@@ -118,7 +184,8 @@ export class EncuestaClientePage {
      alerta.present();
   
      
-      this.navCtrl.setRoot(InicioClientePage);
+     // this.navCtrl.setRoot(InicioClientePage);
+     */
     }
   
     closeModal() {
@@ -128,5 +195,15 @@ export class EncuestaClientePage {
     ngOnChanges() {
       console.log('Ng All Changes');
     }
+
+    private spin(status: boolean) {
+      if(this.spinner === undefined && status === true) {
+        this.spinner = this.modalCtrl.create(SpinnerPage);
+        this.spinner.present();
+      } else if(this.spinner !== undefined && status === false) {
+        this.spinner.dismiss();
+        this.spinner = undefined;
+      }
+     }
 
 }

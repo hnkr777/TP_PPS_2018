@@ -8,8 +8,9 @@
   
       <ion-navbar color= "dark" >
 
-          <img  *ngIf="foto!=null" [src]="foto" width="40px" style="" height="40px" align="right" (click)="modificarDatos()" />
-        <ion-title>
+         <!-- <img  *ngIf="foto!=null" [src]="foto" width="40px" style="" height="40px" align="right" (click)="modificarDatos()" />-->
+         <img  [src]="foto === null ? 'assets/img/perfildefaul.jpg' : foto" width="40px" style="" height="40px" align="right" (click)="modificarDatos()" />
+          <ion-title>
             <button ion-button (click)="logout()" class="logOut">
                 <ion-icon name="log-out"></ion-icon>
               </button>

@@ -52,13 +52,15 @@ export class AbmVehiculosPage {
     this.coleccionTipadaFirebase= this.objFirebase.collection<vehiculo>('vehiculos'); 
     //para el filtrado mirar la documentación https://firebase.google.com/docs/firestore/query-data/queries?authuser=0
     this.ListadoDeVehiculosObservable=this.coleccionTipadaFirebase.valueChanges();
-    this.ListadoDeVehiculosObservable.subscribe(x => {
+    let obs = this.ListadoDeVehiculosObservable.subscribe(x => {
         console.info("conexión correcta con Firebase",x);
         this.ListaDeVehiculos = new Array();
         x.forEach(vehiculo => {
           this.ListaDeVehiculos.push(vehiculo);
         });
+        obs.unsubscribe();
     })
+    //this.ListadoDeVehiculosObservable.unSubscribe()
     console.log("fin de ionViewDidEnter");
   }
   //Para que los campos input sean solo letras

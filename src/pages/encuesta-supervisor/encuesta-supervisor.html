@@ -19,28 +19,29 @@
 
 
 <ion-content padding class="content-back">
-  <form (ngSubmit)="aceptar()" #registerForm="ngForm">
+  <form (ngSubmit)="accionAceptar()" #registerForm="ngForm">
     <ion-item>
       <ion-input type="text" placeholder="Nombre" name="nombre" required></ion-input>
     </ion-item>
-    <ion-list radio-group class="list">
+    <ion-list radio-group class="list" [(ngModel)]="respuesta" [ngModelOptions]="{standalone: true}">
+      <ion-label class="obl">* obligatorio</ion-label>
       <ion-list-header>
-        ¿Cual es su turno de trabajo?
+      *¿Estado de animo de los choferes?
       </ion-list-header>
     
       <ion-item>
-        <ion-label>Mañana</ion-label>
-        <ion-radio value="Mañana"></ion-radio>
+        <ion-label>Bueno</ion-label>
+        <ion-radio value="1"></ion-radio>
       </ion-item>
     
       <ion-item>
-        <ion-label>Tarde</ion-label>
-        <ion-radio value="Tarde"></ion-radio>
+        <ion-label>Regular</ion-label>
+        <ion-radio value="2"></ion-radio>
       </ion-item>
     
       <ion-item>
-        <ion-label>Noche</ion-label>
-        <ion-radio value="Noche"></ion-radio>
+        <ion-label>Malo</ion-label>
+        <ion-radio value="3"></ion-radio>
       </ion-item>
     </ion-list>
     <ion-item>
@@ -62,7 +63,7 @@
       </ion-item>
     </ion-list>
     <ion-item>
-      <ion-label>¿Cual era el estado de animo de los choferes?</ion-label>
+      <ion-label>¿Como se sintio el ambito trabajador?</ion-label>
       <ion-range>
         <ion-icon range-left  name="sad"></ion-icon>
         <ion-icon range-right name="happy"></ion-icon>

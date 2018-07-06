@@ -7,6 +7,7 @@ import { Usuario } from '../../clases/usuario';
 import { ServicioViajesProvider } from '../../providers/providers';
 import { Viaje } from '../../clases/viaje';
 import { VerImagenPage } from '../ver-imagen/ver-imagen';
+import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 
 /**
  * página de visor de viajes, solo lo tiene que poder usar el administrador o superusuario...
@@ -23,6 +24,7 @@ export class VisorViajesPage {
   public listaViajes: any;
   private usuarios: Usuario[];
   public filtro: string;
+  private spinner;
 
   constructor(
     public navCtrl: NavController, 
@@ -31,12 +33,15 @@ export class VisorViajesPage {
     private servicioViajes: ServicioViajesProvider,
     public modalCtrl: ModalController,
     public alertCtrl: AlertController) {
-      this.filtro = '0';
+     // this.filtro = '0';
+     //TODOS
+     this.filtro = '-1';
       //this.loadClientNames();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad VisorViajesPage');
+    this.spin(true);
     let ob = this.servicioViajes.traerViajes().subscribe(viajes => { // la lista se va a actualizar cada vez que cambie la tabla usuarios de firebase
       //console.log('viajes: ' + JSON.stringify(viajes));
       /*for (let i = 0; i < viajes.length; i++) {
@@ -44,6 +49,7 @@ export class VisorViajesPage {
         viajes[i].nombreCliente = ( usuario !== undefined ? usuario.nombre + ' ' + usuario.apellido : '');
       }*/
       this.listaViajes = viajes;
+      this.spin(false);
       //ob.unsubscribe();
     });
   }
@@ -66,6 +72,7 @@ export class VisorViajesPage {
 
   filtrarViajes() {
     console.log('Filtro: ' +this.filtro);
+    this.spin(true);
     
     let now: number = Date.now();
     now += 30 * 60 * 1000; // cantidad de minutos * segundos (en 1 minuto) * milesimas de segundo (en 1 segundo)
@@ -117,6 +124,11 @@ export class VisorViajesPage {
               this.listaViajes.push(data[i]);
             }
           break;
+          case '5': // viajes cancelados por el supervisor
+          if( data[i].estado == 5 ) {
+            this.listaViajes.push(data[i]);
+          }
+        break;
         
           default:
             break;
@@ -126,6 +138,7 @@ export class VisorViajesPage {
       }
       console.log('Cantidad viajes: ' + this.listaViajes.length);
       ob.unsubscribe();
+      this.spin(false);
     });
   }
 
@@ -154,9 +167,12 @@ export class VisorViajesPage {
     });
   }
   cancelarViaje(viaje:Viaje){
-    viaje.estado = 4;
+    //cancelado por chofer
+    //viaje.estado = 4;
+    //cancelado por supervisor
+    viaje.estado = 5;
     this.servicioViajes.modificarViaje(viaje);
-    this.showSuccess("Viaje Cancelado Correctamente");
+    this.showSuccess("Viaje eliminado correctamente");
   }
   ponerViajeEnPendiente(viaje:Viaje){
     //viaje.estado = 0;
@@ -169,7 +185,8 @@ export class VisorViajesPage {
       this.servicioUsuarios.modificarUsuario(chofer);
     });*/
     this.servicioViajes.modificarViaje(viaje);
-    this.showSuccess("Viaje Puesto en pendiente");
+   // this.showSuccess("Viaje Puesto en pendiente");
+    this.showSuccess("Asignación cancelada");
   }
   showError(msg){
     const alerta = this.alertCtrl.create({
@@ -190,5 +207,15 @@ export class VisorViajesPage {
     });
     alerta.present();
     return;
+  }
+
+  private spin(status: boolean) {
+    if(this.spinner === undefined && status === true) {
+      this.spinner = this.modalCtrl.create(SpinnerPage);
+      this.spinner.present();
+    } else if(this.spinner !== undefined && status === false) {
+      this.spinner.dismiss();
+      this.spinner = undefined;
+    }
   }
 }

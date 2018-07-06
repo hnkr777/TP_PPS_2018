@@ -121,6 +121,9 @@ export class AltaChoferPage {
     let usuario: Usuario = this.usuarios.find((user) => {return this.chofer.correo == user.correo;});
     if(usuario === undefined) { // el usuario.correo NO existe en firebase, entonces lo guardamos...
       this.servicioUsuarios.guardarNuevoUsuario(this.chofer).then(data => {
+        if(this.patenteAnterior === undefined){
+          this.patenteAnterior = "";
+        }
         this.servicioVehiculos.cambiarEstadoVehiculoPorPatente(this.patenteAnterior, 0);
         console.warn('Patente anterior: ' + this.patenteAnterior);
         this.servicioVehiculos.cambiarEstadoVehiculoPorPatente(this.chofer.patente, 1);
@@ -225,7 +228,7 @@ export class AltaChoferPage {
 
   private validar(): boolean {
     let c: Usuario = this.chofer;
-    let res: boolean = c.nombre!=='' && c.apellido!==''&&c.clave!==''&&c.dni!==undefined&&c.correo!==''&&c.fechaNacimiento!==undefined&&c.foto!==undefined&&c.sexo!==undefined;
+    let res: boolean = c.nombre!=='' && c.apellido!==''&&c.clave!==''&&c.dni!==undefined&&c.correo!==''/*&&c.fechaNacimiento!==undefined*/&&c.foto!==undefined&&c.sexo!==undefined;
     
     
     if (this.clave1 !== this.clave2) {

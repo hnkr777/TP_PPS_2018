@@ -144,12 +144,12 @@ export class DetalleViajeClientePage {
 
   realizarEncuesta()
   {
-    window.document.querySelector('ion-content').classList.add('transparentBody');
-    window.document.querySelector('ion-app').classList.add('transparentBody');
+      window.document.querySelector('ion-content').classList.add('transparentBody');
+      window.document.querySelector('ion-app').classList.add('transparentBody');
+    //descomentar
+   this.navCtrl.push(QrLeerEncuestaClientePage,{viaje: this.viaje}); // escaner QR
   
-    this.navCtrl.push(QrLeerEncuestaClientePage,{viaje: this.viaje}); // escaner QR
-  
-  //this.navCtrl.push(EncuestaClientePage);
+  //this.navCtrl.push(EncuestaClientePage,{viaje: this.viaje});
   }
 
   closeModal() {

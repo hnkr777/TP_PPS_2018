@@ -130,7 +130,7 @@ export class EditarPerfilClientePage {
         this.audioService.reproducirExito();
         let alerta = this.alertCtrl.create({
           title: "Exitosamente!",
-          subTitle: "'Se modificaron los datos correctamente",
+          subTitle: "Se modificaron los datos correctamente",
           cssClass:"miClaseAlert",
         buttons: ['Aceptar']
       });

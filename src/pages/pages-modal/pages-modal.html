@@ -6,10 +6,34 @@
         <ion-icon name="close"></ion-icon></button>
     </ion-buttons>
   </ion-navbar>
+
+  <ion-list block>
+  <ion-item class="filtro">
+      <ion-label color="primary" >Filtro:</ion-label>
+      <ion-select interface="alert" cancelText="Cancelar" okText="Aceptar" [(ngModel)]="filtro" (ionChange)="filtrarEncuestas()">
+        <ion-option value="cliente">Clientes</ion-option>
+        <ion-option value="chofer" >Choferes</ion-option>
+        <ion-option value="supervisor">Supervisores</ion-option>
+      </ion-select>
+    </ion-item>
+    
+  </ion-list>
 </ion-header>
 
 <ion-content padding class="modal-content titulo">
+
+  <h2 *ngIf="filtro=='cliente'">Resultados a la pregunta: ¿Qué le parece nuestro servicio?</h2>
+  <h2 *ngIf="filtro=='chofer'">Resultados a la pregunta: La pregunta al chofer</h2>
+  <h2 *ngIf="filtro=='supervisor'">Resultados a la pregunta: La pregunta al supervisor</h2>
   <div class="mesa">
+      <canvas baseChart
+      [data]="aData"
+      [labels]="doughnutChartLabels"
+      [chartType]="doughnutChartType"
+      (chartHover)="chartHovered($event)"
+      (chartClick)="chartClicked($event)"></canvas>
+
+    <!--
     <table align="center" cellpadding="0" cellspacing="0" border="0" >
         <tbody align="center">
           <tr>
@@ -35,6 +59,7 @@
           </tr>
         </tbody>
       </table>
+    -->
     </div>
 </ion-content>
 

@@ -67,9 +67,11 @@ import { QrLeerEncuestaClientePage } from '../pages/qr-leer-encuesta-cliente/qr-
 import { EncuestaClientePage } from '../pages/encuesta-cliente/encuesta-cliente';
 import { EditarPerfilClientePage } from '../pages/editar-perfil-cliente/editar-perfil-cliente';
 import { ServicioVehiculoProvider } from '../providers/servicio-vehiculo/servicio-vehiculo';
-import { EmailComposer } from '@ionic-native/email-composer';
 import { EnviarMailProvider } from '../providers/enviar-mail/enviar-mail';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { ServicioEncuestasProvider } from '../providers/servicio-encuestas/servicio-encuestas';
+import { ChartsModule } from 'ng2-charts';
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
 
@@ -137,6 +139,7 @@ export function provideSettings(storage: Storage) {
     AngularFireDatabaseModule,
     FormsModule,
     ReactiveFormsModule,
+    ChartsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -203,8 +206,9 @@ export function provideSettings(storage: Storage) {
     ServicioAudioProvider,
     NativeAudio,
     ServicioVehiculoProvider,
-    EmailComposer,
-    EnviarMailProvider
+    EnviarMailProvider,
+    AngularFireDatabase,
+    ServicioEncuestasProvider
   ]
 })
 export class AppModule { }

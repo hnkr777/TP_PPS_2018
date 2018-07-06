@@ -17,8 +17,9 @@
           <ion-option value="-2">Post datados</ion-option>
           <ion-option value="1">En viaje</ion-option>
           <ion-option value="2">Finalizados</ion-option>
-          <ion-option value="3">Cancelados</ion-option>
+          <ion-option value="3">Cancelados por cliente</ion-option>
           <ion-option value="4">Cancelados por chofer</ion-option>
+          <ion-option value="5">Eliminados por supervisor</ion-option>
           <ion-option value="-1">Todos</ion-option>
         </ion-select>
       </ion-item>
@@ -61,7 +62,8 @@
         <b>{{ item.fechaRegistroString }}</b>
       </p>
       <p>Estado:
-        <b>{{   ( item.estado == 0 ? 'Pendiente' : (item.estado == 1 ? 'En viaje' : (item.estado == 2 ? 'Finalizado' : (item.estado == 3 ? 'Cancelado Cliente' : 'Cancelado Chofer/Supervisor' ) ) ) ) }}</b>
+       <!-- <b>{{   ( item.estado == 0 ? 'Pendiente' : (item.estado == 1 ? 'En viaje' : (item.estado == 2 ? 'Finalizado' : (item.estado == 3 ? 'Cancelado Cliente' : 'Cancelado Chofer/Supervisor' ) ) ) ) }}</b>-->
+        <b>{{   ( item.estado == 0 ? 'Pendiente' : (item.estado == 1 ? 'En viaje' : (item.estado == 2 ? 'Finalizado' : (item.estado == 3 ? 'Cancelado Cliente' :(item.estado == 4 ? 'Cancelado por Chofer' : 'Eliminado por supervisor') ) ) )) }}</b>
       </p>
       <p>Monto:
         <b>$ {{ item.monto }}</b>
@@ -69,14 +71,14 @@
       <p *ngIf = "item.estado == 0">
         <b>
           <button ion-button icon-only (click)="cancelarViaje(item)" class="submit-btn">
-          <ion-icon name="trash">Cancelar</ion-icon>
+          <ion-icon name="trash">Eliminar</ion-icon>
           </button>
         </b>
       </p>
       <p *ngIf = "item.estado == 0 && item.correoChofer != ''">
         <b>
           <button ion-button icon-only (click)="ponerViajeEnPendiente(item)" class="submit-btn">
-          <ion-icon name="trash">No Asignar</ion-icon>
+          <ion-icon name="trash">Cancelar asignación</ion-icon>
           </button>
         </b>
       </p>

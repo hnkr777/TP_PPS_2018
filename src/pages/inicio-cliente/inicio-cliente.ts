@@ -76,6 +76,7 @@ constructor(public navCtrl: NavController,
     this.filtrarViajes();
   }
 
+
   pedirViaje() {
     this.navCtrl.push(NuevoViajePage);
   }
@@ -252,4 +253,5 @@ constructor(public navCtrl: NavController,
     sessionStorage.clear();
     this.navCtrl.setRoot(LoginPage);
   }
+
 }

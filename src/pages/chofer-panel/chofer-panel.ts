@@ -22,6 +22,7 @@ import { Viaje } from '../../clases/viaje';
 import { VisorViajesChoferPage } from '../../pages/visor-viajes-chofer/visor-viajes-chofer';
 import { Usuario } from '../../clases/usuario';
 import { LoginPage } from '../login/login';
+import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
 
 @IonicPage()
 @Component({
@@ -36,7 +37,8 @@ export class ChoferPanelPage {
     public navParams: NavParams,
     public modalCtrl: ModalController,
     private servicioViajes: ServicioViajesProvider,
-    private servUsuarios: ServicioUsuariosProvider
+    private servUsuarios: ServicioUsuariosProvider,
+    public audioService:ServicioAudioProvider
   ) {
     
     this.chofer = JSON.parse(sessionStorage.getItem('usuario'));
@@ -64,20 +66,24 @@ export class ChoferPanelPage {
   }
 
   irEncuestaChofer() {
+    this.audioService.reproducirClick();
     this.navCtrl.push(ContentPage, { data: 'encuesta_chofer'}); // para test en celular
     //this.navCtrl.push(EncuestaChoferPage); // para test en PC
   }
 
   irEmpezarATrabajar() {
+    this.audioService.reproducirClick();
     this.navCtrl.push(ContentPage, { data: 'chofer'}); // escaner QR
   }
 
   irVisorViajesParaChofer()
   {
+    this.audioService.reproducirClick();
     this.navCtrl.push(VisorViajesChoferPage);
   }
 
   logOut(){
+    this.audioService.reproducirClick();
     sessionStorage.clear();
     this.navCtrl.setRoot(LoginPage);
   }

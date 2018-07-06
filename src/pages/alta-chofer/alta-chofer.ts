@@ -295,6 +295,7 @@ export class AltaChoferPage {
   }
 
   errorMsg(titulo: string, mensaje: string) {
+    this.audioService.reproducirError();
     const alerta = this.alertCtrl.create({
       title: titulo,
       subTitle: mensaje,
@@ -305,6 +306,7 @@ export class AltaChoferPage {
   }
 
   Msg(titulo: string, mensaje: string) {
+    this.audioService.reproducirExito();
     const alerta = this.alertCtrl.create({
       title: titulo,
       subTitle: mensaje,

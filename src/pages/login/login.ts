@@ -97,6 +97,7 @@ export class LoginPage {
   }
   
   mostrarUsuarios() {
+    this.audioService.reproducirClick();
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Ingresar como...',
       enableBackdropDismiss: true,
@@ -141,6 +142,7 @@ export class LoginPage {
           duration: 4000,
           position: 'bottom' //middle || top
         });
+        this.audioService.reproducirError();
         toast.present();
       }
     });
@@ -182,6 +184,7 @@ export class LoginPage {
   
   Redireccionar()
   {
+    this.audioService.reproducirClick();
     this.navCtrl.push(AltaClientePage);
   }
     

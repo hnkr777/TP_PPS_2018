@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider, Settings } from '../../providers/providers';
 import { Geolocation } from '@ionic-native/geolocation';
 import { EmailComposer } from '@ionic-native/email-composer';
+import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
 //import * as moment from 'moment';
 declare const google; // para google maps
 /**
@@ -40,7 +41,8 @@ export class DetalleViajeChoferPage {
     private servicioViajes: ServicioViajesProvider,
     private servicioUsuarios:ServicioUsuariosProvider,
     public alertCtrl: AlertController,
-    private emailComposer: EmailComposer
+    private emailComposer: EmailComposer,
+    public audioService:ServicioAudioProvider
   ) {
 
   }
@@ -103,7 +105,8 @@ export class DetalleViajeChoferPage {
         
          if(this.usuario.estado==2)
           {
-            const alerta = this.alertCtrl.create({
+        this.audioService.reproducirError();
+        const alerta = this.alertCtrl.create({
               title: 'Error!',
               subTitle: 'Usted esta realizando otro viaje actualmente',
               cssClass:"miClaseDanger",
@@ -128,7 +131,8 @@ export class DetalleViajeChoferPage {
        this.servicioUsuarios.modificarUsuario(this.usuario);
        sessionStorage.setItem("usuario", JSON.stringify(this.usuario));
 
-       let alerta = this.alertCtrl.create({
+        this.audioService.reproducirExito();
+        let alerta = this.alertCtrl.create({
         title: "Viaje comenzado!",
         subTitle: "Vaya a buscar al cliente al punto B",
         cssClass:"miClaseAlert",
@@ -147,6 +151,7 @@ export class DetalleViajeChoferPage {
         this.servicioUsuarios.modificarUsuario(this.usuario);
         sessionStorage.setItem("usuario", JSON.stringify(this.usuario));
 
+        this.audioService.reproducirExito();
         let alerta = this.alertCtrl.create({
           title: "Viaje finalizado!",
           subTitle: "Total a cobrar: $"+this.viaje.monto,
@@ -182,6 +187,7 @@ export class DetalleViajeChoferPage {
         this.servicioUsuarios.modificarUsuario(this.usuario);
         sessionStorage.setItem("usuario", JSON.stringify(this.usuario));
 
+        this.audioService.reproducirError();
         let alerta = this.alertCtrl.create({
           title: "Viaje cancelado!",
           subTitle: "El chofer canceló viaje",

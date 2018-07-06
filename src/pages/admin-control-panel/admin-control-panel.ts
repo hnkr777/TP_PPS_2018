@@ -22,6 +22,7 @@ import { AbmSupervisoresPage } from '../abm-supervisores/abm-supervisores';
 import { VisorViajesPage } from '../visor-viajes/visor-viajes';
 import { AbmVehiculosPage } from '../abm-vehiculos/abm-vehiculos';
 import { LoginPage } from '../login/login';
+import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
 
 
 @IonicPage()
@@ -34,7 +35,8 @@ export class AdminControlPanelPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    public servicioAudio:ServicioAudioProvider
   ) {
 
   }
@@ -44,29 +46,36 @@ export class AdminControlPanelPage {
   }
 
   irAbmChofer() {
+    this.servicioAudio.reproducirClick();
     this.navCtrl.push(AbmChofer);
   }
 
   irAbmCliente() {
+    this.servicioAudio.reproducirClick();
     this.navCtrl.push(AbmClientesPage);
   }
 
   irAbmSupervisor() {
+    this.servicioAudio.reproducirClick();
     this.navCtrl.push(AbmSupervisoresPage);
   }
 
   irVisorViajes() {
+    this.servicioAudio.reproducirClick();
     this.navCtrl.push(VisorViajesPage);
   }
   
   irAbmVehiculos() {
+    this.servicioAudio.reproducirClick();
     this.navCtrl.push(AbmVehiculosPage, {data:"Lista"});
   }
 
   pedirViaje() {
+    this.servicioAudio.reproducirClick();
     this.navCtrl.push(NuevoViajePage);
   }
   logout(){
+    this.servicioAudio.reproducirClick();
     sessionStorage.clear();
     this.navCtrl.setRoot(LoginPage);
   }

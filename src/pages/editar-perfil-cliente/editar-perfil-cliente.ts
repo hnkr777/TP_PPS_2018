@@ -10,6 +10,7 @@ import { LoginPage } from "../../pages/login/login";
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { AbmClienteProvider } from "../../providers/abm-cliente/abm-cliente";
 import { InicioClientePage } from "../../pages/inicio-cliente/inicio-cliente";
+import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
 /**
  * Generated class for the EditarPerfilClientePage page.
  *
@@ -30,7 +31,7 @@ export class EditarPerfilClientePage {
   ListadoUsuariosObservable: Observable<any[]>;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private builder: FormBuilder,private camera: Camera,public alertCtrl: AlertController,private objFirebase: AngularFirestore,public modalCtrl: ModalController,private servicioCliente: AbmClienteProvider) {
+  constructor(public audioService:ServicioAudioProvider,public navCtrl: NavController, public navParams: NavParams,private builder: FormBuilder,private camera: Camera,public alertCtrl: AlertController,private objFirebase: AngularFirestore,public modalCtrl: ModalController,private servicioCliente: AbmClienteProvider) {
   // this.unCliente = this.navParams.get('cliente');
    //console.log(this.unCliente);
    this.unCliente = JSON.parse(sessionStorage.getItem('usuario'));
@@ -60,7 +61,8 @@ export class EditarPerfilClientePage {
       if(this.clave.invalid)
         {
           this.formAlta.controls['clave'].setValue("");
-          const alerta = this.alertCtrl.create({
+        this.audioService.reproducirError();
+        const alerta = this.alertCtrl.create({
             title: 'Error!',
             subTitle: 'Las clave no puede estar en blanco',
             cssClass:"miClaseDanger",
@@ -72,7 +74,8 @@ export class EditarPerfilClientePage {
 
         if(this.unCliente.clave!=claveRep)
           {
-            const alerta = this.alertCtrl.create({
+        this.audioService.reproducirError();
+        const alerta = this.alertCtrl.create({
               title: 'Error!',
               subTitle: 'Las claves no coinciden. Reingrese!',
               cssClass:"miClaseDanger",
@@ -124,6 +127,7 @@ export class EditarPerfilClientePage {
         sessionStorage.setItem("usuario", JSON.stringify(this.unCliente));
         this.spin(false);
         this.navCtrl.setRoot(InicioClientePage);  
+        this.audioService.reproducirExito();
         let alerta = this.alertCtrl.create({
           title: "Exitosamente!",
           subTitle: "'Se modificaron los datos correctamente",

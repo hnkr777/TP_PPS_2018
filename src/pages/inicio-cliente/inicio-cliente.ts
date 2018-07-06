@@ -20,6 +20,7 @@ import { DetalleViajeClientePage } from "../../pages/detalle-viaje-cliente/detal
 import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider, Settings } from '../../providers/providers';
 import { EditarPerfilClientePage } from '../../pages/editar-perfil-cliente/editar-perfil-cliente';
 import { LoginPage } from '../login/login';
+import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
 /**
  * Generated class for the InicioClientePage page.
  *
@@ -60,7 +61,8 @@ constructor(public navCtrl: NavController,
   public alertCtrl: AlertController,
   private servicioCliente: AbmClienteProvider,
   private qrScanner: QRScanner,
-  private servicioViajes: ServicioViajesProvider)
+  private servicioViajes: ServicioViajesProvider,
+  public audioService:ServicioAudioProvider)
  {
   this.listaViajes=[];
   }
@@ -80,9 +82,11 @@ constructor(public navCtrl: NavController,
   }
 
   datosChofer()
-  {        window.document.querySelector('ion-content').classList.add('transparentBody');
-  window.document.querySelector('ion-app').classList.add('transparentBody');
-  this.navCtrl.push(QrLeerVehiculoClientePage); // escaner QR
+  {        
+    this.audioService.reproducirClick();
+    window.document.querySelector('ion-content').classList.add('transparentBody');
+    window.document.querySelector('ion-app').classList.add('transparentBody');
+    this.navCtrl.push(QrLeerVehiculoClientePage); // escaner QR
   }
 
   accederEncuesta()
@@ -161,6 +165,7 @@ constructor(public navCtrl: NavController,
   mostrarViajeConMapa(viaje)
   {
   //  this.modalCtrl.create(DetalleViajeClientePage, {viaje: viaje}).present();
+  this.audioService.reproducirClick();
   this.navCtrl.setRoot(DetalleViajeClientePage, {viaje: viaje}); // escaner QR
   }
 
@@ -214,6 +219,7 @@ constructor(public navCtrl: NavController,
 
   modificarDatos()
   {
+    this.audioService.reproducirClick();
     this.navCtrl.push(EditarPerfilClientePage,{cliente:this.usuarioDatos});
   }
 
@@ -243,6 +249,7 @@ constructor(public navCtrl: NavController,
     this.modalCtrl.create(PagesModalPage, { titulo: 'Aviso', data: 'No implementado.'}).present();
   }*/
   logout(){
+    this.audioService.reproducirClick();
     sessionStorage.clear();
     this.navCtrl.setRoot(LoginPage);
   }

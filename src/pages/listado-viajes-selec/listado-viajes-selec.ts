@@ -67,6 +67,7 @@ export class ListadoViajesSelecPage {
     this.navCtrl.popToRoot();
   }
   showError(msg){
+    this.audioService.reproducirError();
     const alerta = this.alertCtrl.create({
       title: 'Error!',
       subTitle: msg,
@@ -77,6 +78,7 @@ export class ListadoViajesSelecPage {
     return;
   }
   showSuccess(msg){
+    this.audioService.reproducirExito();
     const alerta = this.alertCtrl.create({
       title: 'Exito!',
       subTitle: msg,

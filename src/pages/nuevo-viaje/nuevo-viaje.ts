@@ -512,6 +512,7 @@ export class NuevoViajePage {
   }
 
   errorMsg(titulo: string, mensaje: string) {
+    this.audioService.reproducirError();
     this.hidePops();
     const alerta = this.alertCtrl.create({
       title: titulo,
@@ -523,6 +524,7 @@ export class NuevoViajePage {
   }
 
   Msg(titulo: string, mensaje: string) {
+    this.audioService.reproducirExito();
     this.hidePops();
     const alerta = this.alertCtrl.create({
       title: titulo,

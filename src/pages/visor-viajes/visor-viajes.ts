@@ -7,6 +7,7 @@ import { Usuario } from '../../clases/usuario';
 import { ServicioViajesProvider } from '../../providers/providers';
 import { Viaje } from '../../clases/viaje';
 import { VerImagenPage } from '../ver-imagen/ver-imagen';
+import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 
 /**
@@ -32,7 +33,8 @@ export class VisorViajesPage {
     private servicioUsuarios: ServicioUsuariosProvider,
     private servicioViajes: ServicioViajesProvider,
     public modalCtrl: ModalController,
-    public alertCtrl: AlertController) {
+    public alertCtrl: AlertController,
+  public audioService:ServicioAudioProvider) {
      // this.filtro = '0';
      //TODOS
      this.filtro = '-1';
@@ -189,6 +191,7 @@ export class VisorViajesPage {
     this.showSuccess("Asignación cancelada");
   }
   showError(msg){
+    this.audioService.reproducirError();
     const alerta = this.alertCtrl.create({
       title: 'Error!',
       subTitle: msg,
@@ -199,6 +202,7 @@ export class VisorViajesPage {
     return;
   }
   showSuccess(msg){
+    this.audioService.reproducirExito();
     const alerta = this.alertCtrl.create({
       title: 'Exito!',
       subTitle: msg,

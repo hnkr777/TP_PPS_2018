@@ -17,6 +17,8 @@ export class ServicioAudioProvider {
   constructor(public http: HttpClient,public nativeAudio: NativeAudio,private objFirebase: AngularFirestore) {
     this.nativeAudio.preloadSimple('click', 'assets/mp3/click.mp3').then(()=>console.log("Todo Okey Cargando el audio"), (error) => console.info(error));
     this.nativeAudio.preloadSimple('inicio', 'assets/mp3/inicio.mp3').then(()=>console.log("Todo Okey Cargando el audio"), (error) => console.info(error));
+    this.nativeAudio.preloadSimple('correct', 'assets/mp3/correct.mp3').then(()=>console.log("Todo Okey Cargando el audio"), (error) => console.info(error));
+    this.nativeAudio.preloadSimple('error', 'assets/mp3/error.mp3').then(()=>console.log("Todo Okey Cargando el audio"), (error) => console.info(error));
     //this.verificarMute();
   }
   reproducirClick(){
@@ -29,7 +31,17 @@ export class ServicioAudioProvider {
       this.nativeAudio.play('inicio', () => console.log('inicio is done playing'));
     }
   }
-  verificarMute(){
+  reproducirError(){
+    if (this.mute) {
+      this.nativeAudio.play('error', () => console.log('error is done playing'));
+    }
+  }
+  reproducirExito(){
+    if (this.mute) {
+      this.nativeAudio.play('correct', () => console.log('correct is done playing'));
+    }
+  }
+  /*verificarMute(){
     let coleccionTipadaFirebase= this.objFirebase.collection<Audio>('Audio'); 
     //para el filtrado mirar la documentación https://firebase.google.com/docs/firestore/query-data/queries?authuser=0
     let ListadoDeChatsObservable= coleccionTipadaFirebase.valueChanges();
@@ -38,5 +50,5 @@ export class ServicioAudioProvider {
         this.mute = x[0].mute; 
     })
      console.log("fin de ionViewDidEnter");
-  }
+  }*/
 }

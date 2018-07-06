@@ -10,6 +10,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { QrLeerEncuestaClientePage } from '../../pages/qr-leer-encuesta-cliente/qr-leer-encuesta-cliente';
 import { InicioClientePage } from '../../pages/inicio-cliente/inicio-cliente';
 import { EncuestaClientePage } from '../../pages/encuesta-cliente/encuesta-cliente';
+import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
 //import * as moment from 'moment';
 declare const google; // para google maps
 
@@ -43,7 +44,8 @@ export class DetalleViajeClientePage {
     private geolocation: Geolocation,
     private servicioViajes: ServicioViajesProvider,
     private servicioUsuarios:ServicioUsuariosProvider,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public audioService:ServicioAudioProvider
   ) {
   }
 
@@ -127,7 +129,8 @@ export class DetalleViajeClientePage {
     this.viaje.estado=3;
     this.servicioViajes.modificarViaje(this.viaje);
    
-    let alerta = this.alertCtrl.create({
+        this.audioService.reproducirError();
+        let alerta = this.alertCtrl.create({
       title: "Viaje cancelado!",
       subTitle: "Usted canceló el viaje",
       cssClass:"miClaseDanger",

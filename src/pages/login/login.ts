@@ -5,7 +5,7 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { Observable } from 'rxjs/Observable';
 import { Usuario } from '../../clases/usuario';
 
-import { User, Settings } from '../../providers/providers';
+import { User, Settings, EnviarMailProvider } from '../../providers/providers';
 import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
 import { MainPage } from '../pages';
 import { ContentPage } from "../content/content";
@@ -54,6 +54,7 @@ export class LoginPage {
     public translateService: TranslateService,
     private servicioUsuarios: ServicioUsuariosProvider,
     private objFirebase: AngularFirestore,
+    private mails: EnviarMailProvider,
     public audioService:ServicioAudioProvider) {
 
     this.translateService.get('LOGIN_ERROR').subscribe((value) => { // así se traen string de traduccion...
@@ -96,6 +97,7 @@ export class LoginPage {
   }
   
   mostrarUsuarios() {
+    this.audioService.reproducirClick();
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Ingresar como...',
       enableBackdropDismiss: true,
@@ -140,6 +142,7 @@ export class LoginPage {
           duration: 4000,
           position: 'bottom' //middle || top
         });
+        this.audioService.reproducirError();
         toast.present();
       }
     });
@@ -178,9 +181,10 @@ export class LoginPage {
     }
     
   }
-
+  
   Redireccionar()
   {
+    this.audioService.reproducirClick();
     this.navCtrl.push(AltaClientePage);
   }
     

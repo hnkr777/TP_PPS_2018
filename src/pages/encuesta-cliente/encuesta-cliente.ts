@@ -7,6 +7,7 @@ import { Settings } from '../../providers/providers';
 import { ChoferPanelPage } from '../chofer-panel/chofer-panel';
 import { InicioClientePage } from '../inicio-cliente/inicio-cliente';
 import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider } from '../../providers/providers';
+import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
 import { ServicioEncuestasProvider } from '../../providers/servicio-encuestas/servicio-encuestas';
 
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
@@ -59,6 +60,7 @@ export class EncuestaClientePage {
       private viewCtrl: ViewController,
       private servicioViajes: ServicioViajesProvider,
       public alertCtrl: AlertController,
+      public audioService:ServicioAudioProvider,
       private servicioEncuesta: ServicioEncuestasProvider,
       private objFirebase: AngularFirestore,
       public modalCtrl: ModalController
@@ -175,7 +177,8 @@ export class EncuestaClientePage {
       console.log(this.viaje);
      // this.servicioViajes.modificarViaje(this.viaje);
      
-      let alerta = this.alertCtrl.create({
+        this.audioService.reproducirExito();
+        let alerta = this.alertCtrl.create({
         title: "Encuesta enviada!",
         subTitle: "Usted realizó la encuesta con exito",
         cssClass:"miClaseAlert",

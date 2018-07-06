@@ -8,6 +8,7 @@ import { storage, firestore } from 'firebase';
 import * as firebase from 'firebase';
 import { LoginPage } from "../../pages/login/login";
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
+import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
 
 /**
  * Generated class for the AltaClientePage page.
@@ -29,7 +30,7 @@ export class AltaClientePage {
   ListadoUsuariosObservable: Observable<any[]>;
   fechaAlta;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private builder: FormBuilder,private camera: Camera,public alertCtrl: AlertController,private objFirebase: AngularFirestore,public modalCtrl: ModalController) {
+  constructor(public audioService:ServicioAudioProvider,public navCtrl: NavController, public navParams: NavParams,private builder: FormBuilder,private camera: Camera,public alertCtrl: AlertController,private objFirebase: AngularFirestore,public modalCtrl: ModalController) {
     this.unCliente=new Object();
     this.unCliente.foto=null;
     this.fechaAlta = new Date(Date.now());
@@ -73,6 +74,7 @@ guardar()
   if(!this.nombre.value.match(/^[A-Za-z\_\-\.\s\xF1\xD1]+$/))
     {
       this.formAlta.controls['nombre'].setValue("");
+      this.audioService.reproducirError();
       const alerta = this.alertCtrl.create({
         title: 'Error!',
         subTitle: 'El nombre debe contener letras',
@@ -86,6 +88,7 @@ guardar()
     if(!this.apellido.value.match(/^[A-Za-z\_\-\.\s\xF1\xD1]+$/))
       {
         this.formAlta.controls['apellido'].setValue("");
+        this.audioService.reproducirError();
         const alerta = this.alertCtrl.create({
           title: 'Error!',
           subTitle: 'El apellido debe contener letras',
@@ -99,6 +102,7 @@ guardar()
       if(!this.dni.value.match(/^([0-9])*$/))
         {
           this.formAlta.controls['dni'].setValue("");
+          this.audioService.reproducirError();
           const alerta = this.alertCtrl.create({
             title: 'Error!',
             subTitle: 'El DNI debe contener 8 dígitos',
@@ -115,6 +119,7 @@ guardar()
       if(this.dni.invalid)
         {
           this.formAlta.controls['dni'].setValue("");
+          this.audioService.reproducirError();
           const alerta = this.alertCtrl.create({
             title: 'Error!',
             subTitle: 'El DNI debe contener 8 dígitos',
@@ -127,7 +132,8 @@ guardar()
         if(this.correo.invalid)
           {
             this.formAlta.controls['correo'].setValue("");
-            const alerta = this.alertCtrl.create({
+          this.audioService.reproducirError();
+          const alerta = this.alertCtrl.create({
               title: 'Error!',
               subTitle: 'Formato de correo inválido',
               cssClass:"miClaseDanger",
@@ -139,6 +145,7 @@ guardar()
           if(this.clave.invalid)
             {
               this.formAlta.controls['clave'].setValue("");
+              this.audioService.reproducirError();
               const alerta = this.alertCtrl.create({
                 title: 'Error!',
                 subTitle: 'Las clave no puede estar en blanco',
@@ -148,6 +155,7 @@ guardar()
               alerta.present();
               return;
             }
+      this.audioService.reproducirError();
       const alerta = this.alertCtrl.create({
         title: 'Error!',
         subTitle: 'Error en el ingreso de datos. Verifique!',
@@ -161,6 +169,7 @@ guardar()
 
         if(this.unCliente.clave!=claveRep)
           {
+            this.audioService.reproducirError();
             const alerta = this.alertCtrl.create({
               title: 'Error!',
               subTitle: 'Las claves no coinciden. Reingrese!',
@@ -190,6 +199,7 @@ guardar()
       {
         if(x[i].correo==this.formAlta.get("correo").value)
           {
+            this.audioService.reproducirError();
             let alerta = this.alertCtrl.create({
               title: "Error!",
               subTitle: "El correo ya esta registrado",
@@ -258,7 +268,8 @@ this.unCliente.foto=null;
    .then(ret => {
      this.spin(false);
      this.navCtrl.pop();  
-     let alerta = this.alertCtrl.create({
+    this.audioService.reproducirExito();
+    let alerta = this.alertCtrl.create({
       title: "Exitosamente!",
       subTitle: "Se enviaron los datos correctamente. Un administrador deberá activarlo",
       cssClass:"miClaseAlert",

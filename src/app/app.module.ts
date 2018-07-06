@@ -68,6 +68,8 @@ import { EncuestaClientePage } from '../pages/encuesta-cliente/encuesta-cliente'
 import { EditarPerfilClientePage } from '../pages/editar-perfil-cliente/editar-perfil-cliente';
 import { ServicioVehiculoProvider } from '../providers/servicio-vehiculo/servicio-vehiculo';
 import { EmailComposer } from '@ionic-native/email-composer';
+import { EnviarMailProvider } from '../providers/enviar-mail/enviar-mail';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
 
@@ -132,6 +134,7 @@ export function provideSettings(storage: Storage) {
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AngularFireDatabaseModule,
     FormsModule,
     ReactiveFormsModule,
     TranslateModule.forRoot({
@@ -190,12 +193,9 @@ export function provideSettings(storage: Storage) {
     Geolocation,
     //SplashScreen,
     StatusBar,
-    ServicioFotosProvider,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    AbmClienteProvider,
-    QRScanner,
     ServicioUsuariosProvider,
     ServicioFotosProvider,
     AbmClienteProvider,
@@ -203,7 +203,8 @@ export function provideSettings(storage: Storage) {
     ServicioAudioProvider,
     NativeAudio,
     ServicioVehiculoProvider,
-    EmailComposer
+    EmailComposer,
+    EnviarMailProvider
   ]
 })
 export class AppModule { }

@@ -5,6 +5,7 @@ import { User } from './user/user';
 import { ServicioFotosProvider } from './servicio-fotos/servicio-fotos';
 import { ServicioUsuariosProvider } from './servicio-usuarios/servicio-usuarios';
 import { ServicioViajesProvider } from './servicio-viajes/servicio-viajes';
+import { EnviarMailProvider } from './enviar-mail/enviar-mail';
 
 export {
     Api,
@@ -13,5 +14,6 @@ export {
     User,
     ServicioFotosProvider,
     ServicioUsuariosProvider,
-    ServicioViajesProvider
+    ServicioViajesProvider,
+    EnviarMailProvider
 };

@@ -18,6 +18,7 @@ import * as firebase from 'firebase';
 import { LoginPage } from "../../pages/login/login";
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { Encuesta } from '../../clases/encuesta';
+
 /**
  * Generated class for the EncuestaClientePage page.
  *
@@ -130,6 +131,7 @@ export class EncuestaClientePage {
           cssClass:"miClaseDanger",
         buttons: ['Aceptar']
       });
+      this.audioService.reproducirError();
        alerta.present();
       return;
         }
@@ -152,10 +154,11 @@ export class EncuestaClientePage {
       //this.navCtrl.popToRoot();
        let alerta = this.alertCtrl.create({
          title: "Encuesta enviada!",
-         subTitle: "Usted realizó la encuesta con exito",
+         subTitle: "Usted realizó la encuesta con éxito",
          cssClass:"miClaseAlert",
        buttons: ['Aceptar']
      });
+     this.audioService.reproducirExito();
       alerta.present();
     })
       .catch( error => {
@@ -192,6 +195,7 @@ export class EncuestaClientePage {
     }
   
     closeModal() {
+      this.audioService.reproducirClick();
       this.navCtrl.setRoot(InicioClientePage);
     }
   

@@ -24,7 +24,7 @@
 
   <br>
 
-  <button class="submit-btn" (click)="irEncuestaChofer()" ion-button round icon-left color="primary" block large>
+  <button *ngIf="chofer.respondioEncuesta==false" class="submit-btn" (click)="irEncuestaChofer()" ion-button round icon-left color="primary" block large>
     <ion-icon name="clipboard"></ion-icon>{{ 'CHOFER_ENCUESTA_BUTTON' | translate }}</button>
 
   <br>

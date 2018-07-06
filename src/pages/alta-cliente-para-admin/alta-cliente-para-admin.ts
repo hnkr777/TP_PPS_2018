@@ -125,6 +125,7 @@ correoo;
   });
 
   accionAceptar(){
+    this.audioService.reproducirClick();
     //this.unCliente.clave=this.formAlta.get("clave").value;
     //let claveRep=this.formAlta.get("claveRep").value; 
     

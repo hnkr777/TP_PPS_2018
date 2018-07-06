@@ -5,7 +5,7 @@ import { AbmClienteProvider } from "../../providers/abm-cliente/abm-cliente";
 import { Usuario } from '../../clases/usuario';
 import { AltaClienteParaAdminPage } from '../../pages/alta-cliente-para-admin/alta-cliente-para-admin';
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
-
+import { ServicioAudioProvider } from "../../providers/servicio-audio/servicio-audio";
 /**
  * Generated class for the AbmClientesPage page.
  *
@@ -30,7 +30,8 @@ public auxListaClientes: any[];
     public navCtrl: NavController, 
     public navParams: NavParams, 
     private servicioCliente: AbmClienteProvider,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    public audioService:ServicioAudioProvider
   ) {
   }
 

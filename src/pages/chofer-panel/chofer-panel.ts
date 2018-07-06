@@ -51,6 +51,7 @@ export class ChoferPanelPage {
   irCerrarSesion() {
     if(this.chofer.estado == 1) {
       this.chofer.estado = 0;
+      this.chofer.respondioEncuesta=false;
       this.cambiarEstadoChofer();
     }
   }
@@ -67,7 +68,7 @@ export class ChoferPanelPage {
 
   irEncuestaChofer() {
     this.audioService.reproducirClick();
-    this.navCtrl.push(ContentPage, { data: 'encuesta_chofer'}); // para test en celular
+   this.navCtrl.push(ContentPage, { data: 'encuesta_chofer'}); // para test en celular
     //this.navCtrl.push(EncuestaChoferPage); // para test en PC
   }
 

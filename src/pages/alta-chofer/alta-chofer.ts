@@ -65,6 +65,7 @@ export class AltaChoferPage {
         this.chofer.foto = undefined;
         //this.patente = '';
         this.chofer.patente = '';
+        this.chofer.respondioEncuesta=false;
         console.log('AltaChoferPage: nuevo chofer');
       }
       this.loadUsers();

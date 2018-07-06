@@ -18,7 +18,8 @@ export class Usuario {
     dni: number;        // DNI, es un número
     estado: number;     // estado del usuario: usado para múltiples propósitos en la app
     patente: string;    // patente del vehículo asignado, si es chofer
-  
+    respondioEncuesta:boolean;
+
     constructor(perfil?: string) {
       this.fechaAlta = new Date(Date.now());
       if(perfil !== undefined) {

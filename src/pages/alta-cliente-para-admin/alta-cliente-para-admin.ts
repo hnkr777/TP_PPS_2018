@@ -13,6 +13,7 @@ import { AbmClienteProvider } from "../../providers/abm-cliente/abm-cliente";
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { EnviarMailProvider } from '../../providers/providers';
 /**
  * Generated class for the AltaClienteParaAdminPage page.
  *
@@ -40,7 +41,7 @@ correoo;
    // private servicioUsuarios: ServicioUsuariosProvider,
    // private servicioFotos: ServicioFotosProvider,
     public viewCtrl: ViewController,
-  
+    private servicioEmail: EnviarMailProvider,
     private builder: FormBuilder,
     private camera: Camera,
     public alertCtrl: AlertController,
@@ -299,6 +300,7 @@ correoo;
           
           // Send a text message using default options
           //this.emailComposer.open(email);
+          this.servicioEmail.sendMail(email.to, email.subject, email.body);
         }
         else
           {
@@ -375,14 +377,7 @@ this.modificarCliente();
 
   enviarCorreo()
   {
-    //pruebas, no sirve
-    /*
-    this.database.list('messages').push({
-      to : "maurosuppan@gmail.com",
-      subject : "Envio de mail",
-      content : "ESto es una prueba que se envia desde ionic"
-    })
-    */
+    
   }
 
 

@@ -5,9 +5,8 @@ import { Usuario } from '../../clases/usuario';
 import { Viaje } from '../../clases/viaje';
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { TranslateService } from '@ngx-translate/core';
-import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider, Settings } from '../../providers/providers';
+import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider, Settings, EnviarMailProvider } from '../../providers/providers';
 import { Geolocation } from '@ionic-native/geolocation';
-import { EmailComposer } from '@ionic-native/email-composer';
 import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
 //import * as moment from 'moment';
 declare const google; // para google maps
@@ -41,8 +40,8 @@ export class DetalleViajeChoferPage {
     private servicioViajes: ServicioViajesProvider,
     private servicioUsuarios:ServicioUsuariosProvider,
     public alertCtrl: AlertController,
-    private emailComposer: EmailComposer,
-    public audioService:ServicioAudioProvider
+    public audioService:ServicioAudioProvider,
+    private servicioEmail: EnviarMailProvider
   ) {
 
   }
@@ -181,7 +180,8 @@ export class DetalleViajeChoferPage {
                 };
                 
                 // Send a text message using default options
-                this.emailComposer.open(email);
+                //this.emailComposer.open(email);
+                this.servicioEmail.sendMail(email.to, email.subject, email.body);
 
         this.servicioViajes.modificarViaje(this.viaje);
         this.servicioUsuarios.modificarUsuario(this.usuario);

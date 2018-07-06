@@ -6,7 +6,7 @@ import { ServicioUsuariosProvider } from "../../providers/servicio-usuarios/serv
 import { ServicioAudioProvider } from "../../providers/servicio-audio/servicio-audio";
 import { Usuario } from '../../clases/usuario';
 import { AltaChoferPage } from '../alta-chofer/alta-chofer';
-
+import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 /**
  * página de ABM de choferes, solo lo tienen que poder usar el administrador o superusuario, y los supervisores...
  * 
@@ -21,6 +21,7 @@ import { AltaChoferPage } from '../alta-chofer/alta-chofer';
 export class AbmChoferesPage {
   public listaChoferes: any;
   private chofer: Usuario;
+  private spinner;
 
   constructor(
     public navCtrl: NavController, 
@@ -32,11 +33,13 @@ export class AbmChoferesPage {
   }
 
   ionViewDidLoad() {
+    this.spin(true);
     console.log('ionViewDidLoad AbmChoferesPage');
     let usuarios: any;
     let ob = this.servicioUsuarios.traerUsuariosPorPerfil('chofer').subscribe(data => { // la lista se va a actualizar cada vez que cambie la tabla usuarios de firebase
       //console.log('data: ' + JSON.stringify(data));
       this.listaChoferes = data;
+      this.spin(false);
       //ob.unsubscribe();
     });
   }
@@ -67,6 +70,16 @@ export class AbmChoferesPage {
     console.log('Modificar chofer '+ $event.email);
     this.chofer = $event;
     this.modalCtrl.create(AltaChoferPage, {chofer: this.chofer}).present();
+  }
+
+  private spin(status: boolean) {
+    if(this.spinner === undefined && status === true) {
+      this.spinner = this.modalCtrl.create(SpinnerPage);
+      this.spinner.present();
+    } else if(this.spinner !== undefined && status === false) {
+      this.spinner.dismiss();
+      this.spinner = undefined;
+    }
   }
   
 }

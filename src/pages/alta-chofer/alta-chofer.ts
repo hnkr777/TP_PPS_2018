@@ -106,6 +106,7 @@ export class AltaChoferPage {
     console.warn('Patente nueva: ' + this.chofer.patente);
     this.servicioUsuarios.modificarUsuario(this.chofer);
     this.closeModal();
+    this.Msg('Aviso', 'Chofer modificado correctamente.');
   }
 
   test() {

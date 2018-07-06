@@ -6,7 +6,7 @@ import { ServicioUsuariosProvider } from "../../providers/servicio-usuarios/serv
 import { ServicioAudioProvider } from "../../providers/servicio-audio/servicio-audio";
 import { Usuario } from '../../clases/usuario';
 import { AltaSupervisorPage } from '../alta-supervisor/alta-supervisor';
-
+import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 /**
  * página de ABM de supervisores, solo lo tiene que poder usar el administrador o superusuario, y los supervisores...
  * 
@@ -21,6 +21,7 @@ import { AltaSupervisorPage } from '../alta-supervisor/alta-supervisor';
 export class AbmSupervisoresPage {
   public listaSupervisores: any;
   private supervisor: Usuario;
+  private spinner;
 
   constructor(
     public navCtrl: NavController, 
@@ -33,10 +34,12 @@ export class AbmSupervisoresPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad AbmSupervisoresPage');
     let usuarios: any;
+    this.spin(true);
     let ob = this.servicioUsuarios.traerUsuariosPorPerfil('supervisor').subscribe(data => { // la lista se va a actualizar cada vez que cambie la tabla usuarios de firebase
       //console.log('data: ' + JSON.stringify(data));
       this.listaSupervisores = data;
       //ob.unsubscribe();
+      this.spin(false);
     });
   }
 
@@ -66,6 +69,16 @@ export class AbmSupervisoresPage {
     console.log('Modificar supervisor '+ $event.email);
     this.supervisor = $event;
     this.modalCtrl.create(AltaSupervisorPage, {supervisor: this.supervisor}).present();
+  }
+
+  private spin(status: boolean) {
+    if(this.spinner === undefined && status === true) {
+      this.spinner = this.modalCtrl.create(SpinnerPage);
+      this.spinner.present();
+    } else if(this.spinner !== undefined && status === false) {
+      this.spinner.dismiss();
+      this.spinner = undefined;
+    }
   }
   
 }

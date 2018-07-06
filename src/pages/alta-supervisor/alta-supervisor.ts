@@ -92,6 +92,7 @@ export class AltaSupervisorPage {
     this.audioService.reproducirClick();
     this.servicioUsuarios.modificarUsuario(this.supervisor);
     this.closeModal();
+    this.Msg('Aviso', 'Supervisor modificado correctamente.');
   }
 
   nuevoChofer() {

@@ -280,7 +280,13 @@ this.unCliente.foto=null;
    })
    .catch( error => {
      this.spin(false);
-     alert("ocurrio un error");
+     let alerta = this.alertCtrl.create({
+      title: "Error!",
+      subTitle: "Ha ocurrido un error interno de Firebase",
+      cssClass:"miClaseDanger",
+    buttons: ['Aceptar']
+  });
+   alerta.present();
      console.error(error);
     // this.Modal('Error', 'Detalle: '+error);
    });

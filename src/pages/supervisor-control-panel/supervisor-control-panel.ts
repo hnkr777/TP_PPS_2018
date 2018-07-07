@@ -88,8 +88,8 @@ export class SuperControlPanelPage {
   }
   goEncuesta(){
     this.audioService.reproducirClick();
-    //this.navCtrl.push(ContentPage,{data:"supervisorEC"});
-    this.navCtrl.push(EncuestaSupervisorPage); // PROBAR PC
+    this.navCtrl.push(ContentPage,{data:"supervisorEC"});
+    //this.navCtrl.push(EncuestaSupervisorPage); // PROBAR PC
     //this.navCtrl.push(EncuestaChoferPage); // PROBAR PC
   }
   goEstadisticas(){

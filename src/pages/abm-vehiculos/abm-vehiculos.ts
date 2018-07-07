@@ -114,6 +114,7 @@ export class AbmVehiculosPage {
         ).catch( error=>{
           console.error(error);
         });
+      console.log("NO DEBERIAS ESTAR ACA");
     }
     else{
       this.showError("Su Patente ya existe");
@@ -159,6 +160,7 @@ export class AbmVehiculosPage {
     }).catch(error =>{
       console.error(error)
     });
+    console.log("NO DEBERIAS ESTAR ACA MOD");
   }
   verificarPatente(patente){
     let aux = false;
@@ -260,7 +262,7 @@ export class AbmVehiculosPage {
   tomarFoto(opt) {
     this.audioService.reproducirClick();
     let ruta: string = "usuarios/" + Date.now().toString();
-    switch (opt) {
+    /*switch (opt) {
       case '1':
         this.servicioFotos.takePhoto(ruta).then((data) => {
           this.foto1 = data;
@@ -285,7 +287,7 @@ export class AbmVehiculosPage {
     
       default:
         break;
-    }
+    }*/
 
   }
   tomarFotoLibreria(opt) {

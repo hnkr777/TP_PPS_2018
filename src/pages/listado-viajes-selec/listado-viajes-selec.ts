@@ -7,7 +7,7 @@ import {Usuario} from '../../clases/usuario';
 import { Observable } from 'rxjs/Observable';
 import {VerViajePage} from '../ver-viaje/ver-viaje';
 import {ServicioAudioProvider} from '../../providers/servicio-audio/servicio-audio';
-
+import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 /**
  * Generated class for the ListadoViajesSelecPage page.
  *
@@ -25,6 +25,7 @@ export class ListadoViajesSelecPage {
   listadoViajesFiltrado:Array<Viaje>;
   correoChofer:string;
   chofer:Usuario;
+  private spinner;
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,public servicioViajes:ServicioViajesProvider,public audioService:ServicioAudioProvider,public servicioUsuarios:ServicioUsuariosProvider,public modalCtrl:ModalController) {
     this.chofer = this.navParams.get('data');
     this.correoChofer = this.chofer.correo;
@@ -37,6 +38,7 @@ export class ListadoViajesSelecPage {
     console.log('ionViewDidLoad ListadoViajesSelecPage');
   }
   filtrar(){
+    this.spin(true);
       console.log(Date());
       let ob = this.servicioViajes.traerViajesFiltrados('correoChofer', '==', '' ).subscribe(data => {
         console.log('Cantidad viajes: ' + data.length);
@@ -46,7 +48,7 @@ export class ListadoViajesSelecPage {
           }
         });
         ob.unsubscribe();
-        
+        this.spin(false);
       });
     }
   asignarViaje(viaje:Viaje){
@@ -87,5 +89,15 @@ export class ListadoViajesSelecPage {
     });
     alerta.present();
     return;
+  }
+
+  private spin(status: boolean) {
+    if(this.spinner === undefined && status === true) {
+      this.spinner = this.modalCtrl.create(SpinnerPage);
+      this.spinner.present();
+    } else if(this.spinner !== undefined && status === false) {
+      this.spinner.dismiss();
+      this.spinner = undefined;
+    }
   }
 }

@@ -24,6 +24,7 @@ import { VisorViajesPage } from '../visor-viajes/visor-viajes';
 import { LoginPage } from '../login/login';
 import { ListadoChoferesDisponiblesPage } from '../listado-choferes-disponibles/listado-choferes-disponibles';
 import {ServicioAudioProvider} from '../../providers/servicio-audio/servicio-audio'
+import { EncuestaSupervisorPage } from '../encuesta-supervisor/encuesta-supervisor';
 
 
 @IonicPage()
@@ -82,8 +83,8 @@ export class SuperControlPanelPage {
   }
   goEncuesta(){
     this.audioService.reproducirClick();
-    this.navCtrl.push(ContentPage,{data:"supervisorEC"});
-    //this.navCtrl.push(EncuestaSupervisorPage); // PROBAR PC
+    //this.navCtrl.push(ContentPage,{data:"supervisorEC"});
+    this.navCtrl.push(EncuestaSupervisorPage); // PROBAR PC
     //this.navCtrl.push(EncuestaChoferPage); // PROBAR PC
   }
   goEstadisticas(){

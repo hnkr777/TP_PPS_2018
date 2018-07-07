@@ -262,7 +262,7 @@ export class AbmVehiculosPage {
   tomarFoto(opt) {
     this.audioService.reproducirClick();
     let ruta: string = "usuarios/" + Date.now().toString();
-    /*switch (opt) {
+    switch (opt) {
       case '1':
         this.servicioFotos.takePhoto(ruta).then((data) => {
           this.foto1 = data;
@@ -287,7 +287,7 @@ export class AbmVehiculosPage {
     
       default:
         break;
-    }*/
+    }
 
   }
   tomarFotoLibreria(opt) {

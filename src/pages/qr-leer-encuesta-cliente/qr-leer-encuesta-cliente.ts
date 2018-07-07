@@ -12,6 +12,7 @@ import { QrVehiculoClientePage } from '../../pages/qr-vehiculo-cliente/qr-vehicu
 import { AbmClienteProvider } from "../../providers/abm-cliente/abm-cliente";
 import { InicioClientePage } from '../../pages/inicio-cliente/inicio-cliente';
 import { EncuestaClientePage } from '../../pages/encuesta-cliente/encuesta-cliente';
+import { ServicioAudioProvider } from "../../providers/servicio-audio/servicio-audio";
 
 /**
  * Generated class for the QrLeerEncuestaClientePage page.
@@ -35,8 +36,9 @@ export class QrLeerEncuestaClientePage {
     public navCtrl: NavController, 
     public qrScanner: QRScanner, 
     public platform: Platform,
-    public viewCtrl : ViewController,
+    //public viewCtrl : ViewController,
     public alertCtrl: AlertController,
+    public audioService: ServicioAudioProvider,
     private servicioCliente: AbmClienteProvider,
     public navParams: NavParams
   ) {
@@ -84,6 +86,7 @@ export class QrLeerEncuestaClientePage {
                   cssClass:"miClaseDanger",
                 buttons: ['Aceptar']
               });
+              this.audioService.reproducirError();
                alerta.present();
 
                 this.navCtrl.setRoot(InicioClientePage);
@@ -134,6 +137,7 @@ export class QrLeerEncuestaClientePage {
       cssClass:"miClaseDanger",
       buttons: ['Aceptar']
     });
+    this.audioService.reproducirError();
     alerta.present();
   }
 
@@ -144,6 +148,7 @@ export class QrLeerEncuestaClientePage {
       cssClass:"miClaseAlert",
       buttons: ['Aceptar']
     });
+    this.audioService.reproducirExito();
     alerta.present();
   }
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
-import { TabsPage } from '../tabs/tabs';
+/*import { TabsPage } from '../tabs/tabs';
 import { Injectable } from '@angular/core';
 import { IonicStorageModule, Storage } from '@ionic/storage';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
@@ -9,11 +9,11 @@ import { FirebaseApp } from 'angularfire2';
 
 import {AngularFireModule} from 'angularfire2';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';*/
 
 import { PagesModalPage } from "../pages-modal/pages-modal";
-import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
-import { environment } from "../../environments/environment";
+//import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
+//import { environment } from "../../environments/environment";
 import { AbmChofer } from '../pages';
 import { ContentPage } from '../content/content';
 import { AbmClientesPage } from '../abm-clientes/abm-clientes';
@@ -22,7 +22,7 @@ import { AbmSupervisoresPage } from '../abm-supervisores/abm-supervisores';
 import { AbmVehiculosPage } from '../abm-vehiculos/abm-vehiculos';
 import { VisorViajesPage } from '../visor-viajes/visor-viajes';
 import { LoginPage } from '../login/login';
-import { ListadoChoferesDisponiblesPage } from '../listado-choferes-disponibles/listado-choferes-disponibles';
+//import { ListadoChoferesDisponiblesPage } from '../listado-choferes-disponibles/listado-choferes-disponibles';
 import {ServicioAudioProvider} from '../../providers/servicio-audio/servicio-audio'
 import { EncuestaSupervisorPage } from '../encuesta-supervisor/encuesta-supervisor';
 
@@ -45,6 +45,11 @@ export class SuperControlPanelPage {
 
   ionViewDidLoad() { //this.navCtrl.push(ContentPage); // escaner QR para test
     console.log('ionViewDidLoad Admin Control Panel Page');
+  }
+
+  muteAudio(){
+    this.audioService.mute = !this.audioService.mute;
+    console.log(this.audioService.mute);
   }
 
   irAbmChofer() {

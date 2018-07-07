@@ -129,13 +129,14 @@ export class DetalleViajeClientePage {
     this.viaje.estado=3;
     this.servicioViajes.modificarViaje(this.viaje);
    
-        this.audioService.reproducirError();
+        this.audioService.reproducirExito();
         let alerta = this.alertCtrl.create({
-      title: "Viaje cancelado!",
+      title: "¡Viaje cancelado!",
       subTitle: "Usted canceló el viaje",
-      cssClass:"miClaseDanger",
+      cssClass:"miClaseAlert",
     buttons: ['Aceptar']
   });
+
    alerta.present();
 
     //this.viewCtrl.dismiss();

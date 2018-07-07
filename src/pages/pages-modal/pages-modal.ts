@@ -1,11 +1,11 @@
 
 import { Component } from '@angular/core';
 import { IonicPage, ModalController, ViewController, NavController, NavParams } from 'ionic-angular';
-import { TranslateModule } from '@ngx-translate/core';
-import { ServicioUsuariosProvider } from "../../providers/servicio-usuarios/servicio-usuarios";
-import { ServicioAudioProvider } from "../../providers/servicio-audio/servicio-audio";
-import { Encuesta } from '../../clases/encuesta';
-import { AltaChoferPage } from '../alta-chofer/alta-chofer';
+// import { TranslateModule } from '@ngx-translate/core';
+// import { ServicioUsuariosProvider } from "../../providers/servicio-usuarios/servicio-usuarios";
+// import { ServicioAudioProvider } from "../../providers/servicio-audio/servicio-audio";
+// import { Encuesta } from '../../clases/encuesta';
+// import { AltaChoferPage } from '../alta-chofer/alta-chofer';
 import { ServicioEncuestasProvider } from "../../providers/servicio-encuestas/servicio-encuestas";
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 @IonicPage()
@@ -161,6 +161,7 @@ FiltrarPorPerfilSupervisor()
 
 
   closeModal() {
+    
     this.viewCtrl.dismiss();
   }
 

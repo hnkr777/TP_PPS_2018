@@ -55,6 +55,7 @@ export class NuevoViajePage {
   varDes: string = '';
   private fechaSalida;
   private usuario: Usuario;
+  private ahora: number;
 
   constructor(
     public navCtrl: NavController, 
@@ -74,6 +75,8 @@ export class NuevoViajePage {
     this.nuevoViaje = new Viaje();
     this.usuario = JSON.parse(sessionStorage.getItem('usuario'));
     this.nuevoViaje.correoCliente = this.usuario.correo;
+    this.ahora = Date.now();
+    this.fechaSalidaString = this.calculateTime('-3');
   }
 
   guardarViaje() {
@@ -186,10 +189,28 @@ export class NuevoViajePage {
     this.ionViewDidLoad();
   }
 
+  calculateTime(offset: any) {
+    // create Date object for current location
+    let d = new Date();
+
+    // create new Date object for different city
+    // using supplied offset
+    let nd = new Date(d.getTime() + (3600000 * offset));
+
+    return nd.toISOString();
+  }
+
   checkCondiciones() {
     this.hidePops();
     if(this.fechaSalidaString !== undefined) {
       this.nuevoViaje.fechaSalida = Date.parse(this.fechaSalidaString);
+      this.nuevoViaje.fechaSalida += 1000 * 60 * 60 * 3;
+      this.ahora = Date.now(); 
+      let val: number = 1000 * 60 * 5;
+      if (this.nuevoViaje.fechaSalida + val < this.ahora) {
+        this.errorMsg('Error', 'No puede pedir viajes al pasado');
+        this.fechaSalidaString = this.calculateTime('-3'); //Date.now();
+      }
       console.log(this.nuevoViaje.getFechaSalida());
     }
     //moment().date(); //moment(now.format(), moment.ISO_8601).format();

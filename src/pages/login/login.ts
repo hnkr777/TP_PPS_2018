@@ -119,15 +119,15 @@ export class LoginPage {
     actionSheet.present();
   }
 
-  // ionViewDidLoad() {
-  //   setTimeout(() => this.splash = false, 4000); // este es el tiempo del splashscreen, default 4000
-  // }
+  //  ionViewDidLoad() {
+  
+  //  }
   
   doLogin() {
     this.audioService.reproducirClick();
     let modal = this.modalCtrl.create(SpinnerPage);
     modal.present();
-    let ob = this.servicioUsuarios.traerUsuarios().subscribe(arr => {
+    let ob = this.servicioUsuarios.traerUsuarios().subscribe((arr) => {
       this.accounts = arr;
       console.log(arr);
       let user: Usuario = this.accounts.find(elem => ( this.loginFields.correo == elem.correo && (this.loginFields.clave == elem.clave)));

@@ -155,7 +155,7 @@ export class AltaSupervisorPage {
 
   private validar(): boolean {
     let c: Usuario = this.supervisor;
-    let res: boolean = c.nombre!=='' && c.apellido!==''&&c.clave!==''&&c.dni!==undefined&&c.correo!==''&&c.fechaNacimiento!==undefined&&/*c.foto!==undefined&&*/c.sexo!==undefined;
+    let res: boolean = c.nombre!=='' && c.apellido!==''&&c.clave!==''&&c.dni!==undefined&&c.correo!==''&&/*c.fechaNacimiento!==undefined&&c.foto!==undefined&&*/c.sexo!==undefined;
     
     if (this.clave1 !== this.clave2) {
       this.errorMsg('Error', 'Las contraseñas no coinciden.');

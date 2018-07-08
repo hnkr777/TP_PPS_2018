@@ -340,7 +340,13 @@ this.modificarCliente();
      alerta.present();
     }).catch((error) => {
       console.log('Error: '+ error);
-      alert('Error: '+ error);
+      let alerta = this.alertCtrl.create({
+        title: "Error!",
+        subTitle: "Ha ocurrido un error interno de Firebase",
+        cssClass:"miClaseDanger",
+      buttons: ['Aceptar']
+    });
+     alerta.present();
     });
   }
 
@@ -371,7 +377,13 @@ this.modificarCliente();
     }).catch((error) => {
       this.spin(false);
       console.log('Error: '+ error);
-      alert('Error: '+ error);
+      let alerta = this.alertCtrl.create({
+        title: "Error!",
+        subTitle: "Ha ocurrido un error interno de Firebase",
+        cssClass:"miClaseDanger",
+      buttons: ['Aceptar']
+    });
+     alerta.present();
       //this.closeModal();
     });
   }
@@ -398,7 +410,13 @@ this.modificarCliente();
      alerta.present();
     }).catch((error) => {
       console.log('Error: '+ error);
-      alert('Error: '+ error);
+      let alerta = this.alertCtrl.create({
+        title: "Error!",
+        subTitle: "Ha ocurrido un error interno de Firebase",
+        cssClass:"miClaseDanger",
+      buttons: ['Aceptar']
+    });
+     alerta.present();
       this.closeModal();
     });
   }

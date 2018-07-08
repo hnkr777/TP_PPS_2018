@@ -9,7 +9,7 @@ import { ServicioUsuariosProvider } from '../../providers/servicio-usuarios/serv
 import { ServicioFotosProvider } from '../../providers/servicio-fotos/servicio-fotos';
 import { TranslateService } from '@ngx-translate/core';
 import { VerImagenPage } from '../ver-imagen/ver-imagen';
-
+import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { ServicioAudioProvider } from "../../providers/servicio-audio/servicio-audio";
 import { vehiculo } from '../../clases/vehiculo';
 import { ServicioVehiculoProvider } from '../../providers/servicio-vehiculo/servicio-vehiculo';
@@ -35,6 +35,7 @@ export class AltaChoferPage {
   private usuarios: any;
   public vehiculos: vehiculo[];
   public patenteAnterior: string;
+  private spinner: any;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -120,8 +121,10 @@ export class AltaChoferPage {
 
   nuevoChofer() {
     this.audioService.reproducirClick();
+    this.spin(true);
     let usuario: Usuario = this.usuarios.find((user) => {return this.chofer.correo == user.correo;});
     if(usuario === undefined) { // el usuario.correo NO existe en firebase, entonces lo guardamos...
+      this.chofer.estado = 0;
       this.servicioUsuarios.guardarNuevoUsuario(this.chofer).then(data => {
         if(this.patenteAnterior === undefined){
           this.patenteAnterior = "";
@@ -132,12 +135,15 @@ export class AltaChoferPage {
         console.warn('Patente nueva: ' + this.chofer.patente);
         this.closeModal();
         console.log('Chofer guardado correctamente.');
+        this.spin(false);
         this.Msg('Aviso', 'Chofer guardado correctamente.');
       }).catch((error) => {
         console.log('Error: '+ error);
+        this.spin(false);
         this.errorMsg('Error', 'Error: '+ error);
       });
     } else { // el usuario.correo ya existe en firebase...
+      this.spin(false);
       this.closeModal();
       console.error('Error: Correo del Chofer ya existente.');
       this.errorMsg('Error', 'El correo del Chofer ya existe.');
@@ -173,20 +179,26 @@ export class AltaChoferPage {
 
   tomarFoto() {
     this.audioService.reproducirClick();
+    this.spin(true);
     let ruta: string = "usuarios/" + Date.now().toString();
     this.servicioFotos.takePhoto(ruta).then((data) => {
       this.chofer.foto = data;
+      this.spin(false);
     }, (error) => {
+      this.spin(false);
       console.log('Error: ' + error);
     });
   }
   
   cargarFoto() {
     this.audioService.reproducirClick();
+    this.spin(true);
     let ruta: string = "usuarios/" + Date.now().toString();
     this.servicioFotos.addLibraryPhoto(ruta).then((data) => {
       this.chofer.foto = data;
+      this.spin(false);
     }, (error) => {
+      this.spin(false);
       console.log('Error: ' + error);
     });
   }
@@ -194,7 +206,7 @@ export class AltaChoferPage {
   //Para que los campos input sean solo letras
   public onKeyUpLetter(event: any, opt:string) {
     let newValue = event.target.value;
-    let regExp = new RegExp('^[A-Za-z]+$');
+    let regExp = new RegExp('^[A-Za-zñÑáéíóúÁÉÍÓÚ]+$');
     if (! regExp.test(newValue)) {
       event.target.value = newValue.slice(0, -1);
       switch (opt) {
@@ -319,6 +331,17 @@ export class AltaChoferPage {
       buttons: ['Aceptar']
     });
     alerta.present();
+  }
+
+  
+  private spin(status: boolean) {
+    if(this.spinner === undefined && status === true) {
+      this.spinner = this.modalCtrl.create(SpinnerPage);
+      this.spinner.present();
+    } else if(this.spinner !== undefined && status === false) {
+      this.spinner.dismiss();
+      this.spinner = undefined;
+    }
   }
   
 }

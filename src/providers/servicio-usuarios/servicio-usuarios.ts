@@ -25,9 +25,9 @@ export class ServicioUsuariosProvider {
 
   // trae TODOS los usuarios, devuelve con un promise
   // debería hacer unsuscribe al finalizar la carga de datos?
-  traerUsuarios(): Observable<Usuario[] | any[]> {
+  traerUsuarios(): Observable<any[]> {
     console.log('ServicioUsuariosProvider.traerUsuarios()');
-    let coleccionTipadaFirebase = this.objFirebase.collection<Usuario>(this.tablaUsuarios);
+    let coleccionTipadaFirebase = this.objFirebase.collection<any>(this.tablaUsuarios);
     let ListadoUsuariosObservable = coleccionTipadaFirebase.valueChanges();
     return ListadoUsuariosObservable;
     /*let ob = ListadoUsuariosObservable.subscribe(x => {

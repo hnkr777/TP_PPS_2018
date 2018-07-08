@@ -43,7 +43,7 @@ export class ItemCreatePage {
       }).then((data) => {
         this.form.patchValue({ 'profilePic': 'data:image/jpg;base64,' + data });
       }, (err) => {
-        alert('Unable to take photo');
+        //alert('Unable to take photo');
       })
     } else {
       this.fileInput.nativeElement.click();

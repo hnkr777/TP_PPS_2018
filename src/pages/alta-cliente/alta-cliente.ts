@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ToastController, ModalController, ActionSheetController,NavParams,AlertController } from 'ionic-angular';
+import { IonicPage, NavController, ModalController, NavParams,AlertController } from 'ionic-angular';
 import { Validators, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { storage, firestore } from 'firebase';
-import * as firebase from 'firebase';
-import { LoginPage } from "../../pages/login/login";
+//import { storage, firestore } from 'firebase';
+//import * as firebase from 'firebase';
+//import { LoginPage } from "../../pages/login/login";
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
 
@@ -280,7 +280,13 @@ this.unCliente.foto=null;
    })
    .catch( error => {
      this.spin(false);
-     alert("ocurrio un error");
+     let alerta = this.alertCtrl.create({
+      title: "Error!",
+      subTitle: "Ha ocurrido un error interno de Firebase",
+      cssClass:"miClaseDanger",
+    buttons: ['Aceptar']
+  });
+   alerta.present();
      console.error(error);
     // this.Modal('Error', 'Detalle: '+error);
    });

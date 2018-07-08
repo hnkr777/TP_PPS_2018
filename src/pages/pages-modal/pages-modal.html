@@ -24,14 +24,14 @@
 
   <h2 *ngIf="filtro=='cliente'">Resultados a la pregunta: ¿Qué le parece nuestro servicio?</h2>
   <h2 *ngIf="filtro=='chofer'">Resultados a la pregunta: ¿En qué estado encontró el vehiculo?</h2>
-  <h2 *ngIf="filtro=='supervisor'">Resultados a la pregunta: La pregunta al supervisor</h2>
+  <h2 *ngIf="filtro=='supervisor'">Resultados a la pregunta: ¿Estado de animo de los choferes?</h2>
   <div class="mesa">
       <canvas baseChart
       [data]="aData"
       [labels]="doughnutChartLabels"
       [chartType]="doughnutChartType"
       (chartHover)="chartHovered($event)"
-      (chartClick)="chartClicked($event)"></canvas>
+      (chartClick)="chartClicked($event)" class="graphic"></canvas>
 
     <!--
     <table align="center" cellpadding="0" cellspacing="0" border="0" >

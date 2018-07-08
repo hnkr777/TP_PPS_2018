@@ -96,7 +96,7 @@ constructor(public navCtrl: NavController,
 
   modificar()
   {
-    alert("No implementado todavia. Aca se va a poder modificar la foto del cliente y la clave");
+    
   }
 
   filtrarViajes()

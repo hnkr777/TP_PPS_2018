@@ -124,17 +124,17 @@ export class EncuestaClientePage {
   
     accionAceptar() {
       if(this.options.optRadio==null || this.options.optRadio==undefined )
-        {
-           let alerta = this.alertCtrl.create({
+      {
+        let alerta = this.alertCtrl.create({
           title: "Error!",
           subTitle: "Seleccione una opción",
           cssClass:"miClaseDanger",
-        buttons: ['Aceptar']
-      });
-      this.audioService.reproducirError();
-       alerta.present();
-      return;
-        }
+          buttons: ['Aceptar']
+        });
+        this.audioService.reproducirError();
+        alerta.present();
+        return;
+      }
       this.spin(true);
       this.encuesta.fechaRegistroString=this.viaje.fechaRegistroString;
       this.encuesta.respuesta=this.options.optRadio;
@@ -146,31 +146,31 @@ export class EncuestaClientePage {
       console.log("Encuesta");
       console.log(this.encuesta);
       //descomentar esto
-     this.servicioViajes.modificarViaje(this.viaje);
-
-    this.servicioEncuesta.guardarNuevoEncuesta(this.encuesta).then((data) => {
-      this.spin(false);
-      this.navCtrl.setRoot(InicioClientePage);  
-      //this.navCtrl.popToRoot();
-       let alerta = this.alertCtrl.create({
-         title: "Encuesta enviada!",
-         subTitle: "Usted realizó la encuesta con éxito",
-         cssClass:"miClaseAlert",
-       buttons: ['Aceptar']
-     });
-     this.audioService.reproducirExito();
-      alerta.present();
-    })
-      .catch( error => {
+      this.servicioViajes.modificarViaje(this.viaje);
+      this.servicioEncuesta.guardarNuevoEncuesta(this.encuesta).then((data) => {
         this.spin(false);
-        alert("ocurrio un error");
-        console.error(error);
-       // this.Modal('Error', 'Detalle: '+error);
-      });
-     
-     
-     
-     
+        this.navCtrl.setRoot(InicioClientePage);  
+        //this.navCtrl.popToRoot();
+        let alerta = this.alertCtrl.create({
+          title: "Encuesta enviada!",
+          subTitle: "Usted realizó la encuesta con éxito",
+          cssClass:"miClaseAlert",
+          buttons: ['Aceptar']
+        });
+        this.audioService.reproducirExito();
+        alerta.present();
+      }).catch( error => {
+          this.spin(false);
+          let alerta = this.alertCtrl.create({
+            title: "Error!",
+            subTitle: "Ha ocurrido un error interno de Firebase",
+            cssClass:"miClaseDanger",
+          buttons: ['Aceptar']
+        });
+         alerta.present();
+          console.error(error);
+        // this.Modal('Error', 'Detalle: '+error);
+        });
      /*
       console.log(this.options.optRadio);
   
@@ -179,7 +179,6 @@ export class EncuestaClientePage {
       this.viaje.encuestaRealizada=true;
       console.log(this.viaje);
      // this.servicioViajes.modificarViaje(this.viaje);
-     
         this.audioService.reproducirExito();
         let alerta = this.alertCtrl.create({
         title: "Encuesta enviada!",
@@ -188,8 +187,6 @@ export class EncuestaClientePage {
       buttons: ['Aceptar']
     });
      alerta.present();
-  
-     
      // this.navCtrl.setRoot(InicioClientePage);
      */
     }

@@ -15,7 +15,7 @@ import { VisorViajesChoferPage } from '../visor-viajes-chofer/visor-viajes-chofe
 import { ChoferPanelPage } from '../chofer-panel/chofer-panel';
 import { EncuestaChoferPage } from '../encuesta-chofer/encuesta-chofer';
 import { EncuestaSupervisorPage } from '../encuesta-supervisor/encuesta-supervisor';
-
+import { ServicioAudioProvider } from "../../providers/servicio-audio/servicio-audio";
 
 @IonicPage()
 @Component({
@@ -33,7 +33,8 @@ export class ContentPage {
     public platform: Platform,
     public viewCtrl : ViewController,
     public alertCtrl: AlertController,
-    public servUsuarios: ServicioUsuariosProvider
+    public servUsuarios: ServicioUsuariosProvider,
+    public audioService: ServicioAudioProvider
   ) {
     this.quienMeLLama = this.navParams.get('data');
   }
@@ -177,6 +178,7 @@ export class ContentPage {
       cssClass:"miClaseDanger",
       buttons: ['Aceptar']
     });
+    this.audioService.reproducirError();
     alerta.present();
   }
 
@@ -187,6 +189,7 @@ export class ContentPage {
       cssClass:"miClaseAlert",
       buttons: ['Aceptar']
     });
+    this.audioService.reproducirExito();
     alerta.present();
   }
 

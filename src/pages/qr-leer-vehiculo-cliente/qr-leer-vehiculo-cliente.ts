@@ -2,7 +2,7 @@ import { Component, Input, Output } from '@angular/core';
 import { IonicPage, ModalController, ViewController, NavController, NavParams, Platform, AlertController } from 'ionic-angular';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 import { Observable } from 'rxjs/Observable';
-
+import { ServicioAudioProvider } from "../../providers/servicio-audio/servicio-audio";
 // import { MainPage } from '../pages';
 // import { Usuario } from '../../clases/usuario';
 import { PagesModalPage } from "../pages-modal/pages-modal";
@@ -36,7 +36,8 @@ export class QrLeerVehiculoClientePage {
     public platform: Platform,
     public viewCtrl : ViewController,
     public alertCtrl: AlertController,
-    private servicioCliente: AbmClienteProvider
+    private servicioCliente: AbmClienteProvider,
+    public audioService: ServicioAudioProvider
   ) {
     this.usuarioDatos = JSON.parse(sessionStorage.getItem('usuario'));
     //console.log(this.usuarioDatos);
@@ -94,6 +95,7 @@ export class QrLeerVehiculoClientePage {
                       cssClass:"miClaseDanger",
                       buttons: ['Aceptar']
                     });
+                    this.audioService.reproducirError();
                     alerta.present();
                     this.navCtrl.setRoot(InicioClientePage);
                     }
@@ -113,11 +115,12 @@ export class QrLeerVehiculoClientePage {
                   this.navCtrl.setRoot(QrVehiculoClientePage,{chofer: this.choferQr })
                   this.qrScanner.hide(); // hide camera preview
                   this.scanSub.unsubscribe(); // stop scanning
+                  ob2.unsubscribe(); ////////////////////////////////////////////////////
                 });
           console.log("3");
           console.log("4");
           //console.log(this.vehiculo);
-               
+               ob.unsubscribe(); ///////////////////////////////////////////////////
               });
               console.log("1");
               console.log("2");
@@ -175,6 +178,7 @@ export class QrLeerVehiculoClientePage {
       cssClass:"miClaseDanger",
       buttons: ['Aceptar']
     });
+    this.audioService.reproducirError();
     alerta.present();
   }
 
@@ -185,6 +189,7 @@ export class QrLeerVehiculoClientePage {
       cssClass:"miClaseAlert",
       buttons: ['Aceptar']
     });
+    this.audioService.reproducirExito();
     alerta.present();
   }
 

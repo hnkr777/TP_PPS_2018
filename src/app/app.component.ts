@@ -8,23 +8,7 @@ import { SplashScreen } from '../pages/pages';
 import { Settings } from '../providers/providers';
 
 @Component({
-  template: `<ion-menu [content]="content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Pages</ion-title>
-      </ion-toolbar>
-    </ion-header>
-
-    <ion-content>
-      <ion-list>
-        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-          {{p.title}}
-        </button>
-      </ion-list>
-    </ion-content>
-
-  </ion-menu>
-  <ion-nav #content [root]="rootPage"></ion-nav>`
+  templateUrl: 'menu.html'
 })
 export class MyApp {
   rootPage = SplashScreen;
@@ -32,17 +16,11 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   pages: any[] = [
-    { title: 'Tutorial', component: 'TutorialPage' },
-    { title: 'Welcome', component: 'WelcomePage' },
-    { title: 'Tabs', component: 'TabsPage' },
-    { title: 'Cards', component: 'CardsPage' },
-    { title: 'Content', component: 'ContentPage' },
-    { title: 'Login', component: 'LoginPage' },
-    { title: 'Signup', component: 'SignupPage' },
-    { title: 'Master Detail', component: 'ListMasterPage' },
-    { title: 'Menu', component: 'MenuPage' },
-    { title: 'Settings', component: 'SettingsPage' },
-    { title: 'Search', component: 'SearchPage' }
+    { title: 'Default', id: 0 },
+    { title: 'Professional', id: 1 },
+    { title: 'Argentina', id: 2 },
+    { title: 'Naif', id: 3 },
+    { title: 'Custom', component: 'TabsPage', id: 4 }
   ]
 
   constructor(
@@ -91,6 +69,41 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    //this.nav.setRoot(page.component);
+    switch (page.id) {
+      case 1:
+        console.log(page);
+        this.setProfessional();
+      break;
+    
+      case 2:
+        console.log(page);
+        this.setArgentina();
+      break;
+
+      case 3:
+        console.log(page);
+        this.setNaif();
+      break;
+
+      case 4:
+        this.nav.push(page.component);
+      break;
+
+      default:
+        break;
+    }
+  }
+
+  setArgentina() {
+
+  }
+
+  setNaif() {
+    
+  }
+
+  setProfessional() {
+    
   }
 }

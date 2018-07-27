@@ -85,7 +85,6 @@ export class QrLeerEncuestaClientePage {
                 buttons: ['Aceptar']
               });
                alerta.present();
-
                 this.navCtrl.setRoot(InicioClientePage);
               }
         });

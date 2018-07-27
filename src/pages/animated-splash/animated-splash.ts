@@ -25,7 +25,7 @@ export class AnimatedSplashPage {
       
       this.nativeAudio.preloadSimple('inicio', 'assets/mp3/inicio.mp3').then(()=>{
         console.log("Todo Okey Cargando el audio");
-        this.nativeAudio.play('inicio', () => console.log('inicio is done playing'));
+        this.nativeAudio.play('inicio', () => {console.log('inicio is done playing')});
       }, (error) => console.info(error));
     setTimeout(() => {
       this.splash = false;

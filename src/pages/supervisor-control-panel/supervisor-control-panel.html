@@ -4,7 +4,11 @@
     <ion-title>{{ 'SUPER_PANEL_TITLE' | translate }}</ion-title>
     <ion-buttons end>
       <button ion-button (click)="logout()">
-        <ion-icon name="log-out"></ion-icon>
+        <ion-icon name="log-out" class="imgIcon"></ion-icon>
+      </button>
+      <button ion-button (click)="muteAudio()">
+        <ion-icon name="volume-off" *ngIf = "!audioService.mute" class="imgIcon"></ion-icon>
+        <ion-icon name="volume-up" *ngIf = "audioService.mute" class="imgIcon"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>

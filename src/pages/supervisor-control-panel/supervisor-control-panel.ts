@@ -40,7 +40,7 @@ export class SuperControlPanelPage {
     public modalCtrl: ModalController,
     public audioService: ServicioAudioProvider
   ) {
-
+    
   }
 
   ionViewDidLoad() { //this.navCtrl.push(ContentPage); // escaner QR para test
@@ -50,6 +50,10 @@ export class SuperControlPanelPage {
   irAbmChofer() {
     this.audioService.reproducirClick();
     this.navCtrl.push(AbmChofer);
+  }
+  muteAudio(){
+    this.audioService.mute = !this.audioService.mute;
+    console.log(this.audioService.mute);
   }
 
   irAbmCliente() {

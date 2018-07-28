@@ -28,6 +28,8 @@ export class ServicioAudioProvider {
   }
 
   reproducirClick() {
+    if (!this.mute) return;
+    
     let value: string = localStorage.getItem('tema');
     switch (value) {
       case 'p':
@@ -49,37 +51,37 @@ export class ServicioAudioProvider {
   }
 
   reproducirInicio() {
-    if (true) {
+    if (this.mute) {
       this.nativeAudio.play('inicio', () => console.log('inicio is done playing'));
     }
   }
 
   reproducirError() {
-    if (true) {
+    if (this.mute) {
       this.nativeAudio.play('error', () => console.log('error is done playing'));
     }
   }
 
   reproducirExito() {
-    if (true) {
+    if (this.mute) {
       this.nativeAudio.play('correct', () => console.log('correct is done playing'));
     }
   }
 
   reproducirBeep() {
-    if (true) {
+    if (this.mute) {
       this.nativeAudio.play('beep', () => console.log('beep is done playing'));
     }
   }
 
   reproducirGlitch() {
-    if (true) {
+    if (this.mute) {
       this.nativeAudio.play('glitch', () => console.log('glitch is done playing'));
     }
   }
 
   reproducirNoise() {
-    if (true) {
+    if (this.mute) {
       this.nativeAudio.play('noise', () => console.log('noise is done playing'));
     }
   }

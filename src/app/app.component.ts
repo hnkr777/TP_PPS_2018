@@ -102,7 +102,7 @@ export class MyApp {
       break;
 
       case 4:
-        this.nav.push(page.component);
+        this.nav.push(SettingsPage);
       break;
 
       default:

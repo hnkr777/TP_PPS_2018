@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, Platform } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { Injectable } from '@angular/core';
 import { IonicStorageModule, Storage } from '@ionic/storage';
@@ -39,7 +39,8 @@ export class ChoferPanelPage {
     public modalCtrl: ModalController,
     private servicioViajes: ServicioViajesProvider,
     private servUsuarios: ServicioUsuariosProvider,
-    public audioService:ServicioAudioProvider
+    public audioService:ServicioAudioProvider,
+    public platform: Platform
   ) {
     
     this.chofer = JSON.parse(sessionStorage.getItem('usuario'));
@@ -87,6 +88,7 @@ export class ChoferPanelPage {
   logOut(){
     this.audioService.reproducirClick();
     sessionStorage.clear();
+    this.platform.exitApp();
     this.navCtrl.setRoot(MyApp);
   }
 

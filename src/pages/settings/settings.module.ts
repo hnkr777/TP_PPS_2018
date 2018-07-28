@@ -6,14 +6,14 @@ import { SettingsPage } from './settings';
 
 @NgModule({
   declarations: [
-    SettingsPage,
+    //SettingsPage,
   ],
   imports: [
     IonicPageModule.forChild(SettingsPage),
     TranslateModule.forChild()
   ],
   exports: [
-    SettingsPage
+    //SettingsPage
   ]
 })
 export class SettingsPageModule { }

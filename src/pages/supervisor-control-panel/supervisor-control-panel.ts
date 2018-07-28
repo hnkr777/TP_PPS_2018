@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, Platform } from 'ionic-angular';
 /*import { TabsPage } from '../tabs/tabs';
 import { Injectable } from '@angular/core';
 import { IonicStorageModule, Storage } from '@ionic/storage';
@@ -39,7 +39,8 @@ export class SuperControlPanelPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     public modalCtrl: ModalController,
-    public audioService: ServicioAudioProvider
+    public audioService: ServicioAudioProvider,
+    public platform: Platform
   ) {
 
   }
@@ -103,6 +104,7 @@ export class SuperControlPanelPage {
     this.audioService.reproducirClick();
     sessionStorage.clear();
     localStorage.removeItem('usuario');
+    this.platform.exitApp();
     this.navCtrl.setRoot(MyApp);
   }
 }

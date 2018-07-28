@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, ModalController,AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ModalController,AlertController, Platform } from 'ionic-angular';
 import { FormBuilder, FormGroup ,FormControl,Validators} from '@angular/forms';
 
 import { environment } from "../../environments/environment";
@@ -62,7 +62,9 @@ constructor(public navCtrl: NavController,
   private servicioCliente: AbmClienteProvider,
   private qrScanner: QRScanner,
   private servicioViajes: ServicioViajesProvider,
-  public audioService:ServicioAudioProvider)
+  public audioService:ServicioAudioProvider,
+  public platform: Platform
+)
  {
   this.listaViajes=[];
   }
@@ -251,6 +253,7 @@ constructor(public navCtrl: NavController,
   logout(){
     this.audioService.reproducirClick();
     sessionStorage.clear();
+    this.platform.exitApp();
     this.navCtrl.setRoot(LoginPage);
   }
 

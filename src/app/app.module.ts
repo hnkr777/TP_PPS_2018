@@ -73,6 +73,8 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { ServicioEncuestasProvider } from '../providers/servicio-encuestas/servicio-encuestas';
 import { ChartsModule } from 'ng2-charts';
 import { AppState } from './app.global';
+import { SettingsPage } from '../pages/settings/settings';
+
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
 
@@ -130,7 +132,8 @@ export function provideSettings(storage: Storage) {
     EncuestaClientePage,
     EncuestaSupervisorPage,
     DetalleViajeClientePage,
-    EditarPerfilClientePage
+    EditarPerfilClientePage,
+    SettingsPage
   ],
   imports: [
     BrowserModule,
@@ -162,6 +165,7 @@ export function provideSettings(storage: Storage) {
     VerImagenPage,
     ContentPage,
     ChoferPanelPage,
+    SettingsPage,
 //AnimatedSplashPage,
     AltaClientePage,
     InicioClientePage,

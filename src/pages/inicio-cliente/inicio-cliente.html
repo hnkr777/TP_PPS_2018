@@ -36,10 +36,10 @@
 
 
 <ion-content padding class="inicio-cliente-content">
-  <button class="titulo" (click)="datosChofer()" ion-button round icon-left color="secondary" block large>
+  <button class="titulo boton-menu" (click)="datosChofer()" ion-button round icon-left color="secondary" block large>
     <ion-icon name="car"></ion-icon>Datos chofer</button>
   <br>
-  <button class="titulo" (click)="pedirViaje()" ion-button round icon-left color="secondary" block large>
+  <button class="titulo boton-menu" (click)="pedirViaje()" ion-button round icon-left color="secondary" block large>
     <ion-icon name="globe"></ion-icon>{{ 'PEDIR_VIAJE_BUTTON' | translate }}</button>
     <br>
     <ion-card (click)="mostrarViajeConMapa(item)" padding *ngFor="let item of listaViajes" [ngClass]="item.activo==0? 'disabled' : 'enabled' ">
@@ -47,12 +47,12 @@
         
                 <ion-item>
          
-                  <h2 style="color: #1420c9;">Cliente: {{ item.nombreCliente }}</h2>
-                  <h2 style="color: #1420c9;">Duración: {{item.duracionViajeText}}</h2>
-                  <p style="color: #1420c9;">Distancia: {{ item.distanciaText }}</p>
+                  <h2 class="titulo tag-item-cliente">Cliente: {{ item.nombreCliente }}</h2>
+                  <h2 class="titulo tag-item-cliente">Duración: {{ item.duracionViajeText }}</h2>
+                  <p class="titulo tag-item-cliente">Distancia: {{ item.distanciaText }}</p>
                 </ion-item>
             
-                <ion-card-content>
+                <ion-card-content class="titulo">
                   <p style="margin-top: 10px !important">Chofer asignado:
                     <b>{{(item.correoChofer == "" ? 'Sin asignar' : item.correoChofer)}} </b>
                   </p>

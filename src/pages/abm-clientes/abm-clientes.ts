@@ -62,14 +62,15 @@ public auxListaClientes: any[];
   }
 
   nuevoCliente() {
-    this.modalCtrl.create(AltaClienteParaAdminPage).present();
-    
+    //this.modalCtrl.create(AltaClienteParaAdminPage).present();
+    this.navCtrl.push(AltaClienteParaAdminPage);
   }
 
   modificar($event) {
     this.unCliente = $event;
     console.log(this.unCliente);
-    this.modalCtrl.create(AltaClienteParaAdminPage, {cliente: this.unCliente}).present();
+    //this.modalCtrl.create(AltaClienteParaAdminPage, {cliente: this.unCliente}).present();
+    this.navCtrl.push(AltaClienteParaAdminPage, {cliente: this.unCliente});
   }
 
   private spin(status: boolean) {

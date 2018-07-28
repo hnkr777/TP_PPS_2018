@@ -23,6 +23,7 @@ import { VisorViajesPage } from '../visor-viajes/visor-viajes';
 import { AbmVehiculosPage } from '../abm-vehiculos/abm-vehiculos';
 import { LoginPage } from '../login/login';
 import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
+import { MyApp } from '../../app/app.component';
 
 
 @IonicPage()
@@ -77,6 +78,8 @@ export class AdminControlPanelPage {
   logout(){
     this.servicioAudio.reproducirClick();
     sessionStorage.clear();
-    this.navCtrl.setRoot(LoginPage);
+    localStorage.removeItem('usuario');
+
+    this.navCtrl.setRoot(MyApp);
   }
 }

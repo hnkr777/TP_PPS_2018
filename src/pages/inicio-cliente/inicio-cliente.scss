@@ -1,6 +1,6 @@
 page-inicio-cliente {
     .inicio-cliente-content {
-        background-color: #14830a!important;
+        background-color: #14830a;
 
         //background-color: rgba(0, 0, 0, 0.89)!important;
         //background: url('../assets/img/bg/6.jpg')!important;
@@ -15,29 +15,35 @@ page-inicio-cliente {
     background: none transparent !important;
     opacity: 0 !important;
   }
-  .titulo{
-    margin-top: 10px !important;
-    margin-bottom: 0px !important;
-    width: 100%;
-    height: 40px;
-    background: #51CFB1;
-    border-radius: 30px !important;
-    border: 1px solid #ffffff;
-  }
+
+  /*.titulo{
+    //margin-top: 10px !important;
+    //margin-bottom: 0px !important;
+    //width: 100%;
+    //height: 40px;
+    //background: #51CFB1;
+    //border-radius: 30px !important;
+    //border: 1px solid #ffffff;
+  }*/
+
+
   .logOut{
     background: none transparent !important;
   }
-    ion-card{
+
+    ion-card {
         border-radius: 10px !important;
-        background-color: #0ed478 !important;
+        background-color: #0ed478;
     }
-    ion-item{
+
+    ion-item {
         text-align: center !important;
         border-radius: 30px ;
-        background-color: #ffd000 !important;
+        background-color: #ffd000;
         margin-bottom: 0px !important;
     }
-    .filtro{
+
+    .filtro {
         text-align: start !important;
         border-radius: 0px !important;
     }

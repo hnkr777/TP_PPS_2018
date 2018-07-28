@@ -60,8 +60,8 @@ export class AbmChoferesPage {
   nuevoChofer() {
     this.audioService.reproducirClick();
     console.log('agregar nuevo Chofer');
-    this.modalCtrl.create(AltaChoferPage).present();
-    
+    //this.modalCtrl.create(AltaChoferPage).present();
+    this.navCtrl.push(AltaChoferPage);
   }
 
   // para modificar los datos del chofer seleccionado, le paso al mismo modal del alta, el chofer a modificar
@@ -69,7 +69,8 @@ export class AbmChoferesPage {
     this.audioService.reproducirClick();
     console.log('Modificar chofer '+ $event.email);
     this.chofer = $event;
-    this.modalCtrl.create(AltaChoferPage, {chofer: this.chofer}).present();
+    //this.modalCtrl.create(AltaChoferPage, {chofer: this.chofer}).present();
+    this.navCtrl.push(AltaChoferPage, {chofer: this.chofer});
   }
 
   private spin(status: boolean) {

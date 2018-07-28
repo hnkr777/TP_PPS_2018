@@ -28,8 +28,23 @@ export class ServicioAudioProvider {
   }
 
   reproducirClick() {
-    if (true) {
-      this.nativeAudio.play('click', () => console.log('click is done playing'));
+    let value: string = localStorage.getItem('tema');
+    switch (value) {
+      case 'p':
+        this.nativeAudio.play('glitch', () => console.log('click is done playing'));
+        break;
+
+      case 'a':
+        this.nativeAudio.play('beep', () => console.log('click is done playing'));
+        break;
+
+      case 'n':
+        this.nativeAudio.play('noise', () => console.log('click is done playing'));
+        break;
+    
+      default:
+        this.nativeAudio.play('click', () => console.log('click is done playing'));
+        break;
     }
   }
 

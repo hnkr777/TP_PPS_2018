@@ -59,8 +59,8 @@ export class AbmSupervisoresPage {
   nuevoSupervisor() {
     this.audioService.reproducirClick();
     console.log('agregar nuevo supervisor');
-    this.modalCtrl.create(AltaSupervisorPage).present();
-    
+    //this.modalCtrl.create(AltaSupervisorPage).present();
+    this.navCtrl.push(AltaSupervisorPage);
   }
 
   // para modificar los datos del supervisor seleccionado, le paso al mismo modal del alta, el supervisor a modificar
@@ -68,7 +68,8 @@ export class AbmSupervisoresPage {
     this.audioService.reproducirClick();
     console.log('Modificar supervisor '+ $event.email);
     this.supervisor = $event;
-    this.modalCtrl.create(AltaSupervisorPage, {supervisor: this.supervisor}).present();
+    //this.modalCtrl.create(AltaSupervisorPage, {supervisor: this.supervisor}).present();
+    this.navCtrl.push(AltaSupervisorPage, {supervisor: this.supervisor});
   }
 
   private spin(status: boolean) {

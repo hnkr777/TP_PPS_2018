@@ -23,6 +23,7 @@ import { VisorViajesChoferPage } from '../../pages/visor-viajes-chofer/visor-via
 import { Usuario } from '../../clases/usuario';
 import { LoginPage } from '../login/login';
 import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
+import { MyApp } from '../../app/app.component';
 
 @IonicPage()
 @Component({
@@ -86,7 +87,7 @@ export class ChoferPanelPage {
   logOut(){
     this.audioService.reproducirClick();
     sessionStorage.clear();
-    this.navCtrl.setRoot(LoginPage);
+    this.navCtrl.setRoot(MyApp);
   }
 
 }

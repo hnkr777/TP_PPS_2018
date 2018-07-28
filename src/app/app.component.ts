@@ -85,19 +85,19 @@ export class MyApp {
     switch (page.id) {
       case 1:
         console.log(page);
-        this.audio.reproducirExito();
+        this.audio.reproducirClick();
         this.setProfessional();
       break;
     
       case 2:
         console.log(page);
-        this.audio.reproducirBeep();
+        this.audio.reproducirClick();
         this.setArgentina();
       break;
 
       case 3:
         console.log(page);
-        this.audio.reproducirGlitch();
+        this.audio.reproducirClick();
         this.setNaif();
       break;
 

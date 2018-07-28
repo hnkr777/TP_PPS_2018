@@ -3,9 +3,9 @@ page-pages-modal {
     .modal-content {
         //background-color: rgba(0, 0, 0, 1)!important;
         //background: url('../assets/img/bg/5.jpg')!important;
-        background-color: #14830a !important;
+        background-color: #14830a;
         height: 100%!important;
-        color: white!important;
+        color: white;
         background-size: cover;
         background-repeat: no-repeat;
         vertical-align: middle;
@@ -20,7 +20,7 @@ page-pages-modal {
     }
 
     .graphic {
-        color:white !important;
+        color:white;
         width: 110% !important;
         height: 110% !important;
         padding-top: 0px;
@@ -42,9 +42,9 @@ page-pages-modal {
     .mesa{
         margin-top: 20%;
         width: 100%;
-        color: #ffffff !important;
+        color: #ffffff;
         //height: 40%;
-        background-color: #23c515 !important;
+        background-color: #23c515;
         padding: 20px;
         border-radius: 30px;
     }
@@ -93,7 +93,7 @@ page-pages-modal {
     ion-item{
         text-align: center !important;
         border-radius: 30px ;
-        background-color: #ffd000 !important;
+        background-color: #ffd000;
         margin-bottom: 0px !important;
     }
 }

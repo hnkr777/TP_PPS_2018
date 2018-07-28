@@ -26,6 +26,8 @@ import { EncuestaChoferPage } from '../encuesta-chofer/encuesta-chofer';
 import { SuperControlPanelPage } from '../supervisor-control-panel/supervisor-control-panel';
 import { EncuestaClientePage } from '../encuesta-cliente/encuesta-cliente';
 import { QrVehiculoClientePage } from '../qr-vehiculo-cliente/qr-vehiculo-cliente';
+import { Http } from '../../../node_modules/@angular/http';
+import { HttpClient } from '../../../node_modules/@angular/common/http';
 
 @IonicPage()
 @Component({
@@ -55,6 +57,7 @@ export class LoginPage {
     private servicioUsuarios: ServicioUsuariosProvider,
     private objFirebase: AngularFirestore,
     private mails: EnviarMailProvider,
+    public http: HttpClient,
     public audioService:ServicioAudioProvider) {
 
     this.translateService.get('LOGIN_ERROR').subscribe((value) => { // así se traen string de traduccion...
@@ -127,8 +130,9 @@ export class LoginPage {
     this.audioService.reproducirClick();
     let modal = this.modalCtrl.create(SpinnerPage);
     modal.present();
-    let ob = this.servicioUsuarios.traerUsuarios().subscribe((arr) => {
+    let ob = this.objFirebase.collection<Usuario>('usuarios').valueChanges().subscribe((arr) => {
       this.accounts = arr;
+      console.log('En login');
       console.log(arr);
       let user: Usuario = this.accounts.find(elem => ( this.loginFields.correo == elem.correo && (this.loginFields.clave == elem.clave)));
       modal.dismiss();

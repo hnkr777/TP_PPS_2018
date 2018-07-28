@@ -1,17 +1,17 @@
 visor-viajes {
     .visor-viajes-content {
-        background-color: #14830a !important;
+        background-color: #14830a;
         //background-color: rgba(0, 0, 0, 0.89)!important;
         //background: url('../assets/img/bg/4.jpg')!important;
         height: 100%!important;
         width: 100%!important;
-        color: rgb(255, 255, 255)!important;
+        color: rgb(255, 255, 255);
         display: block;
         //object-fit: fill;
     }
     
     .enabled {
-        background-color: white;
+        background-color: rgb(79, 110, 117);
     }
 
     .disabled {
@@ -21,17 +21,17 @@ visor-viajes {
         /*margin-top: 15px;
         margin-bottom: 0px;*/
         background: #51CFB1;
-        border-radius: 30px !important;
+        border-radius: 30px;
         border: 1px solid #ffffff;
     }
     ion-card{
-        border-radius: 10px !important;
-        background-color: #0ed478 !important;
+        border-radius: 10px;
+        background-color: #0ed478;
     }
     ion-item{
         text-align: center !important;
         border-radius: 30px ;
-        background-color: #ffd000 !important;
+        background-color: #ffd000;
         margin-bottom: 0px !important;
     }
     .filtro{

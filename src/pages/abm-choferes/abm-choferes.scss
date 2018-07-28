@@ -2,7 +2,7 @@ abm-choferes {
     .abm-choferes-content {
         //background-color: rgba(0, 0, 0, 0.89)!important;
         //background: url('../assets/img/bg/4.jpg')!important;
-        background: #14830a!important;
+        background: #14830a;
         height: 100%!important;
         width: 100%!important;
         color: rgb(255, 255, 255)!important;
@@ -11,19 +11,20 @@ abm-choferes {
     }
 
     .enabled {
-        background-color: #0ed478 !important;
+        background-color: #0ed478;
     }
 
     .disabled {
-        background-color: #0f8d52 !important;
+        background-color: #0f8d52;
     }
-    ion-card{
+
+    ion-card {
         border-radius: 10px !important;
         background-color: #0ed478;
     }
-    ion-item{
-        
+
+    ion-item {
         border-radius: 30px !important;
-        background-color: #ffd000 !important;
+        background-color: #ffd000;
     }
 }

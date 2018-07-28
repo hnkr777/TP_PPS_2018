@@ -1,6 +1,6 @@
 nuevo-viaje {
     ion-content {
-        background-color: #14830a !important;
+        background-color: #14830a;
         //background: rgb(61, 61, 61)!important;
         height: 100%;
         width: 100%;
@@ -10,7 +10,7 @@ nuevo-viaje {
 
     }
     .contenido-viajes {
-        background-color: #14830a !important;
+        background-color: #14830a;
         //background: rgb(61, 61, 61)!important;
         height: 100%;
         width: 100%;
@@ -41,8 +41,9 @@ nuevo-viaje {
     }
 
     .picker {
-        background: white!important;
-        border-radius: 10px!important;
+        //background: white;
+        border-radius: 10px;
+        color: black;
     }
 
     .chip {

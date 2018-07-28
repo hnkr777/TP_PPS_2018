@@ -1,26 +1,26 @@
 page-encuesta-cliente {
     ion-content {
-        background-color: #14830a !important;
+        background-color: #14830a;
         //background: white!important;
     }
     .submit-btn {
         background: #51CFB1;
-        border-radius: 30px !important;
+        border-radius: 30px;
         border: 1px solid #ffffff;
     }
     ion-item {
         //background: transparent!important;
         //text-align: center !important;
         border-radius: 20px ;
-        background-color: #ffd000 !important;
+        background-color: #ffd000;
         margin-top: 3px !important;
     }
     .list{
         margin-top: 30px !important;
     }
     ion-list-header{
-        background-color: #ffd000 !important;
+        background-color: #ffd000;
         border-radius: 20px ;
-        color: black !important;
+        color: black;
     }
 }

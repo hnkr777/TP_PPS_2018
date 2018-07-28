@@ -30,12 +30,12 @@ ion-content {
   width: 220px;
   height: 220px;
   margin: auto;
-  background: transparent;
+  background: transparent !important;
   // display: table-cell;
-  vertical-align: middle;
+  vertical-align: middle !important;
   z-index:-1;
-  border: 2px solid red;
-  margin-top: 50%;
+  border: 2px solid red !important;
+  margin-top: 50% !important;
 }
 
 .base {

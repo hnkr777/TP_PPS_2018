@@ -25,6 +25,7 @@ import { LoginPage } from '../login/login';
 //import { ListadoChoferesDisponiblesPage } from '../listado-choferes-disponibles/listado-choferes-disponibles';
 import {ServicioAudioProvider} from '../../providers/servicio-audio/servicio-audio'
 import { EncuestaSupervisorPage } from '../encuesta-supervisor/encuesta-supervisor';
+import { MyApp } from '../../app/app.component';
 
 
 @IonicPage()
@@ -94,11 +95,14 @@ export class SuperControlPanelPage {
   }
   goEstadisticas(){
     this.audioService.reproducirClick();
-    this.modalCtrl.create(PagesModalPage,{titulo:"Estadísticas",data:""}).present()
+    //this.modalCtrl.create(PagesModalPage,{titulo:"Estadísticas",data:""}).present()
+    this.navCtrl.push(PagesModalPage, { titulo: "Estadísticas", data: "" });
   }
+
   logout(){
     this.audioService.reproducirClick();
     sessionStorage.clear();
-    this.navCtrl.setRoot(LoginPage);
+    localStorage.removeItem('usuario');
+    this.navCtrl.setRoot(MyApp);
   }
 }

@@ -1,6 +1,6 @@
 page-detalle-viaje-chofer {
     ion-content {
-        background-color: #14830a !important;
+        background-color: #14830a;
         //background: rgb(56, 56, 56)!important;
         
     }
@@ -9,13 +9,15 @@ page-detalle-viaje-chofer {
         //background: transparent!important;
         //text-align: center !important;
         border-radius: 30px ;
-        background-color: #ffd000 !important;
+        background-color: #ffd000;
         margin-bottom: 0px !important;
     }
-    ion-card{
+
+    ion-card {
         border-radius: 10px !important;
         //background-color: #0ed478 !important;
     }
+
     .contenedor-global {
         //background: url('../../assets/img/bg/5.jpg');
         background-size: cover;

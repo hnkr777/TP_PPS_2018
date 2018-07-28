@@ -23,7 +23,7 @@ export class AbmClienteProvider {
 
   }
 
-  traerUsuarios(): Observable<Usuario[] | any[]> {
+  traerUsuarios(): Observable<Usuario[]> {
     console.log('ServicioUsuariosProvider.cargarUsuarios()');
     let coleccionTipadaFirebase = this.objFirebase.collection<Usuario>(this.tablaUsuarios);
     let ListadoUsuariosObservable = coleccionTipadaFirebase.valueChanges();

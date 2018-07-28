@@ -27,6 +27,7 @@
     .input-wrapper,
     .item-inner,
     .item,
+    //.contenido-viajes,
     ion-footer,
     ion-item,
     ion-label {
@@ -35,6 +36,12 @@
       background: #f49236 !important;
       color: white !important;
     }
+
+    #fechaSalida {
+      background-color: #f44336 !important;
+      color: white !important;
+    }
+
     ion-list {
       background-color: #f44336;
     }
@@ -47,13 +54,31 @@
       color: white;
     }
     
-    ion-button {
+    ion-button, .submit-btn, .boton-menu {
+      background-color: rgb(120, 58, 145) !important;
+      color: white !important;
+      border-radius: 30px !important;
+      box-shadow: 0 0 0 0 transparent !important;
+    }
+    
+    .enabled {
+      background-color: #e6862c;
+    }
 
-    } 
+    .disabled {
+      background-color: #5c4322;
+    }
 
-    .boton {
-      background-color: #c56fb2 !important;
+    .item-cover {
+      //background-color: #ffffff !important;
       color: rgb(0, 0, 0) !important;
+      border-radius: 15px;
+      margin: 5px;
+    }
+
+    .boton, {
+      background-color: #c56fb2 !important;
+      color: rgb(255, 255, 255) !important;
       border-radius: 15px;
     }
 
@@ -64,7 +89,7 @@
       background-size: cover !important;
     }
 
-    ion-content {
+    ion-content, .contenido-viajes {
       transition: all 1.1s ease;
       background-color: #bb5b2f !important;
       //background-image: url('../assets/imgs/bg/n2.jpg') !important;

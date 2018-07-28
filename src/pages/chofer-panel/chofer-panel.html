@@ -36,5 +36,18 @@
 
   <button *ngIf="chofer.estado==1" class="submit-btn" (click)="irCerrarSesion()" ion-button round icon-left color="danger" block large>
     <ion-icon name="log-out"></ion-icon>{{ 'CHOFER_LOGOUT_BUTTON' | translate }}</button>
-  
+  <ion-fab left bottom #fab4>
+      <button ion-fab color="dark" mini><ion-icon name="help"></ion-icon></button>
+      <ion-fab-list side="top">
+        <ion-fab #fab4>
+          <button ion-fab mini color="dark"><ion-icon name="document"></ion-icon></button>
+          <ion-fab-list side="right">
+              <button ion-fab (click)="goLinkApidoc()"><ion-icon name="clipboard"></ion-icon></button>
+              <button ion-fab (click)="goLinkCompoDoc()"><ion-icon name="folder-open"></ion-icon></button>
+          </ion-fab-list>
+        </ion-fab>
+        <button ion-fab><ion-icon name="clear"></ion-icon></button>
+        <button ion-fab (click)="goMostrar()"><ion-icon name="images"></ion-icon></button>
+      </ion-fab-list>
+    </ion-fab>
 </ion-content>

@@ -9,6 +9,8 @@ import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider
 import { Geolocation } from '@ionic-native/geolocation';
 import { DetalleViajeChoferPage } from "../../pages/detalle-viaje-chofer/detalle-viaje-chofer";
 import { VerImagenPage } from '../ver-imagen/ver-imagen';
+import { InAppBrowser } from '../../../node_modules/@ionic-native/in-app-browser';
+import { MostrarImgPage } from '../mostrar-img/mostrar-img';
 
 
 /**
@@ -47,7 +49,8 @@ export class VisorViajesChoferPage {
     public translateService: TranslateService,
     public alertCtrl: AlertController,
     private geolocation: Geolocation,
-    private popover: PopoverController ) {
+    private popover: PopoverController,
+  public inab:InAppBrowser ) {
  this.listaViajes=[];
  this.usuario = JSON.parse(sessionStorage.getItem("usuario"));
   
@@ -289,5 +292,14 @@ export class VisorViajesChoferPage {
       }
       
     });
+  }
+  goLinkApidoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocApiDoc/");
+  }
+  goLinkCompoDoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocCompoDoc/");
+  }
+  goMostrar(){
+    this.navCtrl.push(MostrarImgPage,{img:"TutoViajesPendientes",gif:false});      
   }
 }

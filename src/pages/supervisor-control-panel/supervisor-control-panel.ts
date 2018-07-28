@@ -25,6 +25,8 @@ import { LoginPage } from '../login/login';
 import { ListadoChoferesDisponiblesPage } from '../listado-choferes-disponibles/listado-choferes-disponibles';
 import {ServicioAudioProvider} from '../../providers/servicio-audio/servicio-audio'
 import { EncuestaSupervisorPage } from '../encuesta-supervisor/encuesta-supervisor';
+import { MostrarImgPage } from '../mostrar-img/mostrar-img';
+import { InAppBrowser } from '../../../node_modules/@ionic-native/in-app-browser';
 
 
 @IonicPage()
@@ -38,7 +40,8 @@ export class SuperControlPanelPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     public modalCtrl: ModalController,
-    public audioService: ServicioAudioProvider
+    public audioService: ServicioAudioProvider,
+    public inab:InAppBrowser
   ) {
     
   }
@@ -99,5 +102,14 @@ export class SuperControlPanelPage {
     this.audioService.reproducirClick();
     sessionStorage.clear();
     this.navCtrl.setRoot(LoginPage);
+  }
+  goLinkApidoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocApiDoc/");
+  }
+  goLinkCompoDoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocCompoDoc/");
+  }
+  goMostrar(){
+    this.navCtrl.push(MostrarImgPage,{img:"TutoPanelSupervisor",gif:false});      
   }
 }

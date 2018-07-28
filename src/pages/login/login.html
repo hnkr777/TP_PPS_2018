@@ -48,9 +48,23 @@
       </ion-list>
 
     </form>
-
+    
   </ion-content>
   <ion-footer>
+      <ion-fab left bottom #fab4>
+          <button ion-fab color="dark" mini><ion-icon name="help"></ion-icon></button>
+          <ion-fab-list side="top">
+            <ion-fab #fab4>
+              <button ion-fab mini color="dark"><ion-icon name="document"></ion-icon></button>
+              <ion-fab-list side="right">
+                  <button ion-fab (click)="goLinkApidoc()"><ion-icon name="clipboard"></ion-icon></button>
+                  <button ion-fab (click)="goLinkCompoDoc()"><ion-icon name="folder-open"></ion-icon></button>
+              </ion-fab-list>
+            </ion-fab>
+            <button ion-fab><ion-icon name="clear"></ion-icon></button>
+            <button ion-fab (click)="goMostrar()"><ion-icon name="images"></ion-icon></button>
+          </ion-fab-list>
+        </ion-fab>
     <ion-list padding>
       <button large (click)="mostrarUsuarios()" ion-button color="primary" block class ="submit-btn">
         <ion-icon name="people"></ion-icon>Iniciar sesión como...</button>

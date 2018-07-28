@@ -8,6 +8,10 @@ import { AngularFireDatabase, QueryFn } from 'angularfire2/database';
  */
 @Injectable()
 export class EnviarMailProvider {
+  /**
+   * 
+   * @ignore
+   */
   constructor(public database : AngularFireDatabase) {
   }
 
@@ -17,6 +21,8 @@ export class EnviarMailProvider {
    * @param subject asunto
    * @param content contenido
    */
+
+  
   public sendMail(to, subject, content) {
     
     return this.database.list('/emails').push({

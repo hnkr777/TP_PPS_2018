@@ -20,6 +20,8 @@ import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { Encuesta } from '../../clases/encuesta';
 import { SuperControlPanelPage } from '../supervisor-control-panel/supervisor-control-panel';
 import { SupervisorPanelPage } from '../supervisor-panel/supervisor-panel';
+import { MostrarImgPage } from '../mostrar-img/mostrar-img';
+import { InAppBrowser } from '../../../node_modules/@ionic-native/in-app-browser';
 
 
 /**
@@ -49,7 +51,8 @@ export class EncuestaSupervisorPage {
     public audioService:ServicioAudioProvider,
     private servicioEncuesta: ServicioEncuestasProvider,
     private objFirebase: AngularFirestore,
-    public modalCtrl: ModalController) {
+    public modalCtrl: ModalController,
+    public inab:InAppBrowser) {
       this.encuesta = new Encuesta();
   }
 
@@ -113,6 +116,15 @@ export class EncuestaSupervisorPage {
       this.spinner.dismiss();
       this.spinner = undefined;
     }
+  }
+  goLinkApidoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocApiDoc/");
+  }
+  goLinkCompoDoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocCompoDoc/");
+  }
+  goMostrar(){
+    this.navCtrl.push(MostrarImgPage,{img:"TutoEncuestaControl",gif:true});      
   }
 
 }

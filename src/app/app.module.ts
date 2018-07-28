@@ -61,7 +61,7 @@ import { ListadoChoferesDisponiblesPage } from '../pages/listado-choferes-dispon
 import { ListadoViajesSelecPage } from '../pages/listado-viajes-selec/listado-viajes-selec';
 import { DetalleViajeChoferPage } from '../pages/detalle-viaje-chofer/detalle-viaje-chofer';
 
-
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { DetalleViajeClientePage } from '../pages/detalle-viaje-cliente/detalle-viaje-cliente';
 import { QrLeerEncuestaClientePage } from '../pages/qr-leer-encuesta-cliente/qr-leer-encuesta-cliente';
 import { EncuestaClientePage } from '../pages/encuesta-cliente/encuesta-cliente';
@@ -72,6 +72,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { ServicioEncuestasProvider } from '../providers/servicio-encuestas/servicio-encuestas';
 import { ChartsModule } from 'ng2-charts';
+import { MostrarImgPage } from '../pages/mostrar-img/mostrar-img';
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
 
@@ -129,7 +130,8 @@ export function provideSettings(storage: Storage) {
     EncuestaClientePage,
     EncuestaSupervisorPage,
     DetalleViajeClientePage,
-    EditarPerfilClientePage
+    EditarPerfilClientePage,
+    MostrarImgPage
   ],
   imports: [
     BrowserModule,
@@ -185,7 +187,8 @@ export function provideSettings(storage: Storage) {
     EncuestaClientePage,
     EncuestaSupervisorPage,
     DetalleViajeClientePage,
-    EditarPerfilClientePage
+    EditarPerfilClientePage,
+    MostrarImgPage
   ],
   providers: [
     Api,
@@ -208,7 +211,8 @@ export function provideSettings(storage: Storage) {
     ServicioVehiculoProvider,
     EnviarMailProvider,
     AngularFireDatabase,
-    ServicioEncuestasProvider
+    ServicioEncuestasProvider,
+    InAppBrowser
   ]
 })
 export class AppModule { }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
 /**
- * A simple settings/config class for storing key/value pairs with persistence.
+ * @ignore
  */
 @Injectable()
 export class Settings {

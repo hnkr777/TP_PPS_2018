@@ -7,6 +7,8 @@ import { Viaje } from '../../clases/viaje';
 import { Geolocation } from '@ionic-native/geolocation';
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { Usuario } from '../../clases/usuario';
+import { InAppBrowser } from '../../../node_modules/@ionic-native/in-app-browser';
+import { MostrarImgPage } from '../mostrar-img/mostrar-img';
 //import * as moment from 'moment';
 
 declare const google; // para google maps
@@ -68,7 +70,8 @@ export class NuevoViajePage {
     public alertCtrl: AlertController,
     private geolocation: Geolocation,
     private popover: PopoverController,
-    public audioService:ServicioAudioProvider
+    public audioService:ServicioAudioProvider,
+    public inab:InAppBrowser
   ) {
     this.puntos = 0;
     this.nuevoViaje = new Viaje();
@@ -545,5 +548,13 @@ export class NuevoViajePage {
       this.spinner = undefined;
     }
   }
-
+  goLinkApidoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocApiDoc/");
+  }
+  goLinkCompoDoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocCompoDoc/");
+  }
+  goMostrar(){
+    this.navCtrl.push(MostrarImgPage,{img:"TutoAltaViaje",gif:true});      
+  }
 }

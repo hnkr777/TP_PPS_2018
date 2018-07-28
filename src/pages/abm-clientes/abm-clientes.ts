@@ -6,6 +6,8 @@ import { Usuario } from '../../clases/usuario';
 import { AltaClienteParaAdminPage } from '../../pages/alta-cliente-para-admin/alta-cliente-para-admin';
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { ServicioAudioProvider } from "../../providers/servicio-audio/servicio-audio";
+import { MostrarImgPage } from '../mostrar-img/mostrar-img';
+import { InAppBrowser } from '../../../node_modules/@ionic-native/in-app-browser';
 /**
  * Generated class for the AbmClientesPage page.
  *
@@ -31,7 +33,8 @@ public auxListaClientes: any[];
     public navParams: NavParams, 
     private servicioCliente: AbmClienteProvider,
     public modalCtrl: ModalController,
-    public audioService:ServicioAudioProvider
+    public audioService:ServicioAudioProvider,
+    public inab:InAppBrowser
   ) {
   }
 
@@ -155,5 +158,13 @@ public auxListaClientes: any[];
  this.listaClientes=this.auxListaClientes;
    }
    
-
+  goLinkApidoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocApiDoc/");
+  }
+  goLinkCompoDoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocCompoDoc/");
+  }
+  goMostrar(){
+    this.navCtrl.push(MostrarImgPage,{img:"TutoABMClientes",gif:false});
+  }
 }

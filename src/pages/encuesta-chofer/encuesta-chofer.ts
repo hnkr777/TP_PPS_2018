@@ -18,6 +18,8 @@ import { LoginPage } from "../../pages/login/login";
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { Encuesta } from '../../clases/encuesta';
 import { Usuario } from '../../clases/usuario';
+import { InAppBrowser } from '../../../node_modules/@ionic-native/in-app-browser';
+import { MostrarImgPage } from '../mostrar-img/mostrar-img';
 
 /**
  * Página de encuesta de chofer
@@ -64,6 +66,7 @@ export class EncuestaChoferPage {
       private objFirebase: AngularFirestore,
       public modalCtrl: ModalController,
       private servUsuarios: ServicioUsuariosProvider,
+      public inab:InAppBrowser
     ) {
      // this.viaje = this.navParams.get('viaje');
      // console.log(this.viaje);

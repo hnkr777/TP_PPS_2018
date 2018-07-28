@@ -8,6 +8,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider, Settings, EnviarMailProvider } from '../../providers/providers';
 import { Geolocation } from '@ionic-native/geolocation';
 import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
+import { InAppBrowser } from '../../../node_modules/@ionic-native/in-app-browser';
+import { MostrarImgPage } from '../mostrar-img/mostrar-img';
 //import * as moment from 'moment';
 declare const google; // para google maps
 /**
@@ -41,7 +43,8 @@ export class DetalleViajeChoferPage {
     private servicioUsuarios:ServicioUsuariosProvider,
     public alertCtrl: AlertController,
     public audioService:ServicioAudioProvider,
-    private servicioEmail: EnviarMailProvider
+    private servicioEmail: EnviarMailProvider,
+    public inab:InAppBrowser
   ) {
 
   }
@@ -198,7 +201,15 @@ export class DetalleViajeChoferPage {
 
         this.viewCtrl.dismiss();
       }
-
+      goLinkApidoc(){
+        this.inab.create("http://juanmurciautn.hol.es/DocApiDoc/");
+      }
+      goLinkCompoDoc(){
+        this.inab.create("http://juanmurciautn.hol.es/DocCompoDoc/");
+      }
+      goMostrar(){
+        this.navCtrl.push(MostrarImgPage,{img:"TutoRealizarViaje",gif:false});      
+      }
 
   closeModal() {
     this.viewCtrl.dismiss();

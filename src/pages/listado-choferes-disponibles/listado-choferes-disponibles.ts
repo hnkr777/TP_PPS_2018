@@ -4,6 +4,8 @@ import {ServicioUsuariosProvider} from "../../providers/servicio-usuarios/servic
 import {ListadoViajesSelecPage} from "../listado-viajes-selec/listado-viajes-selec";
 import {SuperControlPanelPage} from "../supervisor-control-panel/supervisor-control-panel";
 import {ServicioAudioProvider} from "../../providers/servicio-audio/servicio-audio";
+import { InAppBrowser } from '../../../node_modules/@ionic-native/in-app-browser';
+import { MostrarImgPage } from '../mostrar-img/mostrar-img';
 
 /**
  * Generated class for the ListadoChoferesDisponiblesPage page.
@@ -19,7 +21,7 @@ import {ServicioAudioProvider} from "../../providers/servicio-audio/servicio-aud
 })
 export class ListadoChoferesDisponiblesPage {
   public listadoChoferes;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public servicioUsuarios:ServicioUsuariosProvider,public audioService:ServicioAudioProvider) {
+  constructor(public inab:InAppBrowser, public navCtrl: NavController, public navParams: NavParams,public servicioUsuarios:ServicioUsuariosProvider,public audioService:ServicioAudioProvider) {
   }
 
   ionViewDidLoad() {
@@ -40,5 +42,13 @@ export class ListadoChoferesDisponiblesPage {
     this.audioService.reproducirClick();
     this.navCtrl.setRoot(SuperControlPanelPage);
   }
-
+  goLinkApidoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocApiDoc/");
+  }
+  goLinkCompoDoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocCompoDoc/");
+  }
+  goMostrar(){
+    this.navCtrl.push(MostrarImgPage,{img:"TutoChoferesDisponibles",gif:false});      
+  }
 }

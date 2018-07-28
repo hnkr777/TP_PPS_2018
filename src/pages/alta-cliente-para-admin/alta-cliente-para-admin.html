@@ -72,23 +72,23 @@
         -->
         <ion-item>
           <ion-row>
-            <!--
+            
             <ion-col>
               <button small ion-button color="primary" (click)="tomarFoto()">
-                <ion-icon name="camera"></ion-icon>&nbsp; Sacar foto</button>
+                <ion-icon name="camera"></ion-icon>&nbsp; Camara</button>
             </ion-col>
-          -->
+         
             <ion-col *ngIf="modoAlta==false">
               <div (click)="verImagen()" class="marco-imagen">
                 <img class="marco-imagen" [src]="unCliente.foto === null ? 'assets/img/perfildefaul.jpg' : unCliente.foto">
               </div>
             </ion-col>
-            <!--
+            
             <ion-col>
               <button small ion-button color="primary" (click)="cargarFoto()">
-                <ion-icon name="add"></ion-icon>&nbsp; Buscar foto</button>
+                <ion-icon name="add"></ion-icon>&nbsp;Libreria</button>
             </ion-col>
-          -->
+         
           </ion-row>
         </ion-item>
     
@@ -107,7 +107,20 @@
           <button ion-button color="danger" *ngIf="modoAlta==false" (click)="blanquerClave()">Blanquear clave</button>
         
          <!-- <button ion-button color="danger" *ngIf="modoAlta==false" (click)="enviarCorreo()">Enviar mail</button>-->
-          
+         <ion-fab left bottom #fab4>
+            <button ion-fab color="dark" mini><ion-icon name="help"></ion-icon></button>
+            <ion-fab-list side="top">
+              <ion-fab #fab4>
+                <button ion-fab mini color="dark"><ion-icon name="document"></ion-icon></button>
+                <ion-fab-list side="right">
+                    <button ion-fab (click)="goLinkApidoc()"><ion-icon name="clipboard"></ion-icon></button>
+                    <button ion-fab (click)="goLinkCompoDoc()"><ion-icon name="folder-open"></ion-icon></button>
+                </ion-fab-list>
+              </ion-fab>
+              <button ion-fab><ion-icon name="clear"></ion-icon></button>
+              <button ion-fab (click)="goMostrar()"><ion-icon name="images"></ion-icon></button>
+            </ion-fab-list>
+          </ion-fab>
         </ion-content>
     
       <ion-footer>

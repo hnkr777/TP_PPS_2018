@@ -9,6 +9,8 @@ import { Viaje } from '../../clases/viaje';
 import { VerImagenPage } from '../ver-imagen/ver-imagen';
 import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
+import { MostrarImgPage } from '../mostrar-img/mostrar-img';
+import { InAppBrowser } from '../../../node_modules/@ionic-native/in-app-browser';
 
 /**
  * página de visor de viajes, solo lo tiene que poder usar el administrador o superusuario...
@@ -34,7 +36,8 @@ export class VisorViajesPage {
     private servicioViajes: ServicioViajesProvider,
     public modalCtrl: ModalController,
     public alertCtrl: AlertController,
-  public audioService:ServicioAudioProvider) {
+  public audioService:ServicioAudioProvider,
+public inab:InAppBrowser) {
      // this.filtro = '0';
      //TODOS
      this.filtro = '-1';
@@ -221,5 +224,14 @@ export class VisorViajesPage {
       this.spinner.dismiss();
       this.spinner = undefined;
     }
+  }
+  goLinkApidoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocApiDoc/");
+  }
+  goLinkCompoDoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocCompoDoc/");
+  }
+  goMostrar(){
+    this.navCtrl.push(MostrarImgPage,{img:"TutoVisorViajes",gif:false});      
   }
 }

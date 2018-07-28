@@ -11,6 +11,8 @@ import { QrLeerEncuestaClientePage } from '../../pages/qr-leer-encuesta-cliente/
 import { InicioClientePage } from '../../pages/inicio-cliente/inicio-cliente';
 import { EncuestaClientePage } from '../../pages/encuesta-cliente/encuesta-cliente';
 import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
+import { MostrarImgPage } from '../mostrar-img/mostrar-img';
+import { InAppBrowser } from '../../../node_modules/@ionic-native/in-app-browser';
 //import * as moment from 'moment';
 declare const google; // para google maps
 
@@ -45,7 +47,8 @@ export class DetalleViajeClientePage {
     private servicioViajes: ServicioViajesProvider,
     private servicioUsuarios:ServicioUsuariosProvider,
     public alertCtrl: AlertController,
-    public audioService:ServicioAudioProvider
+    public audioService:ServicioAudioProvider,
+    public inab:InAppBrowser
   ) {
   }
 
@@ -156,5 +159,13 @@ export class DetalleViajeClientePage {
    // this.viewCtrl.dismiss();
    this.navCtrl.setRoot(InicioClientePage);
   }
-
+  goLinkApidoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocApiDoc/");
+  }
+  goLinkCompoDoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocCompoDoc/");
+  }
+  goMostrar(){
+    this.navCtrl.push(MostrarImgPage,{img:"TutoModifViaje",gif:false});      
+  }
 }

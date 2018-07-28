@@ -7,6 +7,8 @@ import { ServicioAudioProvider } from "../../providers/servicio-audio/servicio-a
 import { Usuario } from '../../clases/usuario';
 import { AltaChoferPage } from '../alta-chofer/alta-chofer';
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
+import { MostrarImgPage } from '../mostrar-img/mostrar-img';
+import { InAppBrowser } from '../../../node_modules/@ionic-native/in-app-browser';
 /**
  * página de ABM de choferes, solo lo tienen que poder usar el administrador o superusuario, y los supervisores...
  * 
@@ -29,7 +31,9 @@ export class AbmChoferesPage {
     private servicioUsuarios: ServicioUsuariosProvider,
     public modalCtrl: ModalController,
     public audioService:ServicioAudioProvider,
+    public inab:InAppBrowser
     ) {
+
   }
 
   ionViewDidLoad() {
@@ -81,5 +85,13 @@ export class AbmChoferesPage {
       this.spinner = undefined;
     }
   }
-  
+  goLinkApidoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocApiDoc/");
+  }
+  goLinkCompoDoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocCompoDoc/");
+  }
+  goMostrar(){
+    this.navCtrl.push(MostrarImgPage,{img:"TutoABMChoferes",gif:false});
+  }
 }

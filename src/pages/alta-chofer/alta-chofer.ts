@@ -13,6 +13,8 @@ import { VerImagenPage } from '../ver-imagen/ver-imagen';
 import { ServicioAudioProvider } from "../../providers/servicio-audio/servicio-audio";
 import { vehiculo } from '../../clases/vehiculo';
 import { ServicioVehiculoProvider } from '../../providers/servicio-vehiculo/servicio-vehiculo';
+import { InAppBrowser } from '../../../node_modules/@ionic-native/in-app-browser';
+import { MostrarImgPage } from '../mostrar-img/mostrar-img';
 /**
  * AltaChoferPage
  *
@@ -46,7 +48,8 @@ export class AltaChoferPage {
     public translateService: TranslateService,
     public alertCtrl: AlertController,
     public audioService:ServicioAudioProvider,
-    private servicioVehiculos: ServicioVehiculoProvider
+    private servicioVehiculos: ServicioVehiculoProvider,
+    public inab:InAppBrowser
   ) {
       let chofer = navParams.get('chofer');
       
@@ -320,5 +323,19 @@ export class AltaChoferPage {
     });
     alerta.present();
   }
-  
+  goLinkApidoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocApiDoc/");
+  }
+  goLinkCompoDoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocCompoDoc/");
+  }
+  goMostrar(){
+    if (this.modoAlta) {
+      this.navCtrl.push(MostrarImgPage,{img:"TutoAltaChofer",gif:true});
+    }
+    else{
+      this.navCtrl.push(MostrarImgPage,{img:"TutoModificarChofer",gif:true});
+    }
+    
+  }
 }

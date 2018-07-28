@@ -23,6 +23,8 @@ import { VisorViajesPage } from '../visor-viajes/visor-viajes';
 import { AbmVehiculosPage } from '../abm-vehiculos/abm-vehiculos';
 import { LoginPage } from '../login/login';
 import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
+import { InAppBrowser } from '../../../node_modules/@ionic-native/in-app-browser';
+import { MostrarImgPage } from '../mostrar-img/mostrar-img';
 
 
 @IonicPage()
@@ -36,7 +38,8 @@ export class AdminControlPanelPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     public modalCtrl: ModalController,
-    public servicioAudio:ServicioAudioProvider
+    public servicioAudio:ServicioAudioProvider,
+    public inab:InAppBrowser
   ) {
 
   }
@@ -78,5 +81,14 @@ export class AdminControlPanelPage {
     this.servicioAudio.reproducirClick();
     sessionStorage.clear();
     this.navCtrl.setRoot(LoginPage);
+  }
+  goLinkApidoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocApiDoc/");
+  }
+  goLinkCompoDoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocCompoDoc/");
+  }
+  goMostrar(){
+    this.navCtrl.push(MostrarImgPage,{img:"TutoPanelAdmin",gif:false});
   }
 }

@@ -23,6 +23,8 @@ import { VisorViajesChoferPage } from '../../pages/visor-viajes-chofer/visor-via
 import { Usuario } from '../../clases/usuario';
 import { LoginPage } from '../login/login';
 import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
+import { MostrarImgPage } from '../mostrar-img/mostrar-img';
+import { InAppBrowser } from '../../../node_modules/@ionic-native/in-app-browser';
 
 @IonicPage()
 @Component({
@@ -38,7 +40,8 @@ export class ChoferPanelPage {
     public modalCtrl: ModalController,
     private servicioViajes: ServicioViajesProvider,
     private servUsuarios: ServicioUsuariosProvider,
-    public audioService:ServicioAudioProvider
+    public audioService:ServicioAudioProvider,
+    public inab:InAppBrowser
   ) {
     
     this.chofer = JSON.parse(sessionStorage.getItem('usuario'));
@@ -88,5 +91,18 @@ export class ChoferPanelPage {
     sessionStorage.clear();
     this.navCtrl.setRoot(LoginPage);
   }
-
+  goLinkApidoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocApiDoc/");
+  }
+  goLinkCompoDoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocCompoDoc/");
+  }
+  goMostrar(){
+    if (this.chofer.estado == 0) {
+      this.navCtrl.push(MostrarImgPage,{img:"TutoPanelChoferStandby",gif:false});      
+    }
+    else{
+      this.navCtrl.push(MostrarImgPage,{img:"TutoPanelChoferTrabaja",gif:false});      
+    }
+  }
 }

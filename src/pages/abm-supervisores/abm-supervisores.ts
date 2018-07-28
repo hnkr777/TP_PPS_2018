@@ -7,6 +7,8 @@ import { ServicioAudioProvider } from "../../providers/servicio-audio/servicio-a
 import { Usuario } from '../../clases/usuario';
 import { AltaSupervisorPage } from '../alta-supervisor/alta-supervisor';
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
+import { InAppBrowser } from '../../../node_modules/@ionic-native/in-app-browser';
+import { MostrarImgPage } from '../mostrar-img/mostrar-img';
 /**
  * página de ABM de supervisores, solo lo tiene que poder usar el administrador o superusuario, y los supervisores...
  * 
@@ -28,7 +30,8 @@ export class AbmSupervisoresPage {
     public navParams: NavParams, 
     private servicioUsuarios: ServicioUsuariosProvider,
     public modalCtrl: ModalController,
-    public audioService:ServicioAudioProvider) {
+    public audioService:ServicioAudioProvider,
+    public inab:InAppBrowser) {
   }
 
   ionViewDidLoad() {
@@ -80,5 +83,13 @@ export class AbmSupervisoresPage {
       this.spinner = undefined;
     }
   }
-  
+  goLinkApidoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocApiDoc/");
+  }
+  goLinkCompoDoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocCompoDoc/");
+  }
+  goMostrar(){
+    this.navCtrl.push(MostrarImgPage,{img:"TutoABMSupervisores",gif:false});
+  }
 }

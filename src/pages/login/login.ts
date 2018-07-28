@@ -26,6 +26,8 @@ import { EncuestaChoferPage } from '../encuesta-chofer/encuesta-chofer';
 import { SuperControlPanelPage } from '../supervisor-control-panel/supervisor-control-panel';
 import { EncuestaClientePage } from '../encuesta-cliente/encuesta-cliente';
 import { QrVehiculoClientePage } from '../qr-vehiculo-cliente/qr-vehiculo-cliente';
+import { InAppBrowser } from '../../../node_modules/@ionic-native/in-app-browser';
+import { MostrarImgPage } from '../mostrar-img/mostrar-img';
 
 @IonicPage()
 @Component({
@@ -55,7 +57,8 @@ export class LoginPage {
     private servicioUsuarios: ServicioUsuariosProvider,
     private objFirebase: AngularFirestore,
     private mails: EnviarMailProvider,
-    public audioService:ServicioAudioProvider) {
+    public audioService:ServicioAudioProvider,
+    public inab:InAppBrowser) {
 
     this.translateService.get('LOGIN_ERROR').subscribe((value) => { // así se traen string de traduccion...
       this.loginErrorString = value;
@@ -213,5 +216,14 @@ export class LoginPage {
     this.servicioUsuarios.traerUsuarioPorEmail("mschumi@gmail.com").subscribe(x=>{
       this.navCtrl.push(QrVehiculoClientePage,{chofer:x[0]}); // PROBAR PC   
     })
+  }
+  goLinkApidoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocApiDoc/");
+  }
+  goLinkCompoDoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocCompoDoc/");
+  }
+  goMostrar(){
+    this.navCtrl.push(MostrarImgPage,{img:"TutoLogin",gif:true});
   }
 }

@@ -21,6 +21,8 @@ import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider
 import { EditarPerfilClientePage } from '../../pages/editar-perfil-cliente/editar-perfil-cliente';
 import { LoginPage } from '../login/login';
 import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
+import { MostrarImgPage } from '../mostrar-img/mostrar-img';
+import { InAppBrowser } from '../../../node_modules/@ionic-native/in-app-browser';
 /**
  * Generated class for the InicioClientePage page.
  *
@@ -62,7 +64,8 @@ constructor(public navCtrl: NavController,
   private servicioCliente: AbmClienteProvider,
   private qrScanner: QRScanner,
   private servicioViajes: ServicioViajesProvider,
-  public audioService:ServicioAudioProvider)
+  public audioService:ServicioAudioProvider,
+public inab:InAppBrowser)
  {
   this.listaViajes=[];
   }
@@ -253,5 +256,13 @@ constructor(public navCtrl: NavController,
     sessionStorage.clear();
     this.navCtrl.setRoot(LoginPage);
   }
-
+  goLinkApidoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocApiDoc/");
+  }
+  goLinkCompoDoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocCompoDoc/");
+  }
+  goMostrar(){
+    this.navCtrl.push(MostrarImgPage,{img:"TutoPanelCliente",gif:false});      
+  }
 }

@@ -5,6 +5,8 @@ import { ServicioAudioProvider } from "../../providers/servicio-audio/servicio-a
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { vehiculo } from "../../clases/vehiculo";
 import { Observable } from 'rxjs/Observable';
+import { InAppBrowser } from '../../../node_modules/@ionic-native/in-app-browser';
+import { MostrarImgPage } from '../mostrar-img/mostrar-img';
 
 /**
  * Generated class for the AbmVehiculosPage page.
@@ -40,7 +42,7 @@ export class AbmVehiculosPage {
   coleccionTipadaFirebase:AngularFirestoreCollection<vehiculo>;
   ListadoDeVehiculosObservable:Observable<vehiculo[]>;
   ListaDeVehiculos:Array<vehiculo>;
-  constructor(public navCtrl: NavController,public audioService:ServicioAudioProvider, public navParams: NavParams,public servicioFotos: ServicioFotosProvider,public alertCtrl: AlertController,private objFirebase: AngularFirestore) {
+  constructor(public navCtrl: NavController,public inab:InAppBrowser,public audioService:ServicioAudioProvider, public navParams: NavParams,public servicioFotos: ServicioFotosProvider,public alertCtrl: AlertController,private objFirebase: AngularFirestore) {
     this.abmMostrar = this.navParams.get('data');
     if (this.abmMostrar == "Alta") {
       this.vehiculo.fotos = new Array();
@@ -359,5 +361,29 @@ export class AbmVehiculosPage {
     });
     alerta.present();
     return;
+  }
+  goLinkApidoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocApiDoc/");
+  }
+  goLinkCompoDoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocCompoDoc/");
+  }
+  goMostrar(opt:string){
+    switch (opt) {
+      case "Alta":
+        this.navCtrl.push(MostrarImgPage,{img:"TutoAltaVehiculos",gif:true});
+        break;
+      case "Baja":
+        this.navCtrl.push(MostrarImgPage,{img:"TutoBajaVehiculo",gif:true});
+        break;
+      case "Mod":
+        this.navCtrl.push(MostrarImgPage,{img:"TutoModificarVehiculo",gif:true});
+        break;
+      case "Lista":
+        this.navCtrl.push(MostrarImgPage,{img:"TutoABMVehiculos",gif:false});
+        break;
+      default:
+        break;
+    }
   }
 }

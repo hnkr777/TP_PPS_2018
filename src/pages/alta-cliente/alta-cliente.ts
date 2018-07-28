@@ -9,6 +9,8 @@ import * as firebase from 'firebase';
 import { LoginPage } from "../../pages/login/login";
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
+import { MostrarImgPage } from '../mostrar-img/mostrar-img';
+import { InAppBrowser } from '../../../node_modules/@ionic-native/in-app-browser';
 
 /**
  * Generated class for the AltaClientePage page.
@@ -30,7 +32,7 @@ export class AltaClientePage {
   ListadoUsuariosObservable: Observable<any[]>;
   fechaAlta;
 
-  constructor(public audioService:ServicioAudioProvider,public navCtrl: NavController, public navParams: NavParams,private builder: FormBuilder,private camera: Camera,public alertCtrl: AlertController,private objFirebase: AngularFirestore,public modalCtrl: ModalController) {
+  constructor(public inab:InAppBrowser, public audioService:ServicioAudioProvider,public navCtrl: NavController, public navParams: NavParams,private builder: FormBuilder,private camera: Camera,public alertCtrl: AlertController,private objFirebase: AngularFirestore,public modalCtrl: ModalController) {
     this.unCliente=new Object();
     this.unCliente.foto=null;
     this.fechaAlta = new Date(Date.now());
@@ -285,7 +287,15 @@ this.unCliente.foto=null;
     // this.Modal('Error', 'Detalle: '+error);
    });
 }
-
+goLinkApidoc(){
+  this.inab.create("http://juanmurciautn.hol.es/DocApiDoc/");
+}
+goLinkCompoDoc(){
+  this.inab.create("http://juanmurciautn.hol.es/DocCompoDoc/");
+}
+goMostrar(){
+    this.navCtrl.push(MostrarImgPage,{img:"TutoRegistro",gif:true});
+}
 private spin(status: boolean) {
  if(this.spinner === undefined && status === true) {
    this.spinner = this.modalCtrl.create(SpinnerPage);

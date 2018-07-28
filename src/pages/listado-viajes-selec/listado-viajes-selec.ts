@@ -7,6 +7,8 @@ import {Usuario} from '../../clases/usuario';
 import { Observable } from 'rxjs/Observable';
 import {VerViajePage} from '../ver-viaje/ver-viaje';
 import {ServicioAudioProvider} from '../../providers/servicio-audio/servicio-audio';
+import { MostrarImgPage } from '../mostrar-img/mostrar-img';
+import { InAppBrowser } from '../../../node_modules/@ionic-native/in-app-browser';
 
 /**
  * Generated class for the ListadoViajesSelecPage page.
@@ -25,7 +27,7 @@ export class ListadoViajesSelecPage {
   listadoViajesFiltrado:Array<Viaje>;
   correoChofer:string;
   chofer:Usuario;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,public servicioViajes:ServicioViajesProvider,public audioService:ServicioAudioProvider,public servicioUsuarios:ServicioUsuariosProvider,public modalCtrl:ModalController) {
+  constructor(public inab:InAppBrowser,public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,public servicioViajes:ServicioViajesProvider,public audioService:ServicioAudioProvider,public servicioUsuarios:ServicioUsuariosProvider,public modalCtrl:ModalController) {
     this.chofer = this.navParams.get('data');
     this.correoChofer = this.chofer.correo;
     //this.listadoViajes = servicioViajes.traerViajes();
@@ -87,5 +89,14 @@ export class ListadoViajesSelecPage {
     });
     alerta.present();
     return;
+  }
+  goLinkApidoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocApiDoc/");
+  }
+  goLinkCompoDoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocCompoDoc/");
+  }
+  goMostrar(){
+    this.navCtrl.push(MostrarImgPage,{img:"TutoAsignarViaje",gif:false});      
   }
 }

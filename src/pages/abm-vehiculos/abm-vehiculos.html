@@ -35,6 +35,20 @@
     
     
   <form (ngSubmit)="alta()" #registerForm="ngForm" *ngIf = "abmMostrar == 'Alta'">
+      <ion-fab left bottom #fab4>
+          <button ion-fab color="dark" mini type="button"><ion-icon name="help"></ion-icon></button>
+          <ion-fab-list side="top">
+            <ion-fab #fab4>
+              <button ion-fab mini color="dark" type="button"><ion-icon name="document"></ion-icon></button>
+              <ion-fab-list side="right">
+                  <button ion-fab (click)="goLinkApidoc()"><ion-icon name="clipboard"></ion-icon></button>
+                  <button ion-fab (click)="goLinkCompoDoc()"><ion-icon name="folder-open"></ion-icon></button>
+              </ion-fab-list>
+            </ion-fab>
+            <button ion-fab type="button"><ion-icon name="clear"></ion-icon></button>
+            <button ion-fab (click)="goMostrar('Alta')" type="button"><ion-icon name="images"></ion-icon></button>
+          </ion-fab-list>
+        </ion-fab>
     <ion-row>
       <ion-col>
         <ion-list inset>
@@ -238,9 +252,36 @@
             
           </ion-col>
         </ion-row>
-        
+        <ion-fab left bottom #fab4>
+            <button ion-fab color="dark" mini type="button"><ion-icon name="help"></ion-icon></button>
+            <ion-fab-list side="top">
+              <ion-fab #fab4>
+                <button ion-fab mini color="dark" type="button"><ion-icon name="document"></ion-icon></button>
+                <ion-fab-list side="right">
+                    <button ion-fab (click)="goLinkApidoc()" type="button"><ion-icon name="clipboard"></ion-icon></button>
+                    <button ion-fab (click)="goLinkCompoDoc()" type="button"><ion-icon name="folder-open"></ion-icon></button>
+                </ion-fab-list>
+              </ion-fab>
+              <button ion-fab type="button"><ion-icon name="clear"></ion-icon></button>
+              <button ion-fab (click)="goMostrar('Mod')" type="button"><ion-icon name="images"></ion-icon></button>
+            </ion-fab-list>
+          </ion-fab>
     </form>
     <form (ngSubmit)="baja()" #registerForm="ngForm" *ngIf = "abmMostrar == 'Baja'">
+        <ion-fab left bottom #fab4>
+            <button ion-fab color="dark" mini type="button"><ion-icon name="help"></ion-icon></button>
+            <ion-fab-list side="top">
+              <ion-fab #fab4>
+                <button ion-fab mini color="dark" type="button"><ion-icon name="document"></ion-icon></button>
+                <ion-fab-list side="right">
+                    <button ion-fab (click)="goLinkApidoc()" type="button"><ion-icon name="clipboard"></ion-icon></button>
+                    <button ion-fab (click)="goLinkCompoDoc()" type="button"><ion-icon name="folder-open"></ion-icon></button>
+                </ion-fab-list>
+              </ion-fab>
+              <button ion-fab type="button"><ion-icon name="clear"></ion-icon></button>
+              <button ion-fab (click)="goMostrar('Baja')" type="button"><ion-icon name="images"></ion-icon></button>
+            </ion-fab-list>
+          </ion-fab>
         <ion-row class = "bajaMod">
           <ion-col>
             <ion-list inset>
@@ -286,6 +327,20 @@
             <img src="assets/img/car.png" alt="" class="img"> -->
         </ion-card-content>
       </ion-card>
+      <ion-fab left bottom #fab4>
+        <button ion-fab color="dark" mini><ion-icon name="help"></ion-icon></button>
+        <ion-fab-list side="top">
+          <ion-fab #fab4>
+            <button ion-fab mini color="dark"><ion-icon name="document"></ion-icon></button>
+            <ion-fab-list side="right">
+                <button ion-fab (click)="goLinkApidoc()"><ion-icon name="clipboard"></ion-icon></button>
+                <button ion-fab (click)="goLinkCompoDoc()"><ion-icon name="folder-open"></ion-icon></button>
+            </ion-fab-list>
+          </ion-fab>
+          <button ion-fab><ion-icon name="clear"></ion-icon></button>
+          <button ion-fab (click)="goMostrar('Lista')"><ion-icon name="images"></ion-icon></button>
+        </ion-fab-list>
+      </ion-fab>
     </div>
 
 

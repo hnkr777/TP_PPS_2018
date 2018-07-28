@@ -10,6 +10,8 @@ import { ServicioFotosProvider } from '../../providers/servicio-fotos/servicio-f
 import { TranslateService } from '@ngx-translate/core';
 import { VerImagenPage } from '../ver-imagen/ver-imagen';
 import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
+import { InAppBrowser } from '../../../node_modules/@ionic-native/in-app-browser';
+import { MostrarImgPage } from '../mostrar-img/mostrar-img';
 
 /**
  * AltaSupervisorPage
@@ -40,7 +42,8 @@ export class AltaSupervisorPage {
     public viewCtrl: ViewController,
     public translateService: TranslateService,
     public alertCtrl: AlertController,
-    public audioService:ServicioAudioProvider
+    public audioService:ServicioAudioProvider,
+    public inab:InAppBrowser
   ) {
       let supervisor = navParams.get('supervisor');
       
@@ -205,5 +208,19 @@ export class AltaSupervisorPage {
     });
     alerta.present();
   }
-  
+  goLinkApidoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocApiDoc/");
+  }
+  goLinkCompoDoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocCompoDoc/");
+  }
+  goMostrar(){
+    if (this.modoAlta) {
+      this.navCtrl.push(MostrarImgPage,{img:"TutoAltaSupervisor",gif:true});
+    }
+    else{
+      this.navCtrl.push(MostrarImgPage,{img:"TutoModifSupervisor",gif:true});
+    }
+    
+  }
 }

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="radix.utn.fra.ionic.pps_2018" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="radix.utn.fra.ionic.pps_2018v2" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Remiseria-Radix</name>
     <description>App práctica profesional 2018 grupo Radix.</description>
     <author email="noreply@domain.com" href="https://github.com/hnkr777/TP_PPS_2018.git">The Radix Group</author>
@@ -90,5 +90,6 @@
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
     </plugin>
     <plugin name="cordova-plugin-email-composer" />
+    <plugin name="cordova-plugin-inappbrowser" spec="^3.0.0" />
     <engine name="android" spec="7.0.0" />
 </widget>

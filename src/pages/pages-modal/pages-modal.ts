@@ -8,6 +8,8 @@ import { Encuesta } from '../../clases/encuesta';
 import { AltaChoferPage } from '../alta-chofer/alta-chofer';
 import { ServicioEncuestasProvider } from "../../providers/servicio-encuestas/servicio-encuestas";
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
+import { MostrarImgPage } from '../mostrar-img/mostrar-img';
+import { InAppBrowser } from '../../../node_modules/@ionic-native/in-app-browser';
 @IonicPage()
 @Component({
   selector: 'page-pages-modal',
@@ -27,7 +29,7 @@ export class PagesModalPage {
   resultado1;
   resultado2;
   resultado3;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl : ViewController, private servicioEncuestas: ServicioEncuestasProvider,  private modalCtrl: ModalController) {
+  constructor(public inab:InAppBrowser, public navCtrl: NavController, public navParams: NavParams, public viewCtrl : ViewController, private servicioEncuestas: ServicioEncuestasProvider,  private modalCtrl: ModalController) {
     this.cuerpo = navParams.get('data');
     this.titulo = navParams.get('titulo');
     this.filtro = "cliente";
@@ -180,5 +182,14 @@ FiltrarPorPerfilSupervisor()
       this.spinner.dismiss();
       this.spinner = undefined;
     }
+  }
+  goLinkApidoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocApiDoc/");
+  }
+  goLinkCompoDoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocCompoDoc/");
+  }
+  goMostrar(){
+    this.navCtrl.push(MostrarImgPage,{img:"TutoEstadisticas",gif:true});      
   }
 }

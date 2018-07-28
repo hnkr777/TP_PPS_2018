@@ -14,6 +14,8 @@ import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { EnviarMailProvider } from '../../providers/providers';
+import { MostrarImgPage } from '../mostrar-img/mostrar-img';
+import { InAppBrowser } from '../../../node_modules/@ionic-native/in-app-browser';
 /**
  * Generated class for the AltaClienteParaAdminPage page.
  *
@@ -47,7 +49,8 @@ correoo;
     public alertCtrl: AlertController,
     private servicioCliente: AbmClienteProvider,
     public audioService:ServicioAudioProvider,
-    public database : AngularFireDatabase
+    public database : AngularFireDatabase,
+    public inab:InAppBrowser
     
     
     //private objFirebase: AngularFirestore
@@ -460,7 +463,20 @@ this.modificarCliente();
   closeModal() {
     this.viewCtrl.dismiss();
   }
-
+  goLinkApidoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocApiDoc/");
+  }
+  goLinkCompoDoc(){
+    this.inab.create("http://juanmurciautn.hol.es/DocCompoDoc/");
+  }
+  goMostrar(){
+    if (this.unCliente.correo != undefined) {
+      this.navCtrl.push(MostrarImgPage,{img:"TutoModifCliente",gif:true});      
+    } 
+    else{
+      this.navCtrl.push(MostrarImgPage,{img:"TutoAltaCliente",gif:true});      
+    }
+  }
   Msg(titulo: string, mensaje: string) {
     const alerta = this.alertCtrl.create({
       title: titulo,

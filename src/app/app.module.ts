@@ -72,6 +72,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { ServicioEncuestasProvider } from '../providers/servicio-encuestas/servicio-encuestas';
 import { ChartsModule } from 'ng2-charts';
+import { AppState } from './app.global';
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
 
@@ -208,7 +209,8 @@ export function provideSettings(storage: Storage) {
     ServicioVehiculoProvider,
     EnviarMailProvider,
     AngularFireDatabase,
-    ServicioEncuestasProvider
+    ServicioEncuestasProvider,
+    AppState
   ]
 })
 export class AppModule { }

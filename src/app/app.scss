@@ -25,6 +25,18 @@
     background-size: cover;*/
 //}
 
+
+
+@import '../theme/argentina.theme';
+@import '../theme/naif.theme';
+@import '../theme/professional.theme';
+
+
+.titulo {
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    color: white;
+}
+
 .contenido {
     background-image: url('../assets/img/bg.jpg');
     background-color: red;

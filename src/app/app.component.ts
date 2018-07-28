@@ -6,22 +6,21 @@ import { Config, Nav, Platform } from 'ionic-angular';
 
 import { SplashScreen } from '../pages/pages';
 import { Settings } from '../providers/providers';
+import { SettingsPage } from '../pages/settings/settings';
+import { ServicioAudioProvider } from '../providers/servicio-audio/servicio-audio';
+import { AppState } from './app.global';
 
 @Component({
-  templateUrl: 'menu.html'
+  templateUrl: 'app.html'
 })
 export class MyApp {
   rootPage = SplashScreen;
 
   @ViewChild(Nav) nav: Nav;
 
-  pages: any[] = [
-    { title: 'Default', id: 0 },
-    { title: 'Professional', id: 1 },
-    { title: 'Argentina', id: 2 },
-    { title: 'Naif', id: 3 },
-    { title: 'Custom', component: 'TabsPage', id: 4 }
-  ]
+  pages: Array<{title: string, component: any, id: number, icon: string}>;
+
+  
 
   constructor(
     private translate: TranslateService, 
@@ -29,6 +28,8 @@ export class MyApp {
     settings: Settings, 
     private config: Config, 
     private statusBar: StatusBar, 
+    public global: AppState,
+    public audio: ServicioAudioProvider
     //private splashScreen: SplashScreen
   ) {
     platform.ready().then(() => {
@@ -37,6 +38,14 @@ export class MyApp {
       this.statusBar.styleDefault();
       //this.splashScreen.hide();
     });
+
+    this.pages = [
+      { title: 'Professional', component: SplashScreen, id: 1, icon: 'arrow-round-forward' },
+      { title: 'Argentina', component: SplashScreen, id: 2, icon: 'arrow-round-forward' },
+      { title: 'Naif', component: SplashScreen, id: 3, icon: 'arrow-round-forward' },
+      { title: 'Custom', component: SettingsPage, id: 4, icon: 'options' }
+    ];
+
     this.initTranslate();
   }
 
@@ -66,23 +75,29 @@ export class MyApp {
     });
   }
 
+  changeTheme(theme: any) {
+    console.log("Cambiando tema a "+ theme);
+    this.global.set('theme', theme);
+  }
+  
   openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
     //this.nav.setRoot(page.component);
     switch (page.id) {
       case 1:
         console.log(page);
+        this.audio.reproducirExito();
         this.setProfessional();
       break;
     
       case 2:
         console.log(page);
+        this.audio.reproducirBeep();
         this.setArgentina();
       break;
 
       case 3:
         console.log(page);
+        this.audio.reproducirGlitch();
         this.setNaif();
       break;
 
@@ -96,14 +111,22 @@ export class MyApp {
   }
 
   setArgentina() {
-
+    this.guardarTema('a');
+    this.changeTheme('theme-argentina');
   }
 
   setNaif() {
-    
+    this.guardarTema('n');
+    this.changeTheme('theme-naif');
   }
 
   setProfessional() {
-    
+    this.guardarTema('p');
+    this.changeTheme('theme-professional');
   }
+
+  guardarTema(tema: string) {
+    localStorage.setItem('tema', tema);
+  }
+
 }

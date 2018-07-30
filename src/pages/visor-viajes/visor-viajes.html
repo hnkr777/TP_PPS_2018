@@ -1,14 +1,14 @@
 <ion-header>
 
-  <ion-navbar color="dark">
+  <ion-navbar theme-header>
     <ion-title>{{ 'VISOR_VIAJES_PANEL_TITLE' | translate }}</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="filtrarViajes()">
       <ion-icon name="refresh"></ion-icon>
       </button>
     </ion-buttons>
-    
   </ion-navbar>
+
   <ion-list block>
       <ion-item class="filtro">
         <ion-label color="primary">Filtro:</ion-label>
@@ -38,9 +38,9 @@
       <ion-avatar item-start>
           <button (click)="verImg(item.correoCliente)" ion-button color="dark"><ion-icon name="image"></ion-icon></button>
       </ion-avatar>
-      <h2 style="color: #1420c9;">Cliente: {{ item.nombreCliente }}</h2>
-      <h2 style="color: #1420c9;">Duración: {{item.duracionViajeText}}</h2>
-      <p style="color: #1420c9;">Distancia: {{ item.distanciaText }}</p>
+      <h2 class="titulo">Cliente: {{ item.nombreCliente }}</h2>
+      <h2 class="titulo">Duración: {{item.duracionViajeText}}</h2>
+      <p class="titulo">Distancia: {{ item.distanciaText }}</p>
     </ion-item>
 
     <!-- <img class="imagen" [src]="item.foto"> -->
@@ -70,14 +70,14 @@
       </p>
       <p *ngIf = "item.estado == 0">
         <b>
-          <button ion-button icon-only (click)="cancelarViaje(item)" class="submit-btn">
+          <button theme-botons ion-button icon-only (click)="cancelarViaje(item)" class="submit-btn">
           <ion-icon name="trash">Eliminar</ion-icon>
           </button>
         </b>
       </p>
       <p *ngIf = "item.estado == 0 && item.correoChofer != ''">
         <b>
-          <button ion-button icon-only (click)="ponerViajeEnPendiente(item)" class="submit-btn">
+          <button theme-botons ion-button icon-only (click)="ponerViajeEnPendiente(item)" class="submit-btn">
           <ion-icon name="md-close">Cancelar asignación</ion-icon>
           </button>
         </b>

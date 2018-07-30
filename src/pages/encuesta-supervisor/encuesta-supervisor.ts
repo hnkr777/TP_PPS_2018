@@ -19,7 +19,7 @@ import { LoginPage } from "../../pages/login/login";
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { Encuesta } from '../../clases/encuesta';
 import { SuperControlPanelPage } from '../supervisor-control-panel/supervisor-control-panel';
-import { SupervisorPanelPage } from '../supervisor-panel/supervisor-panel';
+//import { SupervisorPanelPage } from '../supervisor-panel/supervisor-panel';
 
 
 /**

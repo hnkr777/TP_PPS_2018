@@ -23,14 +23,14 @@
       </ion-content>
     
       <ion-footer>
-        <ion-navbar color="dark">
+        <ion-navbar theme-header>
           <ion-buttons>
             <button large ion-button color="danger" (click)="closeModal()">Atrás</button>
           </ion-buttons>
           <ion-buttons end>
-            <button  large ion-button color="secondary" *ngIf="mostrarBotonRealizarViaje==true" (click)="realizarViaje()">Realizar viaje!</button>
-            <button large ion-button color="danger" (click)="cancelarViaje()" *ngIf="mostrarBotonFinalizarViaje==true"  >Cancelar viaje!</button>
-            <button large ion-button color="secondary" (click)="finalizarViaje()" *ngIf="mostrarBotonFinalizarViaje==true"  >Finalizar viaje!</button>
+            <button theme-botons large ion-button color="secondary" *ngIf="mostrarBotonRealizarViaje==true" (click)="realizarViaje()">Realizar viaje!</button>
+            <button theme-botons large ion-button color="danger" (click)="cancelarViaje()" *ngIf="mostrarBotonFinalizarViaje==true"  >Cancelar viaje!</button>
+            <button theme-botons large ion-button color="secondary" (click)="finalizarViaje()" *ngIf="mostrarBotonFinalizarViaje==true"  >Finalizar viaje!</button>
           </ion-buttons>
 
         </ion-navbar>

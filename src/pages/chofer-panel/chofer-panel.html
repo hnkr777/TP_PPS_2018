@@ -1,6 +1,6 @@
 <ion-header>
 
-  <ion-navbar color="dark">
+  <ion-navbar theme-header>
     <ion-title>{{ 'CHOFER_PANEL_TITLE' | translate }}</ion-title>
     <ion-buttons end>
         <button ion-button (click)="logOut()">
@@ -18,23 +18,23 @@
     <ion-icon name="people"></ion-icon>{{ 'ABM_ADMINS_BUTTON' | translate }}</button>
   <br> -->
   <img src="assets/img/icon.png" alt="" class="img">
-  <button *ngIf="chofer.estado==0" class="submit-btn" (click)="irEmpezarATrabajar()" ion-button round icon-left color="secondary"
+  <button theme-botons *ngIf="chofer.estado==0" class="submit-btn" (click)="irEmpezarATrabajar()" ion-button round icon-left color="secondary"
     block large>
     <ion-icon name="car"></ion-icon>{{ 'CHOFER_INGRESO_BUTTON' | translate }}</button>
 
   <br>
 
-  <button *ngIf="chofer.respondioEncuesta==false" class="submit-btn" (click)="irEncuestaChofer()" ion-button round icon-left color="primary" block large>
+  <button theme-botons *ngIf="chofer.respondioEncuesta==false" class="submit-btn" (click)="irEncuestaChofer()" ion-button round icon-left color="primary" block large>
     <ion-icon name="clipboard"></ion-icon>{{ 'CHOFER_ENCUESTA_BUTTON' | translate }}</button>
 
   <br>
 
-  <button *ngIf="chofer.estado!=0" class="submit-btn" (click)="irVisorViajesParaChofer()" ion-button round icon-left color="secondary" block large>
+  <button theme-botons *ngIf="chofer.estado!=0" class="submit-btn" (click)="irVisorViajesParaChofer()" ion-button round icon-left color="secondary" block large>
     <ion-icon name="car"></ion-icon>{{ 'CHOFER_VIAJES_BUTTON' | translate }}</button>
 
   <br>
 
-  <button *ngIf="chofer.estado==1" class="submit-btn" (click)="irCerrarSesion()" ion-button round icon-left color="danger" block large>
+  <button theme-botons *ngIf="chofer.estado==1" class="submit-btn" (click)="irCerrarSesion()" ion-button round icon-left color="danger" block large>
     <ion-icon name="log-out"></ion-icon>{{ 'CHOFER_LOGOUT_BUTTON' | translate }}</button>
   
 </ion-content>

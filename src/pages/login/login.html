@@ -1,7 +1,7 @@
 <!-- <div class="contenidoLogin"> -->
 
   <ion-header class="lgElem">
-    <ion-navbar color="dark">
+    <ion-navbar theme-header>
       <ion-title>{{ 'LOGIN_TITLE' | translate }}</ion-title>
 <!-- 
       <img src="assets/img/audioOn.png" alt="" class="imgIcon" *ngIf = "muteSound">
@@ -32,17 +32,12 @@
         </ion-item>
 
         <div padding>
-          <button ion-button icon-left block large (click)="doLogin()" class ="submit-btn">
+          <button theme-botons ion-button icon-left block large (click)="doLogin()" class ="submit-btn">
             <ion-icon name="log-in"></ion-icon>{{ 'LOGIN_BUTTON' | translate }}</button>
           <br>
-          <button ion-button round icon-left color="botonRegistrar" block large (click)="Redireccionar()" class ="submit-btn">
+          <button theme-botons ion-button round icon-left color="botonRegistrar" block large (click)="Redireccionar()" class ="submit-btn">
             <ion-icon name="person-add"></ion-icon>Registrarse</button>
           
-           <!--<button ion-button round block color="primary" (click)="goListadoChoferes()">TestListadoChoferesDisp</button>
-          <button ion-button round block color="primary" (click)="goVehiculo()">TestABMVehiculos</button>
-          <button ion-button round block color="primary" (click)="goEncuesta()">TestEncuesta</button> -->
-          <!-- <button ion-button round block color="primary" (click)="testAudio()">TestAudio</button>
-          <button ion-button round block color="primary" (click)="goTest()">TestQrChofer</button> -->
         </div>
 
       </ion-list>
@@ -52,7 +47,7 @@
   </ion-content>
   <ion-footer>
     <ion-list padding>
-      <button large (click)="mostrarUsuarios()" ion-button color="primary" block class ="submit-btn">
+      <button theme-botons large (click)="mostrarUsuarios()" ion-button color="primary" block class ="submit-btn">
         <ion-icon name="people"></ion-icon>Iniciar sesión como...</button>
     </ion-list>
   </ion-footer>

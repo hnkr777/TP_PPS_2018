@@ -1,12 +1,12 @@
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar theme-header>
     <ion-title>Custom</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-<ion-content>
+<ion-content >
 
   <form [formGroup]="form" *ngIf="settingsReady">
     <ion-list *ngIf="page == 'main'">
@@ -17,11 +17,11 @@
 
       <ion-item>
         <ion-label>Opción 2</ion-label>
-        <ion-select formControlName="option2">
-          <ion-option value="A" checked="true">A</ion-option>
-          <ion-option value="B">B</ion-option>
-          <ion-option value="C">C</ion-option>
-          <ion-option value="D">D</ion-option>
+        <ion-select formControlName="option2" [(ngModel)]="myBgColor" (ionChange)="test($event)">
+          <ion-option value="primary" checked="true">A</ion-option>
+          <ion-option value="secondary">B</ion-option>
+          <ion-option value="dark">C</ion-option>
+          <ion-option value="light">D</ion-option>
         </ion-select>
       </ion-item>
 
@@ -34,7 +34,7 @@
         </ion-select>
       </ion-item>
 
-      <button ion-item [navPush]="subSettings" [navParams]="profileSettings">
+      <button theme-botons ion-item [navPush]="subSettings" [navParams]="profileSettings" [style.background-color]="myBgColor">
         Más opciones
       </button>
     </ion-list>

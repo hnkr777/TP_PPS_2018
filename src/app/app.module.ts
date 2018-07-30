@@ -56,7 +56,7 @@ import { VisorViajesChoferPage } from '../pages/visor-viajes-chofer/visor-viajes
 import { SuperControlPanelPage } from '../pages/supervisor-control-panel/supervisor-control-panel';
 import { EncuestaChoferPage } from '../pages/encuesta-chofer/encuesta-chofer';
 import { EncuestaSupervisorPage } from '../pages/encuesta-supervisor/encuesta-supervisor';
-import { SupervisorPanelPage } from '../pages/supervisor-panel/supervisor-panel';
+//import { SupervisorPanelPage } from '../pages/supervisor-panel/supervisor-panel';
 import { ListadoChoferesDisponiblesPage } from '../pages/listado-choferes-disponibles/listado-choferes-disponibles';
 import { ListadoViajesSelecPage } from '../pages/listado-viajes-selec/listado-viajes-selec';
 import { DetalleViajeChoferPage } from '../pages/detalle-viaje-chofer/detalle-viaje-chofer';
@@ -74,6 +74,10 @@ import { ServicioEncuestasProvider } from '../providers/servicio-encuestas/servi
 import { ChartsModule } from 'ng2-charts';
 import { AppState } from './app.global';
 import { SettingsPage } from '../pages/settings/settings';
+import { DirectivesModule } from '../directives/directives.module';
+import { ThemeProvider } from '../providers/theme/theme';
+import { CustomProvider } from '../providers/custom/custom';
+import { CustomPage } from '../pages/custom/custom';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -122,7 +126,7 @@ export function provideSettings(storage: Storage) {
     VisorViajesPage,
     EncuestaChoferPage,
     ListadoChoferesDisponiblesPage,
-    SupervisorPanelPage,
+    //SupervisorPanelPage,
     ListadoViajesSelecPage,
     VisorViajesChoferPage,
     SuperControlPanelPage,
@@ -133,7 +137,8 @@ export function provideSettings(storage: Storage) {
     EncuestaSupervisorPage,
     DetalleViajeClientePage,
     EditarPerfilClientePage,
-    SettingsPage
+    SettingsPage,
+    CustomPage
   ],
   imports: [
     BrowserModule,
@@ -142,6 +147,7 @@ export function provideSettings(storage: Storage) {
     AngularFirestoreModule,
     AngularFireDatabaseModule,
     FormsModule,
+    DirectivesModule,
     ReactiveFormsModule,
     ChartsModule,
     TranslateModule.forRoot({
@@ -181,7 +187,7 @@ export function provideSettings(storage: Storage) {
     SuperControlPanelPage,
     EncuestaChoferPage,
     ListadoChoferesDisponiblesPage,
-    SupervisorPanelPage,
+    //SupervisorPanelPage,
     ListadoViajesSelecPage,
     VisorViajesChoferPage,
     DetalleViajeChoferPage,
@@ -190,7 +196,8 @@ export function provideSettings(storage: Storage) {
     EncuestaClientePage,
     EncuestaSupervisorPage,
     DetalleViajeClientePage,
-    EditarPerfilClientePage
+    EditarPerfilClientePage,
+    CustomPage
   ],
   providers: [
     Api,
@@ -214,7 +221,9 @@ export function provideSettings(storage: Storage) {
     EnviarMailProvider,
     AngularFireDatabase,
     ServicioEncuestasProvider,
-    AppState
+    AppState,
+    ThemeProvider,
+    CustomProvider
   ]
 })
 export class AppModule { }

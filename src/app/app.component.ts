@@ -9,6 +9,7 @@ import { Settings } from '../providers/providers';
 import { SettingsPage } from '../pages/settings/settings';
 import { ServicioAudioProvider } from '../providers/servicio-audio/servicio-audio';
 import { AppState } from './app.global';
+import { CustomPage } from '../pages/custom/custom';
 
 @Component({
   templateUrl: 'app.html'
@@ -20,7 +21,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any, id: number, icon: string}>;
 
-  
+  selectedTheme: any;
 
   constructor(
     private translate: TranslateService, 
@@ -47,6 +48,10 @@ export class MyApp {
     ];
 
     this.initTranslate();
+    let tema: string = localStorage.getItem('tema');
+    if( tema !== undefined ) {
+      this.changeTheme(tema);
+    }
   }
 
   initTranslate() {
@@ -102,7 +107,9 @@ export class MyApp {
       break;
 
       case 4:
-        this.nav.push(SettingsPage);
+        this.audio.reproducirClick();
+        this.setCustom();
+        this.nav.push(CustomPage);
       break;
 
       default:
@@ -111,18 +118,27 @@ export class MyApp {
   }
 
   setArgentina() {
-    this.guardarTema('a');
+    this.guardarTema('theme-argentina');
+    localStorage.setItem('theme', 'argentina');
     this.changeTheme('theme-argentina');
   }
 
   setNaif() {
-    this.guardarTema('n');
+    this.guardarTema('theme-naif');
+    localStorage.setItem('theme', 'naif');
     this.changeTheme('theme-naif');
   }
 
   setProfessional() {
-    this.guardarTema('p');
+    this.guardarTema('theme-professional');
+    localStorage.setItem('theme', 'professional');
     this.changeTheme('theme-professional');
+  }
+
+  setCustom() {
+    this.guardarTema('theme-custom');
+    localStorage.setItem('theme', 'custom');
+    this.changeTheme('theme-custom');
   }
 
   guardarTema(tema: string) {

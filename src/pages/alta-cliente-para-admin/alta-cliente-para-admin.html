@@ -3,7 +3,7 @@
     
       <ion-header>
     
-        <ion-navbar color="dark">
+        <ion-navbar theme-header>
           <ion-title>{{ (modoAlta == true? 'Alta cliente' : 'Modificar cliente') | translate }}</ion-title>
         </ion-navbar>
     
@@ -111,7 +111,7 @@
         </ion-content>
     
       <ion-footer>
-        <ion-navbar color="dark">
+        <ion-navbar theme-header>
           <ion-buttons>
             <button large ion-button color="danger" (click)="closeModal()">Cancelar</button>
           </ion-buttons>

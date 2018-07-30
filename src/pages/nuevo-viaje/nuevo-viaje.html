@@ -1,6 +1,6 @@
-<ion-header>
+<ion-header theme-header>
 
-  <ion-navbar color="dark">
+  <ion-navbar theme-header>
     <ion-title>{{ 'NUEVO_VIAJE_TITLE' | translate }}</ion-title>
     <ion-buttons end>
       <!-- <button ion-button icon-only (click)="infoViaje()">
@@ -14,9 +14,8 @@
 
 </ion-header>
 
-
 <ion-content padding (click)="hidePops()">
-  <div (click)="hidePops()" class="contenido-viajes">
+  <div theme-bg (click)="hidePops()" class="contenido-viajes">
     <ion-row class="rowInput">
       <ion-col>
 
@@ -34,7 +33,7 @@
             (ionInput)="oriInput($event)" 
             (ionCancel)="oriCancel($event)">
           </ion-searchbar>
-          <button ion-button clear color="light" (click)="tomarDireccionGPS()" class="submit-btn">
+          <button theme-botons ion-button clear color="light" (click)="tomarDireccionGPS()" class="submit-btn">
             <ion-icon name="pin"></ion-icon>
           </button>
         </ion-chip>
@@ -60,7 +59,7 @@
               (ionInput)="desInput($event)" 
               (ionCancel)="desCancel($event)">
             </ion-searchbar>
-            <button ion-button clear color="light" (click)="tomarDireccionGPS()" class="submit-btn">
+            <button theme-botons ion-button clear color="light" (click)="tomarDireccionGPS()" class="submit-btn">
               <ion-icon name="pin"></ion-icon>
             </button>
           </ion-chip>
@@ -83,7 +82,7 @@
     </div>
 
     <ion-fab *ngIf="verBoton" large id="aceptar">
-      <button large class="titulo" color="secondary" (click)="guardarViaje()" ion-fab>Viajar</button>
+      <button theme-botons large class="titulo" (click)="guardarViaje()" ion-fab>Viajar</button>
     </ion-fab>
      
 

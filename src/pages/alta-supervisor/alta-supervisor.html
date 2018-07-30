@@ -2,7 +2,7 @@
 
   <ion-header>
 
-    <ion-navbar color="dark">
+    <ion-navbar theme-header>
       <ion-title>{{ (modoAlta == true? 'NEW_SUPER_TITLE' : 'MODIF_SUPER_TITLE') | translate }}</ion-title>
     </ion-navbar>
 
@@ -99,7 +99,7 @@
   </ion-content>
 
   <ion-footer>
-    <ion-navbar color="dark">
+    <ion-navbar theme-header>
       <ion-buttons>
         <button large ion-button color="danger" (click)="closeModal()">Cancelar</button>
       </ion-buttons>

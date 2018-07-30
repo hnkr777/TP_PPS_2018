@@ -1,0 +1,86 @@
+<!--
+  Generated template for the CustomPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar theme-header>
+    <ion-title>custom</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item>
+    <ion-label floating>Color primario</ion-label>
+    <ion-input [(ngModel)]="custom.color" type="color"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Color de fondo</ion-label>
+    <ion-input [(ngModel)]="custom.backgroundColor" type="color"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Color texto botones</ion-label>
+    <ion-input  [(ngModel)]="custom.textColor" type="color"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Fondo Botones</ion-label>
+    <ion-input  [(ngModel)]="custom.bgBotton" type="color"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Botones</ion-label>
+    <ion-select [(ngModel)]="custom.borderRadius">
+      <ion-option value="50%">Ovalado</ion-option>
+      <ion-option value="10px">Redondeados</ion-option>
+      <ion-option value="0px">Cuadrados</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Texto botones</ion-label>
+    <ion-select [(ngModel)]="custom.textTransform">
+      <ion-option value="uppercase">Mayúsculas</ion-option>
+      <ion-option value="capitalize">Capital</ion-option>
+      <ion-option value="lowercase">Minúsculas</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label floating> Ancho de texto</ion-label>
+    <ion-select [(ngModel)]="custom.fontWeight">
+      <ion-option value="bold">Negrita</ion-option>
+      <ion-option value="500">Medio negrita</ion-option>
+      <ion-option value="none">Normal</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Fuentes</ion-label>
+    <ion-select [(ngModel)]="custom.fontCss">
+      <ion-option value="theme-Wendy-One">Wendy one</ion-option>
+      <ion-option value="fuente-shrikhand">Shrikhand</ion-option>
+      <ion-option value="fuente-Montserrat">Montserrat</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Sonidos</ion-label>
+    <ion-select (ionChange)="testSound()" [(ngModel)]="custom.sound">
+      <ion-option value="0">Sonido 1</ion-option>
+      <ion-option value="1">Sonido 2</ion-option>
+      <ion-option value="2">Sonido 3</ion-option>
+      <ion-option value="3">Sonido 4</ion-option>
+      <ion-option value="4">Sonido 5</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-avatar item-start>
+      <img [src]="custom.foto ? custom.foto : 'http://www.tea-tron.com/antorodriguez/blog/wp-content/uploads/2016/04/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef-584x276.png'">
+    </ion-avatar>
+    <h2>
+      <button theme-botons ion-button full round outline color="secondary" (click)="subirFoto()">Subir foto</button>
+    </h2>
+  </ion-item>
+  <p>
+    <button theme-botons ion-button full round outline (click)="guardar()">Guardar</button>
+  </p>
+</ion-content>

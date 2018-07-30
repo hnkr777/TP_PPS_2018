@@ -18,7 +18,7 @@ import { Settings } from '../../providers/providers';
 export class SettingsPage {
   // Our local settings object
   options: any;
-
+  public myBgColor: string;
   settingsReady = false;
 
   form: FormGroup;
@@ -39,6 +39,10 @@ export class SettingsPage {
     public formBuilder: FormBuilder,
     public navParams: NavParams,
     public translate: TranslateService) {
+  }
+
+  test($event) {
+    console.warn($event);
   }
 
   _buildForm() {

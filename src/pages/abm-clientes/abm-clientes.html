@@ -21,7 +21,7 @@
         </ion-list>
     </ion-header>
     
-    <ion-content class="abm-clientes-content" id="clientes-content">
+    <ion-content theme-bg class="abm-clientes-content" id="clientes-content">
     
       <ion-card (click)="modificar(item)" padding *ngFor="let item of listaClientes" [ngClass]="item.activo!=1? 'disabled' : 'enabled' ">
     

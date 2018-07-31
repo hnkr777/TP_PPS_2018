@@ -35,26 +35,24 @@ export class ThemeBgDirective implements OnInit, OnDestroy {
     this.removeClass();
     this.renderer.addClass(this.el.nativeElement, 'background-img');
     if(this.themes.isArgentina()) {
-      
-      this.renderer.setStyle(this.el.nativeElement, 'background', 'url("/assets/imgs/bg/a2.jpg")');
-      this.renderer.setStyle(this.el.nativeElement, 'backgroundPosition', 'bottom');
-      this.renderer.setStyle(this.el.nativeElement, 'backgroundSize', 'cover');
+      // this.renderer.setStyle(this.el.nativeElement, 'background', 'url("/assets/imgs/bg/a2.jpg")');
+      // this.renderer.setStyle(this.el.nativeElement, 'backgroundPosition', 'bottom');
+      // this.renderer.setStyle(this.el.nativeElement, 'backgroundSize', 'cover');
     } else if (this.themes.isProfesional()) {
-      
-      this.renderer.setStyle(this.el.nativeElement, 'background', 'url(assets/imgs/bg/g2.jpg)');
-      this.renderer.setStyle(this.el.nativeElement, 'backgroundPosition', 'bottom');
-      this.renderer.setStyle(this.el.nativeElement, 'backgroundSize', 'cover');
+      // this.renderer.setStyle(this.el.nativeElement, 'background', 'url(assets/imgs/bg/g2.jpg)');
+      // this.renderer.setStyle(this.el.nativeElement, 'backgroundPosition', 'bottom');
+      // this.renderer.setStyle(this.el.nativeElement, 'backgroundSize', 'cover');
     } else if (this.themes.isNaif()) {
-
-      this.renderer.setStyle(this.el.nativeElement, 'background', 'url(assets/imgs/bg/n1.jpg)');
-      this.renderer.setStyle(this.el.nativeElement, 'backgroundPosition', 'bottom');
-      this.renderer.setStyle(this.el.nativeElement, 'backgroundSize', 'cover');
+      // this.renderer.setStyle(this.el.nativeElement, 'background', 'url(assets/imgs/bg/n1.jpg)');
+      // this.renderer.setStyle(this.el.nativeElement, 'backgroundPosition', 'bottom');
+      // this.renderer.setStyle(this.el.nativeElement, 'backgroundSize', 'cover');
     } else {
       let c = this.custom.getCustomConfig();
-      this.renderer.setStyle(this.el.nativeElement, 'background', 'url('+c.foto+')');
-      this.renderer.setStyle(this.el.nativeElement, 'background-color', c.backgroundColor);
+      if(c.foto !== undefined) this.renderer.setAttribute(this.el.nativeElement,'style', 'background-image', 'url('+c.foto+') !important');
+      this.renderer.setAttribute(this.el.nativeElement,'style', 'background-color: '+ c.backgroundColor + ' !important');
       this.renderer.setStyle(this.el.nativeElement, 'backgroundPosition', 'bottom');
-      this.renderer.setStyle(this.el.nativeElement, 'backgroundSize', 'cover');
+      //this.renderer.setStyle(this.el.nativeElement, 'backgroundSize', 'cover !important');
+      // this.renderer.setAttribute(this.el.nativeElement,'style', 'background-position: cover !important');
     }
   }
 

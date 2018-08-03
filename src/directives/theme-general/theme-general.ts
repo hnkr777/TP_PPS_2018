@@ -37,7 +37,7 @@ export class ThemeGeneralDirective implements OnInit, OnDestroy {
     if(this.themes.isArgentina()) {
       this.renderer.addClass(this.el.nativeElement, 'theme-argentina');
     } else if (this.themes.isProfesional()) {
-      this.renderer.addClass(this.el.nativeElement, 'theme-profesional');
+      this.renderer.addClass(this.el.nativeElement, 'theme-professional');
     } else if (this.themes.isNaif()) {
       this.renderer.addClass(this.el.nativeElement, 'theme-naif');
     } else {

@@ -24,6 +24,7 @@ import { AbmVehiculosPage } from '../abm-vehiculos/abm-vehiculos';
 import { LoginPage } from '../login/login';
 import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
 import { MyApp } from '../../app/app.component';
+import { ThemeProvider } from '../../providers/theme/theme';
 
 
 @IonicPage()
@@ -38,13 +39,15 @@ export class AdminControlPanelPage {
     public navParams: NavParams,
     public modalCtrl: ModalController,
     public servicioAudio:ServicioAudioProvider,
-    public platform: Platform
+    public platform: Platform,
+    private themes: ThemeProvider
   ) {
 
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Admin Control Panel Page');
+    this.themes.refreshTheme();
   }
 
   irAbmChofer() {

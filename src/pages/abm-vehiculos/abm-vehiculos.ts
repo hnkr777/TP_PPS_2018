@@ -5,6 +5,7 @@ import { ServicioAudioProvider } from "../../providers/servicio-audio/servicio-a
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { vehiculo } from "../../clases/vehiculo";
 import { Observable } from 'rxjs/Observable';
+import { ThemeProvider } from '../../providers/theme/theme';
 
 /**
  * Generated class for the AbmVehiculosPage page.
@@ -40,7 +41,15 @@ export class AbmVehiculosPage {
   coleccionTipadaFirebase:AngularFirestoreCollection<vehiculo>;
   ListadoDeVehiculosObservable:Observable<vehiculo[]>;
   ListaDeVehiculos:Array<vehiculo>;
-  constructor(public navCtrl: NavController,public audioService:ServicioAudioProvider, public navParams: NavParams,public servicioFotos: ServicioFotosProvider,public alertCtrl: AlertController,private objFirebase: AngularFirestore) {
+  constructor(
+    public navCtrl: NavController,
+    public audioService: ServicioAudioProvider,
+    public navParams: NavParams,
+    public servicioFotos: ServicioFotosProvider,
+    public alertCtrl: AlertController,
+    private objFirebase: AngularFirestore,
+    private themes: ThemeProvider
+  ) {
     this.abmMostrar = this.navParams.get('data');
     if (this.abmMostrar == "Alta") {
       this.vehiculo.fotos = new Array();
@@ -49,6 +58,7 @@ export class AbmVehiculosPage {
   }
 
   ionViewDidLoad() {
+    this.themes.refreshTheme();
     this.coleccionTipadaFirebase= this.objFirebase.collection<vehiculo>('vehiculos'); 
     //para el filtrado mirar la documentación https://firebase.google.com/docs/firestore/query-data/queries?authuser=0
     this.ListadoDeVehiculosObservable=this.coleccionTipadaFirebase.valueChanges();

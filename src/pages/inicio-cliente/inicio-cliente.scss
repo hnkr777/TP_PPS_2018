@@ -2,49 +2,49 @@ page-inicio-cliente {
     .inicio-cliente-content {
         background-color: #14830a;
 
-        //background-color: rgba(0, 0, 0, 0.89)!important;
-        //background: url('../assets/img/bg/6.jpg')!important;
-        height: 100%!important;
-        width: 100%!important;
-        color: white!important;
+        //background-color: rgba(0, 0, 0, 0.89);
+        //background: url('../assets/img/bg/6.jpg');
+        height: 100%;
+        width: 100%;
+        color: white;
         display: block;
         //object-fit: fill;
 }
 
 .transparent-body {
-    background: none transparent !important;
-    opacity: 0 !important;
+    background: none transparent ;
+    opacity: 0 ;
   }
 
   /*.titulo{
-    //margin-top: 10px !important;
-    //margin-bottom: 0px !important;
+    //margin-top: 10px ;
+    //margin-bottom: 0px ;
     //width: 100%;
     //height: 40px;
     //background: #51CFB1;
-    //border-radius: 30px !important;
+    //border-radius: 30px ;
     //border: 1px solid #ffffff;
   }*/
 
 
   .logOut{
-    background: none transparent !important;
+    background: none transparent ;
   }
 
     ion-card {
-        border-radius: 10px !important;
+        border-radius: 10px ;
         background-color: #0ed478;
     }
 
     ion-item {
-        text-align: center !important;
+        text-align: center ;
         border-radius: 30px ;
         background-color: #ffd000;
-        margin-bottom: 0px !important;
+        margin-bottom: 0px ;
     }
 
     .filtro {
-        text-align: start !important;
-        border-radius: 0px !important;
+        text-align: start ;
+        border-radius: 0px ;
     }
 }

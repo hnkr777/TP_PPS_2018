@@ -33,7 +33,7 @@ export class ThemeBgDirective implements OnInit, OnDestroy {
 
   setStyles() {
     this.removeClass();
-    this.renderer.addClass(this.el.nativeElement, 'background-img');
+    //this.renderer.addClass(this.el.nativeElement, 'background-img');
     if(this.themes.isArgentina()) {
       // this.renderer.setStyle(this.el.nativeElement, 'background', 'url("/assets/imgs/bg/a2.jpg")');
       // this.renderer.setStyle(this.el.nativeElement, 'backgroundPosition', 'bottom');
@@ -48,15 +48,19 @@ export class ThemeBgDirective implements OnInit, OnDestroy {
       // this.renderer.setStyle(this.el.nativeElement, 'backgroundSize', 'cover');
     } else {
       let c = this.custom.getCustomConfig();
-      if(c.foto !== undefined) this.renderer.setAttribute(this.el.nativeElement,'style', 'background-image', 'url('+c.foto+') !important');
-      this.renderer.setAttribute(this.el.nativeElement,'style', 'background-color: '+ c.backgroundColor + ' !important');
-      this.renderer.setStyle(this.el.nativeElement, 'backgroundPosition', 'bottom');
-      //this.renderer.setStyle(this.el.nativeElement, 'backgroundSize', 'cover !important');
-      // this.renderer.setAttribute(this.el.nativeElement,'style', 'background-position: cover !important');
+      if(c.foto !== undefined) {
+        this.renderer.setAttribute(this.el.nativeElement,'style', 'background-image', 'url('+c.foto+') ');
+        //console.error('==============imagen:');
+      }
+      this.renderer.setAttribute(this.el.nativeElement,'style', 'background-color: '+ c.backgroundColor + ' ');
+      //this.renderer.setStyle(this.el.nativeElement, 'backgroundPosition', 'bottom');
+      //this.renderer.setStyle(this.el.nativeElement, 'backgroundSize', 'cover ');
+      // this.renderer.setAttribute(this.el.nativeElement,'style', 'background-position: cover ');
     }
   }
 
   removeClass() {
     this.renderer.removeClass(this.el.nativeElement, 'background-img');
+    this.renderer.removeClass(this.el.nativeElement, 'content-md');
   }
 }

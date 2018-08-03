@@ -9,6 +9,7 @@ import { Viaje } from '../../clases/viaje';
 import { VerImagenPage } from '../ver-imagen/ver-imagen';
 import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
+import { ThemeProvider } from '../../providers/theme/theme';
 
 /**
  * página de visor de viajes, solo lo tiene que poder usar el administrador o superusuario...
@@ -34,7 +35,9 @@ export class VisorViajesPage {
     private servicioViajes: ServicioViajesProvider,
     public modalCtrl: ModalController,
     public alertCtrl: AlertController,
-  public audioService:ServicioAudioProvider) {
+    public audioService:ServicioAudioProvider,
+    private themes : ThemeProvider
+) {
      // this.filtro = '0';
      //TODOS
      this.filtro = '-1';
@@ -43,6 +46,7 @@ export class VisorViajesPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad VisorViajesPage');
+    this.themes.refreshTheme();
     this.spin(true);
     let ob = this.servicioViajes.traerViajes().subscribe(viajes => { // la lista se va a actualizar cada vez que cambie la tabla usuarios de firebase
       //console.log('viajes: ' + JSON.stringify(viajes));

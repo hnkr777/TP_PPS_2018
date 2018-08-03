@@ -1,23 +1,23 @@
 page-encuesta-supervisor {
     .content-back{
         background-color: #14830a;
-        //background-color: #f0f0f0 !important;
+        //background-color: #f0f0f0 ;
     }
     .submit-btn {
         background: #51CFB1;
-        border-radius: 30px !important;
+        border-radius: 30px ;
         border: 1px solid #ffffff;
     }
     ion-item {
-        //background: transparent!important;
-        //text-align: center !important;
+        //background: transparent;
+        //text-align: center ;
         border-radius: 20px ;
         background-color: #ffd000;
-        margin-top: 3px !important;
+        margin-top: 3px ;
     }
     .list{
         border-radius: 20px ;
-        margin-top: 5px !important;
+        margin-top: 5px ;
         background-color: #ffd000;
         margin-bottom: 5px;
     }
@@ -26,15 +26,15 @@ page-encuesta-supervisor {
         //border-radius: 20px ;
         border-color: #ffd000;
         color: black;
-        padding-right: 0px !important;
-        padding-left: 0px !important;
+        padding-right: 0px ;
+        padding-left: 0px ;
     }
     .obl{
-        color: red !important;
+        color: red ;
         font-size: 10px;
-        margin-bottom: 0px !important;
-        margin-top: 2px !important;
-        padding-top: 5px !important;
-        //border-radius: 20px !important;
+        margin-bottom: 0px ;
+        margin-top: 2px ;
+        padding-top: 5px ;
+        //border-radius: 20px ;
     }
 }

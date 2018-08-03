@@ -6,6 +6,7 @@ import { Usuario } from '../../clases/usuario';
 import { AltaClienteParaAdminPage } from '../../pages/alta-cliente-para-admin/alta-cliente-para-admin';
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { ServicioAudioProvider } from "../../providers/servicio-audio/servicio-audio";
+import { ThemeProvider } from '../../providers/theme/theme';
 /**
  * Generated class for the AbmClientesPage page.
  *
@@ -31,11 +32,13 @@ public auxListaClientes: any[];
     public navParams: NavParams, 
     private servicioCliente: AbmClienteProvider,
     public modalCtrl: ModalController,
-    public audioService:ServicioAudioProvider
+    public audioService:ServicioAudioProvider,
+    private themes: ThemeProvider
   ) {
   }
 
   ionViewDidLoad() {
+    this.themes.refreshTheme();
     this.spin(true);
     let usuarios: any;
     this.mostrar="todos";

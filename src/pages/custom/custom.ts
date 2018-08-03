@@ -18,12 +18,12 @@ export class CustomPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 
-    private custm : CustomProvider, 
+    private custProv : CustomProvider, 
     private camera : Camera, 
     private themes : ThemeProvider, 
     private sounds : ServicioAudioProvider
   ) {
-    this.custom = this.custm.getCustomConfig();
+    this.custom = this.custProv.getCustomConfig();
   }
 
   ionViewDidLoad() {
@@ -50,6 +50,6 @@ export class CustomPage {
   }
 
   guardar() {
-    this.custm.saveCustom(this.custom);
+    this.custProv.saveCustom(this.custom);
   }
 }

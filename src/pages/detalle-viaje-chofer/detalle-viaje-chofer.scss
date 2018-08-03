@@ -1,28 +1,28 @@
 page-detalle-viaje-chofer {
     ion-content {
         background-color: #14830a;
-        //background: rgb(56, 56, 56)!important;
+        //background: rgb(56, 56, 56);
         
     }
 
     ion-item {
-        //background: transparent!important;
-        //text-align: center !important;
+        //background: transparent;
+        //text-align: center ;
         border-radius: 30px ;
         background-color: #ffd000;
-        margin-bottom: 0px !important;
+        margin-bottom: 0px ;
     }
 
     ion-card {
-        border-radius: 10px !important;
-        //background-color: #0ed478 !important;
+        border-radius: 10px ;
+        //background-color: #0ed478 ;
     }
 
     .contenedor-global {
         //background: url('../../assets/img/bg/5.jpg');
         background-size: cover;
         background-repeat: no-repeat;
-        height: 100%!important;
+        height: 100%;
         position: relative;
         top: 0px;
         left: 0px;
@@ -38,11 +38,11 @@ page-detalle-viaje-chofer {
     }
 
     #map {
-        border-radius: 15px!important;
+        border-radius: 15px;
         height: 50%;
         //width: 100%;
         margin-top: 10px;
-        margin-left: 10px !important;
-        margin-right: 10px !important;
+        margin-left: 10px ;
+        margin-right: 10px ;
     }
 }

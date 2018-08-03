@@ -18,7 +18,7 @@
 
 //ion-content {
 
-    //background-color: #14830a !important;    
+    //background-color: #14830a ;    
     /*background-image: url('../assets/img/bg.jpg');
     background-color: transparent;
     background-repeat: no-repeat;
@@ -38,7 +38,7 @@
 }
 
 .contenido {
-    background-image: url('../assets/img/bg.jpg');
+    //background-image: url('../assets/img/bg.jpg');
     background-color: red;
     background-repeat: no-repeat;
     background-size: cover;
@@ -51,8 +51,8 @@
   button {
   
     margin:auto;text-align:center;display:block; 
-    color: white !important; // button text color
-    background-color: color($colors, danger, base) !important;
+    color: white ; // button text color
+    background-color: color($colors, danger, base) ;
         //button bg color
 }
 
@@ -85,8 +85,8 @@
 .miClaseAlert{
   background-color:rgba(248, 150, 59, 0.699);
   button {
-    color: white !important; // button text color
-    background-color: color($colors, secondary, base) !important;
+    color: white ; // button text color
+    background-color: color($colors, secondary, base) ;
         //button bg color
 }
 

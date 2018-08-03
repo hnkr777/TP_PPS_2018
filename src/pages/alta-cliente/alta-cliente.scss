@@ -286,14 +286,14 @@ page-alta-cliente {
   BORRAR COMENTADO
 */ 
     .deleteIcon {
-        position: absolute !important;
-        color: #ffffff !important;
+        position: absolute ;
+        color: #ffffff ;
         //modificar el margin si no se ve la cruz para eliminar
-        margin-left: 25% !important;
+        margin-left: 25% ;
         transform: rotate(45deg);
       }
       .deleteIcon:before {
-        font-size: 30px !important;
+        font-size: 30px ;
       }
       .releative {
         position: relative
@@ -301,21 +301,21 @@ page-alta-cliente {
 
       .alta-cliente-content {
         background-color: #14830a;
-        //background-color: rgba(0, 0, 0, 0.89)!important;
-        //background: url('../assets/img/bg/4.jpg')!important;
-        height: 100%!important;
-        width: 100%!important;
+        //background-color: rgba(0, 0, 0, 0.89);
+        //background: url('../assets/img/bg/4.jpg');
+        height: 100%;
+        width: 100%;
         color: white;
         display: block;
         //object-fit: fill;
       }
       ion-item {
-        border-radius: 30px !important;
-        margin-top: 0px !important;
-        margin-bottom: 0px !important;
-        //height: 46px !important;
+        border-radius: 30px ;
+        margin-top: 0px ;
+        margin-bottom: 0px ;
+        //height: 46px ;
         background-color: #1b6415;
-        //background: transparent!important;
+        //background: transparent;
         
     }
     .submit-btn{

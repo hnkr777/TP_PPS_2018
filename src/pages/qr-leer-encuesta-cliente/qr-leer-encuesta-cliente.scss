@@ -1,9 +1,9 @@
 page-qr-leer-encuesta-cliente {
-  .transparentBody { background-color: transparent !important; }
+  .transparentBody { background-color: transparent ; }
 }
 
     ion-content {
-        background: transparent !important;
+        background: transparent ;
         width: 100%;
         height: 100%;
         // display: table;
@@ -11,7 +11,7 @@ page-qr-leer-encuesta-cliente {
       }
       
       .transparentBody { 
-        background-color: transparent !important;
+        background-color: transparent ;
         // width: 100%;
         // height: 100%;
         // display: table;
@@ -33,7 +33,7 @@ page-qr-leer-encuesta-cliente {
       }
       
       .base {
-        background: transparent!important;
+        background: transparent;
         height: 100%;
         width: 100%;
       }

@@ -13,13 +13,13 @@
       color: white;
     }
     .onboard {
-      border-color: #141414 !important;
+      border-color: #141414 ;
     }
     .toolbar-background,
     .toggle-checked {
       transition: all 1.1s ease;
-      background-color: #23272c !important;
-      background-image: url('/assets/imgs/BG/g3.jpg') !important;
+      background-color: #23272c ;
+      background-image: url('/assets/imgs/BG/g3.jpg') ;
       background-position: center;
       background-size: cover;
     }
@@ -32,9 +32,9 @@
     ion-item,
     ion-label {
       transition: all 1.1s ease;
-      background-color: #4e4e4e !important;
-      background: #555555 !important;
-      color: white !important;
+      background-color: #4e4e4e ;
+      background: #555555 ;
+      color: white ;
     }
     ion-list {
       background-color: #666666;
@@ -50,26 +50,26 @@
     
     .boton, ion-card, .tag-item-cliente {
       background-color: #3f4250 !important;
-      color: rgb(255, 255, 255) !important;
-      border-radius: 0px;
+      color: rgb(255, 255, 255) ;
+      border-radius: 0px !important;
     } 
 
     ion-button, .boton-menu {
-      background-color: rgb(79, 110, 117) !important;
-      color: rgb(160, 58, 58) !important;
-      border-radius: 0px !important;
-      box-shadow: 0 0 0 0 transparent !important;
+      background-color: rgb(79, 110, 117) ;
+      color: rgb(160, 58, 58) ;
+      border-radius: 0px ;
+      box-shadow: 0 0 0 0 transparent ;
     }
 
     .item-cover {
-      //background-color: rgb(79, 110, 117) !important;
-      color: rgb(141, 0, 0) !important;
-      border-radius: 0px !important;
-      box-shadow: 0 0 0 0 transparent !important;
+      //background-color: rgb(79, 110, 117) ;
+      color: rgb(141, 0, 0) ;
+      border-radius: 0px ;
+      box-shadow: 0 0 0 0 transparent ;
     }
     
     .contenido {
-      background-image: url('/assets/imgs/BG/g2.jpg') !important;
+      background-image: url('/assets/imgs/BG/g2.jpg') ;
       height: 100%;
       width: 100%;
       background-position: center;
@@ -79,7 +79,7 @@
     ion-content, .contenido-viajes {
       transition: all 1.1s ease;
       background-color: #4e4e4e !important;
-      //background-image: url('../assets/imgs/bg/g2.jpg') !important;
-      color: white !important;
+      //background-image: url('../assets/imgs/bg/g2.jpg') ;
+      color: white ;
     }
 }

@@ -7,6 +7,7 @@ import { ServicioAudioProvider } from "../../providers/servicio-audio/servicio-a
 import { Usuario } from '../../clases/usuario';
 import { AltaSupervisorPage } from '../alta-supervisor/alta-supervisor';
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
+import { ThemeProvider } from '../../providers/theme/theme';
 /**
  * página de ABM de supervisores, solo lo tiene que poder usar el administrador o superusuario, y los supervisores...
  * 
@@ -28,11 +29,14 @@ export class AbmSupervisoresPage {
     public navParams: NavParams, 
     private servicioUsuarios: ServicioUsuariosProvider,
     public modalCtrl: ModalController,
-    public audioService:ServicioAudioProvider) {
+    public audioService:ServicioAudioProvider,
+    private themes: ThemeProvider
+    ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AbmSupervisoresPage');
+    this.themes.refreshTheme();
     let usuarios: any;
     this.spin(true);
     let ob = this.servicioUsuarios.traerUsuariosPorPerfil('supervisor').subscribe(data => { // la lista se va a actualizar cada vez que cambie la tabla usuarios de firebase

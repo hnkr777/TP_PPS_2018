@@ -21,14 +21,14 @@
     <form id="formularioIngreso">
       <ion-list>
 
-        <ion-item padding style="background: transparent;">
+        <ion-item class="tag-input" padding style="background: transparent;">
           <!-- <ion-label class="titulo" color="light"  stacked>{{ 'EMAIL' | translate }}</ion-label> -->
           <ion-input class="titulo" autofocus placeholder="Email" type="email" [(ngModel)]="loginFields.correo" name="email"></ion-input>
         </ion-item>
 
-        <ion-item padding style="background: transparent;">
+        <ion-item class="tag-input" padding style="background: transparent;">
           <!-- <ion-label class="titulo" color="light" stacked>{{ 'PASSWORD' | translate }}</ion-label> -->
-          <ion-input class="titulo" placeholder="Clave" type="password" [(ngModel)]="loginFields.clave" name="clave"></ion-input>
+          <ion-input class="titulo tag-input" placeholder="Clave" type="password" [(ngModel)]="loginFields.clave" name="clave"></ion-input>
         </ion-item>
 
         <div padding>

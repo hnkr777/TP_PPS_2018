@@ -7,6 +7,7 @@ import { Viaje } from '../../clases/viaje';
 import { Geolocation } from '@ionic-native/geolocation';
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { Usuario } from '../../clases/usuario';
+import { ThemeProvider } from '../../providers/theme/theme';
 //import * as moment from 'moment';
 
 declare const google; // para google maps
@@ -69,7 +70,8 @@ export class NuevoViajePage {
     public alertCtrl: AlertController,
     private geolocation: Geolocation,
     private popover: PopoverController,
-    public audioService:ServicioAudioProvider
+    public audioService:ServicioAudioProvider,
+    private themes: ThemeProvider
   ) {
     this.puntos = 0;
     this.nuevoViaje = new Viaje();
@@ -219,6 +221,7 @@ export class NuevoViajePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NuevoViajePage');
+    this.themes.refreshTheme();
     //this.nuevoViaje.fechaSalida = new Date(Date.now());
     
 

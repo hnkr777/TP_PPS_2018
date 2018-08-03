@@ -9,6 +9,7 @@ import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider
 import { Geolocation } from '@ionic-native/geolocation';
 import { DetalleViajeChoferPage } from "../../pages/detalle-viaje-chofer/detalle-viaje-chofer";
 import { VerImagenPage } from '../ver-imagen/ver-imagen';
+import { ThemeProvider } from '../../providers/theme/theme';
 
 
 /**
@@ -41,7 +42,7 @@ export class VisorViajesChoferPage {
     private servicioUsuarios: ServicioUsuariosProvider,
     private servicioViajes: ServicioViajesProvider,
     public modalCtrl: ModalController,
-
+    private themes: ThemeProvider,
     private servicioFotos: ServicioFotosProvider,
     public viewCtrl: ViewController,
     public translateService: TranslateService,
@@ -55,6 +56,7 @@ export class VisorViajesChoferPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad VisorViajesChoferPage');
+    this.themes.refreshTheme();
     this.spin(true);
     this.mostrar="asignados";
     this.ubicacionActual();

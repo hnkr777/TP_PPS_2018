@@ -28,6 +28,7 @@ import { EncuestaClientePage } from '../encuesta-cliente/encuesta-cliente';
 import { QrVehiculoClientePage } from '../qr-vehiculo-cliente/qr-vehiculo-cliente';
 import { Http } from '../../../node_modules/@angular/http';
 import { HttpClient } from '../../../node_modules/@angular/common/http';
+import { ThemeProvider, Themes } from '../../providers/theme/theme';
 
 @IonicPage()
 @Component({
@@ -58,13 +59,21 @@ export class LoginPage {
     private objFirebase: AngularFirestore,
     private mails: EnviarMailProvider,
     public http: HttpClient,
-    public audioService:ServicioAudioProvider) {
+    public audioService:ServicioAudioProvider,
+    private themes: ThemeProvider
+  ) {
 
     this.translateService.get('LOGIN_ERROR').subscribe((value) => { // así se traen string de traduccion...
       this.loginErrorString = value;
     });
     this.muteSound = false;
     this.muteAudio();
+  }
+
+  ionViewDidLoad() {
+    console.log('Iniciado login');
+    //this.themes.refreshTheme();
+    this.themes.activeTheme(Themes.custom);
   }
   
   setLog(i: number) {

@@ -18,10 +18,12 @@ export class ThemeProvider {
   constructor() {
     if(localStorage.getItem('theme')) {
       this.currentTheme = localStorage.getItem('theme') as Themes;
-      setTimeout(() => {
-
-        this.activeTheme(this.currentTheme);
-      }, 100)
+      setTimeout((data) => {
+        console.log('.');
+        this.refreshTheme();
+      }, 100);
+    } else {
+      this.activeTheme(Themes.professional);
     }
   }
 

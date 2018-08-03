@@ -35,10 +35,11 @@ export class ThemeHeaderDirective implements OnInit, OnDestroy {
 
   setStyles() {
     this.removeClass();
-    this.renderer.setStyle(this.el.nativeElement.firstChild, 'cssText', ' ');
+    //this.renderer.setStyle(this.el.nativeElement.firstChild, 'cssText', ' ');
     if(this.themes.isCustom()) {
       let c = this.custom.getCustomConfig();
-      this.renderer.setStyle(this.el.nativeElement.firstChild, 'background', 'linear-gradient(' + c.color + ', white, ' + c.color + ')');
+      // this.renderer.setStyle(this.el.nativeElement.firstChild, 'background', 'linear-gradient(' + c.color + ', white, ' + c.color + ')');
+      this.renderer.setAttribute(this.el.nativeElement, 'style', 'background-color: '+ c.backgroundColor + ' !important;');
     } 
   }
 

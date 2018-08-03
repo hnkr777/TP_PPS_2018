@@ -1,10 +1,10 @@
 page-visor-viajes-chofer {
     .visor-viajes-content {
-        //background-color: rgba(0, 0, 0, 0.89)!important;
+        //background-color: rgba(0, 0, 0, 0.89);
         background-color: #14830a;
-        //background: url('../assets/img/bg/4.jpg')!important;
-        height: 100%!important;
-        width: 100%!important;
+        //background: url('../assets/img/bg/4.jpg');
+        height: 100%;
+        width: 100%;
         color: rgb(255, 255, 255);
         display: block;
         //object-fit: fill;
@@ -19,23 +19,23 @@ page-visor-viajes-chofer {
     }
 
     #map {
-        border-radius: 15px!important;
+        border-radius: 15px;
         height: 72%;
         // width: 100%;
         margin-top: 10px;
     }
     ion-card{
-        border-radius: 10px !important;
+        border-radius: 10px ;
         background-color: #0ed478;
     }
     ion-item{
-        text-align: center !important;
+        text-align: center ;
         border-radius: 30px ;
         background-color: #ffd000;
-        margin-bottom: 0px !important;
+        margin-bottom: 0px ;
     }
     .filtro{
-        text-align: start !important;
-        border-radius: 0px !important;
+        text-align: start ;
+        border-radius: 0px ;
     }
 }

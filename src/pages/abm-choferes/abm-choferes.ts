@@ -7,6 +7,7 @@ import { ServicioAudioProvider } from "../../providers/servicio-audio/servicio-a
 import { Usuario } from '../../clases/usuario';
 import { AltaChoferPage } from '../alta-chofer/alta-chofer';
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
+import { ThemeProvider } from '../../providers/theme/theme';
 /**
  * página de ABM de choferes, solo lo tienen que poder usar el administrador o superusuario, y los supervisores...
  * 
@@ -29,12 +30,14 @@ export class AbmChoferesPage {
     private servicioUsuarios: ServicioUsuariosProvider,
     public modalCtrl: ModalController,
     public audioService:ServicioAudioProvider,
+    private themes: ThemeProvider
     ) {
   }
 
   ionViewDidLoad() {
+    console.log('ionViewDidLoad AbmChoferesPage 321');
+    this.themes.refreshTheme();
     this.spin(true);
-    console.log('ionViewDidLoad AbmChoferesPage');
     let usuarios: any;
     let ob = this.servicioUsuarios.traerUsuariosPorPerfil('chofer').subscribe(data => { // la lista se va a actualizar cada vez que cambie la tabla usuarios de firebase
       //console.log('data: ' + JSON.stringify(data));

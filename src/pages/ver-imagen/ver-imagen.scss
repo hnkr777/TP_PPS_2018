@@ -1,21 +1,21 @@
 ver-imagen {
     ion-content {
         
-        background: rgb(0, 0, 0)!important;
+        background: rgb(0, 0, 0);
     }
 
     .contenedor-global {
         background-attachment: scroll;
-        width: 100%!important;
+        width: 100%;
         //background-repeat: no-repeat;
-        height: 100%!important;
+        height: 100%;
     }
 
     .imagen {
         background-attachment: scroll;
         background-size: contain;
         background-repeat: no-repeat;
-        height: auto!important;
-        width: auto!important;
+        height: auto;
+        width: auto;
     }
 }

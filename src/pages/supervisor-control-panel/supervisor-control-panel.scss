@@ -1,30 +1,30 @@
 supervisor-control-panel {
 
     .transparentBody {
-        background-color: transparent !important;
+        background-color: transparent ;
     }
       ion-content {
         background-color: #14830a;
-        padding: 0px 0px 0px 0px !important;
-        margin: 0px 0px 0px 0px !important;
-        -webkit-align-content: stretch !important;
-        -webkit-align-items: center !important;
-        -webkit-box-align: center !important;
-        -webkit-box-direction: normal !important;
-        -webkit-box-orient: horizontal !important;
-        -webkit-box-pack: center !important;
-        -webkit-flex-direction: row !important;
-        -webkit-flex-wrap: nowrap !important;
-        -webkit-justify-content: center !important;
-        align-content: stretch !important;
-        align-items: center !important;
-        display: -webkit-box !important;
-        display: -webkit-flex !important;
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
-        justify-content: center !important;
-        text-align: center !important;
+        padding: 0px 0px 0px 0px ;
+        margin: 0px 0px 0px 0px ;
+        -webkit-align-content: stretch ;
+        -webkit-align-items: center ;
+        -webkit-box-align: center ;
+        -webkit-box-direction: normal ;
+        -webkit-box-orient: horizontal ;
+        -webkit-box-pack: center ;
+        -webkit-flex-direction: row ;
+        -webkit-flex-wrap: nowrap ;
+        -webkit-justify-content: center ;
+        align-content: stretch ;
+        align-items: center ;
+        display: -webkit-box ;
+        display: -webkit-flex ;
+        display: flex ;
+        flex-direction: row ;
+        flex-wrap: nowrap ;
+        justify-content: center ;
+        text-align: center ;
       }
       .submit-btn{
         margin-top: 15px;

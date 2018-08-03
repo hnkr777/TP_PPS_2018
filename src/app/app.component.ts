@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 //import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { TranslateService } from '@ngx-translate/core';
@@ -14,7 +14,7 @@ import { CustomPage } from '../pages/custom/custom';
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp {
+export class MyApp implements OnInit {
   rootPage = SplashScreen;
 
   @ViewChild(Nav) nav: Nav;
@@ -22,6 +22,7 @@ export class MyApp {
   pages: Array<{title: string, component: any, id: number, icon: string}>;
 
   selectedTheme: any;
+  tema: string;
 
   constructor(
     private translate: TranslateService, 
@@ -48,10 +49,24 @@ export class MyApp {
     ];
 
     this.initTranslate();
-    let tema: string = localStorage.getItem('tema');
-    if( tema !== undefined ) {
-      this.changeTheme(tema);
+
+    
+  }
+
+  ngOnInit() {
+    this.tema = localStorage.getItem('tema');
+    if( this.tema !== null ) {
+      this.changeTheme(this.tema);
+    } else {
+      console.warn('No hay tema seleccionado, se carga el tema por defecto.');
+      this.setProfessional();
     }
+
+    /*setInterval(() => {
+      this.tema = localStorage.getItem('tema');
+      if(this.tema !== null) this.changeTheme(this.tema);
+      else this.setProfessional();
+    }, 1000);*/
   }
 
   initTranslate() {

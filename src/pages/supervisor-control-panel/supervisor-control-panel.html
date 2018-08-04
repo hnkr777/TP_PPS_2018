@@ -7,8 +7,8 @@
         <ion-icon name="log-out" class="imgIcon"></ion-icon>
       </button>
       <button ion-button (click)="muteAudio()">
-        <ion-icon name="volume-off" *ngIf = "!audioService.mute" class="imgIcon"></ion-icon>
-        <ion-icon name="volume-up" *ngIf = "audioService.mute" class="imgIcon"></ion-icon>
+        <ion-icon name="volume-off" *ngIf="!audioService.mute" class="imgIcon"></ion-icon>
+        <ion-icon name="volume-up" *ngIf="audioService.mute" class="imgIcon"></ion-icon>
       </button>
     </ion-buttons>
 
@@ -17,38 +17,38 @@
 </ion-header>
 
 
-<ion-content theme-bg padding>
+<ion-content>
+  <div theme-bg padding class="contenido">
+    <button theme-botons (click)="irAbmChofer()" ion-button round icon-left color="primary" block large class="submit-btn">
+      <ion-icon name="people"></ion-icon>{{ 'ABM_CHOFERES_BUTTON' | translate }}</button>
 
-  <button theme-botons (click)="irAbmChofer()" ion-button round icon-left color="primary" block large class="submit-btn">
-    <ion-icon name="people"></ion-icon>{{ 'ABM_CHOFERES_BUTTON' | translate }}</button>
+    <button theme-botons (click)="irAbmCliente()" ion-button round icon-left color="primary" block large class="submit-btn">
+      <ion-icon name="people"></ion-icon>{{ 'ABM_CLIENTES_BUTTON' | translate }}</button>
 
-  <button theme-botons (click)="irAbmCliente()" ion-button round icon-left color="primary" block large class="submit-btn">
-    <ion-icon name="people"></ion-icon>{{ 'ABM_CLIENTES_BUTTON' | translate }}</button>
+    <button theme-botons (click)="irAbmSupervisor()" ion-button round icon-left color="primary" block large class="submit-btn">
+      <ion-icon name="people"></ion-icon>{{ 'ABM_SUPERVISORES_BUTTON' | translate }}</button>
 
-  <button theme-botons (click)="irAbmSupervisor()" ion-button round icon-left color="primary" block large class="submit-btn">
-    <ion-icon name="people"></ion-icon>{{ 'ABM_SUPERVISORES_BUTTON' | translate }}</button>
+    <button theme-botons (click)="irAbmVehiculos('Alta')" ion-button round icon-left color="primary" block large class="submit-btn">
+      <ion-icon name="car"></ion-icon>Añadir Vehiculo</button>
+    <button theme-botons (click)="irAbmVehiculos('Baja')" ion-button round icon-left color="primary" block large class="submit-btn">
+      <ion-icon name="car"></ion-icon>Borrar Vehiculo</button>
+    <button theme-botons (click)="irAbmVehiculos('Lista')" ion-button round icon-left color="primary" block large class="submit-btn">
+      <ion-icon name="car"></ion-icon>Modificar Vehiculo</button>
 
-  <button theme-botons (click)="irAbmVehiculos('Alta')" ion-button round icon-left color="primary" block large class="submit-btn">
-    <ion-icon name="car"></ion-icon>Añadir Vehiculo</button>
-  <button theme-botons (click)="irAbmVehiculos('Baja')" ion-button round icon-left color="primary" block large class="submit-btn">
-    <ion-icon name="car"></ion-icon>Borrar Vehiculo</button>
-  <button theme-botons (click)="irAbmVehiculos('Lista')" ion-button round icon-left color="primary" block large class="submit-btn">
-    <ion-icon name="car"></ion-icon>Modificar Vehiculo</button>
+    <br>
 
-  <br>
+    <button theme-botons (click)="irVisorViajes()" ion-button round icon-left color="secondary" block large class="submit-btn">
+      <ion-icon name="jet"></ion-icon>{{ 'VISOR_VIAJES_BUTTON' | translate }}</button>
 
-  <button theme-botons (click)="irVisorViajes()" ion-button round icon-left color="secondary" block large class="submit-btn">
-    <ion-icon name="jet"></ion-icon>{{ 'VISOR_VIAJES_BUTTON' | translate }}</button>
-
-  <button theme-botons (click)="goListadoChoferes()" ion-button round icon-left color="secondary" block large class="submit-btn">
-    <ion-icon name="jet"></ion-icon>Asignar Viaje</button>
+    <button theme-botons (click)="goListadoChoferes()" ion-button round icon-left color="secondary" block large class="submit-btn">
+      <ion-icon name="jet"></ion-icon>Asignar Viaje</button>
 
     <button theme-botons (click)="goEncuesta()" ion-button round icon-left color="secondary" block large class="submit-btn">
-        <ion-icon name="help-circle"></ion-icon>Encuesta de Control</button>
+      <ion-icon name="help-circle"></ion-icon>Encuesta de Control</button>
     <button theme-botons (click)="goEstadisticas()" ion-button round icon-left color="secondary" block large class="submit-btn">
-        <ion-icon name="help-circle"></ion-icon>Estadísticas</button>
-  
+      <ion-icon name="help-circle"></ion-icon>Estadísticas</button>
+
     <button theme-botons (click)="pedirViaje()" ion-button round icon-left color="secondary" block large class="submit-btn">
       <ion-icon name="globe"></ion-icon>{{ 'PEDIR_VIAJE_BUTTON' | translate }}</button>
-
+  </div>
 </ion-content>

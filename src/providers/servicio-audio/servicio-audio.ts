@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { NativeAudio } from '@ionic-native/native-audio';
 import { Observable } from 'rxjs/Observable';
 import { Audio } from '../../clases/audio';
+import { Themes } from '../theme/theme';
+import { CustomProvider } from '../custom/custom';
+import { CustomConfig } from '../../clases/CustomConfig';
 
 /*
   Generated class for the ServicioAudioProvider provider.
@@ -15,7 +18,7 @@ export class ServicioAudioProvider {
   
   mute: boolean = true;
 
-  constructor(public nativeAudio: NativeAudio) {
+  constructor(public nativeAudio: NativeAudio, public custom: CustomProvider) {
     this.nativeAudio.preloadSimple('click', 'assets/mp3/click.mp3').then(()=>console.log("Todo Ok Cargando el audio"), (error) => console.info(error));
     this.nativeAudio.preloadSimple('inicio', 'assets/mp3/inicio.mp3').then(()=>console.log("Todo Ok Cargando el audio"), (error) => console.info(error));
     this.nativeAudio.preloadSimple('correct', 'assets/mp3/correct.mp3').then(()=>console.log("Todo Ok Cargando el audio"), (error) => console.info(error));
@@ -32,20 +35,21 @@ export class ServicioAudioProvider {
     
     let value: string = localStorage.getItem('tema');
     switch (value) {
-      case 'p':
+      case 'professional':
         this.nativeAudio.play('glitch', () => console.log('click is done playing'));
         break;
 
-      case 'a':
+      case 'argentina':
         this.nativeAudio.play('beep', () => console.log('click is done playing'));
         break;
 
-      case 'n':
+      case 'naif':
         this.nativeAudio.play('noise', () => console.log('click is done playing'));
         break;
     
-      default:
-        this.nativeAudio.play('click', () => console.log('click is done playing'));
+      case 'custom':
+        let c: CustomConfig = this.custom.getCustomConfig();
+        this.nativeAudio.play(c.sound, () => console.log('click is done playing'));
         break;
     }
   }

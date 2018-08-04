@@ -3,35 +3,41 @@
   <ion-navbar theme-header>
     <ion-title>{{ 'ADMIN_PANEL_TITLE' | translate }}</ion-title>
     <ion-buttons end>
-        <button ion-button (click)="logout()">
-          <ion-icon name="log-out"></ion-icon>
-        </button>
-      </ion-buttons>
+      <button ion-button (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content theme-bg padding>
-  <img src="assets/img/icon.png" alt="" class="img">
-  <button theme-botons class="titulo boton-menu" (click)="irAbmChofer()" ion-button round icon-left color="primary" block large>
-    <ion-icon name="people"></ion-icon>{{ 'ABM_CHOFERES_BUTTON' | translate }}</button>
+<ion-content >
+  <div theme-bg padding class="contenido">
+    <img src="assets/img/icon.png" alt="" class="img">
+    <button theme-botons class="titulo boton-menu" (click)="irAbmChofer()" ion-button round icon-left color="primary" block large>
+      <ion-icon name="people"></ion-icon>{{ 'ABM_CHOFERES_BUTTON' | translate }}</button>
 
-  <button theme-botons class="titulo boton-menu" (click)="irAbmCliente()" ion-button round icon-left color="primary" block large>
-    <ion-icon name="people"></ion-icon>{{ 'ABM_CLIENTES_BUTTON' | translate }}</button>
+    <button theme-botons class="titulo boton-menu" (click)="irAbmCliente()" ion-button round icon-left color="primary" block
+      large>
+      <ion-icon name="people"></ion-icon>{{ 'ABM_CLIENTES_BUTTON' | translate }}</button>
 
-  <button theme-botons class="titulo boton-menu" (click)="irAbmSupervisor()" ion-button round icon-left color="primary" block large>
-    <ion-icon name="people"></ion-icon>{{ 'ABM_SUPERVISORES_BUTTON' | translate }}</button>
+    <button theme-botons class="titulo boton-menu" (click)="irAbmSupervisor()" ion-button round icon-left color="primary" block
+      large>
+      <ion-icon name="people"></ion-icon>{{ 'ABM_SUPERVISORES_BUTTON' | translate }}</button>
 
-  <button theme-botons class="titulo boton-menu" (click)="irAbmVehiculos()" ion-button round icon-left color="primary" block large>
-    <ion-icon name="car"></ion-icon>{{ 'ABM_VEHICULOS_BUTTON' | translate }}</button>
+    <button theme-botons class="titulo boton-menu" (click)="irAbmVehiculos()" ion-button round icon-left color="primary" block
+      large>
+      <ion-icon name="car"></ion-icon>{{ 'ABM_VEHICULOS_BUTTON' | translate }}</button>
 
-  <br>
+    <br>
 
-  <button theme-botons class="titulo boton-menu" (click)="irVisorViajes()" ion-button round icon-left color="secondary" block large>
-    <ion-icon name="jet"></ion-icon>{{ 'VISOR_VIAJES_BUTTON' | translate }}</button>
+    <button theme-botons class="titulo boton-menu" (click)="irVisorViajes()" ion-button round icon-left color="secondary" block
+      large>
+      <ion-icon name="jet"></ion-icon>{{ 'VISOR_VIAJES_BUTTON' | translate }}</button>
 
-  <button theme-botons class="titulo boton-menu" (click)="pedirViaje()" ion-button round icon-left color="secondary" block large>
-    <ion-icon name="globe"></ion-icon>{{ 'PEDIR_VIAJE_BUTTON' | translate }}</button>
-
+    <button theme-botons class="titulo boton-menu" (click)="pedirViaje()" ion-button round icon-left color="secondary" block
+      large>
+      <ion-icon name="globe"></ion-icon>{{ 'PEDIR_VIAJE_BUTTON' | translate }}</button>
+  </div>
 </ion-content>

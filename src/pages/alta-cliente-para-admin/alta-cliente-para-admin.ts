@@ -14,6 +14,7 @@ import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { EnviarMailProvider } from '../../providers/providers';
+import { ThemeProvider } from '../../providers/theme/theme';
 /**
  * Generated class for the AltaClienteParaAdminPage page.
  *
@@ -34,13 +35,15 @@ export class AltaClienteParaAdminPage {
   modoAlta;
   private activoPendiente;
 correoo;
-  constructor(public navCtrl: NavController,
+  constructor(
+    public navCtrl: NavController,
     public navParams: NavParams,
     private formBuilder: FormBuilder,
     private modalCtrl: ModalController,
    // private servicioUsuarios: ServicioUsuariosProvider,
    // private servicioFotos: ServicioFotosProvider,
     public viewCtrl: ViewController,
+    private themes: ThemeProvider,
     private servicioEmail: EnviarMailProvider,
     private builder: FormBuilder,
     private camera: Camera,
@@ -98,6 +101,7 @@ correoo;
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AltaClienteParaAdminPage');
+    this.themes.refreshTheme();
   }
 
   nombre : FormControl = new FormControl("",[Validators.required]);

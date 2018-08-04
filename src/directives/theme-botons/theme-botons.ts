@@ -1,5 +1,5 @@
 import { Directive, ElementRef, OnInit, Renderer2, OnDestroy } from '@angular/core';
-import { ThemeProvider } from '../../providers/theme/theme';
+import { ThemeProvider, Themes } from '../../providers/theme/theme';
 import { Subscription } from 'rxjs/Subscription';
 import { CustomProvider } from '../../providers/custom/custom';
 
@@ -16,7 +16,12 @@ export class ThemeBotonsDirective implements OnInit, OnDestroy {
 
   subs : Subscription;
 
-  constructor(private el : ElementRef, private themes : ThemeProvider, private renderer : Renderer2, private custom : CustomProvider) {
+  constructor(
+    private el: ElementRef, 
+    private themes: ThemeProvider, 
+    private renderer: Renderer2, 
+    private custom: CustomProvider
+  ) {
     
   }
 
@@ -33,21 +38,29 @@ export class ThemeBotonsDirective implements OnInit, OnDestroy {
 
   setStyles() {
     this.removeClass();
-    this.renderer.setStyle(this.el.nativeElement, 'cssText', ' ');
-    if(this.themes.isArgentina()) {
+    let currentTheme: Themes;
+    
+    if(localStorage.getItem('tema')) {
+      currentTheme = localStorage.getItem('tema') as Themes;
+    }
+
+    //this.renderer.setStyle(this.el.nativeElement, 'cssText', ' ');
+
+    if(currentTheme == Themes.argentina) {
       
       this.renderer.addClass(this.el.nativeElement, 'button-outline');
       this.renderer.addClass(this.el.nativeElement, 'button-outline-md');
       
-    } else if (this.themes.isProfesional()) {
+    } else if (currentTheme == Themes.professional) {
       
       this.renderer.addClass(this.el.nativeElement, 'button-full');
       this.renderer.addClass(this.el.nativeElement, 'button-full-md');
-    } else if (this.themes.isNaif()) {
-
+    } else if (currentTheme == Themes.naif) {
+      console.log('botons is NAIF!!!!!!!!');
       this.renderer.addClass(this.el.nativeElement, 'button-large');
       this.renderer.addClass(this.el.nativeElement, 'button-large-md');
-    } else {
+    } else if(currentTheme == Themes.custom && localStorage.getItem('tema')=='custom') {
+      console.log('botons is CUSTOM!!!!!!!!');
       let c = this.custom.getCustomConfig();
       this.renderer.setStyle(this.el.nativeElement, 'backgroundColor', c.bgBotton);
       this.renderer.setStyle(this.el.nativeElement, 'borderRadius', c.borderRadius);
@@ -64,6 +77,7 @@ export class ThemeBotonsDirective implements OnInit, OnDestroy {
     this.renderer.removeClass(this.el.nativeElement, 'button-outline-md');
     this.renderer.removeClass(this.el.nativeElement, 'button-large');
     this.renderer.removeClass(this.el.nativeElement, 'button-large-md');
-     
+    this.renderer.removeStyle(this.el.nativeElement, 'color');
+    this.renderer.removeStyle(this.el.nativeElement, 'background-color');
   }
 }

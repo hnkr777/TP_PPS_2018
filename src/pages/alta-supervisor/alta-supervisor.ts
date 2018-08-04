@@ -10,6 +10,7 @@ import { ServicioFotosProvider } from '../../providers/servicio-fotos/servicio-f
 import { TranslateService } from '@ngx-translate/core';
 import { VerImagenPage } from '../ver-imagen/ver-imagen';
 import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
+import { ThemeProvider } from '../../providers/theme/theme';
 
 /**
  * AltaSupervisorPage
@@ -31,7 +32,8 @@ export class AltaSupervisorPage {
   private modoAlta: boolean;
   private habilitado: boolean;
 
-  constructor(public navCtrl: NavController,
+  constructor(
+    public navCtrl: NavController,
     public navParams: NavParams,
     private formBuilder: FormBuilder,
     private modalCtrl: ModalController,
@@ -40,7 +42,8 @@ export class AltaSupervisorPage {
     public viewCtrl: ViewController,
     public translateService: TranslateService,
     public alertCtrl: AlertController,
-    public audioService:ServicioAudioProvider
+    public audioService:ServicioAudioProvider,
+    private themes: ThemeProvider
   ) {
       let supervisor = navParams.get('supervisor');
       
@@ -64,7 +67,7 @@ export class AltaSupervisorPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AltaSupervisorPage');
-    
+    this.themes.refreshTheme();
   }
 
   verImagen() {

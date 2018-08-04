@@ -39,7 +39,7 @@
 
 .contenido {
     //background-image: url('../assets/img/bg.jpg');
-    background-color: red;
+    //background-color: red;
     background-repeat: no-repeat;
     background-size: cover;
     
@@ -82,37 +82,54 @@
 }
 }
 
-.miClaseAlert{
+.miClaseAlert {
   background-color:rgba(248, 150, 59, 0.699);
   button {
-    color: white ; // button text color
-    background-color: color($colors, secondary, base) ;
+    color: rgb(255, 255, 255) !important; // button text color
+    background-color: color($colors, secondary, base) !important;
         //button bg color
+  }
+
+  .alert-title {
+    color:rgb(41, 255, 13);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+
+  .alert-head {
+    color:rgb(190, 255, 13);
+    background-color:rgba(47, 224, 255, 0.795);
+  }
+
+  .alert-message {
+    color:rgb(255, 251, 13);
+    background-color:rgba(47, 224, 255, 0.795);
+  }
+
+  .alert-wrapper {
+    font-family: Georgia, 'Times New Roman', Times, serif;  
+    border: dotted 7px;
+  color: rgb(255, 251, 13);
+    background-color: color($colors, dark, base); // bg color of alert content
+  }
+  .alert-button-group {
+    background-color: color($colors, primary, base); // bg color of alert content
+  }
+
 }
 
-.alert-title {
-  color:rgb(41, 255, 13);
-  font-family: Georgia, 'Times New Roman', Times, serif;
+
+.fuente-verdana {
+  font-family: 'Verdana', sans-serif;
 }
 
-.alert-head {
-  color:rgb(190, 255, 13);
-  background-color:rgba(47, 224, 255, 0.795);
+.fuente-shrikhand {
+  font-family: 'Shrikhand', cursive;
 }
 
-.alert-message {
-  color:rgb(255, 251, 13);
-  background-color:rgba(47, 224, 255, 0.795);
+.fuente-courier {
+  font-family: 'Courier New', Courier, monospace;
 }
 
-.alert-wrapper {
-  font-family: Georgia, 'Times New Roman', Times, serif;  
-  border: dotted 7px;
- color: rgb(255, 251, 13);
-  background-color: color($colors, dark, base); // bg color of alert content
-}
-.alert-button-group {
-  background-color: color($colors, primary, base); // bg color of alert content
-}
-
+.fuente-montserrat {
+  font-family: 'Montserrat', sans-serif;
 }

@@ -50,34 +50,35 @@
     <ion-label floating> Ancho de texto</ion-label>
     <ion-select [(ngModel)]="custom.fontWeight">
       <ion-option value="bold">Negrita</ion-option>
-      <ion-option value="500">Medio negrita</ion-option>
+      <ion-option value="500">Intermedia</ion-option>
       <ion-option value="none">Normal</ion-option>
     </ion-select>
   </ion-item>
   <ion-item>
     <ion-label floating>Fuentes</ion-label>
-    <ion-select [(ngModel)]="custom.fontCss">
-      <ion-option value="theme-Wendy-One">Wendy one</ion-option>
+    <ion-select [(ngModel)]="custom.fuente">
+      <ion-option value="fuente-verdana">Verdana</ion-option>
+      <ion-option value="fuente-courier">Courier New</ion-option>
       <ion-option value="fuente-shrikhand">Shrikhand</ion-option>
-      <ion-option value="fuente-Montserrat">Montserrat</ion-option>
+      <ion-option value="fuente-montserrat">Montserrat</ion-option>
     </ion-select>
   </ion-item>
   <ion-item>
     <ion-label floating>Sonidos</ion-label>
     <ion-select (ionChange)="testSound()" [(ngModel)]="custom.sound">
-      <ion-option value="0">Sonido 1</ion-option>
-      <ion-option value="1">Sonido 2</ion-option>
-      <ion-option value="2">Sonido 3</ion-option>
-      <ion-option value="3">Sonido 4</ion-option>
-      <ion-option value="4">Sonido 5</ion-option>
+      <ion-option value="glitch">Glitch</ion-option>
+      <ion-option value="beep">Beep</ion-option>
+      <ion-option value="noise">Noise</ion-option>
+      <ion-option value="click">Click</ion-option>
     </ion-select>
   </ion-item>
   <ion-item>
     <ion-avatar item-start>
-      <img [src]="custom.foto ? custom.foto : 'http://www.tea-tron.com/antorodriguez/blog/wp-content/uploads/2016/04/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef-584x276.png'">
+      <img [src]="custom.foto ? custom.foto : 'assets/imgs/not_found.png'">
     </ion-avatar>
     <h2>
-      <button theme-botons ion-button full round color="secondary" (click)="subirFoto()">Subir foto</button>
+      <button theme-botons ion-button round color="secondary" (click)="subirFoto()">Subir foto</button>
+      <button theme-botons ion-button round color="secondary" (click)="borrarFoto()">Borrar foto</button>
     </h2>
   </ion-item>
   <p>

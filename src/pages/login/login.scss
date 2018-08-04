@@ -1,7 +1,7 @@
 
 page-login {
     
-  
+  background-color: unset;
   /*.contenidoLogin {
     position: relative;
     background-color: #14830a;
@@ -34,7 +34,7 @@ page-login {
     box-shadow: none ;
   }
   ion-content {
-    background-color: #14830a;
+    //background-color: #14830a;
     padding: 0px 0px 0px 0px;
     margin: 0px 0px 0px 0px ;
     -webkit-align-content: stretch ;
@@ -64,8 +64,8 @@ page-login {
     margin-bottom: 0px;
     width: 100%;
     height: 35px;
-    background: #51CFB1;
-    border-radius: 30px;
+    //background: #51CFB1;
+    //border-radius: 30px;
     border: 1px solid #ffffff;
   }
 

@@ -5,6 +5,7 @@ import {ListadoViajesSelecPage} from "../listado-viajes-selec/listado-viajes-sel
 import {SuperControlPanelPage} from "../supervisor-control-panel/supervisor-control-panel";
 import {ServicioAudioProvider} from "../../providers/servicio-audio/servicio-audio";
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
+import { ThemeProvider } from '../../providers/theme/theme';
 /**
  * Generated class for the ListadoChoferesDisponiblesPage page.
  *
@@ -20,10 +21,19 @@ import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 export class ListadoChoferesDisponiblesPage {
   public listadoChoferes;
   private spinner;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public servicioUsuarios:ServicioUsuariosProvider,public audioService:ServicioAudioProvider, public modalCtrl: ModalController) {
+
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public servicioUsuarios: ServicioUsuariosProvider,
+    public audioService: ServicioAudioProvider, 
+    public modalCtrl: ModalController,
+    public themes: ThemeProvider
+  ) {
   }
 
   ionViewDidLoad() {
+    this.themes.refreshTheme();
     this.spin(true);
     let ob = this.servicioUsuarios.traerUsuariosPorPerfil('chofer').subscribe(data => { // la lista se va a actualizar cada vez que cambie la tabla usuarios de firebase
       //console.log('data: ' + JSON.stringify(data));

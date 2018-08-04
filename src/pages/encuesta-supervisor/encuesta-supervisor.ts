@@ -19,6 +19,7 @@ import { LoginPage } from "../../pages/login/login";
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { Encuesta } from '../../clases/encuesta';
 import { SuperControlPanelPage } from '../supervisor-control-panel/supervisor-control-panel';
+import { ThemeProvider } from '../../providers/theme/theme';
 //import { SupervisorPanelPage } from '../supervisor-panel/supervisor-panel';
 
 
@@ -49,19 +50,25 @@ export class EncuestaSupervisorPage {
     public audioService:ServicioAudioProvider,
     private servicioEncuesta: ServicioEncuestasProvider,
     private objFirebase: AngularFirestore,
-    public modalCtrl: ModalController) {
+    public modalCtrl: ModalController,
+    public themes: ThemeProvider
+  ) {
       this.encuesta = new Encuesta();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EncuestaSupervisorPage');
+    this.themes.refreshTheme();
   }
+
   aceptar(){
     this.navCtrl.setRoot(SuperControlPanelPage);
   }
+
   back(){
     this.navCtrl.setRoot(SuperControlPanelPage);
   }
+  
   accionAceptar() {
     if(this.respuesta==null || this.respuesta==undefined )
     {

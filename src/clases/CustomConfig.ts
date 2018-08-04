@@ -8,7 +8,7 @@ export class CustomConfig {
     fontWeight: string;
     foto: string;
     sound: string;
-    fontCss: string;
+    fuente: string;
     backgroundColor: string;
   
     constructor() {

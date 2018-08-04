@@ -24,6 +24,7 @@ import { Usuario } from '../../clases/usuario';
 import { LoginPage } from '../login/login';
 import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
 import { MyApp } from '../../app/app.component';
+import { ThemeProvider } from '../../providers/theme/theme';
 
 @IonicPage()
 @Component({
@@ -40,7 +41,8 @@ export class ChoferPanelPage {
     private servicioViajes: ServicioViajesProvider,
     private servUsuarios: ServicioUsuariosProvider,
     public audioService:ServicioAudioProvider,
-    public platform: Platform
+    public platform: Platform,
+    private themes: ThemeProvider
   ) {
     
     this.chofer = JSON.parse(sessionStorage.getItem('usuario'));
@@ -64,7 +66,8 @@ export class ChoferPanelPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Admin Control Panel Page');
+    console.log('ionViewDidLoad Chofer Panel Page');
+    this.themes.refreshTheme();
     this.chofer = JSON.parse(sessionStorage.getItem('usuario'));
   }
 

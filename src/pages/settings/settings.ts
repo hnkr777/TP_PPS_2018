@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { Settings } from '../../providers/providers';
+import { ThemeProvider } from '../../providers/theme/theme';
 
 /**
  * The Settings page is a simple form that syncs with a Settings provider
@@ -38,6 +39,7 @@ export class SettingsPage {
     public settings: Settings,
     public formBuilder: FormBuilder,
     public navParams: NavParams,
+    public themes: ThemeProvider,
     public translate: TranslateService) {
   }
 
@@ -70,7 +72,7 @@ export class SettingsPage {
   }
 
   ionViewDidLoad() {
-    // Build an empty form for the template to render
+    this.themes.refreshTheme();
     this.form = this.formBuilder.group({});
   }
 

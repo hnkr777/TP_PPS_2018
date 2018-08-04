@@ -72,8 +72,7 @@ export class LoginPage {
 
   ionViewDidLoad() {
     console.log('Iniciado login');
-    //this.themes.refreshTheme();
-    this.themes.activeTheme(Themes.custom);
+    this.themes.refreshTheme();
   }
   
   setLog(i: number) {
@@ -108,6 +107,11 @@ export class LoginPage {
     }
   }
   
+  clearCache() {
+    localStorage.removeItem('custom');
+    sessionStorage.removeItem('foto');
+  }
+
   mostrarUsuarios() {
     this.audioService.reproducirClick();
     let actionSheet = this.actionSheetCtrl.create({

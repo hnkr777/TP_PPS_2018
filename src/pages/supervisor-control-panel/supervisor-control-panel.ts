@@ -26,6 +26,7 @@ import { LoginPage } from '../login/login';
 import {ServicioAudioProvider} from '../../providers/servicio-audio/servicio-audio'
 import { EncuestaSupervisorPage } from '../encuesta-supervisor/encuesta-supervisor';
 import { MyApp } from '../../app/app.component';
+import { ThemeProvider } from '../../providers/theme/theme';
 
 
 @IonicPage()
@@ -40,13 +41,15 @@ export class SuperControlPanelPage {
     public navParams: NavParams,
     public modalCtrl: ModalController,
     public audioService: ServicioAudioProvider,
-    public platform: Platform
+    public platform: Platform,
+    public themes: ThemeProvider
   ) {
 
   }
 
   ionViewDidLoad() { //this.navCtrl.push(ContentPage); // escaner QR para test
     console.log('ionViewDidLoad Admin Control Panel Page');
+    this.themes.refreshTheme();
   }
 
   muteAudio(){

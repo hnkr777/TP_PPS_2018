@@ -4,12 +4,12 @@ page-home {
   //     background-image: url('/assets/img/welcome.jpg');
   // }
 
-  .transparentBody { background-color: transparent ; }
+  .transparentBody { background-color: transparent !important; }
 
 }
 
 ion-content {
-  background: transparent ;
+  background: transparent !important;
   width: 100%;
   height: 100%;
   // display: table;
@@ -17,7 +17,7 @@ ion-content {
 }
 
 .transparentBody { 
-  background-color: transparent ;
+  background-color: transparent !important;
   // width: 100%;
   // height: 100%;
   // display: table;
@@ -30,7 +30,7 @@ ion-content {
   width: 220px;
   height: 220px;
   margin: auto;
-  background: transparent ;
+  background: transparent !important;
   // display: table-cell;
   vertical-align: middle ;
   z-index:-1;
@@ -39,7 +39,7 @@ ion-content {
 }
 
 .base {
-  background: transparent;
+  background: transparent !important;
   height: 100%;
   width: 100%;
 }

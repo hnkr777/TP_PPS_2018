@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider, Settings, EnviarMailProvider } from '../../providers/providers';
 import { Geolocation } from '@ionic-native/geolocation';
 import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
+import { ThemeProvider } from '../../providers/theme/theme';
 //import * as moment from 'moment';
 declare const google; // para google maps
 /**
@@ -41,13 +42,15 @@ export class DetalleViajeChoferPage {
     private servicioUsuarios:ServicioUsuariosProvider,
     public alertCtrl: AlertController,
     public audioService:ServicioAudioProvider,
-    private servicioEmail: EnviarMailProvider
+    private servicioEmail: EnviarMailProvider,
+    private themes: ThemeProvider
   ) {
 
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetalleViajeChoferPage');
+    this.themes.refreshTheme();
     this.viaje = this.navParams.get('viaje');
     console.log(this.viaje);
     if( this.viaje.estado == 1 ) {

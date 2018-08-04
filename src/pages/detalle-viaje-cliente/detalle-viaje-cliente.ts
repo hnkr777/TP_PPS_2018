@@ -11,6 +11,7 @@ import { QrLeerEncuestaClientePage } from '../../pages/qr-leer-encuesta-cliente/
 import { InicioClientePage } from '../../pages/inicio-cliente/inicio-cliente';
 import { EncuestaClientePage } from '../../pages/encuesta-cliente/encuesta-cliente';
 import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
+import { ThemeProvider } from '../../providers/theme/theme';
 //import * as moment from 'moment';
 declare const google; // para google maps
 
@@ -45,12 +46,14 @@ export class DetalleViajeClientePage {
     private servicioViajes: ServicioViajesProvider,
     private servicioUsuarios:ServicioUsuariosProvider,
     public alertCtrl: AlertController,
-    public audioService:ServicioAudioProvider
+    public audioService:ServicioAudioProvider,
+    private themes: ThemeProvider
   ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetalleViajeClientePage');
+    this.themes.refreshTheme();
     this.viaje = this.navParams.get('viaje');
     console.log(this.viaje);
    /* if( this.viaje.estado == 1 ) {

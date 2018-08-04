@@ -1,6 +1,6 @@
 import { Directive, OnInit, OnDestroy, ElementRef, Renderer2 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { ThemeProvider } from '../../providers/theme/theme';
+import { ThemeProvider, Themes } from '../../providers/theme/theme';
 import { CustomProvider } from '../../providers/custom/custom';
 
 /**
@@ -33,34 +33,48 @@ export class ThemeBgDirective implements OnInit, OnDestroy {
 
   setStyles() {
     this.removeClass();
+    let currentTheme: Themes;
+    
+    if(localStorage.getItem('tema')) {
+      currentTheme = localStorage.getItem('tema') as Themes;
+    }
+
     //this.renderer.addClass(this.el.nativeElement, 'background-img');
-    if(this.themes.isArgentina()) {
+    if(currentTheme == Themes.argentina) {
       // this.renderer.setStyle(this.el.nativeElement, 'background', 'url("/assets/imgs/bg/a2.jpg")');
       // this.renderer.setStyle(this.el.nativeElement, 'backgroundPosition', 'bottom');
       // this.renderer.setStyle(this.el.nativeElement, 'backgroundSize', 'cover');
-    } else if (this.themes.isProfesional()) {
+    } else if (currentTheme == Themes.professional) {
+      console.log('ES PROFESSIONAL!!!!!!!!!!');
       // this.renderer.setStyle(this.el.nativeElement, 'background', 'url(assets/imgs/bg/g2.jpg)');
       // this.renderer.setStyle(this.el.nativeElement, 'backgroundPosition', 'bottom');
       // this.renderer.setStyle(this.el.nativeElement, 'backgroundSize', 'cover');
-    } else if (this.themes.isNaif()) {
+    } else if (currentTheme == Themes.naif) {
       // this.renderer.setStyle(this.el.nativeElement, 'background', 'url(assets/imgs/bg/n1.jpg)');
       // this.renderer.setStyle(this.el.nativeElement, 'backgroundPosition', 'bottom');
       // this.renderer.setStyle(this.el.nativeElement, 'backgroundSize', 'cover');
-    } else {
+    } else if (currentTheme == Themes.custom) {
+      console.log('ES CUSTOM!!!!!!!!!!');
       let c = this.custom.getCustomConfig();
+      console.log('FOTO: '+c.foto);
       if(c.foto !== undefined) {
-        this.renderer.setAttribute(this.el.nativeElement,'style', 'background-image', 'url('+c.foto+') ');
-        //console.error('==============imagen:');
+        this.renderer.setAttribute(this.el.nativeElement,'style', 'background-size: cover;');
+        this.renderer.setAttribute(this.el.nativeElement,'style', 'background-repeat: repeat;');
+        this.renderer.setAttribute(this.el.nativeElement,'style', 'background-image: url(\''+ c.foto +'\');');
+      } else {
+        this.renderer.setAttribute(this.el.nativeElement,'style', 'background-color: '+ c.backgroundColor + ' ');
       }
-      this.renderer.setAttribute(this.el.nativeElement,'style', 'background-color: '+ c.backgroundColor + ' ');
+      
       //this.renderer.setStyle(this.el.nativeElement, 'backgroundPosition', 'bottom');
       //this.renderer.setStyle(this.el.nativeElement, 'backgroundSize', 'cover ');
       // this.renderer.setAttribute(this.el.nativeElement,'style', 'background-position: cover ');
+    } else {
+      console.log('FALLA!!!!!!!!!!');
     }
   }
 
   removeClass() {
-    this.renderer.removeClass(this.el.nativeElement, 'background-img');
+    //this.renderer.removeClass(this.el.nativeElement, 'background-img');
     this.renderer.removeClass(this.el.nativeElement, 'content-md');
   }
 }

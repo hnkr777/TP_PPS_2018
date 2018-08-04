@@ -14,7 +14,7 @@ $font-path: "../assets/fonts";
 //$bg: #394e5d, #3879ad;
 $text-color:        rgb(0, 0, 0);
 $background-color: rgb(255, 255, 255);
-$background-image: url('assets/img/bg.jpg');
+//$background-image: url('assets/img/bg.jpg');
 $background-repeat: no-repeat;
 $background-size: cover;
 $input-bgcolor: rgba(0, 0, 0, 0.4);
@@ -54,8 +54,8 @@ $colors: (
   //background-image: url('/assets/imgs/bg/.jpg');
   background-color: linear-gradient(to top, #394e5d, #3879ad);
 
-  background-repeat: no-repeat;
-  background-size:cover;
+  background-repeat: repeat;
+  background-size: cover;
 }
 
 ion-content {

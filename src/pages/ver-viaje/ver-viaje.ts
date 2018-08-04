@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ThemeProvider } from '../../providers/theme/theme';
 
 /**
  * Generated class for the VerViajePage page.
@@ -15,11 +16,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class VerViajePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public themes: ThemeProvider
+  ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad VerViajePage');
+    this.themes.refreshTheme();
   }
-
 }

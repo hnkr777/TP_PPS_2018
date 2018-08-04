@@ -11,6 +11,7 @@ import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { AbmClienteProvider } from "../../providers/abm-cliente/abm-cliente";
 import { InicioClientePage } from "../../pages/inicio-cliente/inicio-cliente";
 import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
+import { ThemeProvider } from '../../providers/theme/theme';
 /**
  * Generated class for the EditarPerfilClientePage page.
  *
@@ -31,7 +32,18 @@ export class EditarPerfilClientePage {
   ListadoUsuariosObservable: Observable<any[]>;
 
 
-  constructor(public audioService:ServicioAudioProvider,public navCtrl: NavController, public navParams: NavParams,private builder: FormBuilder,private camera: Camera,public alertCtrl: AlertController,private objFirebase: AngularFirestore,public modalCtrl: ModalController,private servicioCliente: AbmClienteProvider) {
+  constructor(
+    public audioService: ServicioAudioProvider,
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    private builder: FormBuilder,
+    private camera: Camera,
+    private themes: ThemeProvider,
+    public alertCtrl: AlertController,
+    private objFirebase: AngularFirestore,
+    public modalCtrl: ModalController,
+    private servicioCliente: AbmClienteProvider
+  ) {
   // this.unCliente = this.navParams.get('cliente');
    //console.log(this.unCliente);
    this.unCliente = JSON.parse(sessionStorage.getItem('usuario'));
@@ -42,6 +54,7 @@ export class EditarPerfilClientePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EditarPerfilClientePage');
+    this.themes.refreshTheme();
   }
 
   clave : FormControl = new FormControl("",[Validators.required]);

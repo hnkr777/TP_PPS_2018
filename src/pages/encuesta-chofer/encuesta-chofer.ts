@@ -18,6 +18,7 @@ import { LoginPage } from "../../pages/login/login";
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { Encuesta } from '../../clases/encuesta';
 import { Usuario } from '../../clases/usuario';
+import { ThemeProvider } from '../../providers/theme/theme';
 
 /**
  * Página de encuesta de chofer
@@ -64,6 +65,7 @@ export class EncuestaChoferPage {
       private objFirebase: AngularFirestore,
       public modalCtrl: ModalController,
       private servUsuarios: ServicioUsuariosProvider,
+      public themes: ThemeProvider
     ) {
      // this.viaje = this.navParams.get('viaje');
      // console.log(this.viaje);
@@ -99,7 +101,7 @@ export class EncuestaChoferPage {
     }
   
     ionViewDidLoad() {
-      // Build an empty form for the template to render
+      this.themes.refreshTheme();
       this.form = this.formBuilder.group({});
     }
   

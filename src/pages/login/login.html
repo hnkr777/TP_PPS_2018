@@ -1,22 +1,23 @@
 <!-- <div class="contenidoLogin"> -->
 
-  <ion-header class="lgElem">
-    <ion-navbar theme-header>
-      <ion-title>{{ 'LOGIN_TITLE' | translate }}</ion-title>
-<!-- 
+<ion-header theme-header class="lgElem">
+  <ion-navbar>
+    <ion-title (click)="clearCache()">{{ 'LOGIN_TITLE' | translate }}</ion-title>
+    <!-- 
       <img src="assets/img/audioOn.png" alt="" class="imgIcon" *ngIf = "muteSound">
       <img src="assets/img/audioOff.png" alt="" class="imgIcon" *ngIf = "!muteSound"> -->
     <ion-buttons end>
-        <button ion-button (click)="muteAudio()">
-          <ion-icon name="volume-off" *ngIf = "!muteSound" class="imgIcon"></ion-icon>
-          <ion-icon name="volume-up" *ngIf = "muteSound" class="imgIcon"></ion-icon>
-        </button>
-        <!-- <ion-toggle (ionChange)="muteAudio()"></ion-toggle> -->
-      </ion-buttons>
-    </ion-navbar>
-  </ion-header>
+      <button ion-button (click)="muteAudio()">
+        <ion-icon name="volume-off" *ngIf="!muteSound" class="imgIcon"></ion-icon>
+        <ion-icon name="volume-up" *ngIf="muteSound" class="imgIcon"></ion-icon>
+      </button>
+      <!-- <ion-toggle (ionChange)="muteAudio()"></ion-toggle> -->
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
 
-  <ion-content theme-bg>
+<ion-content>
+  <div theme-bg padding class="contenido">
     <img src="assets/img/icon.png" alt="" class="img">
     <form id="formularioIngreso">
       <ion-list>
@@ -32,23 +33,23 @@
         </ion-item>
 
         <div padding>
-          <button theme-botons ion-button icon-left block large (click)="doLogin()" class ="submit-btn">
+          <button theme-botons ion-button icon-left block large (click)="doLogin()" class="submit-btn">
             <ion-icon name="log-in"></ion-icon>{{ 'LOGIN_BUTTON' | translate }}</button>
           <br>
-          <button theme-botons ion-button round icon-left color="botonRegistrar" block large (click)="Redireccionar()" class ="submit-btn">
+          <button theme-botons ion-button round icon-left block large (click)="Redireccionar()" class="submit-btn">
             <ion-icon name="person-add"></ion-icon>Registrarse</button>
-          
+
         </div>
 
       </ion-list>
 
     </form>
-
-  </ion-content>
-  <ion-footer>
-    <ion-list padding>
-      <button theme-botons large (click)="mostrarUsuarios()" ion-button color="primary" block class ="submit-btn">
-        <ion-icon name="people"></ion-icon>Iniciar sesión como...</button>
-    </ion-list>
-  </ion-footer>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-list padding>
+    <button theme-botons large (click)="mostrarUsuarios()" ion-button block class="submit-btn">
+      <ion-icon name="people"></ion-icon>&nbsp;Iniciar sesión como...</button>
+  </ion-list>
+</ion-footer>
 <!-- </div> -->

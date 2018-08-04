@@ -18,6 +18,7 @@ import * as firebase from 'firebase';
 import { LoginPage } from "../../pages/login/login";
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { Encuesta } from '../../clases/encuesta';
+import { ThemeProvider } from '../../providers/theme/theme';
 
 /**
  * Generated class for the EncuestaClientePage page.
@@ -64,7 +65,8 @@ export class EncuestaClientePage {
       public audioService:ServicioAudioProvider,
       private servicioEncuesta: ServicioEncuestasProvider,
       private objFirebase: AngularFirestore,
-      public modalCtrl: ModalController
+      public modalCtrl: ModalController,
+      public themes: ThemeProvider
     ) {
       this.viaje = this.navParams.get('viaje');
       console.log(this.viaje);
@@ -99,7 +101,7 @@ export class EncuestaClientePage {
     }
   
     ionViewDidLoad() {
-      // Build an empty form for the template to render
+      this.themes.refreshTheme();
       this.form = this.formBuilder.group({});
     }
   

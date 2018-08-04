@@ -2,23 +2,20 @@
 import { Injectable } from '@angular/core';
 import { ThemeProvider, Themes } from '../theme/theme';
 import { CustomConfig } from '../../clases/CustomConfig';
+import { ServicioFotosProvider } from '../providers';
 
-/*
-  Generated class for the CustomProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class CustomProvider {
 
   customConfig : CustomConfig;
+  
+  serv: ServicioFotosProvider;
+
   constructor(private themes : ThemeProvider) {
     if(localStorage.getItem('custom')) {
       this.getCustomConfig();
     }
   }
-
 
   getCustomConfig() {
     if(this.customConfig) {
@@ -38,8 +35,8 @@ export class CustomProvider {
       this.customConfig = custom;
       let c = JSON.stringify(this.customConfig);
       localStorage.setItem('custom', c);
+      //sessionStorage.setItem('foto', this.customConfig.foto);
       this.themes.activeTheme(Themes.custom);
     }
   }
 }
-

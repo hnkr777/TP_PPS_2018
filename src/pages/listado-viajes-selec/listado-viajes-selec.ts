@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import {VerViajePage} from '../ver-viaje/ver-viaje';
 import {ServicioAudioProvider} from '../../providers/servicio-audio/servicio-audio';
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
+import { ThemeProvider } from '../../providers/theme/theme';
 /**
  * Generated class for the ListadoViajesSelecPage page.
  *
@@ -26,7 +27,16 @@ export class ListadoViajesSelecPage {
   correoChofer:string;
   chofer:Usuario;
   private spinner;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,public servicioViajes:ServicioViajesProvider,public audioService:ServicioAudioProvider,public servicioUsuarios:ServicioUsuariosProvider,public modalCtrl:ModalController) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public alertCtrl: AlertController,
+    public servicioViajes: ServicioViajesProvider,
+    public audioService: ServicioAudioProvider,
+    public servicioUsuarios: ServicioUsuariosProvider,
+    public modalCtrl: ModalController,
+    public themes: ThemeProvider
+  ) {
     this.chofer = this.navParams.get('data');
     this.correoChofer = this.chofer.correo;
     //this.listadoViajes = servicioViajes.traerViajes();
@@ -36,7 +46,9 @@ export class ListadoViajesSelecPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ListadoViajesSelecPage');
+    this.themes.refreshTheme();
   }
+
   filtrar(){
     this.spin(true);
       console.log(Date());

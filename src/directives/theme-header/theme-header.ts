@@ -13,14 +13,16 @@ import { CustomProvider } from '../../providers/custom/custom';
   selector: '[theme-header]' // Attribute selector
 })
 export class ThemeHeaderDirective implements OnInit, OnDestroy {
-
   subs : Subscription;
 
-  constructor(private el : ElementRef, private renderer : Renderer2, private themes : ThemeProvider, private custom : CustomProvider) {
+  constructor(
+    private el: ElementRef,
+    private renderer: Renderer2,
+    private themes: ThemeProvider,
+    private custom: CustomProvider
+  ) {
     //background: linear-gradient(#3be7ff, yellow, #3be7ff);
-
   }
-
 
   ngOnInit(): void {
     
@@ -37,6 +39,7 @@ export class ThemeHeaderDirective implements OnInit, OnDestroy {
     this.removeClass();
     //this.renderer.setStyle(this.el.nativeElement.firstChild, 'cssText', ' ');
     if(this.themes.isCustom()) {
+      console.log('Custom header!!!');
       let c = this.custom.getCustomConfig();
       // this.renderer.setStyle(this.el.nativeElement.firstChild, 'background', 'linear-gradient(' + c.color + ', white, ' + c.color + ')');
       this.renderer.setAttribute(this.el.nativeElement, 'style', 'background-color: '+ c.backgroundColor + ' !important;');

@@ -22,6 +22,7 @@ import { ArchivoPost } from '../../clases/ArchivoPost';
 import { PagesModalPage } from "../pages-modal/pages-modal";
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { environment } from "../../environments/environment";
+import { ThemeProvider } from '../../providers/theme/theme';
 
 @IonicPage()
 @Component({
@@ -47,7 +48,9 @@ export class CardsPage {
     public modalCtrl: ModalController,
     private camera: Camera,
     private objFirebase: AngularFirestore,
-    public navParams: NavParams ) {
+    public navParams: NavParams,
+    public themes: ThemeProvider
+  ) {
       this.usuario = JSON.parse(sessionStorage.getItem('usuario'));
       this.cardItems = new Array<any>();
       this.opcion = navParams.get('opcion');
@@ -68,6 +71,10 @@ export class CardsPage {
     this.modalCtrl.create(PagesModalPage, { titulo: titulo, data: data }).present();
   }
   
+  ionViewDidLoad() {
+    this.themes.refreshTheme();
+  }
+
   ngOnInit() {
     this.traerArchivoPost();
   }

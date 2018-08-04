@@ -13,6 +13,7 @@ import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { ServicioAudioProvider } from "../../providers/servicio-audio/servicio-audio";
 import { vehiculo } from '../../clases/vehiculo';
 import { ServicioVehiculoProvider } from '../../providers/servicio-vehiculo/servicio-vehiculo';
+import { ThemeProvider } from '../../providers/theme/theme';
 /**
  * AltaChoferPage
  *
@@ -47,7 +48,8 @@ export class AltaChoferPage {
     public translateService: TranslateService,
     public alertCtrl: AlertController,
     public audioService:ServicioAudioProvider,
-    private servicioVehiculos: ServicioVehiculoProvider
+    private servicioVehiculos: ServicioVehiculoProvider,
+    private themes: ThemeProvider
   ) {
       let chofer = navParams.get('chofer');
       
@@ -76,7 +78,7 @@ export class AltaChoferPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AltaChoferPage');
-    
+    this.themes.refreshTheme();
   }
 
   verImagen() {

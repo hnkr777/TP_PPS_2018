@@ -8,6 +8,7 @@ import { IonicPage, ModalController, ViewController, NavController, NavParams } 
 // import { AltaChoferPage } from '../alta-chofer/alta-chofer';
 import { ServicioEncuestasProvider } from "../../providers/servicio-encuestas/servicio-encuestas";
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
+import { ThemeProvider } from '../../providers/theme/theme';
 @IonicPage()
 @Component({
   selector: 'page-pages-modal',
@@ -27,7 +28,14 @@ export class PagesModalPage {
   resultado1;
   resultado2;
   resultado3;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl : ViewController, private servicioEncuestas: ServicioEncuestasProvider,  private modalCtrl: ModalController) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public viewCtrl : ViewController, 
+    private servicioEncuestas: ServicioEncuestasProvider,  
+    private modalCtrl: ModalController,
+    public themes: ThemeProvider
+  ) {
     this.cuerpo = navParams.get('data');
     this.titulo = navParams.get('titulo');
     this.filtro = "cliente";
@@ -53,6 +61,7 @@ export class PagesModalPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PagesModalPage');
+    this.themes.refreshTheme();
     //this.filtrarEncuestas();
   }
 

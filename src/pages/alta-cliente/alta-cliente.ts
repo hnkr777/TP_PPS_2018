@@ -9,6 +9,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 //import { LoginPage } from "../../pages/login/login";
 import { SpinnerPage } from "../../pages/pages-spinner/pages-spinner";
 import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
+import { ThemeProvider } from '../../providers/theme/theme';
 
 /**
  * Generated class for the AltaClientePage page.
@@ -30,7 +31,17 @@ export class AltaClientePage {
   ListadoUsuariosObservable: Observable<any[]>;
   fechaAlta;
 
-  constructor(public audioService:ServicioAudioProvider,public navCtrl: NavController, public navParams: NavParams,private builder: FormBuilder,private camera: Camera,public alertCtrl: AlertController,private objFirebase: AngularFirestore,public modalCtrl: ModalController) {
+  constructor(
+    public audioService: ServicioAudioProvider,
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    private builder: FormBuilder,
+    private camera: Camera,
+    public alertCtrl: AlertController,
+    private objFirebase: AngularFirestore,
+    public modalCtrl: ModalController,
+    private themes: ThemeProvider
+  ) {
     this.unCliente=new Object();
     this.unCliente.foto=null;
     this.fechaAlta = new Date(Date.now());
@@ -38,6 +49,7 @@ export class AltaClientePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AltaClientePage');
+    this.themes.refreshTheme();
   }
 
 nombre : FormControl = new FormControl("",[Validators.required]);

@@ -9,7 +9,7 @@
     </ion-buttons>
   </ion-navbar>
 
-  <ion-list block theme-botons>
+  <ion-list block>
       <ion-item class="filtro">
         <ion-label >Filtro:</ion-label>
         <ion-select  interface="alert" cancelText="Cancelar" okText="Aceptar" [(ngModel)]="filtro" (ionChange)="filtrarViajes()">
@@ -71,14 +71,14 @@
       <p *ngIf = "item.estado == 0">
         <b>
           <button theme-botons ion-button icon-only (click)="cancelarViaje(item)" class="submit-btn">
-          <ion-icon name="trash">Eliminar</ion-icon>
+          <ion-icon name="trash"> Eliminar</ion-icon>
           </button>
         </b>
       </p>
       <p *ngIf = "item.estado == 0 && item.correoChofer != ''">
         <b>
           <button theme-botons ion-button icon-only (click)="ponerViajeEnPendiente(item)" class="submit-btn">
-          <ion-icon name="md-close">Cancelar asignación</ion-icon>
+          <ion-icon name="md-close"> Cancelar asignación</ion-icon>
           </button>
         </b>
       </p>

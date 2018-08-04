@@ -45,7 +45,8 @@ export class MyApp implements OnInit {
       { title: 'Professional', component: SplashScreen, id: 1, icon: 'arrow-round-forward' },
       { title: 'Argentina', component: SplashScreen, id: 2, icon: 'arrow-round-forward' },
       { title: 'Naif', component: SplashScreen, id: 3, icon: 'arrow-round-forward' },
-      { title: 'Custom', component: SettingsPage, id: 4, icon: 'options' }
+      { title: 'Custom', component: SettingsPage, id: 4, icon: 'arrow-round-forward' },
+      { title: 'Configurar custom', component: SettingsPage, id: 5, icon: 'options' }
     ];
 
     this.initTranslate();
@@ -101,22 +102,19 @@ export class MyApp implements OnInit {
   }
   
   openPage(page) {
-    //this.nav.setRoot(page.component);
+    console.log(page);
     switch (page.id) {
       case 1:
-        console.log(page);
         this.audio.reproducirClick();
         this.setProfessional();
       break;
     
       case 2:
-        console.log(page);
         this.audio.reproducirClick();
         this.setArgentina();
       break;
 
       case 3:
-        console.log(page);
         this.audio.reproducirClick();
         this.setNaif();
       break;
@@ -124,6 +122,11 @@ export class MyApp implements OnInit {
       case 4:
         this.audio.reproducirClick();
         this.setCustom();
+        break;
+
+      case 5:
+        this.audio.reproducirClick();
+        this.confCustom();
         this.nav.push(CustomPage);
       break;
 
@@ -133,27 +136,27 @@ export class MyApp implements OnInit {
   }
 
   setArgentina() {
-    this.guardarTema('theme-argentina');
-    localStorage.setItem('theme', 'argentina');
-    this.changeTheme('theme-argentina');
+    this.guardarTema('argentina');
+    this.changeTheme('argentina');
   }
 
   setNaif() {
-    this.guardarTema('theme-naif');
-    localStorage.setItem('theme', 'naif');
-    this.changeTheme('theme-naif');
+    this.guardarTema('naif');
+    this.changeTheme('naif');
   }
 
   setProfessional() {
-    this.guardarTema('theme-professional');
-    localStorage.setItem('theme', 'professional');
-    this.changeTheme('theme-professional');
+    this.guardarTema('professional');
+    this.changeTheme('professional');
   }
 
   setCustom() {
-    this.guardarTema('theme-custom');
-    localStorage.setItem('theme', 'custom');
-    this.changeTheme('theme-custom');
+    this.guardarTema('custom');
+    this.changeTheme('custom');
+  }
+
+  confCustom() {
+    
   }
 
   guardarTema(tema: string) {

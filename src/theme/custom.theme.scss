@@ -1,24 +1,24 @@
-.theme-custom {
-    font-family: Arial, Helvetica, sans-serif;
+.custom {
+    //font-family: Arial, Helvetica, sans-serif;
     // From here to the next checkpoint is for theming the header - toolbar navbar but not the main content 
     //transition: all 1.1s ease;
-    background-color: unset;
+    background-color: none;
     p,
     .toolbar-title,
     .bar-button-default,
     body,
     div {
       //transition: all 1.1s ease;
-      color: unset;
+      color: none;
     }
     .onboard {
-      border-color: unset;
+      border-color: none;
     }
     .toolbar-background,
     .toggle-checked {
       //transition: all 1.1s ease;
-      background-color: unset;
-      background-image: unset;
+      background-color: none;
+      background-image: none;
     }
 
     //From here is where the main content is modified, this includes the backgorund of the page, ion-items and more
@@ -32,67 +32,67 @@
     ion-item,
     ion-label {
       //transition: all 1.1s ease;
-      background-color: unset;
-      background: unset;
-      color: unset;
+      background-color: none;
+      background: none;
+      color: none;
     }
 
     #fechaSalida {
-      background-color: unset;
-      color: unset;
+      background-color: none;
+      color: none;
     }
 
     ion-list {
-      background-color: unset;
+      background-color: none;
     }
     .time {
-      background-color: unset;
+      background-color: none;
     }
     .item {
       transition: all 1s ease;
-      background-color: unset;
-      color: unset;
+      background-color: none;
+      color: none;
     }
     
     ion-button, .submit-btn, .boton-menu {
-      background-color: unset;
-      color: unset;
-      border-radius: unset;
-      box-shadow: unset;
+      background-color: none;
+      color: none;
+      border-radius: none;
+      box-shadow: none;
     }
     
     .enabled {
-      background-color: unset;
+      background-color: none;
     }
 
     .disabled {
-      background-color: unset;
+      background-color: none;
     }
 
     .item-cover {
       //background-color: #ffffff ;
-      color: unset;
-      border-radius: unset;
+      color: none;
+      border-radius: none;
       margin: 5px;
     }
 
     .boton, {
-      background-color: unset;
-      color: unset;
-      border-radius: unset;
+      background-color: none;
+      color: none;
+      border-radius: none;
     }
 
     .contenido {
-      background-image: unset;
+      background-image: none;
       background-position: top;
       height: 100%;
-      background-size: cover;
+      background-size: cover ;
     }
 
     ion-content, .contenido-viajes {
       //transition: all 1.1s ease;
-      background-color: unset;
+      background-color: none;
       //background-image: url('../assets/imgs/bg/n2.jpg') ;
-      color:unset;
+      color:none;
     }
 }

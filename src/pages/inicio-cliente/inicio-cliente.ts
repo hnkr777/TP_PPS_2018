@@ -21,6 +21,7 @@ import { ServicioFotosProvider, ServicioUsuariosProvider, ServicioViajesProvider
 import { EditarPerfilClientePage } from '../../pages/editar-perfil-cliente/editar-perfil-cliente';
 import { LoginPage } from '../login/login';
 import { ServicioAudioProvider } from '../../providers/servicio-audio/servicio-audio';
+import { ThemeProvider } from '../../providers/theme/theme';
 /**
  * Generated class for the InicioClientePage page.
  *
@@ -57,7 +58,7 @@ constructor(public navCtrl: NavController,
  // private servicioFotos: ServicioFotosProvider,
   public viewCtrl: ViewController,
   private builder: FormBuilder,
-  private camera: Camera,
+  private themes: ThemeProvider,
   public alertCtrl: AlertController,
   private servicioCliente: AbmClienteProvider,
   private qrScanner: QRScanner,
@@ -71,6 +72,7 @@ constructor(public navCtrl: NavController,
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InicioClientePage');
+    this.themes.refreshTheme();
     this.usuarioDatos = JSON.parse(sessionStorage.getItem('usuario'));
     this.nombre=this.usuarioDatos.nombre;
     this.foto=this.usuarioDatos.foto;

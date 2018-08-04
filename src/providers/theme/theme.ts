@@ -16,10 +16,10 @@ export class ThemeProvider {
 
   currentTheme : Themes = Themes.professional;
   constructor() {
-    if(localStorage.getItem('theme')) {
-      this.currentTheme = localStorage.getItem('theme') as Themes;
+    if(localStorage.getItem('tema')) {
+      this.currentTheme = localStorage.getItem('tema') as Themes;
       setTimeout((data) => {
-        console.log('.');
+        console.log('Theme-provider time tick');
         this.refreshTheme();
       }, 100);
     } else {
@@ -29,12 +29,15 @@ export class ThemeProvider {
 
 
   refreshTheme() {
-    this.activeTheme(this.currentTheme);
+    if(localStorage.getItem('tema')) {
+      this.currentTheme = localStorage.getItem('tema') as Themes;
+      this.activeTheme(this.currentTheme);
+    }
   }
 
   activeTheme(theme : Themes) {
     this.currentTheme = theme;
-    localStorage.setItem('theme', this.currentTheme);
+    localStorage.setItem('tema', this.currentTheme);
     this.subject.next(this.currentTheme);
   }
 

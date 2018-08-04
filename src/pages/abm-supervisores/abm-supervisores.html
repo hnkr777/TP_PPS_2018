@@ -14,7 +14,7 @@
 
 <ion-content theme-bg class="abm-supervisores-content" id="supervisores-content">
 
-  <ion-card (click)="modificar(item)" padding *ngFor="let item of listaSupervisores" [ngClass]="item.activo==0? 'disabled' : 'enabled' ">
+  <ion-card class="carta" (click)="modificar(item)" padding *ngFor="let item of listaSupervisores" [ngClass]="item.activo==0? 'disabled' : 'enabled' ">
 
     <ion-item>
       <ion-avatar item-start>
